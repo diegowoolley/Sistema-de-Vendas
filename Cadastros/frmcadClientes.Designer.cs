@@ -165,6 +165,7 @@
             // dgCliente
             // 
             this.dgCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgCliente.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgCliente.Location = new System.Drawing.Point(15, 144);
             this.dgCliente.Name = "dgCliente";
             this.dgCliente.Size = new System.Drawing.Size(763, 150);
@@ -215,7 +216,6 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Enabled = false;
             this.btnCancelar.Location = new System.Drawing.Point(392, 312);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);

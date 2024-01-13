@@ -51,7 +51,32 @@ namespace Sistema_de_Vendas
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            Close();
+            txtnome.Enabled = false;
+            txtnome.Clear();
+            txtdocumento.Enabled = false;
+            txtdocumento.Clear();
+            txtendereco.Enabled = false;
+            txtendereco.Clear();
+            txtbairro.Enabled = false;
+            txtbairro.Clear();
+            txtnumero.Enabled = false;
+            txtnumero.Clear();
+            txtcidade.Enabled = false;
+            txtcidade.Clear();
+            cbestados.Enabled = false;
+            txttelefone.Enabled = false;
+            txttelefone.Clear();
+            txtcelular.Enabled = false;
+            txtcelular.Clear();
+            btnAdicionar.Enabled = false;
+            btnAlterar.Enabled = false;
+            btnExcluir.Enabled = false;
+            
+            btnfoto.Enabled = false;
+            btnNovo.Enabled = true;
+            Limparfoto();
+            btnNovo.Focus();
+            Listar();
         }
 
         private void btnNovo_Click(object sender, EventArgs e)
@@ -70,7 +95,7 @@ namespace Sistema_de_Vendas
             btnAdicionar.Enabled = true;
             btnAlterar.Enabled = false;
             btnExcluir.Enabled = false;
-            btnCancelar.Enabled = true;
+            
             btnfoto.Enabled = true;
             txtnome.Focus();
         }
@@ -161,7 +186,7 @@ namespace Sistema_de_Vendas
                         btnAdicionar.Enabled = false;
                         btnAlterar.Enabled = false;
                         btnExcluir.Enabled = false;
-                        btnCancelar.Enabled = false;
+                        
                         btnfoto.Enabled = false;
                         btnNovo.Enabled = true;
                         Limparfoto();
@@ -482,7 +507,7 @@ namespace Sistema_de_Vendas
                 btnAdicionar.Enabled = false;
                 btnAlterar.Enabled = false;
                 btnExcluir.Enabled = false;
-                btnCancelar.Enabled = false;
+                
                 btnfoto.Enabled = false;
                 btnNovo.Enabled = true;
                 Limparfoto();
