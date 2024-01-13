@@ -173,6 +173,7 @@
             this.btnfoto.TabIndex = 16;
             this.btnfoto.Text = "foto";
             this.btnfoto.UseVisualStyleBackColor = true;
+            this.btnfoto.Click += new System.EventHandler(this.btnfoto_Click);
             // 
             // btnCancelar
             // 
@@ -182,6 +183,7 @@
             this.btnCancelar.TabIndex = 15;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnExcluir
             // 
@@ -192,6 +194,7 @@
             this.btnExcluir.TabIndex = 14;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // btnAlterar
             // 
@@ -202,6 +205,7 @@
             this.btnAlterar.TabIndex = 13;
             this.btnAlterar.Text = "Alterar";
             this.btnAlterar.UseVisualStyleBackColor = true;
+            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
             // 
             // btnAdicionar
             // 
@@ -212,6 +216,7 @@
             this.btnAdicionar.TabIndex = 12;
             this.btnAdicionar.Text = "Adicionar";
             this.btnAdicionar.UseVisualStyleBackColor = true;
+            this.btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
             // 
             // btnNovo
             // 
@@ -221,6 +226,7 @@
             this.btnNovo.TabIndex = 11;
             this.btnNovo.Text = "Novo";
             this.btnNovo.UseVisualStyleBackColor = true;
+            this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
             // 
             // dgCliente
             // 
@@ -231,6 +237,7 @@
             this.dgCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgCliente.Size = new System.Drawing.Size(763, 150);
             this.dgCliente.TabIndex = 56;
+            this.dgCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgCliente_CellContentClick);
             // 
             // pbFoto
             // 
@@ -251,6 +258,9 @@
             this.txtcelular.Name = "txtcelular";
             this.txtcelular.Size = new System.Drawing.Size(95, 20);
             this.txtcelular.TabIndex = 9;
+            this.txtcelular.Enter += new System.EventHandler(this.txtcelular_Enter);
+            this.txtcelular.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtcelular_KeyPress);
+            this.txtcelular.Leave += new System.EventHandler(this.txtcelular_Leave);
             // 
             // txtdocumento
             // 
@@ -261,6 +271,9 @@
             this.txtdocumento.Name = "txtdocumento";
             this.txtdocumento.Size = new System.Drawing.Size(195, 20);
             this.txtdocumento.TabIndex = 2;
+            this.txtdocumento.Enter += new System.EventHandler(this.txtdocumento_Enter);
+            this.txtdocumento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtdocumento_KeyPress);
+            this.txtdocumento.Leave += new System.EventHandler(this.txtdocumento_Leave);
             // 
             // txttelefone
             // 
@@ -271,6 +284,9 @@
             this.txttelefone.Name = "txttelefone";
             this.txttelefone.Size = new System.Drawing.Size(95, 20);
             this.txttelefone.TabIndex = 8;
+            this.txttelefone.Enter += new System.EventHandler(this.txttelefone_Enter);
+            this.txttelefone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txttelefone_KeyPress);
+            this.txttelefone.Leave += new System.EventHandler(this.txttelefone_Leave);
             // 
             // txtendereco
             // 
@@ -348,8 +364,19 @@
             // 
             // cbcargo
             // 
+            this.cbcargo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbcargo.Enabled = false;
             this.cbcargo.FormattingEnabled = true;
+            this.cbcargo.Items.AddRange(new object[] {
+            "CAIXA",
+            "VENDEDOR",
+            "GERENTE",
+            "TÉCNICO",
+            "LIMPEZA",
+            "RH",
+            "ATENDENTE",
+            "FINANCEIRO",
+            "MOTORISTA"});
             this.cbcargo.Location = new System.Drawing.Point(535, 89);
             this.cbcargo.Name = "cbcargo";
             this.cbcargo.Size = new System.Drawing.Size(136, 21);
@@ -392,6 +419,7 @@
             this.Name = "frmcad_funcionarios";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Funcionários";
+            this.Load += new System.EventHandler(this.frmcad_funcionarios_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgCliente)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).EndInit();
             this.ResumeLayout(false);
