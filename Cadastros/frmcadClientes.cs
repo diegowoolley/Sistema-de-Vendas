@@ -57,6 +57,8 @@ namespace Sistema_de_Vendas
             txtendereco.Enabled = true;
             txtbairro.Enabled = true;
             txtnumero.Enabled = true;
+            txtcidade.Enabled = true;
+            cbestados.Enabled = true;
             txttelefone.Enabled = true;
             txtcelular.Enabled = true;
             btnNovo.Enabled = false;
@@ -118,13 +120,15 @@ namespace Sistema_de_Vendas
 
                         //insere dados na tabela
                         con.AbrirConexao();
-                        sql = "INSERT INTO cad_clientes(nome_clientes, documento_clientes, endereco_clientes, bairro_clientes, numero_clientes, telefone_clientes, celular_clientes, foto_clientes) VALUES (@nome_clientes, @documento_clientes, @endereco_clientes, @bairro_clientes, @numero_clientes, @telefone_clientes, @celular_clientes, @foto)";
+                        sql = "INSERT INTO cad_clientes(nome_clientes, documento_clientes, endereco_clientes, bairro_clientes, numero_clientes, cidade_clientes, estado_clientes, telefone_clientes, celular_clientes, foto_clientes) VALUES (@nome_clientes, @documento_clientes, @endereco_clientes, @bairro_clientes, @numero_clientes, @cidade_clientes, @estado_clientes, @telefone_clientes, @celular_clientes, @foto)";
                         cmd = new MySqlCommand(sql, con.con);
                         cmd.Parameters.AddWithValue("@nome_clientes", txtnome.Text);
                         cmd.Parameters.AddWithValue("@documento_clientes", txtdocumento.Text);
                         cmd.Parameters.AddWithValue("@endereco_clientes", txtendereco.Text);
                         cmd.Parameters.AddWithValue("@bairro_clientes", txtbairro.Text);
                         cmd.Parameters.AddWithValue("@numero_clientes", txtnumero.Text);
+                        cmd.Parameters.AddWithValue("@cidade_clientes", txtcidade.Text);
+                        cmd.Parameters.AddWithValue("@estado_clientes", cbestados.Text);
                         cmd.Parameters.AddWithValue("@telefone_clientes", txttelefone.Text);
                         cmd.Parameters.AddWithValue("@celular_clientes", txtcelular.Text);
                         cmd.Parameters.AddWithValue("@foto", img());
@@ -142,6 +146,9 @@ namespace Sistema_de_Vendas
                         txtbairro.Clear();
                         txtnumero.Enabled = false;
                         txtnumero.Clear();
+                        txtcidade.Enabled = false;
+                        txtcidade.Clear();
+                        cbestados.Enabled = false;
                         txttelefone.Enabled = false;
                         txttelefone.Clear();
                         txtcelular.Enabled = false;
@@ -255,5 +262,27 @@ namespace Sistema_de_Vendas
                 txttelefone.Text = Convert.ToUInt64(telefone).ToString(@"\(00)00000-0000");
             }
         }
+
+        private void txtdocumento_Enter(object sender, EventArgs e)
+        {
+            var documento = txtdocumento.Text.Replace(".", "").Replace("/", "").Replace("-", "");
+            txtdocumento.Text = documento;
+            
+        }
+
+        private void txttelefone_Enter(object sender, EventArgs e)
+        {
+            var telefone = txtcelular.Text.Replace("(", "").Replace(")", "").Replace("-", "");
+            txttelefone.Text = telefone;
+
+        }
+
+        private void txtcelular_Enter(object sender, EventArgs e)
+        {
+            var celular = txtcelular.Text.Replace("(", "").Replace(")", "").Replace("-", "");
+            txtcelular.Text = celular;
+            
+        }
+      
     }
 }
