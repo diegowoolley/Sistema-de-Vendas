@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Configuration;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -25,6 +26,7 @@ namespace Sistema_de_Vendas
         {
             InitializeComponent();
         }
+        
         private byte[] img()
         {
             byte[] image_byte = null;
@@ -161,6 +163,7 @@ namespace Sistema_de_Vendas
                         btnNovo.Enabled = true;
                         Limparfoto();
                         btnNovo.Focus();
+                        Listar();
 
                         MessageBox.Show("Cliente cadastado com sucesso!");
                         return;
@@ -191,7 +194,39 @@ namespace Sistema_de_Vendas
         private void frmcadClientes_Load(object sender, EventArgs e)
         {
             Limparfoto();
+            Listar();
+            formatargrid();
         }
+        private void Listar()
+        {
+            con.AbrirConexao();
+            sql = "SELECT * FROM cad_clientes ORDER BY nome_clientes ASC";
+            cmd = new MySqlCommand(sql, con.con);
+            MySqlDataAdapter da = new MySqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dgCliente.DataSource = dt;
+            con.FecharConexao();
+        }
+
+        private void formatargrid()
+        {
+            dgCliente.Columns[0].HeaderText = "ID";
+            dgCliente.Columns[1].HeaderText = "Nome";
+            dgCliente.Columns[2].HeaderText = "Endereço";
+            dgCliente.Columns[3].HeaderText = "Bairro";
+            dgCliente.Columns[4].HeaderText = "Número";
+            dgCliente.Columns[5].HeaderText = "Cidade";
+            dgCliente.Columns[6].HeaderText = "Estado";
+            dgCliente.Columns[7].HeaderText = "Telefone";
+            dgCliente.Columns[8].HeaderText = "Celular";
+
+           
+            dgCliente.Columns[0].Visible = false;
+
+        }
+
 
         private void txtdocumento_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -283,6 +318,58 @@ namespace Sistema_de_Vendas
             txtcelular.Text = celular;
             
         }
-      
+
+        private void dgCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+
+                txtnome.Text = dgCliente.CurrentRow.Cells[1].Value.ToString();
+                txtdocumento.Text = dgCliente.CurrentRow.Cells[2].Value.ToString();
+                txtendereco.Text = dgCliente.CurrentRow.Cells[3].Value.ToString();
+                txtbairro.Text = dgCliente.CurrentRow.Cells[4].Value.ToString();
+                txtnumero.Text = dgCliente.CurrentRow.Cells[5].Value.ToString();
+                txtcidade.Text = dgCliente.CurrentRow.Cells[6].Value.ToString();
+                cbestados.Text = dgCliente.CurrentRow.Cells[7].Value.ToString();
+                txttelefone.Text = dgCliente.CurrentRow.Cells[8].Value.ToString();
+                txtcelular.Text = dgCliente.CurrentRow.Cells[9].Value.ToString();
+
+                btnNovo.Enabled = false;
+                btnAlterar.Enabled = true;
+                btnCancelar.Enabled = true;
+                btnExcluir.Enabled = true;
+                btnfoto.Enabled = true;
+                txtnome.Enabled = true;
+                txtdocumento.Enabled = true;
+                txtendereco.Enabled = true;
+                txtbairro.Enabled = true;
+                txtnumero.Enabled = true;
+                txtcidade.Enabled = true;
+                cbestados.Enabled = true;
+                txttelefone.Enabled = true;
+                txtcelular.Enabled = true;
+                txtnome.Focus();
+
+
+                if (dgCliente.CurrentRow.Cells[10].Value != DBNull.Value)
+                {
+                    byte[] image = (byte[])dgCliente.Rows[e.RowIndex].Cells[10].Value;
+                    MemoryStream es = new MemoryStream(image);
+                    pbFoto.Image = Image.FromStream(es);
+
+                }
+                else
+                {
+                    pbFoto.Image = Properties.Resources.download;
+                }
+
+
+                
+
+                
+            }
+           
+
+        }
     }
 }
