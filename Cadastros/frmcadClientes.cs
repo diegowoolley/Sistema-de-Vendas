@@ -11,6 +11,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Sistema_de_Vendas
 {
@@ -23,6 +24,7 @@ namespace Sistema_de_Vendas
         string id;
         string alterou_foto = "n";
         string documentoantigo;
+        
 
 
         public frmcadClientes()
@@ -71,7 +73,7 @@ namespace Sistema_de_Vendas
             btnAdicionar.Enabled = false;
             btnAlterar.Enabled = false;
             btnExcluir.Enabled = false;
-            
+
             btnfoto.Enabled = false;
             btnNovo.Enabled = true;
             Limparfoto();
@@ -95,7 +97,7 @@ namespace Sistema_de_Vendas
             btnAdicionar.Enabled = true;
             btnAlterar.Enabled = false;
             btnExcluir.Enabled = false;
-            
+
             btnfoto.Enabled = true;
             txtnome.Focus();
         }
@@ -186,7 +188,7 @@ namespace Sistema_de_Vendas
                         btnAdicionar.Enabled = false;
                         btnAlterar.Enabled = false;
                         btnExcluir.Enabled = false;
-                        
+
                         btnfoto.Enabled = false;
                         btnNovo.Enabled = true;
                         Limparfoto();
@@ -507,7 +509,7 @@ namespace Sistema_de_Vendas
                 btnAdicionar.Enabled = false;
                 btnAlterar.Enabled = false;
                 btnExcluir.Enabled = false;
-                
+
                 btnfoto.Enabled = false;
                 btnNovo.Enabled = true;
                 Limparfoto();
@@ -518,7 +520,7 @@ namespace Sistema_de_Vendas
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            var res = MessageBox.Show("Deseja realmente excluir esse registro?", "Cadastro Clientes", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var res = MessageBox.Show("Deseja realmente excluir esse registro?", "Excluir Cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (res == DialogResult.Yes)
                 con.AbrirConexao();
@@ -554,5 +556,6 @@ namespace Sistema_de_Vendas
             btnNovo.Enabled = true;
             btnNovo.Focus();
         }
+
     }
 }

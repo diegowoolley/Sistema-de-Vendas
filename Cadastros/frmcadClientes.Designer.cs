@@ -168,6 +168,7 @@
             this.dgCliente.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgCliente.Location = new System.Drawing.Point(15, 144);
             this.dgCliente.Name = "dgCliente";
+            this.dgCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgCliente.Size = new System.Drawing.Size(763, 150);
             this.dgCliente.TabIndex = 14;
             this.dgCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgCliente_CellContentClick);
@@ -348,14 +349,14 @@
             "TO"});
             this.cbestados.Location = new System.Drawing.Point(384, 59);
             this.cbestados.Name = "cbestados";
-            this.cbestados.Size = new System.Drawing.Size(37, 21);
+            this.cbestados.Size = new System.Drawing.Size(44, 21);
             this.cbestados.TabIndex = 7;
             // 
             // frmcadClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(814, 347);
+            this.ClientSize = new System.Drawing.Size(795, 347);
             this.Controls.Add(this.cbestados);
             this.Controls.Add(this.txtcidade);
             this.Controls.Add(this.lblestado);
