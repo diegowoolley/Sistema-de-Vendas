@@ -527,8 +527,32 @@ namespace Sistema_de_Vendas
             cmd.Parameters.AddWithValue("@id", id);
             cmd.ExecuteNonQuery();
             con.FecharConexao();
+            Limparfoto();
             Listar();
-           
+            txtnome.Enabled = false;
+            txtnome.Clear();
+            txtdocumento.Enabled = false;
+            txtdocumento.Clear();
+            txtendereco.Enabled = false;
+            txtendereco.Clear();
+            txtbairro.Enabled = false;
+            txtbairro.Clear();
+            txtnumero.Enabled = false;
+            txtnumero.Clear();
+            txtcidade.Enabled = false;
+            txtcidade.Clear();
+            cbestados.Enabled = false;
+            txttelefone.Enabled = false;
+            txttelefone.Clear();
+            txtcelular.Enabled = false;
+            txtcelular.Clear();
+            btnAdicionar.Enabled = false;
+            btnAlterar.Enabled = false;
+            btnExcluir.Enabled = false;
+
+            btnfoto.Enabled = false;
+            btnNovo.Enabled = true;
+            btnNovo.Focus();
         }
     }
 }
