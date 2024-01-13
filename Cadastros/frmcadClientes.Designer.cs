@@ -124,7 +124,7 @@
             this.txttelefone.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txttelefone.Enabled = false;
             this.txttelefone.Location = new System.Drawing.Point(124, 60);
-            this.txttelefone.MaxLength = 10;
+            this.txttelefone.MaxLength = 11;
             this.txttelefone.Name = "txttelefone";
             this.txttelefone.Size = new System.Drawing.Size(95, 20);
             this.txttelefone.TabIndex = 6;
@@ -148,7 +148,7 @@
             this.txtcelular.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtcelular.Enabled = false;
             this.txtcelular.Location = new System.Drawing.Point(383, 60);
-            this.txtcelular.MaxLength = 10;
+            this.txtcelular.MaxLength = 11;
             this.txtcelular.Name = "txtcelular";
             this.txtcelular.Size = new System.Drawing.Size(95, 20);
             this.txtcelular.TabIndex = 7;

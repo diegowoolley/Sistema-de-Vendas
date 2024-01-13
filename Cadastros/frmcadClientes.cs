@@ -40,11 +40,11 @@ namespace Sistema_de_Vendas
         }
         private void Limparfoto()
         {
-            pbFoto.Image = Properties.Resources.download; 
+            pbFoto.Image = Properties.Resources.download;
             foto = "download.png";
         }
 
-    private void btnCancelar_Click(object sender, EventArgs e)
+        private void btnCancelar_Click(object sender, EventArgs e)
         {
             Close();
         }
@@ -79,7 +79,7 @@ namespace Sistema_de_Vendas
             }
             if (txtdocumento.Text.ToString().Trim() == "")
             {
-                MessageBox.Show("Digite uma senha para o usuário!");
+                MessageBox.Show("Digite um documento para o usuário!");
                 txtdocumento.Clear();
                 txtdocumento.Focus();
                 return;
@@ -87,6 +87,7 @@ namespace Sistema_de_Vendas
             }
             else
             {       //verifica se o usuário já exite no banco de dados
+
                 try
                 {
                     con.AbrirConexao();
@@ -204,10 +205,9 @@ namespace Sistema_de_Vendas
         {
             funcoes.DecNumber(sender, e);
         }
-
+                               
         private void txtdocumento_Leave(object sender, EventArgs e)
         {
-
             string documento = txtdocumento.Text;
             if (txtdocumento.Text == "")
             {
@@ -218,7 +218,7 @@ namespace Sistema_de_Vendas
                 if (documento.Length > 11)
                 {
                     txtdocumento.Text = Convert.ToInt64(documento).ToString(@"00\.000\.000/0000-00");
-                    //funcoes.validarcnpj(documento.Replace(".", "").Replace("/", "").Replace("-", ""));
+
                 }
                 else
                 {
@@ -226,6 +226,21 @@ namespace Sistema_de_Vendas
                 }
 
             }
+        }
+
+        private void txtcelular_Leave(object sender, EventArgs e)
+        {
+            if (txtcelular.Text == "")
+            {
+                btnAdicionar.Focus();
+            }
+            else
+            {
+
+                string celular = txtcelular.Text;
+                txtcelular.Text = Convert.ToUInt64(celular).ToString(@"\(00)00000-0000");
+            }
+
         }
 
         private void txttelefone_Leave(object sender, EventArgs e)
@@ -237,27 +252,8 @@ namespace Sistema_de_Vendas
             else
             {
                 string telefone = txttelefone.Text;
-                txttelefone.Text = Convert.ToUInt64(telefone).ToString(@"\(00\)0000-0000");
+                txttelefone.Text = Convert.ToUInt64(telefone).ToString(@"\(00)00000-0000");
             }
-           
-        }
-
-        private void txtcelular_Leave(object sender, EventArgs e)
-        {
-           
-                if (txtcelular.Text == "")
-                {
-                    btnAdicionar.Focus();
-                }
-                else
-                {
-
-                    string celular = txtcelular.Text;
-                    txtcelular.Text = Convert.ToUInt64(celular).ToString(@"\(00\)0000-0000");
-                }
-
-            
         }
     }
-    
 }
