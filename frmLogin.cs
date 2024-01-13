@@ -19,11 +19,11 @@ namespace Sistema_de_Vendas
             InitializeComponent();
         }
         conn con = new conn();
-        string sql;
+        
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
-
+            
             //testa os campos se estão vazios
             if (txtUsuario.Text.ToString().Trim() == "")
             {
@@ -53,6 +53,7 @@ namespace Sistema_de_Vendas
                 reader = cmdVerificar.ExecuteReader();
                 if (reader.HasRows)
                 {
+                    funcoes.conectado = txtUsuario.Text;
                     frmPrincipal frmPrincipal = new frmPrincipal();
                     frmPrincipal.ShowDialog();
                     con.FecharConexao();
@@ -73,6 +74,8 @@ namespace Sistema_de_Vendas
                 MessageBox.Show("Erro na consulta!" +ex);
 
             }
+            funcoes.conectado = txtUsuario.Text;
+            
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
