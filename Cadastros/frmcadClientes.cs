@@ -515,5 +515,20 @@ namespace Sistema_de_Vendas
                 alterou_foto = "n";
             }
         }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            var res = MessageBox.Show("Deseja realmente excluir esse registro?", "Cadastro Clientes", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (res == DialogResult.Yes)
+                con.AbrirConexao();
+            sql = "DELETE FROM cad_clientes WHERE cod_clientes = @id";
+            cmd = new MySqlCommand(sql, con.con);
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.ExecuteNonQuery();
+            con.FecharConexao();
+            Listar();
+           
+        }
     }
 }
