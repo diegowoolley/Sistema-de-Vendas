@@ -207,12 +207,15 @@ namespace Sistema_de_Vendas
 
         private void txtdocumento_Leave(object sender, EventArgs e)
         {
-            try
+
+            string documento = txtdocumento.Text;
+            if (txtdocumento.Text == "")
             {
-                string documento = txtdocumento.Text;
-
-
-                if (documento.Length > 11 )
+                txtendereco.Focus();
+            }
+            else
+            {
+                if (documento.Length > 11)
                 {
                     txtdocumento.Text = Convert.ToInt64(documento).ToString(@"00\.000\.000/0000-00");
                     //funcoes.validarcnpj(documento.Replace(".", "").Replace("/", "").Replace("-", ""));
@@ -221,15 +224,38 @@ namespace Sistema_de_Vendas
                 {
                     txtdocumento.Text = Convert.ToInt64(documento).ToString(@"000\.000\.000-00");
                 }
+
             }
-            catch (Exception ex)
+        }
+
+        private void txttelefone_Leave(object sender, EventArgs e)
+        {
+            if (txttelefone.Text == "")
             {
-                MessageBox.Show("erro na formatação" + ex);
-                txtdocumento.Clear();
-                txtdocumento.Focus();
+                txtcelular.Focus();
+            }
+            else
+            {
+                string telefone = txttelefone.Text;
+                txttelefone.Text = Convert.ToUInt64(telefone).ToString(@"\(00\)0000-0000");
+            }
+           
+        }
 
+        private void txtcelular_Leave(object sender, EventArgs e)
+        {
+           
+                if (txtcelular.Text == "")
+                {
+                    btnAdicionar.Focus();
+                }
+                else
+                {
 
-            }                      
+                    string celular = txtcelular.Text;
+                    txtcelular.Text = Convert.ToUInt64(celular).ToString(@"\(00\)0000-0000");
+                }
+
             
         }
     }

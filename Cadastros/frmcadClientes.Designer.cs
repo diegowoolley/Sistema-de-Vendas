@@ -124,11 +124,12 @@
             this.txttelefone.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txttelefone.Enabled = false;
             this.txttelefone.Location = new System.Drawing.Point(124, 60);
-            this.txttelefone.MaxLength = 100;
+            this.txttelefone.MaxLength = 10;
             this.txttelefone.Name = "txttelefone";
             this.txttelefone.Size = new System.Drawing.Size(95, 20);
             this.txttelefone.TabIndex = 6;
             this.txttelefone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txttelefone_KeyPress);
+            this.txttelefone.Leave += new System.EventHandler(this.txttelefone_Leave);
             // 
             // txtdocumento
             // 
@@ -147,11 +148,12 @@
             this.txtcelular.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtcelular.Enabled = false;
             this.txtcelular.Location = new System.Drawing.Point(383, 60);
-            this.txtcelular.MaxLength = 100;
+            this.txtcelular.MaxLength = 10;
             this.txtcelular.Name = "txtcelular";
             this.txtcelular.Size = new System.Drawing.Size(95, 20);
             this.txtcelular.TabIndex = 7;
             this.txtcelular.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtcelular_KeyPress);
+            this.txtcelular.Leave += new System.EventHandler(this.txtcelular_Leave);
             // 
             // dgCliente
             // 
@@ -257,6 +259,7 @@
             this.txtnumero.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtnumero.Enabled = false;
             this.txtnumero.Location = new System.Drawing.Point(534, 34);
+            this.txtnumero.MaxLength = 5;
             this.txtnumero.Name = "txtnumero";
             this.txtnumero.Size = new System.Drawing.Size(44, 20);
             this.txtnumero.TabIndex = 5;
