@@ -20,13 +20,16 @@ namespace Sistema_de_Vendas
         string sql;
         MySqlCommand cmd;
         string foto;
+        string id;
+        string alterou_foto = "n";
+        string documentoantigo;
 
 
         public frmcadClientes()
         {
             InitializeComponent();
         }
-        
+
         private byte[] img()
         {
             byte[] image_byte = null;
@@ -65,8 +68,8 @@ namespace Sistema_de_Vendas
             txtcelular.Enabled = true;
             btnNovo.Enabled = false;
             btnAdicionar.Enabled = true;
-            btnAlterar.Enabled = true;
-            btnExcluir.Enabled = true;
+            btnAlterar.Enabled = false;
+            btnExcluir.Enabled = false;
             btnCancelar.Enabled = true;
             btnfoto.Enabled = true;
             txtnome.Focus();
@@ -187,6 +190,7 @@ namespace Sistema_de_Vendas
             {
                 foto = dialog.FileName.ToString();
                 pbFoto.ImageLocation = foto;
+                alterou_foto = "s";
 
             }
         }
@@ -214,15 +218,17 @@ namespace Sistema_de_Vendas
         {
             dgCliente.Columns[0].HeaderText = "ID";
             dgCliente.Columns[1].HeaderText = "Nome";
-            dgCliente.Columns[2].HeaderText = "Endereço";
-            dgCliente.Columns[3].HeaderText = "Bairro";
-            dgCliente.Columns[4].HeaderText = "Número";
-            dgCliente.Columns[5].HeaderText = "Cidade";
-            dgCliente.Columns[6].HeaderText = "Estado";
-            dgCliente.Columns[7].HeaderText = "Telefone";
-            dgCliente.Columns[8].HeaderText = "Celular";
+            dgCliente.Columns[2].HeaderText = "Documento";
+            dgCliente.Columns[3].HeaderText = "Endereço";
+            dgCliente.Columns[4].HeaderText = "Bairro";
+            dgCliente.Columns[5].HeaderText = "Número";
+            dgCliente.Columns[6].HeaderText = "Cidade";
+            dgCliente.Columns[7].HeaderText = "Estado";
+            dgCliente.Columns[8].HeaderText = "Telefone";
+            dgCliente.Columns[9].HeaderText = "Celular";
+            dgCliente.Columns[10].HeaderText = "Foto";
 
-           
+
             dgCliente.Columns[0].Visible = false;
 
         }
@@ -247,7 +253,7 @@ namespace Sistema_de_Vendas
         {
             funcoes.DecNumber(sender, e);
         }
-                               
+
         private void txtdocumento_Leave(object sender, EventArgs e)
         {
             string documento = txtdocumento.Text;
@@ -302,7 +308,7 @@ namespace Sistema_de_Vendas
         {
             var documento = txtdocumento.Text.Replace(".", "").Replace("/", "").Replace("-", "");
             txtdocumento.Text = documento;
-            
+
         }
 
         private void txttelefone_Enter(object sender, EventArgs e)
@@ -316,13 +322,15 @@ namespace Sistema_de_Vendas
         {
             var celular = txtcelular.Text.Replace("(", "").Replace(")", "").Replace("-", "");
             txtcelular.Text = celular;
-            
+
         }
 
         private void dgCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex > -1)
             {
+                id = dgCliente.CurrentRow.Cells[0].Value.ToString();
+                documentoantigo = dgCliente.CurrentRow.Cells[2].Value.ToString();
 
                 txtnome.Text = dgCliente.CurrentRow.Cells[1].Value.ToString();
                 txtdocumento.Text = dgCliente.CurrentRow.Cells[2].Value.ToString();
@@ -335,6 +343,7 @@ namespace Sistema_de_Vendas
                 txtcelular.Text = dgCliente.CurrentRow.Cells[9].Value.ToString();
 
                 btnNovo.Enabled = false;
+                btnAdicionar.Enabled = false;
                 btnAlterar.Enabled = true;
                 btnCancelar.Enabled = true;
                 btnExcluir.Enabled = true;
@@ -364,12 +373,122 @@ namespace Sistema_de_Vendas
                 }
 
 
-                
 
-                
+
+
             }
-           
 
+
+        }
+
+        private void btnAlterar_Click(object sender, EventArgs e)
+        {
+            if (txtnome.Text.ToString().Trim() == "")
+            {
+                MessageBox.Show("Digite um nome para o usuário!");
+                txtnome.Clear();
+                txtnome.Focus();
+                return;
+            }
+            if (txtdocumento.Text.ToString().Trim() == "")
+            {
+                MessageBox.Show("Digite um documento para o usuário!");
+                txtdocumento.Clear();
+                txtdocumento.Focus();
+                return;
+
+            }
+            else
+            {
+
+
+                if (alterou_foto == "s")
+                {
+                    con.AbrirConexao();
+                    sql = "UPDATE cad_clientes SET nome_clientes = @nome, documento_clientes = @documento, endereco_clientes = @endereco, bairro_clientes = @bairro, numero_clientes = @numero, cidade_clientes = @cidade, estado_clientes = @estado, telefone_clientes = @telefone, celular_clientes = @celular, foto_clientes = @foto WHERE cod_clientes = @id";
+                    cmd = new MySqlCommand(sql, con.con);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@nome", txtnome.Text);
+                    cmd.Parameters.AddWithValue("@documento", txtdocumento.Text);
+                    cmd.Parameters.AddWithValue("@endereco", txtendereco.Text);
+                    cmd.Parameters.AddWithValue("@bairro", txtbairro.Text);
+                    cmd.Parameters.AddWithValue("@numero", txtnumero.Text);
+                    cmd.Parameters.AddWithValue("@cidade", txtcidade.Text);
+                    cmd.Parameters.AddWithValue("@estado", cbestados.Text);
+                    cmd.Parameters.AddWithValue("@telefone", txttelefone.Text);
+                    cmd.Parameters.AddWithValue("@celular", txtcelular.Text);
+                    cmd.Parameters.AddWithValue("@foto", img());
+
+                }
+                else if (alterou_foto == "n")
+                {
+                    con.AbrirConexao();
+                    sql = "UPDATE cad_clientes SET nome_clientes = @nome, documento_clientes = @documento, endereco_clientes = @endereco, bairro_clientes = @bairro, numero_clientes = @numero, cidade_clientes = @cidade, estado_clientes = @estado, telefone_clientes = @telefone, celular_clientes = @celular WHERE cod_clientes=@id";
+                    cmd = new MySqlCommand(sql, con.con);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@nome", txtnome.Text);
+                    cmd.Parameters.AddWithValue("@documento", txtdocumento.Text);
+                    cmd.Parameters.AddWithValue("@endereco", txtendereco.Text);
+                    cmd.Parameters.AddWithValue("@bairro", txtbairro.Text);
+                    cmd.Parameters.AddWithValue("@numero", txtnumero.Text);
+                    cmd.Parameters.AddWithValue("@cidade", txtcidade.Text);
+                    cmd.Parameters.AddWithValue("@estado", cbestados.Text);
+                    cmd.Parameters.AddWithValue("@telefone", txttelefone.Text);
+                    cmd.Parameters.AddWithValue("@celular", txtcelular.Text);
+
+                }
+                if (txtdocumento.Text != documentoantigo)
+                {
+                    MySqlCommand cmdverificar;
+                    cmdverificar = new MySqlCommand("SELECT * FROM cad_clientes WHERE documento_clientes = @documento", con.con);
+                    MySqlDataAdapter da = new MySqlDataAdapter();
+                    da.SelectCommand = cmdverificar;
+                    cmdverificar.Parameters.AddWithValue("@documento", txtdocumento.Text);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    if (dt.Rows.Count > 0)
+                    {
+                        MessageBox.Show("Documento já Cadastrado!");
+                        txtdocumento.Clear();
+                        txtdocumento.Focus();
+                        return;
+
+                    }
+
+                }
+                cmd.ExecuteNonQuery();
+                con.FecharConexao();
+                Listar();
+
+
+                MessageBox.Show("Registro Alterado com Sucesso!!");
+                txtnome.Enabled = false;
+                txtnome.Clear();
+                txtdocumento.Enabled = false;
+                txtdocumento.Clear();
+                txtendereco.Enabled = false;
+                txtendereco.Clear();
+                txtbairro.Enabled = false;
+                txtbairro.Clear();
+                txtnumero.Enabled = false;
+                txtnumero.Clear();
+                txtcidade.Enabled = false;
+                txtcidade.Clear();
+                cbestados.Enabled = false;
+                txttelefone.Enabled = false;
+                txttelefone.Clear();
+                txtcelular.Enabled = false;
+                txtcelular.Clear();
+                btnAdicionar.Enabled = false;
+                btnAlterar.Enabled = false;
+                btnExcluir.Enabled = false;
+                btnCancelar.Enabled = false;
+                btnfoto.Enabled = false;
+                btnNovo.Enabled = true;
+                Limparfoto();
+                btnNovo.Focus();
+                alterou_foto = "n";
+            }
         }
     }
 }
