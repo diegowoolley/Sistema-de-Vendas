@@ -56,6 +56,18 @@
     <Compile Include="Cadastros\frmcadUsuarios.Designer.cs">
       <DependentUpon>frmcadUsuarios.cs</DependentUpon>
     </Compile>
+    <Compile Include="Cadastros\frmcadClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cadastros\frmcadClientes.Designer.cs">
+      <DependentUpon>frmcadClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastros\cad_funcionarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cadastros\cad_funcionarios.Designer.cs">
+      <DependentUpon>cad_funcionarios.cs</DependentUpon>
+    </Compile>
     <Compile Include="conn.cs" />
     <Compile Include="frmSplash.cs">
       <SubType>Form</SubType>
@@ -75,6 +87,7 @@
     <Compile Include="frmPrincipal.Designer.cs">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="funcoes.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -84,6 +97,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Cadastros\frmcadUsuarios.resx">
       <DependentUpon>frmcadUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastros\frmcadClientes.resx">
+      <DependentUpon>frmcadClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastros\cad_funcionarios.resx">
+      <DependentUpon>cad_funcionarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSplash.resx">
       <DependentUpon>frmSplash.cs</DependentUpon>
@@ -112,7 +131,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\download.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\images.jpg" />
   </ItemGroup>

@@ -61,5 +61,11 @@ namespace Sistema_de_Vendas
             frmLogin login = new frmLogin();
             login.ShowDialog();
         }
+
+        private void funcionáriosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmcad_funcionarios cadfuncionarios = new frmcad_funcionarios();
+            cadfuncionarios.ShowDialog();
+        }
     }
 }

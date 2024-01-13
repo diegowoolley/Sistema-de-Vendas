@@ -101,6 +101,7 @@
             this.funcionáriosToolStripMenuItem.Name = "funcionáriosToolStripMenuItem";
             this.funcionáriosToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.funcionáriosToolStripMenuItem.Text = "Funcionários";
+            this.funcionáriosToolStripMenuItem.Click += new System.EventHandler(this.funcionáriosToolStripMenuItem_Click);
             // 
             // fornecedoresToolStripMenuItem
             // 
@@ -212,6 +213,7 @@
             this.Name = "frmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sistema de Vendas";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmPrincipal_Load);
             this.mnPrincipal.ResumeLayout(false);
             this.mnPrincipal.PerformLayout();
