@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -130,30 +131,54 @@ namespace Sistema_de_Vendas.Cadastros
                 txtnome.Focus();
                 return;
             }
-
-
             else
             {
+                try
+                {
+                    con.AbrirConexao();
+                    MySqlCommand cmdVerificar;
+                    MySqlDataReader reader;
+                    cmdVerificar = new MySqlCommand("SELECT * FROM cad_cargos WHERE nome_cargo = @cargo", con.con);
+                    MySqlDataAdapter da = new MySqlDataAdapter();
+                    da.SelectCommand = cmdVerificar;
+                    cmdVerificar.Parameters.AddWithValue("@cargo", txtnome.Text);
+                    reader = cmdVerificar.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        MessageBox.Show("Cargo já cadastrado!");
+                        txtnome.Clear();
 
-                con.AbrirConexao();
-                sql = "UPDATE cad_cargos SET nome_cargo = @nome WHERE cod_cargo = @id";
-                cmd = new MySqlCommand(sql, con.con);
-                cmd.Parameters.AddWithValue("@id", id);
-                cmd.Parameters.AddWithValue("@nome", txtnome.Text);
 
-                cmd.ExecuteNonQuery();
-                con.FecharConexao();
-                Listar();
+                        txtnome.Focus();
+                        con.FecharConexao();
+                        return;
+                    }
+                    else
+                    {
+                        con.AbrirConexao();
+                        sql = "UPDATE cad_cargos SET nome_cargo = @nome WHERE cod_cargo = @id";
+                        cmd = new MySqlCommand(sql, con.con);
+                        cmd.Parameters.AddWithValue("@id", id);
+                        cmd.Parameters.AddWithValue("@nome", txtnome.Text);
 
-                MessageBox.Show("Registro Alterado com Sucesso!!");
-                txtnome.Enabled = false;
-                txtnome.Clear();
-                btnAdicionar.Enabled = false;
-                btnAlterar.Enabled = false;
-                btnExcluir.Enabled = false;
-                btnNovo.Enabled = true;
-                btnNovo.Focus();
+                        cmd.ExecuteNonQuery();
+                        con.FecharConexao();
+                        Listar();
 
+                        MessageBox.Show("Registro Alterado com Sucesso!!");
+                        txtnome.Enabled = false;
+                        txtnome.Clear();
+                        btnAdicionar.Enabled = false;
+                        btnAlterar.Enabled = false;
+                        btnExcluir.Enabled = false;
+                        btnNovo.Enabled = true;
+                        btnNovo.Focus();
+                    }
+                    }
+                   catch (Exception)
+                {
+                    MessageBox.Show("Erro ao Cadastrar!");
+                }
             }
         }
 

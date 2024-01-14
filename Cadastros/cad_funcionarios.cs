@@ -41,8 +41,7 @@ namespace Sistema_de_Vendas
             con.FecharConexao();
 
         }
-
-
+       
         private byte[] img()
         {
             byte[] image_byte = null;
@@ -581,9 +580,55 @@ namespace Sistema_de_Vendas
             frmCargos.ShowDialog();
         }
 
+        private void BuscarNome()
+        {
+            string nomefuncionario = txtnome.Text;
+            con.AbrirConexao();
+            sql = "SELECT * FROM cad_funcionarios WHERE nome_funcionario LIKE @nome";
+            cmd = new MySqlCommand(sql, con.con);
+            cmd.Parameters.AddWithValue("@nome", "%" + nomefuncionario + "%");
+            MySqlDataAdapter da = new MySqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dgCliente.DataSource = dt;
+            con.FecharConexao();
+
+            formatargrid();
+
+        }
+
+        private void BuscarDocumento()
+        {
+            string documentofuncionario = txtdocumento.Text;
+            con.AbrirConexao();
+            sql = "SELECT * FROM cad_funcionarios WHERE documento_funcionario LIKE @documento";
+            cmd = new MySqlCommand(sql, con.con);
+            cmd.Parameters.AddWithValue("@documento", "%" + documentofuncionario + "%");
+            MySqlDataAdapter da = new MySqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dgCliente.DataSource = dt;
+            con.FecharConexao();
+
+            formatargrid();
+
+        }
+
         private void cbcargo_Enter(object sender, EventArgs e)
         {
             ListarCargos();
+        }
+
+        private void txtnome_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void txtdocumento_TextChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }

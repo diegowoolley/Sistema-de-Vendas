@@ -262,6 +262,7 @@
             this.txtdocumento.Name = "txtdocumento";
             this.txtdocumento.Size = new System.Drawing.Size(195, 20);
             this.txtdocumento.TabIndex = 2;
+            this.txtdocumento.TextChanged += new System.EventHandler(this.txtdocumento_TextChanged);
             this.txtdocumento.Enter += new System.EventHandler(this.txtdocumento_Enter);
             this.txtdocumento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtdocumento_KeyPress);
             this.txtdocumento.Leave += new System.EventHandler(this.txtdocumento_Leave);
@@ -298,6 +299,7 @@
             this.txtnome.Name = "txtnome";
             this.txtnome.Size = new System.Drawing.Size(195, 20);
             this.txtnome.TabIndex = 1;
+            this.txtnome.TextChanged += new System.EventHandler(this.txtnome_TextChanged);
             // 
             // lblcelular
             // 
@@ -381,6 +383,7 @@
             this.pbFoto.Location = new System.Drawing.Point(677, 9);
             this.pbFoto.Name = "pbFoto";
             this.pbFoto.Size = new System.Drawing.Size(100, 84);
+            this.pbFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbFoto.TabIndex = 48;
             this.pbFoto.TabStop = false;
             // 

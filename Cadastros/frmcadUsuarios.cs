@@ -53,7 +53,7 @@ namespace Sistema_de_Vendas.Cadastros
 
             }
             else
-            {
+            {       //verifica se o usuário já exite no banco de dados
                 try
                 {
                     con.AbrirConexao();
@@ -76,7 +76,7 @@ namespace Sistema_de_Vendas.Cadastros
                     else
                     {
 
-                        //inserir dados na tabela
+                     //insere dados na tabela
                         con.AbrirConexao();
                         sql = "INSERT INTO cad_usuarios(nome_usuarios, senha_Usuarios, permissoes_Usuarios) VALUES (@nome_usuarios, @senha_Usuarios, @permissoes_Usuarios)";
                         cmd = new MySqlCommand(sql, con.con);
@@ -85,7 +85,7 @@ namespace Sistema_de_Vendas.Cadastros
                         cmd.Parameters.AddWithValue("@permissoes_Usuarios", cbPermissoes.Text);
                         cmd.ExecuteNonQuery();
                         con.FecharConexao();
-                        //desabilitar botões e campos
+                     //desabilitar botões e campos
                         txtNome.Enabled = false;
                         txtNome.Clear();
                         txtSenha.Enabled = false;

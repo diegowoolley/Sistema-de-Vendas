@@ -45,6 +45,42 @@ namespace Sistema_de_Vendas
             return image_byte;
 
         }
+
+        private void BuscarNome()
+        {
+            string nomefornecedor = txtnome.Text;
+            con.AbrirConexao();
+            sql = "SELECT * FROM cad_fornecedores WHERE nome_fornecedor LIKE @nome";
+            cmd = new MySqlCommand(sql, con.con);
+            cmd.Parameters.AddWithValue("@nome", "%" + nomefornecedor + "%");
+            MySqlDataAdapter da = new MySqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dgCliente.DataSource = dt;
+            con.FecharConexao();
+
+            formatargrid();
+
+        }
+
+        private void BuscarDocumento()
+        {
+            string documentofornecedor = txtdocumento.Text;
+            con.AbrirConexao();
+            sql = "SELECT * FROM cad_fornecedores WHERE documento_fornecedor LIKE @documento";
+            cmd = new MySqlCommand(sql, con.con);
+            cmd.Parameters.AddWithValue("@documento", "%" + documentofornecedor + "%");
+            MySqlDataAdapter da = new MySqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dgCliente.DataSource = dt;
+            con.FecharConexao();
+
+            formatargrid();
+
+        }
         private void Limparfoto()
         {
             pbFoto.Image = Properties.Resources.download;
@@ -562,5 +598,14 @@ namespace Sistema_de_Vendas
             }
         }
 
+        private void txtnome_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void txtdocumento_TextChanged(object sender, EventArgs e)
+        {
+           
+        }
     }
 }

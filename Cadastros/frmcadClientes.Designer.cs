@@ -120,6 +120,7 @@
             this.txtnome.Name = "txtnome";
             this.txtnome.Size = new System.Drawing.Size(195, 20);
             this.txtnome.TabIndex = 1;
+            this.txtnome.TextChanged += new System.EventHandler(this.txtnome_TextChanged);
             // 
             // txtendereco
             // 
@@ -136,7 +137,7 @@
             this.txttelefone.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txttelefone.Enabled = false;
             this.txttelefone.Location = new System.Drawing.Point(124, 110);
-            this.txttelefone.MaxLength = 10;
+            this.txttelefone.MaxLength = 11;
             this.txttelefone.Name = "txttelefone";
             this.txttelefone.Size = new System.Drawing.Size(95, 20);
             this.txttelefone.TabIndex = 9;
@@ -153,6 +154,7 @@
             this.txtdocumento.Name = "txtdocumento";
             this.txtdocumento.Size = new System.Drawing.Size(195, 20);
             this.txtdocumento.TabIndex = 2;
+            this.txtdocumento.TextChanged += new System.EventHandler(this.txtdocumento_TextChanged);
             this.txtdocumento.Enter += new System.EventHandler(this.txtdocumento_Enter);
             this.txtdocumento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtdocumento_KeyPress);
             this.txtdocumento.Leave += new System.EventHandler(this.txtdocumento_Leave);
@@ -282,7 +284,6 @@
             this.txtnumero.Name = "txtnumero";
             this.txtnumero.Size = new System.Drawing.Size(44, 20);
             this.txtnumero.TabIndex = 6;
-            this.txtnumero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtnumero_KeyPress);
             // 
             // pbFoto
             // 
@@ -291,6 +292,7 @@
             this.pbFoto.Location = new System.Drawing.Point(675, 6);
             this.pbFoto.Name = "pbFoto";
             this.pbFoto.Size = new System.Drawing.Size(100, 84);
+            this.pbFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbFoto.TabIndex = 6;
             this.pbFoto.TabStop = false;
             // 
@@ -363,7 +365,7 @@
             // lblvalor
             // 
             this.lblvalor.AutoSize = true;
-            this.lblvalor.Location = new System.Drawing.Point(489, 301);
+            this.lblvalor.Location = new System.Drawing.Point(494, 322);
             this.lblvalor.Name = "lblvalor";
             this.lblvalor.Size = new System.Drawing.Size(84, 13);
             this.lblvalor.TabIndex = 37;
@@ -372,7 +374,7 @@
             // lblinadimplente
             // 
             this.lblinadimplente.AutoSize = true;
-            this.lblinadimplente.Location = new System.Drawing.Point(489, 322);
+            this.lblinadimplente.Location = new System.Drawing.Point(494, 299);
             this.lblinadimplente.Name = "lblinadimplente";
             this.lblinadimplente.Size = new System.Drawing.Size(70, 13);
             this.lblinadimplente.TabIndex = 38;
@@ -382,11 +384,11 @@
             // 
             this.txtvaloraberto.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtvaloraberto.Enabled = false;
-            this.txtvaloraberto.Location = new System.Drawing.Point(579, 298);
+            this.txtvaloraberto.Location = new System.Drawing.Point(578, 319);
             this.txtvaloraberto.MaxLength = 5;
             this.txtvaloraberto.Name = "txtvaloraberto";
             this.txtvaloraberto.Size = new System.Drawing.Size(76, 20);
-            this.txtvaloraberto.TabIndex = 16;
+            this.txtvaloraberto.TabIndex = 17;
             // 
             // cbinadimplente
             // 
@@ -396,14 +398,14 @@
             this.cbinadimplente.Items.AddRange(new object[] {
             "Sim",
             "Não"});
-            this.cbinadimplente.Location = new System.Drawing.Point(579, 322);
+            this.cbinadimplente.Location = new System.Drawing.Point(578, 295);
             this.cbinadimplente.Name = "cbinadimplente";
             this.cbinadimplente.Size = new System.Drawing.Size(44, 21);
-            this.cbinadimplente.TabIndex = 17;
+            this.cbinadimplente.TabIndex = 16;
             // 
             // txtemail
             // 
-            this.txtemail.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtemail.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.txtemail.Enabled = false;
             this.txtemail.Location = new System.Drawing.Point(124, 32);
             this.txtemail.MaxLength = 100;
@@ -424,7 +426,7 @@
             // 
             this.rbbloqueado.AutoSize = true;
             this.rbbloqueado.Enabled = false;
-            this.rbbloqueado.Location = new System.Drawing.Point(675, 297);
+            this.rbbloqueado.Location = new System.Drawing.Point(669, 299);
             this.rbbloqueado.Name = "rbbloqueado";
             this.rbbloqueado.Size = new System.Drawing.Size(76, 17);
             this.rbbloqueado.TabIndex = 18;
@@ -436,7 +438,7 @@
             // 
             this.rbdesbloqueado.AutoSize = true;
             this.rbdesbloqueado.Enabled = false;
-            this.rbdesbloqueado.Location = new System.Drawing.Point(675, 318);
+            this.rbdesbloqueado.Location = new System.Drawing.Point(669, 322);
             this.rbdesbloqueado.Name = "rbdesbloqueado";
             this.rbdesbloqueado.Size = new System.Drawing.Size(94, 17);
             this.rbdesbloqueado.TabIndex = 19;

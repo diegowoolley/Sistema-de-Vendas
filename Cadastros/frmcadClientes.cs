@@ -45,22 +45,9 @@ namespace Sistema_de_Vendas
             return image_byte;
 
         }
-        private void BuscarNome()
-        {
-            con.AbrirConexao();
-            sql = "SELECT * FROM cad_clientes WHERE nome_clientes LIKE @nome ORDER BY nome_clientes asc";
-            cmd = new MySqlCommand(sql, con.con);
-            cmd.Parameters.AddWithValue("nome", txtnome.Text + "&");
-            MySqlDataAdapter da = new MySqlDataAdapter();
-            da.SelectCommand = cmd;
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            dgCliente.DataSource = dt;
-            con.FecharConexao();
+        
 
-            formatargrid();
-            Listar();
-        }
+
         private void Limparfoto()
         {
             pbFoto.Image = Properties.Resources.download;
@@ -73,6 +60,8 @@ namespace Sistema_de_Vendas
             txtnome.Clear();
             txtdocumento.Enabled = false;
             txtdocumento.Clear();
+            txtemail.Enabled = false;
+            txtemail.Clear();
             txtendereco.Enabled = false;
             txtendereco.Clear();
             txtbairro.Enabled = false;
@@ -108,6 +97,7 @@ namespace Sistema_de_Vendas
             //habilita campos e botões 
             txtnome.Enabled = true;
             txtdocumento.Enabled = true;
+            txtemail.Enabled = true;
             txtendereco.Enabled = true;
             txtbairro.Enabled = true;
             txtnumero.Enabled = true;
@@ -178,10 +168,11 @@ namespace Sistema_de_Vendas
 
                         //insere dados na tabela
                         con.AbrirConexao();
-                        sql = "INSERT INTO cad_clientes(nome_clientes, documento_clientes, endereco_clientes, bairro_clientes, numero_clientes, cidade_clientes, estado_clientes, telefone_clientes, celular_clientes, foto_clientes) VALUES (@nome_clientes, @documento_clientes, @endereco_clientes, @bairro_clientes, @numero_clientes, @cidade_clientes, @estado_clientes, @telefone_clientes, @celular_clientes, @foto)";
+                        sql = "INSERT INTO cad_clientes(nome_clientes, documento_clientes, email_clientes, endereco_clientes, bairro_clientes, numero_clientes, cidade_clientes, estado_clientes, telefone_clientes, celular_clientes, foto_clientes) VALUES (@nome_clientes, @documento_clientes, @email_clientes, @endereco_clientes, @bairro_clientes, @numero_clientes, @cidade_clientes, @estado_clientes, @telefone_clientes, @celular_clientes, @foto)";
                         cmd = new MySqlCommand(sql, con.con);
                         cmd.Parameters.AddWithValue("@nome_clientes", txtnome.Text);
                         cmd.Parameters.AddWithValue("@documento_clientes", txtdocumento.Text);
+                        cmd.Parameters.AddWithValue("@email_clientes", txtemail.Text);
                         cmd.Parameters.AddWithValue("@endereco_clientes", txtendereco.Text);
                         cmd.Parameters.AddWithValue("@bairro_clientes", txtbairro.Text);
                         cmd.Parameters.AddWithValue("@numero_clientes", txtnumero.Text);
@@ -189,6 +180,9 @@ namespace Sistema_de_Vendas
                         cmd.Parameters.AddWithValue("@estado_clientes", cbestados.Text);
                         cmd.Parameters.AddWithValue("@telefone_clientes", txttelefone.Text);
                         cmd.Parameters.AddWithValue("@celular_clientes", txtcelular.Text);
+                        cmd.Parameters.AddWithValue("@valor", txtvaloraberto.Text);
+                        cmd.Parameters.AddWithValue("@inadimplente", cbinadimplente.Text);
+
                         cmd.Parameters.AddWithValue("@foto", img());
 
                         cmd.ExecuteNonQuery();
@@ -198,6 +192,8 @@ namespace Sistema_de_Vendas
                         txtnome.Clear();
                         txtdocumento.Enabled = false;
                         txtdocumento.Clear();
+                        txtemail.Enabled = false;
+                        txtemail.Clear();
                         txtendereco.Enabled = false;
                         txtendereco.Clear();
                         txtbairro.Enabled = false;
@@ -277,8 +273,8 @@ namespace Sistema_de_Vendas
         {
             dgCliente.Columns[0].HeaderText = "ID";
             dgCliente.Columns[1].HeaderText = "Nome";
-            dgCliente.Columns[2].HeaderText = "E-mail";
-            dgCliente.Columns[3].HeaderText = "Documento";
+            dgCliente.Columns[2].HeaderText = "Documento";
+            dgCliente.Columns[3].HeaderText = "E-mail";
             dgCliente.Columns[4].HeaderText = "Endereço";
             dgCliente.Columns[5].HeaderText = "Bairro";
             dgCliente.Columns[6].HeaderText = "Número";
@@ -300,12 +296,9 @@ namespace Sistema_de_Vendas
         private void txtdocumento_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender, e);
+           
         }
-
-        private void txtnumero_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            
-        }
+       
 
         private void txttelefone_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -392,6 +385,7 @@ namespace Sistema_de_Vendas
         {
             if (e.RowIndex > -1)
             {
+                
                 id = dgCliente.CurrentRow.Cells[0].Value.ToString();
                 documentoantigo = dgCliente.CurrentRow.Cells[2].Value.ToString();
 
@@ -416,6 +410,7 @@ namespace Sistema_de_Vendas
                 btnfoto.Enabled = true;
                 txtnome.Enabled = true;
                 txtdocumento.Enabled = true;
+                txtemail.Enabled = true;
                 txtendereco.Enabled = true;
                 txtbairro.Enabled = true;
                 txtnumero.Enabled = true;
@@ -428,10 +423,10 @@ namespace Sistema_de_Vendas
                 rbbloqueado.Enabled = true;
                 rbdesbloqueado.Enabled = true;
 
-                txtnome.Focus();
 
 
-                if (dgCliente.CurrentRow.Cells[10].Value != DBNull.Value)
+
+                if (dgCliente.CurrentRow.Cells[14].Value != DBNull.Value)
                 {
                     byte[] image = (byte[])dgCliente.Rows[e.RowIndex].Cells[14].Value;
                     MemoryStream es = new MemoryStream(image);
@@ -476,11 +471,12 @@ namespace Sistema_de_Vendas
                 if (alterou_foto == "s")
                 {
                     con.AbrirConexao();
-                    sql = "UPDATE cad_clientes SET nome_clientes = @nome, documento_clientes = @documento, endereco_clientes = @endereco, bairro_clientes = @bairro, numero_clientes = @numero, cidade_clientes = @cidade, estado_clientes = @estado, telefone_clientes = @telefone, celular_clientes = @celular, foto_clientes = @foto WHERE cod_clientes = @id";
+                    sql = "UPDATE cad_clientes SET nome_clientes = @nome, documento_clientes = @documento, email_clientes = @email, endereco_clientes = @endereco, bairro_clientes = @bairro, numero_clientes = @numero, cidade_clientes = @cidade, estado_clientes = @estado, telefone_clientes = @telefone, celular_clientes = @celular, foto_clientes = @foto WHERE cod_clientes = @id";
                     cmd = new MySqlCommand(sql, con.con);
                     cmd.Parameters.AddWithValue("@id", id);
                     cmd.Parameters.AddWithValue("@nome", txtnome.Text);
                     cmd.Parameters.AddWithValue("@documento", txtdocumento.Text);
+                    cmd.Parameters.AddWithValue("@email", txtemail.Text);
                     cmd.Parameters.AddWithValue("@endereco", txtendereco.Text);
                     cmd.Parameters.AddWithValue("@bairro", txtbairro.Text);
                     cmd.Parameters.AddWithValue("@numero", txtnumero.Text);
@@ -494,11 +490,12 @@ namespace Sistema_de_Vendas
                 else if (alterou_foto == "n")
                 {
                     con.AbrirConexao();
-                    sql = "UPDATE cad_clientes SET nome_clientes = @nome, documento_clientes = @documento, endereco_clientes = @endereco, bairro_clientes = @bairro, numero_clientes = @numero, cidade_clientes = @cidade, estado_clientes = @estado, telefone_clientes = @telefone, celular_clientes = @celular WHERE cod_clientes=@id";
+                    sql = "UPDATE cad_clientes SET nome_clientes = @nome, documento_clientes = @documento, email_clientes = @email, endereco_clientes = @endereco, bairro_clientes = @bairro, numero_clientes = @numero, cidade_clientes = @cidade, estado_clientes = @estado, telefone_clientes = @telefone, celular_clientes = @celular WHERE cod_clientes=@id";
                     cmd = new MySqlCommand(sql, con.con);
                     cmd.Parameters.AddWithValue("@id", id);
                     cmd.Parameters.AddWithValue("@nome", txtnome.Text);
                     cmd.Parameters.AddWithValue("@documento", txtdocumento.Text);
+                    cmd.Parameters.AddWithValue("@email", txtemail.Text);
                     cmd.Parameters.AddWithValue("@endereco", txtendereco.Text);
                     cmd.Parameters.AddWithValue("@bairro", txtbairro.Text);
                     cmd.Parameters.AddWithValue("@numero", txtnumero.Text);
@@ -506,6 +503,7 @@ namespace Sistema_de_Vendas
                     cmd.Parameters.AddWithValue("@estado", cbestados.Text);
                     cmd.Parameters.AddWithValue("@telefone", txttelefone.Text);
                     cmd.Parameters.AddWithValue("@celular", txtcelular.Text);
+                    
 
                 }
                 if (txtdocumento.Text != documentoantigo)
@@ -537,6 +535,8 @@ namespace Sistema_de_Vendas
                 txtnome.Clear();
                 txtdocumento.Enabled = false;
                 txtdocumento.Clear();
+                txtemail.Enabled = false;
+                txtemail.Clear();
                 txtendereco.Enabled = false;
                 txtendereco.Clear();
                 txtbairro.Enabled = false;
@@ -586,6 +586,8 @@ namespace Sistema_de_Vendas
                 txtnome.Clear();
                 txtdocumento.Enabled = false;
                 txtdocumento.Clear();
+                txtemail.Enabled = false;
+                txtemail.Clear();
                 txtendereco.Enabled = false;
                 txtendereco.Clear();
                 txtbairro.Enabled = false;
@@ -617,6 +619,54 @@ namespace Sistema_de_Vendas
                 Listar();
             }
         }
-           
+
+        private void BuscarNome()
+        {
+            string nomecliente = txtnome.Text;
+            con.AbrirConexao();
+            sql = "SELECT * FROM cad_clientes WHERE nome_clientes LIKE @nome";
+            cmd = new MySqlCommand(sql, con.con);
+            cmd.Parameters.AddWithValue("@nome", "%" + nomecliente + "%");
+            MySqlDataAdapter da = new MySqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dgCliente.DataSource = dt;
+            con.FecharConexao();
+
+            formatargrid();
+            
+
+        }
+
+        private void BuscarDocumento()
+        {
+            string documentocliente = txtdocumento.Text;
+            con.AbrirConexao();
+            sql = "SELECT * FROM cad_clientes WHERE documento_clientes LIKE @documento";
+            cmd = new MySqlCommand(sql, con.con);
+            cmd.Parameters.AddWithValue("@documento", "%" + documentocliente + "%");
+            MySqlDataAdapter da = new MySqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dgCliente.DataSource = dt;
+            con.FecharConexao();
+
+            formatargrid();
+            
+
+        }
+
+        private void txtnome_TextChanged(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void txtdocumento_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+             
     }
 }
