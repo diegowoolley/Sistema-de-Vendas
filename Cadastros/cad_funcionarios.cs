@@ -457,7 +457,7 @@ namespace Sistema_de_Vendas
 
         private void txttelefone_Enter(object sender, EventArgs e)
         {
-            var telefone = txtcelular.Text.Replace("(", "").Replace(")", "").Replace("-", "");
+            string telefone = txttelefone.Text.Replace("(", "").Replace(")", "").Replace("-", "");
             txttelefone.Text = telefone;
         }
 
@@ -476,7 +476,7 @@ namespace Sistema_de_Vendas
 
         private void txtcelular_Enter(object sender, EventArgs e)
         {
-            var celular = txtcelular.Text.Replace("(", "").Replace(")", "").Replace("-", "");
+            string celular = txtcelular.Text.Replace("(", "").Replace(")", "").Replace("-", "");
             txtcelular.Text = celular;
         }
 
@@ -510,6 +510,7 @@ namespace Sistema_de_Vendas
 
         private void dgCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+           
             if (e.RowIndex > -1)
             {
                 id = dgCliente.CurrentRow.Cells[0].Value.ToString();
@@ -525,7 +526,7 @@ namespace Sistema_de_Vendas
                 txttelefone.Text = dgCliente.CurrentRow.Cells[8].Value.ToString();
                 txtcelular.Text = dgCliente.CurrentRow.Cells[9].Value.ToString();
                 cbcargo.Text = dgCliente.CurrentRow.Cells[10].Value.ToString();
-
+                
                 btnNovo.Enabled = false;
                 btnAdicionar.Enabled = false;
                 btnAlterar.Enabled = true;
