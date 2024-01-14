@@ -43,7 +43,6 @@
             this.btnAdicionar = new System.Windows.Forms.Button();
             this.btnNovo = new System.Windows.Forms.Button();
             this.dgCliente = new System.Windows.Forms.DataGridView();
-            this.pbFoto = new System.Windows.Forms.PictureBox();
             this.txtcelular = new System.Windows.Forms.TextBox();
             this.txtdocumento = new System.Windows.Forms.TextBox();
             this.txttelefone = new System.Windows.Forms.TextBox();
@@ -56,6 +55,8 @@
             this.lblnome = new System.Windows.Forms.Label();
             this.lblcargo = new System.Windows.Forms.Label();
             this.cbcargo = new System.Windows.Forms.ComboBox();
+            this.lbladicionarcargos = new System.Windows.Forms.Label();
+            this.pbFoto = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgCliente)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).BeginInit();
             this.SuspendLayout();
@@ -236,18 +237,8 @@
             this.dgCliente.Name = "dgCliente";
             this.dgCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgCliente.Size = new System.Drawing.Size(763, 150);
-            this.dgCliente.TabIndex = 56;
+            this.dgCliente.TabIndex = 18;
             this.dgCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgCliente_CellContentClick);
-            // 
-            // pbFoto
-            // 
-            this.pbFoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pbFoto.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pbFoto.Location = new System.Drawing.Point(677, 9);
-            this.pbFoto.Name = "pbFoto";
-            this.pbFoto.Size = new System.Drawing.Size(100, 84);
-            this.pbFoto.TabIndex = 48;
-            this.pbFoto.TabStop = false;
             // 
             // txtcelular
             // 
@@ -367,26 +358,38 @@
             this.cbcargo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbcargo.Enabled = false;
             this.cbcargo.FormattingEnabled = true;
-            this.cbcargo.Items.AddRange(new object[] {
-            "CAIXA",
-            "VENDEDOR",
-            "GERENTE",
-            "TÉCNICO",
-            "LIMPEZA",
-            "RH",
-            "ATENDENTE",
-            "FINANCEIRO",
-            "MOTORISTA"});
             this.cbcargo.Location = new System.Drawing.Point(535, 89);
             this.cbcargo.Name = "cbcargo";
             this.cbcargo.Size = new System.Drawing.Size(136, 21);
             this.cbcargo.TabIndex = 10;
+            this.cbcargo.Enter += new System.EventHandler(this.cbcargo_Enter);
+            // 
+            // lbladicionarcargos
+            // 
+            this.lbladicionarcargos.AutoSize = true;
+            this.lbladicionarcargos.Location = new System.Drawing.Point(506, 113);
+            this.lbladicionarcargos.Name = "lbladicionarcargos";
+            this.lbladicionarcargos.Size = new System.Drawing.Size(203, 13);
+            this.lbladicionarcargos.TabIndex = 19;
+            this.lbladicionarcargos.Text = "(Dê um duplo click para adicionar cargos)";
+            this.lbladicionarcargos.DoubleClick += new System.EventHandler(this.lbladicionarcargos_DoubleClick);
+            // 
+            // pbFoto
+            // 
+            this.pbFoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pbFoto.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pbFoto.Location = new System.Drawing.Point(677, 9);
+            this.pbFoto.Name = "pbFoto";
+            this.pbFoto.Size = new System.Drawing.Size(100, 84);
+            this.pbFoto.TabIndex = 48;
+            this.pbFoto.TabStop = false;
             // 
             // frmcad_funcionarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(795, 347);
+            this.Controls.Add(this.lbladicionarcargos);
             this.Controls.Add(this.cbcargo);
             this.Controls.Add(this.lblcargo);
             this.Controls.Add(this.cbestados);
@@ -457,5 +460,6 @@
         private System.Windows.Forms.Label lblnome;
         private System.Windows.Forms.Label lblcargo;
         private System.Windows.Forms.ComboBox cbcargo;
+        private System.Windows.Forms.Label lbladicionarcargos;
     }
 }

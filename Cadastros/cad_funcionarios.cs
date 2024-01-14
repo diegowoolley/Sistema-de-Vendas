@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Sistema_de_Vendas.Cadastros;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,6 +26,21 @@ namespace Sistema_de_Vendas
         string id;
         string alterou_foto = "n";
         string documentoantigo;
+
+        private void ListarCargos()
+        {
+            con.AbrirConexao();
+            sql = "SELECT * FROM cad_cargos ORDER BY nome_cargo asc";
+            cmd = new MySqlCommand(sql, con.con);
+            MySqlDataAdapter da = new MySqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            cbcargo.DataSource = dt;
+            cbcargo.DisplayMember = "nome_cargo";
+            con.FecharConexao();
+
+        }
 
 
         private byte[] img()
@@ -486,8 +502,10 @@ namespace Sistema_de_Vendas
         private void frmcad_funcionarios_Load(object sender, EventArgs e)
         {
             Limparfoto();
+            ListarCargos();
             Listar();
             formatargrid();
+           
         }
 
         private void dgCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -554,6 +572,17 @@ namespace Sistema_de_Vendas
                 alterou_foto = "s";
 
             }
+        }
+
+        private void lbladicionarcargos_DoubleClick(object sender, EventArgs e)
+        {
+           frmCargos frmCargos = new frmCargos();
+            frmCargos.ShowDialog();
+        }
+
+        private void cbcargo_Enter(object sender, EventArgs e)
+        {
+            ListarCargos();
         }
     }
 }
