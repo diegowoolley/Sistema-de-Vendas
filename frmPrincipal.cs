@@ -16,31 +16,14 @@ namespace Sistema_de_Vendas
         public frmPrincipal()
         {
             InitializeComponent();
-        }
-
-        
-        private void usuáriosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmcadUsuarios frmusuarios = new frmcadUsuarios();
-            frmusuarios.ShowDialog();
-        }
-
-        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmLogin frmLogin = new frmLogin();
-            frmLogin.ShowDialog();
-        }
-
-        private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmcadClientes frmClientes = new frmcadClientes();
-            frmClientes.ShowDialog();
-        }
-
+        }       
+               
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
             string conectado = funcoes.conectado;
-            lblconectado.Text = ("Usuário Conectado: " + conectado); 
+            lblconectado.Text = ("Usuário Conectado: " + conectado);
+            lbldata.Text = DateTime.Today.ToString("dd/MM/yyyy");
+            lblhora.Text = DateTime.Now.ToString("HH:mm:ss");
             
         }
 
@@ -66,6 +49,19 @@ namespace Sistema_de_Vendas
         {
             frmcad_funcionarios cadfuncionarios = new frmcad_funcionarios();
             cadfuncionarios.ShowDialog();
+        }
+
+        private void fornecedoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmcadfornecedores frmfornecedores = new frmcadfornecedores();
+            frmfornecedores.ShowDialog();
+
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            lbldata.Text = DateTime.Today.ToString("dd/MM/yyyy");
+            lblhora.Text = DateTime.Now.ToString("HH:mm:ss");
         }
     }
 }

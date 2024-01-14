@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.mnPrincipal = new System.Windows.Forms.MenuStrip();
             this.cadastrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usuáriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,8 +48,17 @@
             this.manutençãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configuraçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblconectado = new System.Windows.Forms.Label();
+            this.barrastatus = new System.Windows.Forms.ToolStrip();
+            this.lblconectado = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.lbldata = new System.Windows.Forms.ToolStripLabel();
+            this.lblhora = new System.Windows.Forms.ToolStripLabel();
+            this.lblnomedata = new System.Windows.Forms.ToolStripLabel();
+            this.lblnomehora = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.mnPrincipal.SuspendLayout();
+            this.barrastatus.SuspendLayout();
             this.SuspendLayout();
             // 
             // mnPrincipal
@@ -108,6 +118,7 @@
             this.fornecedoresToolStripMenuItem.Name = "fornecedoresToolStripMenuItem";
             this.fornecedoresToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.fornecedoresToolStripMenuItem.Text = "Fornecedores";
+            this.fornecedoresToolStripMenuItem.Click += new System.EventHandler(this.fornecedoresToolStripMenuItem_Click);
             // 
             // produtosToolStripMenuItem
             // 
@@ -191,22 +202,74 @@
             this.logoutToolStripMenuItem.Text = "Logout";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click_1);
             // 
+            // barrastatus
+            // 
+            this.barrastatus.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barrastatus.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblconectado,
+            this.toolStripSeparator1,
+            this.lblnomedata,
+            this.lbldata,
+            this.toolStripSeparator2,
+            this.lblnomehora,
+            this.lblhora});
+            this.barrastatus.Location = new System.Drawing.Point(0, 425);
+            this.barrastatus.Name = "barrastatus";
+            this.barrastatus.Size = new System.Drawing.Size(800, 25);
+            this.barrastatus.TabIndex = 2;
+            this.barrastatus.Text = "toolStrip1";
+            // 
             // lblconectado
             // 
-            this.lblconectado.AutoSize = true;
-            this.lblconectado.Location = new System.Drawing.Point(12, 428);
             this.lblconectado.Name = "lblconectado";
-            this.lblconectado.Size = new System.Drawing.Size(68, 13);
-            this.lblconectado.TabIndex = 1;
-            this.lblconectado.Text = "lblconectado";
-            this.lblconectado.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblconectado.Size = new System.Drawing.Size(47, 22);
+            this.lblconectado.Text = "Usuário";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // lbldata
+            // 
+            this.lbldata.Name = "lbldata";
+            this.lbldata.Size = new System.Drawing.Size(95, 22);
+            this.lbldata.Text = "Data: 00/00/0000";
+            // 
+            // lblhora
+            // 
+            this.lblhora.Name = "lblhora";
+            this.lblhora.Size = new System.Drawing.Size(81, 22);
+            this.lblhora.Text = "Hora: 00:00:00";
+            // 
+            // lblnomedata
+            // 
+            this.lblnomedata.Name = "lblnomedata";
+            this.lblnomedata.Size = new System.Drawing.Size(34, 22);
+            this.lblnomedata.Text = "Data:";
+            // 
+            // lblnomehora
+            // 
+            this.lblnomehora.Name = "lblnomehora";
+            this.lblnomehora.Size = new System.Drawing.Size(36, 22);
+            this.lblnomehora.Text = "Hora:";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // timer
+            // 
+            this.timer.Enabled = true;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.lblconectado);
+            this.Controls.Add(this.barrastatus);
             this.Controls.Add(this.mnPrincipal);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
@@ -217,6 +280,8 @@
             this.Load += new System.EventHandler(this.frmPrincipal_Load);
             this.mnPrincipal.ResumeLayout(false);
             this.mnPrincipal.PerformLayout();
+            this.barrastatus.ResumeLayout(false);
+            this.barrastatus.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -243,7 +308,15 @@
         private System.Windows.Forms.ToolStripMenuItem manutençãoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem configuraçãoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
-        private System.Windows.Forms.Label lblconectado;
+        private System.Windows.Forms.ToolStrip barrastatus;
+        private System.Windows.Forms.ToolStripLabel lblconectado;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripLabel lbldata;
+        private System.Windows.Forms.ToolStripLabel lblhora;
+        private System.Windows.Forms.ToolStripLabel lblnomedata;
+        private System.Windows.Forms.ToolStripLabel lblnomehora;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.Timer timer;
     }
 }
 
