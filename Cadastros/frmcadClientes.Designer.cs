@@ -54,6 +54,14 @@
             this.lblestado = new System.Windows.Forms.Label();
             this.txtcidade = new System.Windows.Forms.TextBox();
             this.cbestados = new System.Windows.Forms.ComboBox();
+            this.lblvalor = new System.Windows.Forms.Label();
+            this.lblinadimplente = new System.Windows.Forms.Label();
+            this.txtvaloraberto = new System.Windows.Forms.TextBox();
+            this.cbinadimplente = new System.Windows.Forms.ComboBox();
+            this.txtemail = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.rbbloqueado = new System.Windows.Forms.RadioButton();
+            this.rbdesbloqueado = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgCliente)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).BeginInit();
             this.SuspendLayout();
@@ -70,7 +78,7 @@
             // lblendereco
             // 
             this.lblendereco.AutoSize = true;
-            this.lblendereco.Location = new System.Drawing.Point(12, 37);
+            this.lblendereco.Location = new System.Drawing.Point(12, 61);
             this.lblendereco.Name = "lblendereco";
             this.lblendereco.Size = new System.Drawing.Size(56, 13);
             this.lblendereco.TabIndex = 1;
@@ -88,7 +96,7 @@
             // lbltelefone
             // 
             this.lbltelefone.AutoSize = true;
-            this.lbltelefone.Location = new System.Drawing.Point(12, 91);
+            this.lbltelefone.Location = new System.Drawing.Point(12, 115);
             this.lbltelefone.Name = "lbltelefone";
             this.lbltelefone.Size = new System.Drawing.Size(52, 13);
             this.lbltelefone.TabIndex = 3;
@@ -97,7 +105,7 @@
             // lblcelular
             // 
             this.lblcelular.AutoSize = true;
-            this.lblcelular.Location = new System.Drawing.Point(326, 91);
+            this.lblcelular.Location = new System.Drawing.Point(326, 115);
             this.lblcelular.Name = "lblcelular";
             this.lblcelular.Size = new System.Drawing.Size(42, 13);
             this.lblcelular.TabIndex = 4;
@@ -117,21 +125,21 @@
             // 
             this.txtendereco.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtendereco.Enabled = false;
-            this.txtendereco.Location = new System.Drawing.Point(124, 34);
+            this.txtendereco.Location = new System.Drawing.Point(124, 58);
             this.txtendereco.MaxLength = 100;
             this.txtendereco.Name = "txtendereco";
             this.txtendereco.Size = new System.Drawing.Size(195, 20);
-            this.txtendereco.TabIndex = 3;
+            this.txtendereco.TabIndex = 4;
             // 
             // txttelefone
             // 
             this.txttelefone.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txttelefone.Enabled = false;
-            this.txttelefone.Location = new System.Drawing.Point(124, 86);
-            this.txttelefone.MaxLength = 11;
+            this.txttelefone.Location = new System.Drawing.Point(124, 110);
+            this.txttelefone.MaxLength = 10;
             this.txttelefone.Name = "txttelefone";
             this.txttelefone.Size = new System.Drawing.Size(95, 20);
-            this.txttelefone.TabIndex = 8;
+            this.txttelefone.TabIndex = 9;
             this.txttelefone.Enter += new System.EventHandler(this.txttelefone_Enter);
             this.txttelefone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txttelefone_KeyPress);
             this.txttelefone.Leave += new System.EventHandler(this.txttelefone_Leave);
@@ -153,11 +161,11 @@
             // 
             this.txtcelular.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtcelular.Enabled = false;
-            this.txtcelular.Location = new System.Drawing.Point(383, 86);
-            this.txtcelular.MaxLength = 11;
+            this.txtcelular.Location = new System.Drawing.Point(383, 110);
+            this.txtcelular.MaxLength = 12;
             this.txtcelular.Name = "txtcelular";
             this.txtcelular.Size = new System.Drawing.Size(95, 20);
-            this.txtcelular.TabIndex = 9;
+            this.txtcelular.TabIndex = 10;
             this.txtcelular.Enter += new System.EventHandler(this.txtcelular_Enter);
             this.txtcelular.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtcelular_KeyPress);
             this.txtcelular.Leave += new System.EventHandler(this.txtcelular_Leave);
@@ -166,7 +174,7 @@
             // 
             this.dgCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgCliente.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgCliente.Location = new System.Drawing.Point(15, 144);
+            this.dgCliente.Location = new System.Drawing.Point(15, 141);
             this.dgCliente.Name = "dgCliente";
             this.dgCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgCliente.Size = new System.Drawing.Size(763, 150);
@@ -178,7 +186,7 @@
             this.btnNovo.Location = new System.Drawing.Point(15, 312);
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(75, 23);
-            this.btnNovo.TabIndex = 10;
+            this.btnNovo.TabIndex = 11;
             this.btnNovo.Text = "Novo";
             this.btnNovo.UseVisualStyleBackColor = true;
             this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
@@ -189,7 +197,7 @@
             this.btnAdicionar.Location = new System.Drawing.Point(111, 312);
             this.btnAdicionar.Name = "btnAdicionar";
             this.btnAdicionar.Size = new System.Drawing.Size(75, 23);
-            this.btnAdicionar.TabIndex = 11;
+            this.btnAdicionar.TabIndex = 12;
             this.btnAdicionar.Text = "Adicionar";
             this.btnAdicionar.UseVisualStyleBackColor = true;
             this.btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
@@ -200,7 +208,7 @@
             this.btnAlterar.Location = new System.Drawing.Point(209, 312);
             this.btnAlterar.Name = "btnAlterar";
             this.btnAlterar.Size = new System.Drawing.Size(75, 23);
-            this.btnAlterar.TabIndex = 12;
+            this.btnAlterar.TabIndex = 13;
             this.btnAlterar.Text = "Alterar";
             this.btnAlterar.UseVisualStyleBackColor = true;
             this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
@@ -211,7 +219,7 @@
             this.btnExcluir.Location = new System.Drawing.Point(302, 312);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(75, 23);
-            this.btnExcluir.TabIndex = 13;
+            this.btnExcluir.TabIndex = 14;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
@@ -221,7 +229,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(392, 312);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 14;
+            this.btnCancelar.TabIndex = 15;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -229,10 +237,10 @@
             // btnfoto
             // 
             this.btnfoto.Enabled = false;
-            this.btnfoto.Location = new System.Drawing.Point(594, 37);
+            this.btnfoto.Location = new System.Drawing.Point(688, 96);
             this.btnfoto.Name = "btnfoto";
             this.btnfoto.Size = new System.Drawing.Size(75, 23);
-            this.btnfoto.TabIndex = 15;
+            this.btnfoto.TabIndex = 20;
             this.btnfoto.Text = "foto";
             this.btnfoto.UseVisualStyleBackColor = true;
             this.btnfoto.Click += new System.EventHandler(this.btnfoto_Click);
@@ -240,7 +248,7 @@
             // lblbairro
             // 
             this.lblbairro.AutoSize = true;
-            this.lblbairro.Location = new System.Drawing.Point(325, 37);
+            this.lblbairro.Location = new System.Drawing.Point(325, 61);
             this.lblbairro.Name = "lblbairro";
             this.lblbairro.Size = new System.Drawing.Size(37, 13);
             this.lblbairro.TabIndex = 34;
@@ -249,7 +257,7 @@
             // lblnumero
             // 
             this.lblnumero.AutoSize = true;
-            this.lblnumero.Location = new System.Drawing.Point(489, 37);
+            this.lblnumero.Location = new System.Drawing.Point(489, 61);
             this.lblnumero.Name = "lblnumero";
             this.lblnumero.Size = new System.Drawing.Size(47, 13);
             this.lblnumero.TabIndex = 15;
@@ -259,21 +267,21 @@
             // 
             this.txtbairro.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtbairro.Enabled = false;
-            this.txtbairro.Location = new System.Drawing.Point(383, 32);
+            this.txtbairro.Location = new System.Drawing.Point(383, 56);
             this.txtbairro.MaxLength = 50;
             this.txtbairro.Name = "txtbairro";
             this.txtbairro.Size = new System.Drawing.Size(100, 20);
-            this.txtbairro.TabIndex = 4;
+            this.txtbairro.TabIndex = 5;
             // 
             // txtnumero
             // 
             this.txtnumero.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtnumero.Enabled = false;
-            this.txtnumero.Location = new System.Drawing.Point(534, 34);
+            this.txtnumero.Location = new System.Drawing.Point(534, 58);
             this.txtnumero.MaxLength = 5;
             this.txtnumero.Name = "txtnumero";
             this.txtnumero.Size = new System.Drawing.Size(44, 20);
-            this.txtnumero.TabIndex = 5;
+            this.txtnumero.TabIndex = 6;
             this.txtnumero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtnumero_KeyPress);
             // 
             // pbFoto
@@ -289,7 +297,7 @@
             // lblcidade
             // 
             this.lblcidade.AutoSize = true;
-            this.lblcidade.Location = new System.Drawing.Point(12, 63);
+            this.lblcidade.Location = new System.Drawing.Point(12, 87);
             this.lblcidade.Name = "lblcidade";
             this.lblcidade.Size = new System.Drawing.Size(43, 13);
             this.lblcidade.TabIndex = 35;
@@ -298,7 +306,7 @@
             // lblestado
             // 
             this.lblestado.AutoSize = true;
-            this.lblestado.Location = new System.Drawing.Point(325, 63);
+            this.lblestado.Location = new System.Drawing.Point(325, 87);
             this.lblestado.Name = "lblestado";
             this.lblestado.Size = new System.Drawing.Size(43, 13);
             this.lblestado.TabIndex = 36;
@@ -308,11 +316,11 @@
             // 
             this.txtcidade.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtcidade.Enabled = false;
-            this.txtcidade.Location = new System.Drawing.Point(124, 60);
+            this.txtcidade.Location = new System.Drawing.Point(124, 84);
             this.txtcidade.MaxLength = 50;
             this.txtcidade.Name = "txtcidade";
             this.txtcidade.Size = new System.Drawing.Size(100, 20);
-            this.txtcidade.TabIndex = 6;
+            this.txtcidade.TabIndex = 7;
             // 
             // cbestados
             // 
@@ -347,16 +355,108 @@
             "SP",
             "SE",
             "TO"});
-            this.cbestados.Location = new System.Drawing.Point(384, 59);
+            this.cbestados.Location = new System.Drawing.Point(384, 83);
             this.cbestados.Name = "cbestados";
             this.cbestados.Size = new System.Drawing.Size(44, 21);
-            this.cbestados.TabIndex = 7;
+            this.cbestados.TabIndex = 8;
+            // 
+            // lblvalor
+            // 
+            this.lblvalor.AutoSize = true;
+            this.lblvalor.Location = new System.Drawing.Point(489, 301);
+            this.lblvalor.Name = "lblvalor";
+            this.lblvalor.Size = new System.Drawing.Size(84, 13);
+            this.lblvalor.TabIndex = 37;
+            this.lblvalor.Text = "Valor em aberto:";
+            // 
+            // lblinadimplente
+            // 
+            this.lblinadimplente.AutoSize = true;
+            this.lblinadimplente.Location = new System.Drawing.Point(489, 322);
+            this.lblinadimplente.Name = "lblinadimplente";
+            this.lblinadimplente.Size = new System.Drawing.Size(70, 13);
+            this.lblinadimplente.TabIndex = 38;
+            this.lblinadimplente.Text = "Inadimplente:";
+            // 
+            // txtvaloraberto
+            // 
+            this.txtvaloraberto.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtvaloraberto.Enabled = false;
+            this.txtvaloraberto.Location = new System.Drawing.Point(579, 298);
+            this.txtvaloraberto.MaxLength = 5;
+            this.txtvaloraberto.Name = "txtvaloraberto";
+            this.txtvaloraberto.Size = new System.Drawing.Size(76, 20);
+            this.txtvaloraberto.TabIndex = 16;
+            // 
+            // cbinadimplente
+            // 
+            this.cbinadimplente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbinadimplente.Enabled = false;
+            this.cbinadimplente.FormattingEnabled = true;
+            this.cbinadimplente.Items.AddRange(new object[] {
+            "Sim",
+            "Não"});
+            this.cbinadimplente.Location = new System.Drawing.Point(579, 322);
+            this.cbinadimplente.Name = "cbinadimplente";
+            this.cbinadimplente.Size = new System.Drawing.Size(44, 21);
+            this.cbinadimplente.TabIndex = 17;
+            // 
+            // txtemail
+            // 
+            this.txtemail.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtemail.Enabled = false;
+            this.txtemail.Location = new System.Drawing.Point(124, 32);
+            this.txtemail.MaxLength = 100;
+            this.txtemail.Name = "txtemail";
+            this.txtemail.Size = new System.Drawing.Size(195, 20);
+            this.txtemail.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 35);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.TabIndex = 41;
+            this.label1.Text = "E-mail:";
+            // 
+            // rbbloqueado
+            // 
+            this.rbbloqueado.AutoSize = true;
+            this.rbbloqueado.Enabled = false;
+            this.rbbloqueado.Location = new System.Drawing.Point(675, 297);
+            this.rbbloqueado.Name = "rbbloqueado";
+            this.rbbloqueado.Size = new System.Drawing.Size(76, 17);
+            this.rbbloqueado.TabIndex = 18;
+            this.rbbloqueado.TabStop = true;
+            this.rbbloqueado.Text = "Bloqueado";
+            this.rbbloqueado.UseVisualStyleBackColor = true;
+            // 
+            // rbdesbloqueado
+            // 
+            this.rbdesbloqueado.AutoSize = true;
+            this.rbdesbloqueado.Enabled = false;
+            this.rbdesbloqueado.Location = new System.Drawing.Point(675, 318);
+            this.rbdesbloqueado.Name = "rbdesbloqueado";
+            this.rbdesbloqueado.Size = new System.Drawing.Size(94, 17);
+            this.rbdesbloqueado.TabIndex = 19;
+            this.rbdesbloqueado.TabStop = true;
+            this.rbdesbloqueado.Text = "Desbloqueado";
+            this.rbdesbloqueado.UseVisualStyleBackColor = true;
             // 
             // frmcadClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(795, 347);
+            this.Controls.Add(this.rbdesbloqueado);
+            this.Controls.Add(this.rbbloqueado);
+            this.Controls.Add(this.txtemail);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cbinadimplente);
+            this.Controls.Add(this.txtvaloraberto);
+            this.Controls.Add(this.lblinadimplente);
+            this.Controls.Add(this.lblvalor);
             this.Controls.Add(this.cbestados);
             this.Controls.Add(this.txtcidade);
             this.Controls.Add(this.lblestado);
@@ -425,5 +525,13 @@
         private System.Windows.Forms.Label lblestado;
         private System.Windows.Forms.TextBox txtcidade;
         private System.Windows.Forms.ComboBox cbestados;
+        private System.Windows.Forms.Label lblvalor;
+        private System.Windows.Forms.Label lblinadimplente;
+        private System.Windows.Forms.TextBox txtvaloraberto;
+        private System.Windows.Forms.ComboBox cbinadimplente;
+        private System.Windows.Forms.TextBox txtemail;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RadioButton rbbloqueado;
+        private System.Windows.Forms.RadioButton rbdesbloqueado;
     }
 }

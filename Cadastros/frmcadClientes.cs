@@ -31,7 +31,7 @@ namespace Sistema_de_Vendas
         {
             InitializeComponent();
         }
-
+      
         private byte[] img()
         {
             byte[] image_byte = null;
@@ -44,6 +44,22 @@ namespace Sistema_de_Vendas
             image_byte = br.ReadBytes((int)fs.Length);
             return image_byte;
 
+        }
+        private void BuscarNome()
+        {
+            con.AbrirConexao();
+            sql = "SELECT * FROM cad_clientes WHERE nome_clientes LIKE @nome ORDER BY nome_clientes asc";
+            cmd = new MySqlCommand(sql, con.con);
+            cmd.Parameters.AddWithValue("nome", txtnome.Text + "&");
+            MySqlDataAdapter da = new MySqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dgCliente.DataSource = dt;
+            con.FecharConexao();
+
+            formatargrid();
+            Listar();
         }
         private void Limparfoto()
         {
@@ -70,6 +86,12 @@ namespace Sistema_de_Vendas
             txttelefone.Clear();
             txtcelular.Enabled = false;
             txtcelular.Clear();
+            txtvaloraberto.Enabled = false;
+            txtvaloraberto.Clear();
+            cbinadimplente.Enabled = false;
+            rbbloqueado.Enabled = false;
+            rbdesbloqueado.Enabled = false;
+
             btnAdicionar.Enabled = false;
             btnAlterar.Enabled = false;
             btnExcluir.Enabled = false;
@@ -93,6 +115,10 @@ namespace Sistema_de_Vendas
             cbestados.Enabled = true;
             txttelefone.Enabled = true;
             txtcelular.Enabled = true;
+            txtvaloraberto.Enabled = true;
+            cbinadimplente.Enabled = true;
+            rbbloqueado.Enabled = true;
+            rbdesbloqueado.Enabled = true;
             btnNovo.Enabled = false;
             btnAdicionar.Enabled = true;
             btnAlterar.Enabled = false;
@@ -185,6 +211,12 @@ namespace Sistema_de_Vendas
                         txttelefone.Clear();
                         txtcelular.Enabled = false;
                         txtcelular.Clear();
+                        txtvaloraberto.Enabled = false;
+                        txtvaloraberto.Clear();
+                        cbinadimplente.Enabled = false;
+                        rbbloqueado.Enabled = false;
+                        rbdesbloqueado.Enabled = false;
+
                         btnAdicionar.Enabled = false;
                         btnAlterar.Enabled = false;
                         btnExcluir.Enabled = false;
@@ -245,15 +277,19 @@ namespace Sistema_de_Vendas
         {
             dgCliente.Columns[0].HeaderText = "ID";
             dgCliente.Columns[1].HeaderText = "Nome";
-            dgCliente.Columns[2].HeaderText = "Documento";
-            dgCliente.Columns[3].HeaderText = "Endereço";
-            dgCliente.Columns[4].HeaderText = "Bairro";
-            dgCliente.Columns[5].HeaderText = "Número";
-            dgCliente.Columns[6].HeaderText = "Cidade";
-            dgCliente.Columns[7].HeaderText = "Estado";
-            dgCliente.Columns[8].HeaderText = "Telefone";
-            dgCliente.Columns[9].HeaderText = "Celular";
-            dgCliente.Columns[10].HeaderText = "Foto";
+            dgCliente.Columns[2].HeaderText = "E-mail";
+            dgCliente.Columns[3].HeaderText = "Documento";
+            dgCliente.Columns[4].HeaderText = "Endereço";
+            dgCliente.Columns[5].HeaderText = "Bairro";
+            dgCliente.Columns[6].HeaderText = "Número";
+            dgCliente.Columns[7].HeaderText = "Cidade";
+            dgCliente.Columns[8].HeaderText = "Estado";
+            dgCliente.Columns[9].HeaderText = "Telefone";
+            dgCliente.Columns[10].HeaderText = "Celular";
+            dgCliente.Columns[11].HeaderText = "Valor em Aberto";
+            dgCliente.Columns[12].HeaderText = "Inadimplente";
+            dgCliente.Columns[13].HeaderText = "Status";
+            dgCliente.Columns[14].HeaderText = "Foto";
 
 
             dgCliente.Columns[0].Visible = false;
@@ -268,7 +304,7 @@ namespace Sistema_de_Vendas
 
         private void txtnumero_KeyPress(object sender, KeyPressEventArgs e)
         {
-            funcoes.DecNumber(sender, e);
+            
         }
 
         private void txttelefone_KeyPress(object sender, KeyPressEventArgs e)
@@ -340,7 +376,7 @@ namespace Sistema_de_Vendas
 
         private void txttelefone_Enter(object sender, EventArgs e)
         {
-            var telefone = txtcelular.Text.Replace("(", "").Replace(")", "").Replace("-", "");
+            string telefone = txttelefone.Text.Replace("(", "").Replace(")", "").Replace("-", "");
             txttelefone.Text = telefone;
 
         }
@@ -361,13 +397,16 @@ namespace Sistema_de_Vendas
 
                 txtnome.Text = dgCliente.CurrentRow.Cells[1].Value.ToString();
                 txtdocumento.Text = dgCliente.CurrentRow.Cells[2].Value.ToString();
-                txtendereco.Text = dgCliente.CurrentRow.Cells[3].Value.ToString();
-                txtbairro.Text = dgCliente.CurrentRow.Cells[4].Value.ToString();
-                txtnumero.Text = dgCliente.CurrentRow.Cells[5].Value.ToString();
-                txtcidade.Text = dgCliente.CurrentRow.Cells[6].Value.ToString();
-                cbestados.Text = dgCliente.CurrentRow.Cells[7].Value.ToString();
-                txttelefone.Text = dgCliente.CurrentRow.Cells[8].Value.ToString();
-                txtcelular.Text = dgCliente.CurrentRow.Cells[9].Value.ToString();
+                txtemail.Text = dgCliente.CurrentRow.Cells[3].Value.ToString();
+                txtendereco.Text = dgCliente.CurrentRow.Cells[4].Value.ToString();
+                txtbairro.Text = dgCliente.CurrentRow.Cells[5].Value.ToString();
+                txtnumero.Text = dgCliente.CurrentRow.Cells[6].Value.ToString();
+                txtcidade.Text = dgCliente.CurrentRow.Cells[7].Value.ToString();
+                cbestados.Text = dgCliente.CurrentRow.Cells[8].Value.ToString();
+                txttelefone.Text = dgCliente.CurrentRow.Cells[9].Value.ToString();
+                txtcelular.Text = dgCliente.CurrentRow.Cells[10].Value.ToString();
+                txtvaloraberto.Text = dgCliente.CurrentRow.Cells[11].Value.ToString();
+                cbinadimplente.Text = dgCliente.CurrentRow.Cells[12].Value.ToString();
 
                 btnNovo.Enabled = false;
                 btnAdicionar.Enabled = false;
@@ -384,12 +423,17 @@ namespace Sistema_de_Vendas
                 cbestados.Enabled = true;
                 txttelefone.Enabled = true;
                 txtcelular.Enabled = true;
+                txtvaloraberto.Enabled = true;
+                cbinadimplente.Enabled = true;
+                rbbloqueado.Enabled = true;
+                rbdesbloqueado.Enabled = true;
+
                 txtnome.Focus();
 
 
                 if (dgCliente.CurrentRow.Cells[10].Value != DBNull.Value)
                 {
-                    byte[] image = (byte[])dgCliente.Rows[e.RowIndex].Cells[10].Value;
+                    byte[] image = (byte[])dgCliente.Rows[e.RowIndex].Cells[14].Value;
                     MemoryStream es = new MemoryStream(image);
                     pbFoto.Image = Image.FromStream(es);
 
@@ -506,6 +550,12 @@ namespace Sistema_de_Vendas
                 txttelefone.Clear();
                 txtcelular.Enabled = false;
                 txtcelular.Clear();
+                txtvaloraberto.Enabled = false;
+                txtvaloraberto.Clear();
+                cbinadimplente.Enabled = false;
+                rbbloqueado.Enabled = false;
+                rbdesbloqueado.Enabled = false;
+
                 btnAdicionar.Enabled = false;
                 btnAlterar.Enabled = false;
                 btnExcluir.Enabled = false;
@@ -523,39 +573,50 @@ namespace Sistema_de_Vendas
             var res = MessageBox.Show("Deseja realmente excluir esse registro?", "Excluir Cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (res == DialogResult.Yes)
+            {
                 con.AbrirConexao();
-            sql = "DELETE FROM cad_clientes WHERE cod_clientes = @id";
-            cmd = new MySqlCommand(sql, con.con);
-            cmd.Parameters.AddWithValue("@id", id);
-            cmd.ExecuteNonQuery();
-            con.FecharConexao();
-            Limparfoto();
-            Listar();
-            txtnome.Enabled = false;
-            txtnome.Clear();
-            txtdocumento.Enabled = false;
-            txtdocumento.Clear();
-            txtendereco.Enabled = false;
-            txtendereco.Clear();
-            txtbairro.Enabled = false;
-            txtbairro.Clear();
-            txtnumero.Enabled = false;
-            txtnumero.Clear();
-            txtcidade.Enabled = false;
-            txtcidade.Clear();
-            cbestados.Enabled = false;
-            txttelefone.Enabled = false;
-            txttelefone.Clear();
-            txtcelular.Enabled = false;
-            txtcelular.Clear();
-            btnAdicionar.Enabled = false;
-            btnAlterar.Enabled = false;
-            btnExcluir.Enabled = false;
+                sql = "DELETE FROM cad_clientes WHERE cod_clientes = @id";
+                cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.ExecuteNonQuery();
+                con.FecharConexao();
+                Limparfoto();
+                Listar();
+                txtnome.Enabled = false;
+                txtnome.Clear();
+                txtdocumento.Enabled = false;
+                txtdocumento.Clear();
+                txtendereco.Enabled = false;
+                txtendereco.Clear();
+                txtbairro.Enabled = false;
+                txtbairro.Clear();
+                txtnumero.Enabled = false;
+                txtnumero.Clear();
+                txtcidade.Enabled = false;
+                txtcidade.Clear();
+                cbestados.Enabled = false;
+                txttelefone.Enabled = false;
+                txttelefone.Clear();
+                txtcelular.Enabled = false;
+                txtcelular.Clear();
+                txtvaloraberto.Enabled = false;
+                txtvaloraberto.Clear();
+                cbinadimplente.Enabled = false;
+                rbbloqueado.Enabled = false;
+                rbdesbloqueado.Enabled = false;
 
-            btnfoto.Enabled = false;
-            btnNovo.Enabled = true;
-            btnNovo.Focus();
+                btnAdicionar.Enabled = false;
+                btnAlterar.Enabled = false;
+                btnExcluir.Enabled = false;
+                btnfoto.Enabled = false;
+                btnNovo.Enabled = true;
+                btnNovo.Focus();
+            }
+            else
+            {
+                Listar();
+            }
         }
-
+           
     }
 }
