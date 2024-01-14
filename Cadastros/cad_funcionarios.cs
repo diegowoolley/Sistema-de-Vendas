@@ -41,7 +41,7 @@ namespace Sistema_de_Vendas
             con.FecharConexao();
 
         }
-       
+
         private byte[] img()
         {
             byte[] image_byte = null;
@@ -504,12 +504,12 @@ namespace Sistema_de_Vendas
             ListarCargos();
             Listar();
             formatargrid();
-           
+
         }
 
         private void dgCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-           
+
             if (e.RowIndex > -1)
             {
                 id = dgCliente.CurrentRow.Cells[0].Value.ToString();
@@ -525,7 +525,7 @@ namespace Sistema_de_Vendas
                 txttelefone.Text = dgCliente.CurrentRow.Cells[8].Value.ToString();
                 txtcelular.Text = dgCliente.CurrentRow.Cells[9].Value.ToString();
                 cbcargo.Text = dgCliente.CurrentRow.Cells[10].Value.ToString();
-                
+
                 btnNovo.Enabled = false;
                 btnAdicionar.Enabled = false;
                 btnAlterar.Enabled = true;
@@ -576,13 +576,13 @@ namespace Sistema_de_Vendas
 
         private void lbladicionarcargos_DoubleClick(object sender, EventArgs e)
         {
-           frmCargos frmCargos = new frmCargos();
+            frmCargos frmCargos = new frmCargos();
             frmCargos.ShowDialog();
         }
 
         private void BuscarNome()
         {
-            string nomefuncionario = txtnome.Text;
+            string nomefuncionario = txtnomepesquisa.Text;
             con.AbrirConexao();
             sql = "SELECT * FROM cad_funcionarios WHERE nome_funcionario LIKE @nome";
             cmd = new MySqlCommand(sql, con.con);
@@ -600,7 +600,7 @@ namespace Sistema_de_Vendas
 
         private void BuscarDocumento()
         {
-            string documentofuncionario = txtdocumento.Text;
+            string documentofuncionario = txtdocumentopesquisa.Text;
             con.AbrirConexao();
             sql = "SELECT * FROM cad_funcionarios WHERE documento_funcionario LIKE @documento";
             cmd = new MySqlCommand(sql, con.con);
@@ -621,16 +621,48 @@ namespace Sistema_de_Vendas
             ListarCargos();
         }
 
-        private void txtnome_TextChanged(object sender, EventArgs e)
+        private void lblpesquisa_DoubleClick(object sender, EventArgs e)
         {
-            
+            pnpesquisa.Visible = true;
+            txtnomepesquisa.Enabled = true;
+            txtnomepesquisa.Clear();
+            txtdocumentopesquisa.Enabled = true;
+            txtdocumentopesquisa.Clear();
+            btncancelarpesquisa.Enabled = true;
+            txtnomepesquisa.Focus();
         }
 
-        private void txtdocumento_TextChanged(object sender, EventArgs e)
+        private void txtnomepesquisa_Enter(object sender, EventArgs e)
         {
-            
+            txtdocumentopesquisa.Clear();
+        }
+
+        private void txtdocumentopesquisa_Enter(object sender, EventArgs e)
+        {
+            txtnomepesquisa.Clear();
+        }
+
+        private void txtnomepesquisa_TextChanged(object sender, EventArgs e)
+        {
+            BuscarNome();
+        }
+
+        private void txtdocumentopesquisa_TextChanged(object sender, EventArgs e)
+        {
+            BuscarDocumento();
+        }
+
+        private void pnpesquisa_Leave(object sender, EventArgs e)
+        {
+            pnpesquisa.Visible = false;
+        }
+
+        private void btncancelarpesquisa_Click(object sender, EventArgs e)
+        {
+            pnpesquisa.Visible = false;
         }
     }
+        
 }
 
     

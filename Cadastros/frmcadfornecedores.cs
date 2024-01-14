@@ -48,7 +48,7 @@ namespace Sistema_de_Vendas
 
         private void BuscarNome()
         {
-            string nomefornecedor = txtnome.Text;
+            string nomefornecedor = txtnomepesquisa.Text;
             con.AbrirConexao();
             sql = "SELECT * FROM cad_fornecedores WHERE nome_fornecedor LIKE @nome";
             cmd = new MySqlCommand(sql, con.con);
@@ -66,7 +66,7 @@ namespace Sistema_de_Vendas
 
         private void BuscarDocumento()
         {
-            string documentofornecedor = txtdocumento.Text;
+            string documentofornecedor = txtdocumentopesquisa.Text;
             con.AbrirConexao();
             sql = "SELECT * FROM cad_fornecedores WHERE documento_fornecedor LIKE @documento";
             cmd = new MySqlCommand(sql, con.con);
@@ -606,6 +606,48 @@ namespace Sistema_de_Vendas
         private void txtdocumento_TextChanged(object sender, EventArgs e)
         {
            
+        }
+
+        private void lblpesquisa_DoubleClick(object sender, EventArgs e)
+        {
+            pnpesquisa.Visible = true;
+            txtnomepesquisa.Enabled = true;
+            txtnomepesquisa.Clear();
+            txtdocumentopesquisa.Enabled = true;
+            txtdocumentopesquisa.Clear();
+            btncancelarpesquisa.Enabled = true;
+            txtnomepesquisa.Focus();
+        }
+
+        private void pnpesquisa_Leave(object sender, EventArgs e)
+        {
+            pnpesquisa.Visible = false;
+        }
+
+        private void txtnomepesquisa_TextChanged(object sender, EventArgs e)
+        {
+            BuscarNome();
+        }
+
+        private void txtdocumentopesquisa_TextChanged(object sender, EventArgs e)
+        {
+            BuscarDocumento();
+        }
+
+       
+        private void btncancelarpesquisa_Click(object sender, EventArgs e)
+        {
+            pnpesquisa.Visible = false;
+        }
+
+        private void txtnomepesquisa_Enter(object sender, EventArgs e)
+        {
+            txtdocumentopesquisa.Clear();
+        }
+
+        private void txtdocumentopesquisa_Enter(object sender, EventArgs e)
+        {
+            txtnomepesquisa.Clear();
         }
     }
 }

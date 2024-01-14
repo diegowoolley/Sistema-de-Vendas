@@ -57,8 +57,16 @@
             this.cbcargo = new System.Windows.Forms.ComboBox();
             this.lbladicionarcargos = new System.Windows.Forms.Label();
             this.pbFoto = new System.Windows.Forms.PictureBox();
+            this.lblpesquisa = new System.Windows.Forms.Label();
+            this.pnpesquisa = new System.Windows.Forms.Panel();
+            this.btncancelarpesquisa = new System.Windows.Forms.Button();
+            this.txtdocumentopesquisa = new System.Windows.Forms.TextBox();
+            this.lbldocumentopesquisa = new System.Windows.Forms.Label();
+            this.txtnomepesquisa = new System.Windows.Forms.TextBox();
+            this.lblnomepesquisa = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgCliente)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).BeginInit();
+            this.pnpesquisa.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbestados
@@ -262,7 +270,6 @@
             this.txtdocumento.Name = "txtdocumento";
             this.txtdocumento.Size = new System.Drawing.Size(195, 20);
             this.txtdocumento.TabIndex = 2;
-            this.txtdocumento.TextChanged += new System.EventHandler(this.txtdocumento_TextChanged);
             this.txtdocumento.Enter += new System.EventHandler(this.txtdocumento_Enter);
             this.txtdocumento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtdocumento_KeyPress);
             this.txtdocumento.Leave += new System.EventHandler(this.txtdocumento_Leave);
@@ -299,7 +306,6 @@
             this.txtnome.Name = "txtnome";
             this.txtnome.Size = new System.Drawing.Size(195, 20);
             this.txtnome.TabIndex = 1;
-            this.txtnome.TextChanged += new System.EventHandler(this.txtnome_TextChanged);
             // 
             // lblcelular
             // 
@@ -387,11 +393,91 @@
             this.pbFoto.TabIndex = 48;
             this.pbFoto.TabStop = false;
             // 
+            // lblpesquisa
+            // 
+            this.lblpesquisa.AutoSize = true;
+            this.lblpesquisa.Location = new System.Drawing.Point(521, 131);
+            this.lblpesquisa.Name = "lblpesquisa";
+            this.lblpesquisa.Size = new System.Drawing.Size(173, 13);
+            this.lblpesquisa.TabIndex = 65;
+            this.lblpesquisa.Text = "(Dê duplo click para abrir pesquisa)";
+            this.lblpesquisa.DoubleClick += new System.EventHandler(this.lblpesquisa_DoubleClick);
+            // 
+            // pnpesquisa
+            // 
+            this.pnpesquisa.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnpesquisa.Controls.Add(this.btncancelarpesquisa);
+            this.pnpesquisa.Controls.Add(this.txtdocumentopesquisa);
+            this.pnpesquisa.Controls.Add(this.lbldocumentopesquisa);
+            this.pnpesquisa.Controls.Add(this.txtnomepesquisa);
+            this.pnpesquisa.Controls.Add(this.lblnomepesquisa);
+            this.pnpesquisa.Location = new System.Drawing.Point(509, 150);
+            this.pnpesquisa.Name = "pnpesquisa";
+            this.pnpesquisa.Size = new System.Drawing.Size(206, 131);
+            this.pnpesquisa.TabIndex = 64;
+            this.pnpesquisa.Visible = false;
+            this.pnpesquisa.Leave += new System.EventHandler(this.pnpesquisa_Leave);
+            // 
+            // btncancelarpesquisa
+            // 
+            this.btncancelarpesquisa.Enabled = false;
+            this.btncancelarpesquisa.Location = new System.Drawing.Point(55, 101);
+            this.btncancelarpesquisa.Name = "btncancelarpesquisa";
+            this.btncancelarpesquisa.Size = new System.Drawing.Size(75, 23);
+            this.btncancelarpesquisa.TabIndex = 22;
+            this.btncancelarpesquisa.Text = "fechar";
+            this.btncancelarpesquisa.UseVisualStyleBackColor = true;
+            this.btncancelarpesquisa.Click += new System.EventHandler(this.btncancelarpesquisa_Click);
+            // 
+            // txtdocumentopesquisa
+            // 
+            this.txtdocumentopesquisa.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtdocumentopesquisa.Enabled = false;
+            this.txtdocumentopesquisa.Location = new System.Drawing.Point(3, 78);
+            this.txtdocumentopesquisa.MaxLength = 18;
+            this.txtdocumentopesquisa.Name = "txtdocumentopesquisa";
+            this.txtdocumentopesquisa.Size = new System.Drawing.Size(195, 20);
+            this.txtdocumentopesquisa.TabIndex = 4;
+            this.txtdocumentopesquisa.TextChanged += new System.EventHandler(this.txtdocumentopesquisa_TextChanged);
+            this.txtdocumentopesquisa.Enter += new System.EventHandler(this.txtdocumentopesquisa_Enter);
+            // 
+            // lbldocumentopesquisa
+            // 
+            this.lbldocumentopesquisa.AutoSize = true;
+            this.lbldocumentopesquisa.Location = new System.Drawing.Point(5, 62);
+            this.lbldocumentopesquisa.Name = "lbldocumentopesquisa";
+            this.lbldocumentopesquisa.Size = new System.Drawing.Size(52, 13);
+            this.lbldocumentopesquisa.TabIndex = 5;
+            this.lbldocumentopesquisa.Text = "Cpf/Cnpj:";
+            // 
+            // txtnomepesquisa
+            // 
+            this.txtnomepesquisa.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtnomepesquisa.Enabled = false;
+            this.txtnomepesquisa.Location = new System.Drawing.Point(3, 30);
+            this.txtnomepesquisa.MaxLength = 100;
+            this.txtnomepesquisa.Name = "txtnomepesquisa";
+            this.txtnomepesquisa.Size = new System.Drawing.Size(195, 20);
+            this.txtnomepesquisa.TabIndex = 3;
+            this.txtnomepesquisa.TextChanged += new System.EventHandler(this.txtnomepesquisa_TextChanged);
+            this.txtnomepesquisa.Enter += new System.EventHandler(this.txtnomepesquisa_Enter);
+            // 
+            // lblnomepesquisa
+            // 
+            this.lblnomepesquisa.AutoSize = true;
+            this.lblnomepesquisa.Location = new System.Drawing.Point(3, 14);
+            this.lblnomepesquisa.Name = "lblnomepesquisa";
+            this.lblnomepesquisa.Size = new System.Drawing.Size(106, 13);
+            this.lblnomepesquisa.TabIndex = 2;
+            this.lblnomepesquisa.Text = "Nome/Razão Social:";
+            // 
             // frmcad_funcionarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(795, 347);
+            this.Controls.Add(this.lblpesquisa);
+            this.Controls.Add(this.pnpesquisa);
             this.Controls.Add(this.lbladicionarcargos);
             this.Controls.Add(this.cbcargo);
             this.Controls.Add(this.lblcargo);
@@ -428,6 +514,8 @@
             this.Load += new System.EventHandler(this.frmcad_funcionarios_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgCliente)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).EndInit();
+            this.pnpesquisa.ResumeLayout(false);
+            this.pnpesquisa.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -464,5 +552,12 @@
         private System.Windows.Forms.Label lblcargo;
         private System.Windows.Forms.ComboBox cbcargo;
         private System.Windows.Forms.Label lbladicionarcargos;
+        private System.Windows.Forms.Label lblpesquisa;
+        private System.Windows.Forms.Panel pnpesquisa;
+        private System.Windows.Forms.Button btncancelarpesquisa;
+        private System.Windows.Forms.TextBox txtdocumentopesquisa;
+        private System.Windows.Forms.Label lbldocumentopesquisa;
+        private System.Windows.Forms.TextBox txtnomepesquisa;
+        private System.Windows.Forms.Label lblnomepesquisa;
     }
 }
