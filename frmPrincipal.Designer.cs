@@ -51,11 +51,11 @@
             this.barrastatus = new System.Windows.Forms.ToolStrip();
             this.lblconectado = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.lbldata = new System.Windows.Forms.ToolStripLabel();
-            this.lblhora = new System.Windows.Forms.ToolStripLabel();
             this.lblnomedata = new System.Windows.Forms.ToolStripLabel();
-            this.lblnomehora = new System.Windows.Forms.ToolStripLabel();
+            this.lbldata = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.lblnomehora = new System.Windows.Forms.ToolStripLabel();
+            this.lblhora = new System.Windows.Forms.ToolStripLabel();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.mnPrincipal.SuspendLayout();
             this.barrastatus.SuspendLayout();
@@ -230,23 +230,22 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
+            // lblnomedata
+            // 
+            this.lblnomedata.Name = "lblnomedata";
+            this.lblnomedata.Size = new System.Drawing.Size(34, 22);
+            this.lblnomedata.Text = "Data:";
+            // 
             // lbldata
             // 
             this.lbldata.Name = "lbldata";
             this.lbldata.Size = new System.Drawing.Size(95, 22);
             this.lbldata.Text = "Data: 00/00/0000";
             // 
-            // lblhora
+            // toolStripSeparator2
             // 
-            this.lblhora.Name = "lblhora";
-            this.lblhora.Size = new System.Drawing.Size(81, 22);
-            this.lblhora.Text = "Hora: 00:00:00";
-            // 
-            // lblnomedata
-            // 
-            this.lblnomedata.Name = "lblnomedata";
-            this.lblnomedata.Size = new System.Drawing.Size(34, 22);
-            this.lblnomedata.Text = "Data:";
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // lblnomehora
             // 
@@ -254,10 +253,11 @@
             this.lblnomehora.Size = new System.Drawing.Size(36, 22);
             this.lblnomehora.Text = "Hora:";
             // 
-            // toolStripSeparator2
+            // lblhora
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            this.lblhora.Name = "lblhora";
+            this.lblhora.Size = new System.Drawing.Size(81, 22);
+            this.lblhora.Text = "Hora: 00:00:00";
             // 
             // timer
             // 

@@ -38,6 +38,7 @@
             this.pbSplash.Location = new System.Drawing.Point(0, 156);
             this.pbSplash.Name = "pbSplash";
             this.pbSplash.Size = new System.Drawing.Size(301, 10);
+            this.pbSplash.Step = 30;
             this.pbSplash.TabIndex = 0;
             // 
             // timer1

@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cadastros\frmcadfornecedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cadastros\frmcadfornecedores.Designer.cs">
+      <DependentUpon>frmcadfornecedores.cs</DependentUpon>
+    </Compile>
     <Compile Include="Cadastros\frmcadUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +73,12 @@
     </Compile>
     <Compile Include="Cadastros\cad_funcionarios.Designer.cs">
       <DependentUpon>cad_funcionarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastros\frmCargos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cadastros\frmCargos.Designer.cs">
+      <DependentUpon>frmCargos.cs</DependentUpon>
     </Compile>
     <Compile Include="conn.cs" />
     <Compile Include="frmSplash.cs">
@@ -95,6 +107,9 @@
     </Compile>
     <Compile Include="Sistema de Vendas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Cadastros\frmcadfornecedores.resx">
+      <DependentUpon>frmcadfornecedores.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Cadastros\frmcadUsuarios.resx">
       <DependentUpon>frmcadUsuarios.cs</DependentUpon>
     </EmbeddedResource>
@@ -103,6 +118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Cadastros\cad_funcionarios.resx">
       <DependentUpon>cad_funcionarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastros\frmCargos.resx">
+      <DependentUpon>frmCargos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSplash.resx">
       <DependentUpon>frmSplash.cs</DependentUpon>
