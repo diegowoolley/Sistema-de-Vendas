@@ -643,7 +643,8 @@ namespace Sistema_de_Vendas
         private void lblpesquisa_DoubleClick(object sender, EventArgs e)
         {
             pnpesquisa.Visible = true;
-            txtpesquisa.Enabled = true;          
+            txtpesquisa.Enabled = true;
+            txtpesquisa.Clear();
             btncancelarpesquisa.Enabled = true;
             txtpesquisa.Focus();
 
