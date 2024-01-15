@@ -63,5 +63,11 @@ namespace Sistema_de_Vendas
             lbldata.Text = DateTime.Today.ToString("dd/MM/yyyy");
             lblhora.Text = DateTime.Now.ToString("HH:mm:ss");
         }
+
+        private void produtosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmcadProdutos frmcadProdutos = new frmcadProdutos();
+            frmcadProdutos.ShowDialog();
+        }
     }
 }
