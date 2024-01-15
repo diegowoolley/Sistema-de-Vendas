@@ -580,13 +580,14 @@ namespace Sistema_de_Vendas
             frmCargos.ShowDialog();
         }
 
-        private void BuscarNome()
+        private void Buscar()
         {
-            string nomefuncionario = txtnomepesquisa.Text;
+            string funcionario = txtpesquisa.Text;
             con.AbrirConexao();
-            sql = "SELECT * FROM cad_funcionarios WHERE nome_funcionario LIKE @nome";
+            sql = "SELECT * FROM cad_funcionarios WHERE nome_funcionario LIKE @nome or documento_funcionario LIKE @documento";
             cmd = new MySqlCommand(sql, con.con);
-            cmd.Parameters.AddWithValue("@nome", "%" + nomefuncionario + "%");
+            cmd.Parameters.AddWithValue("@nome", "%" + funcionario + "%");
+            cmd.Parameters.AddWithValue("@documento", "%" + funcionario + "%");
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = cmd;
             DataTable dt = new DataTable();
@@ -598,23 +599,7 @@ namespace Sistema_de_Vendas
 
         }
 
-        private void BuscarDocumento()
-        {
-            string documentofuncionario = txtdocumentopesquisa.Text;
-            con.AbrirConexao();
-            sql = "SELECT * FROM cad_funcionarios WHERE documento_funcionario LIKE @documento";
-            cmd = new MySqlCommand(sql, con.con);
-            cmd.Parameters.AddWithValue("@documento", "%" + documentofuncionario + "%");
-            MySqlDataAdapter da = new MySqlDataAdapter();
-            da.SelectCommand = cmd;
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            dgCliente.DataSource = dt;
-            con.FecharConexao();
-
-            formatargrid();
-
-        }
+        
 
         private void cbcargo_Enter(object sender, EventArgs e)
         {
@@ -624,33 +609,16 @@ namespace Sistema_de_Vendas
         private void lblpesquisa_DoubleClick(object sender, EventArgs e)
         {
             pnpesquisa.Visible = true;
-            txtnomepesquisa.Enabled = true;
-            txtnomepesquisa.Clear();
-            txtdocumentopesquisa.Enabled = true;
-            txtdocumentopesquisa.Clear();
+            txtpesquisa.Enabled = true;
+            txtpesquisa.Clear();                      
             btncancelarpesquisa.Enabled = true;
-            txtnomepesquisa.Focus();
+            txtpesquisa.Focus();
         }
-
-        private void txtnomepesquisa_Enter(object sender, EventArgs e)
+                    
+        private void txtpesquisa_TextChanged(object sender, EventArgs e)
         {
-            txtdocumentopesquisa.Clear();
-        }
-
-        private void txtdocumentopesquisa_Enter(object sender, EventArgs e)
-        {
-            txtnomepesquisa.Clear();
-        }
-
-        private void txtnomepesquisa_TextChanged(object sender, EventArgs e)
-        {
-            BuscarNome();
-        }
-
-        private void txtdocumentopesquisa_TextChanged(object sender, EventArgs e)
-        {
-            BuscarDocumento();
-        }
+            Buscar();
+        }              
 
         private void pnpesquisa_Leave(object sender, EventArgs e)
         {
@@ -660,6 +628,11 @@ namespace Sistema_de_Vendas
         private void btncancelarpesquisa_Click(object sender, EventArgs e)
         {
             pnpesquisa.Visible = false;
+        }
+
+        private void txtpesquisa_TextChanged_1(object sender, EventArgs e)
+        {
+            Buscar();
         }
     }
         
