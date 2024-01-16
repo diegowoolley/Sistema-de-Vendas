@@ -637,5 +637,15 @@ namespace Sistema_de_Vendas
         {
             funcoes.DecNumber(sender, e);
         }
+
+        private void cbcategoria_Enter(object sender, EventArgs e)
+        {
+            Listarcategoria();
+        }
+
+        private void cbfornecedor_Enter(object sender, EventArgs e)
+        {
+            listarfornecedor();
+        }
     }
 }

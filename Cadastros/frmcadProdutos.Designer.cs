@@ -89,11 +89,11 @@
             // lblnomepesquisa
             // 
             this.lblnomepesquisa.AutoSize = true;
-            this.lblnomepesquisa.Location = new System.Drawing.Point(32, 15);
+            this.lblnomepesquisa.Location = new System.Drawing.Point(54, 15);
             this.lblnomepesquisa.Name = "lblnomepesquisa";
-            this.lblnomepesquisa.Size = new System.Drawing.Size(150, 13);
+            this.lblnomepesquisa.Size = new System.Drawing.Size(96, 13);
             this.lblnomepesquisa.TabIndex = 2;
-            this.lblnomepesquisa.Text = "Pesquisar Nome\\ Documento:";
+            this.lblnomepesquisa.Text = "Pesquisar Produto:";
             // 
             // lblpesquisa
             // 
@@ -147,7 +147,7 @@
             this.txtfabricante.MaxLength = 80;
             this.txtfabricante.Name = "txtfabricante";
             this.txtfabricante.Size = new System.Drawing.Size(195, 20);
-            this.txtfabricante.TabIndex = 7;
+            this.txtfabricante.TabIndex = 8;
             // 
             // lblfabricante
             // 
@@ -253,7 +253,7 @@
             this.txtvalorcompra.MaxLength = 10;
             this.txtvalorcompra.Name = "txtvalorcompra";
             this.txtvalorcompra.Size = new System.Drawing.Size(95, 20);
-            this.txtvalorcompra.TabIndex = 8;
+            this.txtvalorcompra.TabIndex = 9;
             this.txtvalorcompra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtvalorcompra_KeyPress);
             // 
             // txtdescricao
@@ -311,6 +311,7 @@
             this.cbcategoria.Name = "cbcategoria";
             this.cbcategoria.Size = new System.Drawing.Size(195, 21);
             this.cbcategoria.TabIndex = 2;
+            this.cbcategoria.Enter += new System.EventHandler(this.cbcategoria_Enter);
             // 
             // cbunidade
             // 
@@ -358,6 +359,7 @@
             this.cbfornecedor.Name = "cbfornecedor";
             this.cbfornecedor.Size = new System.Drawing.Size(195, 21);
             this.cbfornecedor.TabIndex = 5;
+            this.cbfornecedor.Enter += new System.EventHandler(this.cbfornecedor_Enter);
             // 
             // lblfornecedor
             // 
@@ -387,7 +389,7 @@
             this.txtvalorvenda.MaxLength = 10;
             this.txtvalorvenda.Name = "txtvalorvenda";
             this.txtvalorvenda.Size = new System.Drawing.Size(95, 20);
-            this.txtvalorvenda.TabIndex = 9;
+            this.txtvalorvenda.TabIndex = 10;
             this.txtvalorvenda.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtvalorvenda_KeyPress);
             // 
             // label1
@@ -416,7 +418,7 @@
             this.txtmargemlucro.MaxLength = 10;
             this.txtmargemlucro.Name = "txtmargemlucro";
             this.txtmargemlucro.Size = new System.Drawing.Size(95, 20);
-            this.txtmargemlucro.TabIndex = 10;
+            this.txtmargemlucro.TabIndex = 11;
             this.txtmargemlucro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtmargemlucro_KeyPress);
             // 
             // txtsituacaotributaria
@@ -427,7 +429,7 @@
             this.txtsituacaotributaria.MaxLength = 3;
             this.txtsituacaotributaria.Name = "txtsituacaotributaria";
             this.txtsituacaotributaria.Size = new System.Drawing.Size(41, 20);
-            this.txtsituacaotributaria.TabIndex = 11;
+            this.txtsituacaotributaria.TabIndex = 12;
             this.txtsituacaotributaria.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtsituacaotributaria_KeyPress);
             // 
             // lblsituacaotributaria
@@ -447,7 +449,7 @@
             this.txtaliquota.MaxLength = 3;
             this.txtaliquota.Name = "txtaliquota";
             this.txtaliquota.Size = new System.Drawing.Size(105, 20);
-            this.txtaliquota.TabIndex = 12;
+            this.txtaliquota.TabIndex = 13;
             this.txtaliquota.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtaliquota_KeyPress);
             // 
             // lblaliquota
@@ -467,7 +469,7 @@
             this.txtcodipi.MaxLength = 10;
             this.txtcodipi.Name = "txtcodipi";
             this.txtcodipi.Size = new System.Drawing.Size(105, 20);
-            this.txtcodipi.TabIndex = 13;
+            this.txtcodipi.TabIndex = 14;
             this.txtcodipi.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtcodipi_KeyPress);
             // 
             // lblcodipi
@@ -487,7 +489,7 @@
             this.txtpesomedio.MaxLength = 10;
             this.txtpesomedio.Name = "txtpesomedio";
             this.txtpesomedio.Size = new System.Drawing.Size(51, 20);
-            this.txtpesomedio.TabIndex = 5;
+            this.txtpesomedio.TabIndex = 6;
             this.txtpesomedio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtpesomedio_KeyPress);
             // 
             // lblpesomedio
@@ -507,7 +509,7 @@
             this.txtpesobruto.MaxLength = 10;
             this.txtpesobruto.Name = "txtpesobruto";
             this.txtpesobruto.Size = new System.Drawing.Size(51, 20);
-            this.txtpesobruto.TabIndex = 6;
+            this.txtpesobruto.TabIndex = 7;
             this.txtpesobruto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtpesobruto_KeyPress);
             // 
             // lblpesobruto
