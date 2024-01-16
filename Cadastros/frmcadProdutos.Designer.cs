@@ -78,12 +78,13 @@
             // btncancelarpesquisa
             // 
             this.btncancelarpesquisa.Enabled = false;
-            this.btncancelarpesquisa.Location = new System.Drawing.Point(77, 102);
+            this.btncancelarpesquisa.Location = new System.Drawing.Point(66, 101);
             this.btncancelarpesquisa.Name = "btncancelarpesquisa";
             this.btncancelarpesquisa.Size = new System.Drawing.Size(75, 23);
             this.btncancelarpesquisa.TabIndex = 22;
             this.btncancelarpesquisa.Text = "fechar";
             this.btncancelarpesquisa.UseVisualStyleBackColor = true;
+            this.btncancelarpesquisa.Click += new System.EventHandler(this.btncancelarpesquisa_Click);
             // 
             // lblnomepesquisa
             // 
@@ -102,6 +103,7 @@
             this.lblpesquisa.Size = new System.Drawing.Size(173, 13);
             this.lblpesquisa.TabIndex = 96;
             this.lblpesquisa.Text = "(Dê duplo click para abrir pesquisa)";
+            this.lblpesquisa.DoubleClick += new System.EventHandler(this.lblpesquisa_DoubleClick);
             // 
             // pnpesquisa
             // 
@@ -109,21 +111,23 @@
             this.pnpesquisa.Controls.Add(this.btncancelarpesquisa);
             this.pnpesquisa.Controls.Add(this.txtpesquisa);
             this.pnpesquisa.Controls.Add(this.lblnomepesquisa);
-            this.pnpesquisa.Location = new System.Drawing.Point(571, 146);
+            this.pnpesquisa.Location = new System.Drawing.Point(571, 147);
             this.pnpesquisa.Name = "pnpesquisa";
             this.pnpesquisa.Size = new System.Drawing.Size(206, 131);
             this.pnpesquisa.TabIndex = 95;
             this.pnpesquisa.Visible = false;
+            this.pnpesquisa.Leave += new System.EventHandler(this.pnpesquisa_Leave);
             // 
             // txtpesquisa
             // 
             this.txtpesquisa.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtpesquisa.Enabled = false;
-            this.txtpesquisa.Location = new System.Drawing.Point(13, 31);
+            this.txtpesquisa.Location = new System.Drawing.Point(4, 31);
             this.txtpesquisa.MaxLength = 100;
             this.txtpesquisa.Name = "txtpesquisa";
             this.txtpesquisa.Size = new System.Drawing.Size(195, 20);
             this.txtpesquisa.TabIndex = 21;
+            this.txtpesquisa.TextChanged += new System.EventHandler(this.txtpesquisa_TextChanged);
             // 
             // lbladicionarcategorias
             // 
@@ -140,7 +144,7 @@
             this.txtfabricante.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtfabricante.Enabled = false;
             this.txtfabricante.Location = new System.Drawing.Point(394, 62);
-            this.txtfabricante.MaxLength = 8;
+            this.txtfabricante.MaxLength = 80;
             this.txtfabricante.Name = "txtfabricante";
             this.txtfabricante.Size = new System.Drawing.Size(195, 20);
             this.txtfabricante.TabIndex = 7;
@@ -164,6 +168,7 @@
             this.btnfoto.TabStop = false;
             this.btnfoto.Text = "foto";
             this.btnfoto.UseVisualStyleBackColor = true;
+            this.btnfoto.Click += new System.EventHandler(this.btnfoto_Click);
             // 
             // btnCancelar
             // 
@@ -173,6 +178,7 @@
             this.btnCancelar.TabIndex = 19;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnExcluir
             // 
@@ -183,6 +189,7 @@
             this.btnExcluir.TabIndex = 18;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // btnAlterar
             // 
@@ -193,6 +200,7 @@
             this.btnAlterar.TabIndex = 17;
             this.btnAlterar.Text = "Alterar";
             this.btnAlterar.UseVisualStyleBackColor = true;
+            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
             // 
             // btnAdicionar
             // 
@@ -203,6 +211,7 @@
             this.btnAdicionar.TabIndex = 16;
             this.btnAdicionar.Text = "Adicionar";
             this.btnAdicionar.UseVisualStyleBackColor = true;
+            this.btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
             // 
             // btnNovo
             // 
@@ -212,6 +221,7 @@
             this.btnNovo.TabIndex = 15;
             this.btnNovo.Text = "Novo";
             this.btnNovo.UseVisualStyleBackColor = true;
+            this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
             // 
             // dgCliente
             // 
@@ -222,6 +232,7 @@
             this.dgCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgCliente.Size = new System.Drawing.Size(763, 150);
             this.dgCliente.TabIndex = 23;
+            this.dgCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgCliente_CellContentClick);
             // 
             // pbFoto
             // 
@@ -239,17 +250,18 @@
             this.txtvalorcompra.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtvalorcompra.Enabled = false;
             this.txtvalorcompra.Location = new System.Drawing.Point(126, 87);
-            this.txtvalorcompra.MaxLength = 9;
+            this.txtvalorcompra.MaxLength = 10;
             this.txtvalorcompra.Name = "txtvalorcompra";
             this.txtvalorcompra.Size = new System.Drawing.Size(95, 20);
             this.txtvalorcompra.TabIndex = 8;
+            this.txtvalorcompra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtvalorcompra_KeyPress);
             // 
             // txtdescricao
             // 
             this.txtdescricao.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtdescricao.Enabled = false;
             this.txtdescricao.Location = new System.Drawing.Point(126, 9);
-            this.txtdescricao.MaxLength = 100;
+            this.txtdescricao.MaxLength = 80;
             this.txtdescricao.Name = "txtdescricao";
             this.txtdescricao.Size = new System.Drawing.Size(195, 20);
             this.txtdescricao.TabIndex = 1;
@@ -305,6 +317,7 @@
             this.cbunidade.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbunidade.Enabled = false;
             this.cbunidade.FormattingEnabled = true;
+            this.cbunidade.ItemHeight = 13;
             this.cbunidade.Items.AddRange(new object[] {
             "BD",
             "CM",
@@ -364,6 +377,7 @@
             this.txtquantidade.Name = "txtquantidade";
             this.txtquantidade.Size = new System.Drawing.Size(73, 20);
             this.txtquantidade.TabIndex = 4;
+            this.txtquantidade.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtquantidade_KeyPress);
             // 
             // txtvalorvenda
             // 
@@ -374,6 +388,7 @@
             this.txtvalorvenda.Name = "txtvalorvenda";
             this.txtvalorvenda.Size = new System.Drawing.Size(95, 20);
             this.txtvalorvenda.TabIndex = 9;
+            this.txtvalorvenda.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtvalorvenda_KeyPress);
             // 
             // label1
             // 
@@ -398,39 +413,42 @@
             this.txtmargemlucro.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtmargemlucro.Enabled = false;
             this.txtmargemlucro.Location = new System.Drawing.Point(126, 115);
-            this.txtmargemlucro.MaxLength = 11;
+            this.txtmargemlucro.MaxLength = 10;
             this.txtmargemlucro.Name = "txtmargemlucro";
             this.txtmargemlucro.Size = new System.Drawing.Size(95, 20);
             this.txtmargemlucro.TabIndex = 10;
+            this.txtmargemlucro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtmargemlucro_KeyPress);
             // 
             // txtsituacaotributaria
             // 
             this.txtsituacaotributaria.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtsituacaotributaria.Enabled = false;
-            this.txtsituacaotributaria.Location = new System.Drawing.Point(316, 115);
-            this.txtsituacaotributaria.MaxLength = 12;
+            this.txtsituacaotributaria.Location = new System.Drawing.Point(342, 115);
+            this.txtsituacaotributaria.MaxLength = 3;
             this.txtsituacaotributaria.Name = "txtsituacaotributaria";
-            this.txtsituacaotributaria.Size = new System.Drawing.Size(91, 20);
+            this.txtsituacaotributaria.Size = new System.Drawing.Size(41, 20);
             this.txtsituacaotributaria.TabIndex = 11;
+            this.txtsituacaotributaria.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtsituacaotributaria_KeyPress);
             // 
             // lblsituacaotributaria
             // 
             this.lblsituacaotributaria.AutoSize = true;
             this.lblsituacaotributaria.Location = new System.Drawing.Point(223, 118);
             this.lblsituacaotributaria.Name = "lblsituacaotributaria";
-            this.lblsituacaotributaria.Size = new System.Drawing.Size(96, 13);
+            this.lblsituacaotributaria.Size = new System.Drawing.Size(118, 13);
             this.lblsituacaotributaria.TabIndex = 107;
-            this.lblsituacaotributaria.Text = "Situação Tibutária:";
+            this.lblsituacaotributaria.Text = "Cód Situação Tibutária:";
             // 
             // txtaliquota
             // 
             this.txtaliquota.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtaliquota.Enabled = false;
             this.txtaliquota.Location = new System.Drawing.Point(676, 300);
-            this.txtaliquota.MaxLength = 13;
+            this.txtaliquota.MaxLength = 3;
             this.txtaliquota.Name = "txtaliquota";
             this.txtaliquota.Size = new System.Drawing.Size(105, 20);
             this.txtaliquota.TabIndex = 12;
+            this.txtaliquota.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtaliquota_KeyPress);
             // 
             // lblaliquota
             // 
@@ -446,10 +464,11 @@
             this.txtcodipi.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtcodipi.Enabled = false;
             this.txtcodipi.Location = new System.Drawing.Point(676, 325);
-            this.txtcodipi.MaxLength = 14;
+            this.txtcodipi.MaxLength = 10;
             this.txtcodipi.Name = "txtcodipi";
             this.txtcodipi.Size = new System.Drawing.Size(105, 20);
             this.txtcodipi.TabIndex = 13;
+            this.txtcodipi.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtcodipi_KeyPress);
             // 
             // lblcodipi
             // 
@@ -465,10 +484,11 @@
             this.txtpesomedio.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtpesomedio.Enabled = false;
             this.txtpesomedio.Location = new System.Drawing.Point(126, 61);
-            this.txtpesomedio.MaxLength = 6;
+            this.txtpesomedio.MaxLength = 10;
             this.txtpesomedio.Name = "txtpesomedio";
             this.txtpesomedio.Size = new System.Drawing.Size(51, 20);
             this.txtpesomedio.TabIndex = 5;
+            this.txtpesomedio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtpesomedio_KeyPress);
             // 
             // lblpesomedio
             // 
@@ -484,10 +504,11 @@
             this.txtpesobruto.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtpesobruto.Enabled = false;
             this.txtpesobruto.Location = new System.Drawing.Point(249, 61);
-            this.txtpesobruto.MaxLength = 7;
+            this.txtpesobruto.MaxLength = 10;
             this.txtpesobruto.Name = "txtpesobruto";
             this.txtpesobruto.Size = new System.Drawing.Size(51, 20);
             this.txtpesobruto.TabIndex = 6;
+            this.txtpesobruto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtpesobruto_KeyPress);
             // 
             // lblpesobruto
             // 
@@ -548,6 +569,7 @@
             this.Name = "frmcadProdutos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Cadastro de Produtos";
+            this.Load += new System.EventHandler(this.frmcadProdutos_Load);
             this.pnpesquisa.ResumeLayout(false);
             this.pnpesquisa.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgCliente)).EndInit();
