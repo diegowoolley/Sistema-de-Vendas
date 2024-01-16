@@ -483,7 +483,7 @@ namespace Sistema_de_Vendas
         {
             if (txtcelular.Text == "")
             {
-                btnAdicionar.Focus();
+                cbcargo.Focus();
             }
             else
             {

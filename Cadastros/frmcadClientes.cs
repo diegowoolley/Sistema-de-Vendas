@@ -315,7 +315,7 @@ namespace Sistema_de_Vendas
             string documento = txtdocumento.Text;
             if (txtdocumento.Text == "")
             {
-                txtendereco.Focus();
+                txtemail.Focus();
             }
             else
             {
@@ -336,7 +336,7 @@ namespace Sistema_de_Vendas
         {
             if (txtcelular.Text == "")
             {
-                btnAdicionar.Focus();
+                cbinadimplente.Focus();
             }
             else
             {
@@ -471,7 +471,7 @@ namespace Sistema_de_Vendas
                 if (alterou_foto == "s")
                 {
                     con.AbrirConexao();
-                    sql = "UPDATE cad_clientes SET nome_clientes = @nome, documento_clientes = @documento, email_clientes = @email, endereco_clientes = @endereco, bairro_clientes = @bairro, numero_clientes = @numero, cidade_clientes = @cidade, estado_clientes = @estado, telefone_clientes = @telefone, celular_clientes = @celular, foto_clientes = @foto WHERE cod_clientes = @id";
+                    sql = "UPDATE cad_clientes SET nome_clientes = @nome, documento_clientes = @documento, email_clientes = @email, endereco_clientes = @endereco, bairro_clientes = @bairro, numero_clientes = @numero, cidade_clientes = @cidade, estado_clientes = @estado, telefone_clientes = @telefone, celular_clientes = @celular, valor_aberto = @valoraberto, inadimplente = @inadimplente, foto_clientes = @foto WHERE cod_clientes = @id";
                     cmd = new MySqlCommand(sql, con.con);
                     cmd.Parameters.AddWithValue("@id", id);
                     cmd.Parameters.AddWithValue("@nome", txtnome.Text);
@@ -483,14 +483,16 @@ namespace Sistema_de_Vendas
                     cmd.Parameters.AddWithValue("@cidade", txtcidade.Text);
                     cmd.Parameters.AddWithValue("@estado", cbestados.Text);
                     cmd.Parameters.AddWithValue("@telefone", txttelefone.Text);
-                    cmd.Parameters.AddWithValue("@celular", txtcelular.Text);
+                    cmd.Parameters.AddWithValue("@celular", txtcelular.Text);                    
+                    cmd.Parameters.AddWithValue("@valoraberto", txtvaloraberto.Text);
+                    cmd.Parameters.AddWithValue("@inadimplente", cbinadimplente.Text);
                     cmd.Parameters.AddWithValue("@foto", img());
 
                 }
                 else if (alterou_foto == "n")
                 {
                     con.AbrirConexao();
-                    sql = "UPDATE cad_clientes SET nome_clientes = @nome, documento_clientes = @documento, email_clientes = @email, endereco_clientes = @endereco, bairro_clientes = @bairro, numero_clientes = @numero, cidade_clientes = @cidade, estado_clientes = @estado, telefone_clientes = @telefone, celular_clientes = @celular WHERE cod_clientes=@id";
+                    sql = "UPDATE cad_clientes SET nome_clientes = @nome, documento_clientes = @documento, email_clientes = @email, endereco_clientes = @endereco, bairro_clientes = @bairro, numero_clientes = @numero, cidade_clientes = @cidade, estado_clientes = @estado, telefone_clientes = @telefone, celular_clientes = @celular, valor_aberto = @valoraberto, inadimplente = @inadimplente WHERE cod_clientes=@id";
                     cmd = new MySqlCommand(sql, con.con);
                     cmd.Parameters.AddWithValue("@id", id);
                     cmd.Parameters.AddWithValue("@nome", txtnome.Text);
@@ -503,7 +505,9 @@ namespace Sistema_de_Vendas
                     cmd.Parameters.AddWithValue("@estado", cbestados.Text);
                     cmd.Parameters.AddWithValue("@telefone", txttelefone.Text);
                     cmd.Parameters.AddWithValue("@celular", txtcelular.Text);
-                    
+                    cmd.Parameters.AddWithValue("@valoraberto", txtvaloraberto.Text);
+                    cmd.Parameters.AddWithValue("@inadimplente", cbinadimplente.Text);
+
 
                 }
                 if (txtdocumento.Text != documentoantigo)

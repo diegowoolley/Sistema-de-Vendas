@@ -60,6 +60,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblquantidade = new System.Windows.Forms.Label();
             this.txtmargemlucro = new System.Windows.Forms.TextBox();
+            this.txtsituacaotributaria = new System.Windows.Forms.TextBox();
+            this.lblsituacaotributaria = new System.Windows.Forms.Label();
+            this.txtaliquota = new System.Windows.Forms.TextBox();
+            this.lblaliquota = new System.Windows.Forms.Label();
+            this.txtcodipi = new System.Windows.Forms.TextBox();
+            this.lblcodipi = new System.Windows.Forms.Label();
+            this.txtpesomedio = new System.Windows.Forms.TextBox();
+            this.lblpesomedio = new System.Windows.Forms.Label();
+            this.txtpesobruto = new System.Windows.Forms.TextBox();
+            this.lblpesobruto = new System.Windows.Forms.Label();
             this.pnpesquisa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgCliente)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).BeginInit();
@@ -113,7 +123,7 @@
             this.txtpesquisa.MaxLength = 100;
             this.txtpesquisa.Name = "txtpesquisa";
             this.txtpesquisa.Size = new System.Drawing.Size(195, 20);
-            this.txtpesquisa.TabIndex = 3;
+            this.txtpesquisa.TabIndex = 21;
             // 
             // lbladicionarcategorias
             // 
@@ -129,16 +139,16 @@
             // 
             this.txtfabricante.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtfabricante.Enabled = false;
-            this.txtfabricante.Location = new System.Drawing.Point(126, 63);
-            this.txtfabricante.MaxLength = 80;
+            this.txtfabricante.Location = new System.Drawing.Point(394, 62);
+            this.txtfabricante.MaxLength = 8;
             this.txtfabricante.Name = "txtfabricante";
             this.txtfabricante.Size = new System.Drawing.Size(195, 20);
-            this.txtfabricante.TabIndex = 71;
+            this.txtfabricante.TabIndex = 7;
             // 
             // lblfabricante
             // 
             this.lblfabricante.AutoSize = true;
-            this.lblfabricante.Location = new System.Drawing.Point(14, 66);
+            this.lblfabricante.Location = new System.Drawing.Point(328, 65);
             this.lblfabricante.Name = "lblfabricante";
             this.lblfabricante.Size = new System.Drawing.Size(60, 13);
             this.lblfabricante.TabIndex = 92;
@@ -150,7 +160,8 @@
             this.btnfoto.Location = new System.Drawing.Point(596, 40);
             this.btnfoto.Name = "btnfoto";
             this.btnfoto.Size = new System.Drawing.Size(75, 23);
-            this.btnfoto.TabIndex = 81;
+            this.btnfoto.TabIndex = 20;
+            this.btnfoto.TabStop = false;
             this.btnfoto.Text = "foto";
             this.btnfoto.UseVisualStyleBackColor = true;
             // 
@@ -159,7 +170,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(394, 315);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 80;
+            this.btnCancelar.TabIndex = 19;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -169,7 +180,7 @@
             this.btnExcluir.Location = new System.Drawing.Point(304, 315);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(75, 23);
-            this.btnExcluir.TabIndex = 79;
+            this.btnExcluir.TabIndex = 18;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
             // 
@@ -179,7 +190,7 @@
             this.btnAlterar.Location = new System.Drawing.Point(211, 315);
             this.btnAlterar.Name = "btnAlterar";
             this.btnAlterar.Size = new System.Drawing.Size(75, 23);
-            this.btnAlterar.TabIndex = 78;
+            this.btnAlterar.TabIndex = 17;
             this.btnAlterar.Text = "Alterar";
             this.btnAlterar.UseVisualStyleBackColor = true;
             // 
@@ -189,7 +200,7 @@
             this.btnAdicionar.Location = new System.Drawing.Point(113, 315);
             this.btnAdicionar.Name = "btnAdicionar";
             this.btnAdicionar.Size = new System.Drawing.Size(75, 23);
-            this.btnAdicionar.TabIndex = 77;
+            this.btnAdicionar.TabIndex = 16;
             this.btnAdicionar.Text = "Adicionar";
             this.btnAdicionar.UseVisualStyleBackColor = true;
             // 
@@ -198,7 +209,7 @@
             this.btnNovo.Location = new System.Drawing.Point(17, 315);
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(75, 23);
-            this.btnNovo.TabIndex = 76;
+            this.btnNovo.TabIndex = 15;
             this.btnNovo.Text = "Novo";
             this.btnNovo.UseVisualStyleBackColor = true;
             // 
@@ -210,7 +221,7 @@
             this.dgCliente.Name = "dgCliente";
             this.dgCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgCliente.Size = new System.Drawing.Size(763, 150);
-            this.dgCliente.TabIndex = 82;
+            this.dgCliente.TabIndex = 23;
             // 
             // pbFoto
             // 
@@ -227,11 +238,11 @@
             // 
             this.txtvalorcompra.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtvalorcompra.Enabled = false;
-            this.txtvalorcompra.Location = new System.Drawing.Point(126, 89);
-            this.txtvalorcompra.MaxLength = 11;
+            this.txtvalorcompra.Location = new System.Drawing.Point(126, 87);
+            this.txtvalorcompra.MaxLength = 9;
             this.txtvalorcompra.Name = "txtvalorcompra";
             this.txtvalorcompra.Size = new System.Drawing.Size(95, 20);
-            this.txtvalorcompra.TabIndex = 73;
+            this.txtvalorcompra.TabIndex = 8;
             // 
             // txtdescricao
             // 
@@ -241,7 +252,7 @@
             this.txtdescricao.MaxLength = 100;
             this.txtdescricao.Name = "txtdescricao";
             this.txtdescricao.Size = new System.Drawing.Size(195, 20);
-            this.txtdescricao.TabIndex = 66;
+            this.txtdescricao.TabIndex = 1;
             // 
             // lblmargemlucro
             // 
@@ -255,7 +266,7 @@
             // lblvalorcompra
             // 
             this.lblvalorcompra.AutoSize = true;
-            this.lblvalorcompra.Location = new System.Drawing.Point(14, 94);
+            this.lblvalorcompra.Location = new System.Drawing.Point(14, 89);
             this.lblvalorcompra.Name = "lblvalorcompra";
             this.lblvalorcompra.Size = new System.Drawing.Size(88, 13);
             this.lblvalorcompra.TabIndex = 87;
@@ -287,7 +298,7 @@
             this.cbcategoria.Location = new System.Drawing.Point(395, 6);
             this.cbcategoria.Name = "cbcategoria";
             this.cbcategoria.Size = new System.Drawing.Size(195, 21);
-            this.cbcategoria.TabIndex = 97;
+            this.cbcategoria.TabIndex = 2;
             // 
             // cbunidade
             // 
@@ -314,7 +325,7 @@
             this.cbunidade.Location = new System.Drawing.Point(126, 34);
             this.cbunidade.Name = "cbunidade";
             this.cbunidade.Size = new System.Drawing.Size(51, 21);
-            this.cbunidade.TabIndex = 99;
+            this.cbunidade.TabIndex = 3;
             // 
             // lblunidadade
             // 
@@ -333,7 +344,7 @@
             this.cbfornecedor.Location = new System.Drawing.Point(395, 35);
             this.cbfornecedor.Name = "cbfornecedor";
             this.cbfornecedor.Size = new System.Drawing.Size(195, 21);
-            this.cbfornecedor.TabIndex = 101;
+            this.cbfornecedor.TabIndex = 5;
             // 
             // lblfornecedor
             // 
@@ -349,25 +360,25 @@
             this.txtquantidade.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtquantidade.Enabled = false;
             this.txtquantidade.Location = new System.Drawing.Point(249, 34);
-            this.txtquantidade.MaxLength = 11;
+            this.txtquantidade.MaxLength = 10;
             this.txtquantidade.Name = "txtquantidade";
             this.txtquantidade.Size = new System.Drawing.Size(73, 20);
-            this.txtquantidade.TabIndex = 103;
+            this.txtquantidade.TabIndex = 4;
             // 
             // txtvalorvenda
             // 
             this.txtvalorvenda.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtvalorvenda.Enabled = false;
-            this.txtvalorvenda.Location = new System.Drawing.Point(288, 89);
-            this.txtvalorvenda.MaxLength = 11;
+            this.txtvalorvenda.Location = new System.Drawing.Point(288, 87);
+            this.txtvalorvenda.MaxLength = 10;
             this.txtvalorvenda.Name = "txtvalorvenda";
             this.txtvalorvenda.Size = new System.Drawing.Size(95, 20);
-            this.txtvalorvenda.TabIndex = 102;
+            this.txtvalorvenda.TabIndex = 9;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(223, 94);
+            this.label1.Location = new System.Drawing.Point(223, 89);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 13);
             this.label1.TabIndex = 104;
@@ -390,13 +401,118 @@
             this.txtmargemlucro.MaxLength = 11;
             this.txtmargemlucro.Name = "txtmargemlucro";
             this.txtmargemlucro.Size = new System.Drawing.Size(95, 20);
-            this.txtmargemlucro.TabIndex = 74;
+            this.txtmargemlucro.TabIndex = 10;
+            // 
+            // txtsituacaotributaria
+            // 
+            this.txtsituacaotributaria.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtsituacaotributaria.Enabled = false;
+            this.txtsituacaotributaria.Location = new System.Drawing.Point(316, 115);
+            this.txtsituacaotributaria.MaxLength = 12;
+            this.txtsituacaotributaria.Name = "txtsituacaotributaria";
+            this.txtsituacaotributaria.Size = new System.Drawing.Size(91, 20);
+            this.txtsituacaotributaria.TabIndex = 11;
+            // 
+            // lblsituacaotributaria
+            // 
+            this.lblsituacaotributaria.AutoSize = true;
+            this.lblsituacaotributaria.Location = new System.Drawing.Point(223, 118);
+            this.lblsituacaotributaria.Name = "lblsituacaotributaria";
+            this.lblsituacaotributaria.Size = new System.Drawing.Size(96, 13);
+            this.lblsituacaotributaria.TabIndex = 107;
+            this.lblsituacaotributaria.Text = "Situação Tibutária:";
+            // 
+            // txtaliquota
+            // 
+            this.txtaliquota.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtaliquota.Enabled = false;
+            this.txtaliquota.Location = new System.Drawing.Point(676, 300);
+            this.txtaliquota.MaxLength = 13;
+            this.txtaliquota.Name = "txtaliquota";
+            this.txtaliquota.Size = new System.Drawing.Size(105, 20);
+            this.txtaliquota.TabIndex = 12;
+            // 
+            // lblaliquota
+            // 
+            this.lblaliquota.AutoSize = true;
+            this.lblaliquota.Location = new System.Drawing.Point(605, 300);
+            this.lblaliquota.Name = "lblaliquota";
+            this.lblaliquota.Size = new System.Drawing.Size(64, 13);
+            this.lblaliquota.TabIndex = 109;
+            this.lblaliquota.Text = "Aliquota IPI:";
+            // 
+            // txtcodipi
+            // 
+            this.txtcodipi.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtcodipi.Enabled = false;
+            this.txtcodipi.Location = new System.Drawing.Point(676, 325);
+            this.txtcodipi.MaxLength = 14;
+            this.txtcodipi.Name = "txtcodipi";
+            this.txtcodipi.Size = new System.Drawing.Size(105, 20);
+            this.txtcodipi.TabIndex = 13;
+            // 
+            // lblcodipi
+            // 
+            this.lblcodipi.AutoSize = true;
+            this.lblcodipi.Location = new System.Drawing.Point(514, 328);
+            this.lblcodipi.Name = "lblcodipi";
+            this.lblcodipi.Size = new System.Drawing.Size(157, 13);
+            this.lblcodipi.TabIndex = 111;
+            this.lblcodipi.Text = "Código IPI(Classificação Fiscal):";
+            // 
+            // txtpesomedio
+            // 
+            this.txtpesomedio.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtpesomedio.Enabled = false;
+            this.txtpesomedio.Location = new System.Drawing.Point(126, 61);
+            this.txtpesomedio.MaxLength = 6;
+            this.txtpesomedio.Name = "txtpesomedio";
+            this.txtpesomedio.Size = new System.Drawing.Size(51, 20);
+            this.txtpesomedio.TabIndex = 5;
+            // 
+            // lblpesomedio
+            // 
+            this.lblpesomedio.AutoSize = true;
+            this.lblpesomedio.Location = new System.Drawing.Point(14, 62);
+            this.lblpesomedio.Name = "lblpesomedio";
+            this.lblpesomedio.Size = new System.Drawing.Size(66, 13);
+            this.lblpesomedio.TabIndex = 113;
+            this.lblpesomedio.Text = "Peso Médio:";
+            // 
+            // txtpesobruto
+            // 
+            this.txtpesobruto.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtpesobruto.Enabled = false;
+            this.txtpesobruto.Location = new System.Drawing.Point(249, 61);
+            this.txtpesobruto.MaxLength = 7;
+            this.txtpesobruto.Name = "txtpesobruto";
+            this.txtpesobruto.Size = new System.Drawing.Size(51, 20);
+            this.txtpesobruto.TabIndex = 6;
+            // 
+            // lblpesobruto
+            // 
+            this.lblpesobruto.AutoSize = true;
+            this.lblpesobruto.Location = new System.Drawing.Point(182, 62);
+            this.lblpesobruto.Name = "lblpesobruto";
+            this.lblpesobruto.Size = new System.Drawing.Size(62, 13);
+            this.lblpesobruto.TabIndex = 115;
+            this.lblpesobruto.Text = "Peso Bruto:";
             // 
             // frmcadProdutos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(795, 347);
+            this.Controls.Add(this.txtpesobruto);
+            this.Controls.Add(this.lblpesobruto);
+            this.Controls.Add(this.txtpesomedio);
+            this.Controls.Add(this.lblpesomedio);
+            this.Controls.Add(this.txtcodipi);
+            this.Controls.Add(this.lblcodipi);
+            this.Controls.Add(this.txtaliquota);
+            this.Controls.Add(this.lblaliquota);
+            this.Controls.Add(this.txtsituacaotributaria);
+            this.Controls.Add(this.lblsituacaotributaria);
             this.Controls.Add(this.lblquantidade);
             this.Controls.Add(this.txtquantidade);
             this.Controls.Add(this.txtvalorvenda);
@@ -475,5 +591,15 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblquantidade;
         private System.Windows.Forms.TextBox txtmargemlucro;
+        private System.Windows.Forms.TextBox txtsituacaotributaria;
+        private System.Windows.Forms.Label lblsituacaotributaria;
+        private System.Windows.Forms.TextBox txtaliquota;
+        private System.Windows.Forms.Label lblaliquota;
+        private System.Windows.Forms.TextBox txtcodipi;
+        private System.Windows.Forms.Label lblcodipi;
+        private System.Windows.Forms.TextBox txtpesomedio;
+        private System.Windows.Forms.Label lblpesomedio;
+        private System.Windows.Forms.TextBox txtpesobruto;
+        private System.Windows.Forms.Label lblpesobruto;
     }
 }

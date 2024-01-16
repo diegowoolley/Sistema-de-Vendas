@@ -177,7 +177,7 @@
             this.btnfoto.Location = new System.Drawing.Point(596, 40);
             this.btnfoto.Name = "btnfoto";
             this.btnfoto.Size = new System.Drawing.Size(75, 23);
-            this.btnfoto.TabIndex = 16;
+            this.btnfoto.TabIndex = 18;
             this.btnfoto.Text = "foto";
             this.btnfoto.UseVisualStyleBackColor = true;
             this.btnfoto.Click += new System.EventHandler(this.btnfoto_Click);
@@ -187,7 +187,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(394, 315);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 15;
+            this.btnCancelar.TabIndex = 17;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -198,7 +198,7 @@
             this.btnExcluir.Location = new System.Drawing.Point(304, 315);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(75, 23);
-            this.btnExcluir.TabIndex = 14;
+            this.btnExcluir.TabIndex = 16;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
@@ -209,7 +209,7 @@
             this.btnAlterar.Location = new System.Drawing.Point(211, 315);
             this.btnAlterar.Name = "btnAlterar";
             this.btnAlterar.Size = new System.Drawing.Size(75, 23);
-            this.btnAlterar.TabIndex = 13;
+            this.btnAlterar.TabIndex = 15;
             this.btnAlterar.Text = "Alterar";
             this.btnAlterar.UseVisualStyleBackColor = true;
             this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
@@ -220,7 +220,7 @@
             this.btnAdicionar.Location = new System.Drawing.Point(113, 315);
             this.btnAdicionar.Name = "btnAdicionar";
             this.btnAdicionar.Size = new System.Drawing.Size(75, 23);
-            this.btnAdicionar.TabIndex = 12;
+            this.btnAdicionar.TabIndex = 14;
             this.btnAdicionar.Text = "Adicionar";
             this.btnAdicionar.UseVisualStyleBackColor = true;
             this.btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
@@ -230,7 +230,7 @@
             this.btnNovo.Location = new System.Drawing.Point(17, 315);
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(75, 23);
-            this.btnNovo.TabIndex = 11;
+            this.btnNovo.TabIndex = 13;
             this.btnNovo.Text = "Novo";
             this.btnNovo.UseVisualStyleBackColor = true;
             this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
@@ -367,7 +367,7 @@
             this.cbcargo.Location = new System.Drawing.Point(535, 89);
             this.cbcargo.Name = "cbcargo";
             this.cbcargo.Size = new System.Drawing.Size(136, 21);
-            this.cbcargo.TabIndex = 10;
+            this.cbcargo.TabIndex = 12;
             this.cbcargo.Enter += new System.EventHandler(this.cbcargo_Enter);
             // 
             // lbladicionarcargos
@@ -420,7 +420,7 @@
             this.btncancelarpesquisa.Location = new System.Drawing.Point(67, 101);
             this.btncancelarpesquisa.Name = "btncancelarpesquisa";
             this.btncancelarpesquisa.Size = new System.Drawing.Size(75, 23);
-            this.btncancelarpesquisa.TabIndex = 22;
+            this.btncancelarpesquisa.TabIndex = 20;
             this.btncancelarpesquisa.Text = "fechar";
             this.btncancelarpesquisa.UseVisualStyleBackColor = true;
             this.btncancelarpesquisa.Click += new System.EventHandler(this.btncancelarpesquisa_Click);
@@ -433,7 +433,7 @@
             this.txtpesquisa.MaxLength = 100;
             this.txtpesquisa.Name = "txtpesquisa";
             this.txtpesquisa.Size = new System.Drawing.Size(195, 20);
-            this.txtpesquisa.TabIndex = 3;
+            this.txtpesquisa.TabIndex = 19;
             this.txtpesquisa.TextChanged += new System.EventHandler(this.txtpesquisa_TextChanged_1);
             // 
             // lblnomepesquisa

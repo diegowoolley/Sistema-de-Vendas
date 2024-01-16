@@ -45,7 +45,8 @@ namespace Sistema_de_Vendas.Cadastros
 
         private void frmcad_categorias_Load(object sender, EventArgs e)
         {
-
+            Listar();
+            formatargrid();
         }
 
         private void btnNovo_Click(object sender, EventArgs e)

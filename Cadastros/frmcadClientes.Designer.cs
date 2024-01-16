@@ -78,7 +78,7 @@
             this.lblnome.Location = new System.Drawing.Point(12, 9);
             this.lblnome.Name = "lblnome";
             this.lblnome.Size = new System.Drawing.Size(106, 13);
-            this.lblnome.TabIndex = 0;
+            this.lblnome.TabIndex = 25;
             this.lblnome.Text = "Nome/Razão Social:";
             // 
             // lblendereco
@@ -87,7 +87,7 @@
             this.lblendereco.Location = new System.Drawing.Point(12, 61);
             this.lblendereco.Name = "lblendereco";
             this.lblendereco.Size = new System.Drawing.Size(56, 13);
-            this.lblendereco.TabIndex = 1;
+            this.lblendereco.TabIndex = 28;
             this.lblendereco.Text = "Endereço:";
             // 
             // lbldocumento
@@ -96,7 +96,7 @@
             this.lbldocumento.Location = new System.Drawing.Point(325, 9);
             this.lbldocumento.Name = "lbldocumento";
             this.lbldocumento.Size = new System.Drawing.Size(52, 13);
-            this.lbldocumento.TabIndex = 2;
+            this.lbldocumento.TabIndex = 26;
             this.lbldocumento.Text = "Cpf/Cnpj:";
             // 
             // lbltelefone
@@ -105,7 +105,7 @@
             this.lbltelefone.Location = new System.Drawing.Point(12, 115);
             this.lbltelefone.Name = "lbltelefone";
             this.lbltelefone.Size = new System.Drawing.Size(52, 13);
-            this.lbltelefone.TabIndex = 3;
+            this.lbltelefone.TabIndex = 33;
             this.lbltelefone.Text = "Telefone:";
             // 
             // lblcelular
@@ -114,7 +114,7 @@
             this.lblcelular.Location = new System.Drawing.Point(326, 115);
             this.lblcelular.Name = "lblcelular";
             this.lblcelular.Size = new System.Drawing.Size(42, 13);
-            this.lblcelular.TabIndex = 4;
+            this.lblcelular.TabIndex = 34;
             this.lblcelular.Text = "Celular:";
             // 
             // txtnome
@@ -184,7 +184,7 @@
             this.dgCliente.Name = "dgCliente";
             this.dgCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgCliente.Size = new System.Drawing.Size(763, 150);
-            this.dgCliente.TabIndex = 14;
+            this.dgCliente.TabIndex = 23;
             this.dgCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgCliente_CellContentClick);
             // 
             // btnNovo
@@ -192,7 +192,7 @@
             this.btnNovo.Location = new System.Drawing.Point(15, 312);
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(75, 23);
-            this.btnNovo.TabIndex = 11;
+            this.btnNovo.TabIndex = 15;
             this.btnNovo.Text = "Novo";
             this.btnNovo.UseVisualStyleBackColor = true;
             this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
@@ -203,7 +203,7 @@
             this.btnAdicionar.Location = new System.Drawing.Point(111, 312);
             this.btnAdicionar.Name = "btnAdicionar";
             this.btnAdicionar.Size = new System.Drawing.Size(75, 23);
-            this.btnAdicionar.TabIndex = 12;
+            this.btnAdicionar.TabIndex = 16;
             this.btnAdicionar.Text = "Adicionar";
             this.btnAdicionar.UseVisualStyleBackColor = true;
             this.btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
@@ -214,7 +214,7 @@
             this.btnAlterar.Location = new System.Drawing.Point(209, 312);
             this.btnAlterar.Name = "btnAlterar";
             this.btnAlterar.Size = new System.Drawing.Size(75, 23);
-            this.btnAlterar.TabIndex = 13;
+            this.btnAlterar.TabIndex = 17;
             this.btnAlterar.Text = "Alterar";
             this.btnAlterar.UseVisualStyleBackColor = true;
             this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
@@ -225,7 +225,7 @@
             this.btnExcluir.Location = new System.Drawing.Point(302, 312);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(75, 23);
-            this.btnExcluir.TabIndex = 14;
+            this.btnExcluir.TabIndex = 18;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
@@ -235,7 +235,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(392, 312);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 15;
+            this.btnCancelar.TabIndex = 19;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -257,7 +257,7 @@
             this.lblbairro.Location = new System.Drawing.Point(325, 61);
             this.lblbairro.Name = "lblbairro";
             this.lblbairro.Size = new System.Drawing.Size(37, 13);
-            this.lblbairro.TabIndex = 34;
+            this.lblbairro.TabIndex = 29;
             this.lblbairro.Text = "Bairro:";
             // 
             // lblnumero
@@ -266,7 +266,7 @@
             this.lblnumero.Location = new System.Drawing.Point(489, 61);
             this.lblnumero.Name = "lblnumero";
             this.lblnumero.Size = new System.Drawing.Size(47, 13);
-            this.lblnumero.TabIndex = 15;
+            this.lblnumero.TabIndex = 30;
             this.lblnumero.Text = "Número:";
             // 
             // txtbairro
@@ -306,7 +306,7 @@
             this.lblcidade.Location = new System.Drawing.Point(12, 87);
             this.lblcidade.Name = "lblcidade";
             this.lblcidade.Size = new System.Drawing.Size(43, 13);
-            this.lblcidade.TabIndex = 35;
+            this.lblcidade.TabIndex = 31;
             this.lblcidade.Text = "Cidade:";
             // 
             // lblestado
@@ -315,7 +315,7 @@
             this.lblestado.Location = new System.Drawing.Point(325, 87);
             this.lblestado.Name = "lblestado";
             this.lblestado.Size = new System.Drawing.Size(43, 13);
-            this.lblestado.TabIndex = 36;
+            this.lblestado.TabIndex = 32;
             this.lblestado.Text = "Estado:";
             // 
             // txtcidade
@@ -372,7 +372,7 @@
             this.lblvalor.Location = new System.Drawing.Point(494, 322);
             this.lblvalor.Name = "lblvalor";
             this.lblvalor.Size = new System.Drawing.Size(84, 13);
-            this.lblvalor.TabIndex = 37;
+            this.lblvalor.TabIndex = 38;
             this.lblvalor.Text = "Valor em aberto:";
             // 
             // lblinadimplente
@@ -381,7 +381,7 @@
             this.lblinadimplente.Location = new System.Drawing.Point(494, 299);
             this.lblinadimplente.Name = "lblinadimplente";
             this.lblinadimplente.Size = new System.Drawing.Size(70, 13);
-            this.lblinadimplente.TabIndex = 38;
+            this.lblinadimplente.TabIndex = 37;
             this.lblinadimplente.Text = "Inadimplente:";
             // 
             // txtvaloraberto
@@ -389,10 +389,10 @@
             this.txtvaloraberto.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtvaloraberto.Enabled = false;
             this.txtvaloraberto.Location = new System.Drawing.Point(578, 319);
-            this.txtvaloraberto.MaxLength = 5;
+            this.txtvaloraberto.MaxLength = 20;
             this.txtvaloraberto.Name = "txtvaloraberto";
             this.txtvaloraberto.Size = new System.Drawing.Size(76, 20);
-            this.txtvaloraberto.TabIndex = 17;
+            this.txtvaloraberto.TabIndex = 12;
             // 
             // cbinadimplente
             // 
@@ -400,12 +400,12 @@
             this.cbinadimplente.Enabled = false;
             this.cbinadimplente.FormattingEnabled = true;
             this.cbinadimplente.Items.AddRange(new object[] {
-            "Sim",
-            "Não"});
+            "SIM",
+            "NÃO"});
             this.cbinadimplente.Location = new System.Drawing.Point(578, 295);
             this.cbinadimplente.Name = "cbinadimplente";
-            this.cbinadimplente.Size = new System.Drawing.Size(44, 21);
-            this.cbinadimplente.TabIndex = 16;
+            this.cbinadimplente.Size = new System.Drawing.Size(52, 21);
+            this.cbinadimplente.TabIndex = 11;
             // 
             // txtemail
             // 
@@ -423,7 +423,7 @@
             this.label1.Location = new System.Drawing.Point(12, 35);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 13);
-            this.label1.TabIndex = 41;
+            this.label1.TabIndex = 27;
             this.label1.Text = "E-mail:";
             // 
             // rbbloqueado
@@ -433,7 +433,7 @@
             this.rbbloqueado.Location = new System.Drawing.Point(669, 299);
             this.rbbloqueado.Name = "rbbloqueado";
             this.rbbloqueado.Size = new System.Drawing.Size(76, 17);
-            this.rbbloqueado.TabIndex = 18;
+            this.rbbloqueado.TabIndex = 13;
             this.rbbloqueado.TabStop = true;
             this.rbbloqueado.Text = "Bloqueado";
             this.rbbloqueado.UseVisualStyleBackColor = true;
@@ -445,7 +445,7 @@
             this.rbdesbloqueado.Location = new System.Drawing.Point(669, 322);
             this.rbdesbloqueado.Name = "rbdesbloqueado";
             this.rbdesbloqueado.Size = new System.Drawing.Size(94, 17);
-            this.rbdesbloqueado.TabIndex = 19;
+            this.rbdesbloqueado.TabIndex = 14;
             this.rbdesbloqueado.TabStop = true;
             this.rbdesbloqueado.Text = "Desbloqueado";
             this.rbdesbloqueado.UseVisualStyleBackColor = true;
@@ -459,7 +459,7 @@
             this.pnpesquisa.Location = new System.Drawing.Point(477, 141);
             this.pnpesquisa.Name = "pnpesquisa";
             this.pnpesquisa.Size = new System.Drawing.Size(206, 131);
-            this.pnpesquisa.TabIndex = 42;
+            this.pnpesquisa.TabIndex = 60;
             this.pnpesquisa.Visible = false;
             this.pnpesquisa.Leave += new System.EventHandler(this.pnpesquisa_Leave);
             // 
@@ -482,7 +482,7 @@
             this.txtpesquisa.MaxLength = 100;
             this.txtpesquisa.Name = "txtpesquisa";
             this.txtpesquisa.Size = new System.Drawing.Size(195, 20);
-            this.txtpesquisa.TabIndex = 3;
+            this.txtpesquisa.TabIndex = 21;
             this.txtpesquisa.TextChanged += new System.EventHandler(this.txtpesquisa_TextChanged_1);
             // 
             // lblnomepesquisa
@@ -491,7 +491,7 @@
             this.lblnomepesquisa.Location = new System.Drawing.Point(22, 14);
             this.lblnomepesquisa.Name = "lblnomepesquisa";
             this.lblnomepesquisa.Size = new System.Drawing.Size(153, 13);
-            this.lblnomepesquisa.TabIndex = 2;
+            this.lblnomepesquisa.TabIndex = 36;
             this.lblnomepesquisa.Text = "Pesquisar Nome / Documento:";
             // 
             // lblpesquisa
@@ -500,7 +500,7 @@
             this.lblpesquisa.Location = new System.Drawing.Point(489, 122);
             this.lblpesquisa.Name = "lblpesquisa";
             this.lblpesquisa.Size = new System.Drawing.Size(173, 13);
-            this.lblpesquisa.TabIndex = 43;
+            this.lblpesquisa.TabIndex = 35;
             this.lblpesquisa.Text = "(Dê duplo click para abrir pesquisa)";
             this.lblpesquisa.DoubleClick += new System.EventHandler(this.lblpesquisa_DoubleClick);
             // 

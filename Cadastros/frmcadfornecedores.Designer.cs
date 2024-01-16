@@ -117,7 +117,7 @@
             this.txtnome.MaxLength = 100;
             this.txtnome.Name = "txtnome";
             this.txtnome.Size = new System.Drawing.Size(195, 20);
-            this.txtnome.TabIndex = 1;           
+            this.txtnome.TabIndex = 1;
             // 
             // txtendereco
             // 
@@ -150,7 +150,7 @@
             this.txtdocumento.MaxLength = 18;
             this.txtdocumento.Name = "txtdocumento";
             this.txtdocumento.Size = new System.Drawing.Size(195, 20);
-            this.txtdocumento.TabIndex = 2;            
+            this.txtdocumento.TabIndex = 2;
             this.txtdocumento.Enter += new System.EventHandler(this.txtdocumento_Enter);
             this.txtdocumento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtdocumento_KeyPress);
             this.txtdocumento.Leave += new System.EventHandler(this.txtdocumento_Leave);
@@ -176,7 +176,7 @@
             this.dgCliente.Name = "dgCliente";
             this.dgCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgCliente.Size = new System.Drawing.Size(763, 150);
-            this.dgCliente.TabIndex = 14;
+            this.dgCliente.TabIndex = 18;
             this.dgCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgCliente_CellContentClick);
             // 
             // btnNovo
@@ -388,7 +388,7 @@
             this.btncancelarpesquisa.Location = new System.Drawing.Point(61, 101);
             this.btncancelarpesquisa.Name = "btncancelarpesquisa";
             this.btncancelarpesquisa.Size = new System.Drawing.Size(75, 23);
-            this.btncancelarpesquisa.TabIndex = 22;
+            this.btncancelarpesquisa.TabIndex = 17;
             this.btncancelarpesquisa.Text = "fechar";
             this.btncancelarpesquisa.UseVisualStyleBackColor = true;
             this.btncancelarpesquisa.Click += new System.EventHandler(this.btncancelarpesquisa_Click);
@@ -401,8 +401,8 @@
             this.txtpesquisa.MaxLength = 100;
             this.txtpesquisa.Name = "txtpesquisa";
             this.txtpesquisa.Size = new System.Drawing.Size(195, 20);
-            this.txtpesquisa.TabIndex = 3;
-            this.txtpesquisa.TextChanged += new System.EventHandler(this.txtnomepesquisa_TextChanged);            
+            this.txtpesquisa.TabIndex = 16;
+            this.txtpesquisa.TextChanged += new System.EventHandler(this.txtnomepesquisa_TextChanged);
             // 
             // lblnomepesquisa
             // 
