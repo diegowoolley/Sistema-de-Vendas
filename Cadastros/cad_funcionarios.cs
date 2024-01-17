@@ -79,6 +79,7 @@ namespace Sistema_de_Vendas
             dgCliente.Columns[0].HeaderText = "ID";
             dgCliente.Columns[1].HeaderText = "Nome";
             dgCliente.Columns[2].HeaderText = "Documento";
+            dgCliente.Columns[12].HeaderText = "E-mail";
             dgCliente.Columns[3].HeaderText = "Endereço";
             dgCliente.Columns[4].HeaderText = "Bairro";
             dgCliente.Columns[5].HeaderText = "Número";
@@ -99,6 +100,7 @@ namespace Sistema_de_Vendas
         {
             txtnome.Enabled = true;
             txtdocumento.Enabled = true;
+            txtemail.Enabled = true;
             txtendereco.Enabled = true;
             txtbairro.Enabled = true;
             txtnumero.Enabled = true;
@@ -118,6 +120,18 @@ namespace Sistema_de_Vendas
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
+            if (txtemail.Text.Contains("@"))
+            {
+                txtemail.Focus();
+            }
+            else
+            {
+                MessageBox.Show("E-mail inválido!");
+                txtemail.Clear();
+                txtemail.Focus();
+                return;
+            }
+
             if (txtnome.Text.ToString().Trim() == "")
             {
                 MessageBox.Show("Digite um nome para o Funcionário!");
@@ -141,23 +155,17 @@ namespace Sistema_de_Vendas
                     con.AbrirConexao();
                     MySqlCommand cmdVerificar;
                     MySqlDataReader reader;
-                    cmdVerificar = new MySqlCommand("SELECT * FROM cad_funcionarios WHERE nome_funcionario = @funcionario", con.con);
+                    cmdVerificar = new MySqlCommand("SELECT * FROM cad_funcionarios WHERE documento_funcionario = @documento", con.con);
                     MySqlDataAdapter da = new MySqlDataAdapter();
                     da.SelectCommand = cmdVerificar;
-                    cmdVerificar.Parameters.AddWithValue("@funcionario", txtnome.Text);
+                    cmdVerificar.Parameters.AddWithValue("@documento", txtdocumento.Text);
                     reader = cmdVerificar.ExecuteReader();
                     if (reader.HasRows)
                     {
-                        MessageBox.Show("Funcionário já cadastrado!");
-                        txtnome.Clear();
-                        txtdocumento.Clear();
-                        txtendereco.Clear();
-                        txtbairro.Clear();
-                        txtnumero.Clear();
-                        txttelefone.Clear();
-                        txtcelular.Clear();
-
-                        txtnome.Focus();
+                        MessageBox.Show("Documento já cadastrado!");
+                        
+                        txtdocumento.Clear();                        
+                        txtdocumento.Focus();
                         con.FecharConexao();
                         return;
                     }
@@ -166,10 +174,11 @@ namespace Sistema_de_Vendas
 
                         //insere dados na tabela
                         con.AbrirConexao();
-                        sql = "INSERT INTO cad_funcionarios(nome_funcionario, documento_funcionario, endereco_funcionario, bairro_funcionario, numero_funcionario, cidade_funcionario, estado_funcionario, telefone_funcionario, celular_funcionario, cargo_funcionario, foto_funcionario) VALUES (@nome_funcionarios, @documento_funcionarios, @endereco_funcionarios, @bairro_funcionarios, @numero_funcionarios, @cidade_funcionarios, @estado_funcionarios, @telefone_funcionarios, @celular_funcionarios, @cargo_funcionarios, @foto)";
+                        sql = "INSERT INTO cad_funcionarios(nome_funcionario, documento_funcionario, endereco_funcionario, bairro_funcionario, numero_funcionario, cidade_funcionario, estado_funcionario, telefone_funcionario, celular_funcionario, cargo_funcionario, foto_funcionario, email_funcionario) VALUES (@nome_funcionarios, @documento_funcionarios, @endereco_funcionarios, @bairro_funcionarios, @numero_funcionarios, @cidade_funcionarios, @estado_funcionarios, @telefone_funcionarios, @celular_funcionarios, @cargo_funcionarios, @foto, @email)";
                         cmd = new MySqlCommand(sql, con.con);
                         cmd.Parameters.AddWithValue("@nome_funcionarios", txtnome.Text);
                         cmd.Parameters.AddWithValue("@documento_funcionarios", txtdocumento.Text);
+                        cmd.Parameters.AddWithValue("@email", txtemail.Text);
                         cmd.Parameters.AddWithValue("@endereco_funcionarios", txtendereco.Text);
                         cmd.Parameters.AddWithValue("@bairro_funcionarios", txtbairro.Text);
                         cmd.Parameters.AddWithValue("@numero_funcionarios", txtnumero.Text);
@@ -187,6 +196,8 @@ namespace Sistema_de_Vendas
                         txtnome.Clear();
                         txtdocumento.Enabled = false;
                         txtdocumento.Clear();
+                        txtemail.Enabled = false;
+                        txtemail.Clear();
                         txtendereco.Enabled = false;
                         txtendereco.Clear();
                         txtbairro.Enabled = false;
@@ -227,6 +238,19 @@ namespace Sistema_de_Vendas
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
+            if (txtemail.Text.Contains("@"))
+            {
+                txtemail.Focus();
+            }
+            else
+            {
+                MessageBox.Show("E-mail inválido!");
+                txtemail.Clear();
+                txtemail.Focus();
+                return;
+            }
+
+
             if (txtnome.Text.ToString().Trim() == "")
             {
                 MessageBox.Show("Digite um nome para o Funcionário!");
@@ -249,11 +273,12 @@ namespace Sistema_de_Vendas
                 if (alterou_foto == "s")
                 {
                     con.AbrirConexao();
-                    sql = "UPDATE cad_funcionarios SET nome_funcionario = @nome, documento_funcionario = @documento, endereco_funcionario = @endereco, bairro_funcionario = @bairro, numero_funcionario = @numero, cidade_funcionario = @cidade, estado_funcionario = @estado, telefone_funcionario = @telefone, celular_funcionario = @celular, cargo_funcionario = @cargo, foto_funcionario = @foto WHERE cod_funcionario = @id";
+                    sql = "UPDATE cad_funcionarios SET nome_funcionario = @nome, documento_funcionario = @documento, endereco_funcionario = @endereco, bairro_funcionario = @bairro, numero_funcionario = @numero, cidade_funcionario = @cidade, estado_funcionario = @estado, telefone_funcionario = @telefone, celular_funcionario = @celular, cargo_funcionario = @cargo, foto_funcionario = @foto, email_funcionario = @email WHERE cod_funcionario = @id";
                     cmd = new MySqlCommand(sql, con.con);
                     cmd.Parameters.AddWithValue("@id", id);
                     cmd.Parameters.AddWithValue("@nome", txtnome.Text);
                     cmd.Parameters.AddWithValue("@documento", txtdocumento.Text);
+                    cmd.Parameters.AddWithValue("@email", txtemail.Text);
                     cmd.Parameters.AddWithValue("@endereco", txtendereco.Text);
                     cmd.Parameters.AddWithValue("@bairro", txtbairro.Text);
                     cmd.Parameters.AddWithValue("@numero", txtnumero.Text);
@@ -268,11 +293,12 @@ namespace Sistema_de_Vendas
                 else if (alterou_foto == "n")
                 {
                     con.AbrirConexao();
-                    sql = "UPDATE cad_funcionarios SET nome_funcionario = @nome, documento_funcionario = @documento, endereco_funcionario = @endereco, bairro_funcionario = @bairro, numero_funcionario = @numero, cidade_funcionario = @cidade, estado_funcionario = @estado, telefone_funcionario = @telefone, celular_funcionario = @celular, cargo_funcionario = @cargo, foto_funcionario = @foto WHERE cod_funcionario = @id";
+                    sql = "UPDATE cad_funcionarios SET nome_funcionario = @nome, documento_funcionario = @documento, endereco_funcionario = @endereco, bairro_funcionario = @bairro, numero_funcionario = @numero, cidade_funcionario = @cidade, estado_funcionario = @estado, telefone_funcionario = @telefone, celular_funcionario = @celular, cargo_funcionario = @cargo, foto_funcionario = @foto, email_funcionario = @email WHERE cod_funcionario = @id";
                     cmd = new MySqlCommand(sql, con.con);
                     cmd.Parameters.AddWithValue("@id", id);
                     cmd.Parameters.AddWithValue("@nome", txtnome.Text);
                     cmd.Parameters.AddWithValue("@documento", txtdocumento.Text);
+                    cmd.Parameters.AddWithValue("@email", txtemail.Text);
                     cmd.Parameters.AddWithValue("@endereco", txtendereco.Text);
                     cmd.Parameters.AddWithValue("@bairro", txtbairro.Text);
                     cmd.Parameters.AddWithValue("@numero", txtnumero.Text);
@@ -313,6 +339,8 @@ namespace Sistema_de_Vendas
                 txtnome.Clear();
                 txtdocumento.Enabled = false;
                 txtdocumento.Clear();
+                txtemail.Enabled = false;
+                txtemail.Clear();
                 txtendereco.Enabled = false;
                 txtendereco.Clear();
                 txtbairro.Enabled = false;
@@ -341,7 +369,7 @@ namespace Sistema_de_Vendas
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            var res = MessageBox.Show("Deseja realmente excluir esse registro?", "Excluir Cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var res = MessageBox.Show("Deseja realmente excluir esse registro?", "Excluir Funcionário", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (res == DialogResult.Yes)
             {
@@ -357,6 +385,8 @@ namespace Sistema_de_Vendas
                 txtnome.Clear();
                 txtdocumento.Enabled = false;
                 txtdocumento.Clear();
+                txtemail.Enabled = false;
+                txtemail.Clear();
                 txtendereco.Enabled = false;
                 txtendereco.Clear();
                 txtbairro.Enabled = false;
@@ -390,6 +420,8 @@ namespace Sistema_de_Vendas
             txtnome.Clear();
             txtdocumento.Enabled = false;
             txtdocumento.Clear();
+            txtemail.Enabled = false;
+            txtemail.Clear();
             txtendereco.Enabled = false;
             txtendereco.Clear();
             txtbairro.Enabled = false;
@@ -426,7 +458,7 @@ namespace Sistema_de_Vendas
             string documento = txtdocumento.Text;
             if (txtdocumento.Text == "")
             {
-                txtendereco.Focus();
+                txtemail.Focus();
             }
             else
             {
@@ -483,7 +515,7 @@ namespace Sistema_de_Vendas
         {
             if (txtcelular.Text == "")
             {
-                cbcargo.Focus();
+                btnAdicionar.Focus();
             }
             else
             {
@@ -507,60 +539,7 @@ namespace Sistema_de_Vendas
 
         }
 
-        private void dgCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-            if (e.RowIndex > -1)
-            {
-                id = dgCliente.CurrentRow.Cells[0].Value.ToString();
-                documentoantigo = dgCliente.CurrentRow.Cells[2].Value.ToString();
-
-                txtnome.Text = dgCliente.CurrentRow.Cells[1].Value.ToString();
-                txtdocumento.Text = dgCliente.CurrentRow.Cells[2].Value.ToString();
-                txtendereco.Text = dgCliente.CurrentRow.Cells[3].Value.ToString();
-                txtbairro.Text = dgCliente.CurrentRow.Cells[4].Value.ToString();
-                txtnumero.Text = dgCliente.CurrentRow.Cells[5].Value.ToString();
-                txtcidade.Text = dgCliente.CurrentRow.Cells[6].Value.ToString();
-                cbestados.Text = dgCliente.CurrentRow.Cells[7].Value.ToString();
-                txttelefone.Text = dgCliente.CurrentRow.Cells[8].Value.ToString();
-                txtcelular.Text = dgCliente.CurrentRow.Cells[9].Value.ToString();
-                cbcargo.Text = dgCliente.CurrentRow.Cells[10].Value.ToString();
-
-                btnNovo.Enabled = false;
-                btnAdicionar.Enabled = false;
-                btnAlterar.Enabled = true;
-                btnCancelar.Enabled = true;
-                btnExcluir.Enabled = true;
-                btnfoto.Enabled = true;
-                txtnome.Enabled = true;
-                txtdocumento.Enabled = true;
-                txtendereco.Enabled = true;
-                txtbairro.Enabled = true;
-                txtnumero.Enabled = true;
-                txtcidade.Enabled = true;
-                cbestados.Enabled = true;
-                txttelefone.Enabled = true;
-                txtcelular.Enabled = true;
-                cbcargo.Enabled = true;
-                txtnome.Focus();
-
-
-                if (dgCliente.CurrentRow.Cells[10].Value != DBNull.Value)
-                {
-                    byte[] image = (byte[])dgCliente.Rows[e.RowIndex].Cells[11].Value;
-                    MemoryStream es = new MemoryStream(image);
-                    pbFoto.Image = Image.FromStream(es);
-
-                }
-                else
-                {
-                    pbFoto.Image = Properties.Resources.download;
-                }
-
-            }
-
-        }
-
+       
         private void btnfoto_Click(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
@@ -633,6 +612,60 @@ namespace Sistema_de_Vendas
         private void txtpesquisa_TextChanged_1(object sender, EventArgs e)
         {
             Buscar();
+        }
+
+        private void dgCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                id = dgCliente.CurrentRow.Cells[0].Value.ToString();
+                documentoantigo = dgCliente.CurrentRow.Cells[2].Value.ToString();
+
+                txtnome.Text = dgCliente.CurrentRow.Cells[1].Value.ToString();
+                txtdocumento.Text = dgCliente.CurrentRow.Cells[2].Value.ToString();
+                txtendereco.Text = dgCliente.CurrentRow.Cells[3].Value.ToString();
+                txtbairro.Text = dgCliente.CurrentRow.Cells[4].Value.ToString();
+                txtnumero.Text = dgCliente.CurrentRow.Cells[5].Value.ToString();
+                txtcidade.Text = dgCliente.CurrentRow.Cells[6].Value.ToString();
+                cbestados.Text = dgCliente.CurrentRow.Cells[7].Value.ToString();
+                txttelefone.Text = dgCliente.CurrentRow.Cells[8].Value.ToString();
+                txtcelular.Text = dgCliente.CurrentRow.Cells[9].Value.ToString();
+                cbcargo.Text = dgCliente.CurrentRow.Cells[10].Value.ToString();
+                txtemail.Text = dgCliente.CurrentRow.Cells[12].Value.ToString();
+
+                btnNovo.Enabled = false;
+                btnAdicionar.Enabled = false;
+                btnAlterar.Enabled = true;
+                btnCancelar.Enabled = true;
+                btnExcluir.Enabled = true;
+                btnfoto.Enabled = true;
+                txtnome.Enabled = true;
+                txtdocumento.Enabled = true;
+                txtemail.Enabled = true;
+                txtendereco.Enabled = true;
+                txtbairro.Enabled = true;
+                txtnumero.Enabled = true;
+                txtcidade.Enabled = true;
+                cbestados.Enabled = true;
+                txttelefone.Enabled = true;
+                txtcelular.Enabled = true;
+                cbcargo.Enabled = true;
+                txtnome.Focus();
+
+
+                if (dgCliente.CurrentRow.Cells[11].Value != DBNull.Value)
+                {
+                    byte[] image = (byte[])dgCliente.Rows[e.RowIndex].Cells[11].Value;
+                    MemoryStream es = new MemoryStream(image);
+                    pbFoto.Image = Image.FromStream(es);
+
+                }
+                else
+                {
+                    pbFoto.Image = Properties.Resources.download;
+                }
+
+            }
         }
     }
         

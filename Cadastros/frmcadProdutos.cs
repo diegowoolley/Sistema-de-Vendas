@@ -391,71 +391,7 @@ namespace Sistema_de_Vendas
             funcoes.DecNumber(sender, e);
         }
 
-        private void dgCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex > -1)
-            {
-
-                id = dgCliente.CurrentRow.Cells[0].Value.ToString();                
-
-                txtdescricao.Text = dgCliente.CurrentRow.Cells[1].Value.ToString();
-                cbcategoria.Text = dgCliente.CurrentRow.Cells[2].Value.ToString();
-                cbunidade.Text = dgCliente.CurrentRow.Cells[3].Value.ToString();
-                txtquantidade.Text = dgCliente.CurrentRow.Cells[4].Value.ToString();
-                cbfornecedor.Text = dgCliente.CurrentRow.Cells[5].Value.ToString();
-                txtpesomedio.Text = dgCliente.CurrentRow.Cells[6].Value.ToString();
-                txtpesobruto.Text = dgCliente.CurrentRow.Cells[7].Value.ToString();
-                txtfabricante.Text = dgCliente.CurrentRow.Cells[8].Value.ToString();
-                txtvalorcompra.Text = dgCliente.CurrentRow.Cells[9].Value.ToString();
-                txtvalorvenda.Text = dgCliente.CurrentRow.Cells[10].Value.ToString();
-                txtmargemlucro.Text = dgCliente.CurrentRow.Cells[11].Value.ToString();
-                txtsituacaotributaria.Text = dgCliente.CurrentRow.Cells[12].Value.ToString();
-                txtaliquota.Text = dgCliente.CurrentRow.Cells[13].Value.ToString();
-                txtcodipi.Text = dgCliente.CurrentRow.Cells[14].Value.ToString();
-
-                btnNovo.Enabled = false;
-                btnAdicionar.Enabled = false;
-                btnAlterar.Enabled = true;
-                btnCancelar.Enabled = true;
-                btnExcluir.Enabled = true;
-                btnfoto.Enabled = true;
-                txtdescricao.Enabled = true;
-                cbcategoria.Enabled = true;
-                cbunidade.Enabled = true;
-                txtquantidade.Enabled = true;
-                cbfornecedor.Enabled = true;
-                txtpesomedio.Enabled = true;
-                txtpesobruto.Enabled = true;
-                txtfabricante.Enabled = true;
-                txtvalorcompra.Enabled = true;
-                txtvalorvenda.Enabled = true;
-                txtmargemlucro.Enabled = true;
-                txtsituacaotributaria.Enabled = true;
-                txtaliquota.Enabled = true;
-                txtcodipi.Enabled = true;
-
-
-
-
-                if (dgCliente.CurrentRow.Cells[15].Value != DBNull.Value)
-                {
-                    byte[] image = (byte[])dgCliente.Rows[e.RowIndex].Cells[15].Value;
-                    MemoryStream es = new MemoryStream(image);
-                    pbFoto.Image = Image.FromStream(es);
-
-                }
-                else
-                {
-                    pbFoto.Image = Properties.Resources.download;
-                }
-
-
-
-
-
-            }
-        }
-
+       
         private void btnAlterar_Click(object sender, EventArgs e)
         {
             if (txtdescricao.Text.ToString().Trim() == "")
@@ -565,7 +501,7 @@ namespace Sistema_de_Vendas
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            var res = MessageBox.Show("Deseja realmente excluir esse registro?", "Excluir Cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var res = MessageBox.Show("Deseja realmente excluir esse registro?", "Excluir Produto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (res == DialogResult.Yes)
             {
@@ -646,6 +582,72 @@ namespace Sistema_de_Vendas
         private void cbfornecedor_Enter(object sender, EventArgs e)
         {
             listarfornecedor();
+        }
+
+        private void dgCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+
+                id = dgCliente.CurrentRow.Cells[0].Value.ToString();
+
+                txtdescricao.Text = dgCliente.CurrentRow.Cells[1].Value.ToString();
+                cbcategoria.Text = dgCliente.CurrentRow.Cells[2].Value.ToString();
+                cbunidade.Text = dgCliente.CurrentRow.Cells[3].Value.ToString();
+                txtquantidade.Text = dgCliente.CurrentRow.Cells[4].Value.ToString();
+                cbfornecedor.Text = dgCliente.CurrentRow.Cells[5].Value.ToString();
+                txtpesomedio.Text = dgCliente.CurrentRow.Cells[6].Value.ToString();
+                txtpesobruto.Text = dgCliente.CurrentRow.Cells[7].Value.ToString();
+                txtfabricante.Text = dgCliente.CurrentRow.Cells[8].Value.ToString();
+                txtvalorcompra.Text = dgCliente.CurrentRow.Cells[9].Value.ToString();
+                txtvalorvenda.Text = dgCliente.CurrentRow.Cells[10].Value.ToString();
+                txtmargemlucro.Text = dgCliente.CurrentRow.Cells[11].Value.ToString();
+                txtsituacaotributaria.Text = dgCliente.CurrentRow.Cells[12].Value.ToString();
+                txtaliquota.Text = dgCliente.CurrentRow.Cells[13].Value.ToString();
+                txtcodipi.Text = dgCliente.CurrentRow.Cells[14].Value.ToString();
+
+                btnNovo.Enabled = false;
+                btnAdicionar.Enabled = false;
+                btnAlterar.Enabled = true;
+                btnCancelar.Enabled = true;
+                btnExcluir.Enabled = true;
+                btnfoto.Enabled = true;
+                txtdescricao.Enabled = true;
+                cbcategoria.Enabled = true;
+                cbunidade.Enabled = true;
+                txtquantidade.Enabled = true;
+                cbfornecedor.Enabled = true;
+                txtpesomedio.Enabled = true;
+                txtpesobruto.Enabled = true;
+                txtfabricante.Enabled = true;
+                txtvalorcompra.Enabled = true;
+                txtvalorvenda.Enabled = true;
+                txtmargemlucro.Enabled = true;
+                txtsituacaotributaria.Enabled = true;
+                txtaliquota.Enabled = true;
+                txtcodipi.Enabled = true;
+
+
+
+
+                if (dgCliente.CurrentRow.Cells[15].Value != DBNull.Value)
+                {
+                    byte[] image = (byte[])dgCliente.Rows[e.RowIndex].Cells[15].Value;
+                    MemoryStream es = new MemoryStream(image);
+                    pbFoto.Image = Image.FromStream(es);
+
+                }
+                else
+                {
+                    pbFoto.Image = Properties.Resources.download;
+                }
+
+
+
+
+
+            }
+
         }
     }
 }

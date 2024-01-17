@@ -113,6 +113,9 @@ namespace Sistema_de_Vendas.Cadastros
             Close();
         }
 
-       
+        private void frmcadUsuarios_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -237,9 +237,9 @@ namespace Sistema_de_Vendas.Cadastros
         {
             if (e.RowIndex > -1)
             {
-                
+
                 id = dgCliente.CurrentRow.Cells[0].Value.ToString();
-                
+
 
                 txtnome.Text = dgCliente.CurrentRow.Cells[1].Value.ToString();
                 btnNovo.Enabled = false;
@@ -252,7 +252,6 @@ namespace Sistema_de_Vendas.Cadastros
             }
 
         }
-
     }
 }
 

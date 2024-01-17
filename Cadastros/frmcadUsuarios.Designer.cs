@@ -153,6 +153,7 @@
             this.Name = "frmcadUsuarios";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Usuários";
+            this.Load += new System.EventHandler(this.frmcadUsuarios_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
