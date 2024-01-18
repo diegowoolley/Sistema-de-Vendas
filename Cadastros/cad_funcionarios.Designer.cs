@@ -266,7 +266,7 @@
             this.txtdocumento.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtdocumento.Enabled = false;
             this.txtdocumento.Location = new System.Drawing.Point(385, 9);
-            this.txtdocumento.MaxLength = 18;
+            this.txtdocumento.MaxLength = 14;
             this.txtdocumento.Name = "txtdocumento";
             this.txtdocumento.Size = new System.Drawing.Size(195, 20);
             this.txtdocumento.TabIndex = 2;
