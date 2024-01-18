@@ -108,7 +108,7 @@
             this.txtnome.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtnome.Enabled = false;
             this.txtnome.Location = new System.Drawing.Point(126, 9);
-            this.txtnome.MaxLength = 100;
+            this.txtnome.MaxLength = 80;
             this.txtnome.Name = "txtnome";
             this.txtnome.Size = new System.Drawing.Size(195, 20);
             this.txtnome.TabIndex = 57;

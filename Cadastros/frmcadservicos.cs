@@ -232,6 +232,7 @@ namespace Sistema_de_Vendas.Cadastros
             txtvalor.Enabled = false;
             txtvalor.Clear();
             btnAdicionar.Enabled = false;
+            btnNovo.Enabled = true;
             btnAlterar.Enabled = false;
             btnExcluir.Enabled = false;
 
