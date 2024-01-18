@@ -132,12 +132,14 @@
             this.serviçosToolStripMenuItem.Name = "serviçosToolStripMenuItem";
             this.serviçosToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.serviçosToolStripMenuItem.Text = "Serviços";
+            this.serviçosToolStripMenuItem.Click += new System.EventHandler(this.serviçosToolStripMenuItem_Click);
             // 
             // formasDePagamentoToolStripMenuItem
             // 
             this.formasDePagamentoToolStripMenuItem.Name = "formasDePagamentoToolStripMenuItem";
             this.formasDePagamentoToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.formasDePagamentoToolStripMenuItem.Text = "Formas de Pagamento";
+            this.formasDePagamentoToolStripMenuItem.Click += new System.EventHandler(this.formasDePagamentoToolStripMenuItem_Click);
             // 
             // transportadorasToolStripMenuItem
             // 
@@ -150,6 +152,7 @@
             this.veiculosToolStripMenuItem.Name = "veiculosToolStripMenuItem";
             this.veiculosToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.veiculosToolStripMenuItem.Text = "Veiculos";
+            this.veiculosToolStripMenuItem.Click += new System.EventHandler(this.veiculosToolStripMenuItem_Click);
             // 
             // vendasComprasToolStripMenuItem
             // 
