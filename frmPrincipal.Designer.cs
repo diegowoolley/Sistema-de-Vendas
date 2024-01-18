@@ -273,6 +273,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::Sistema_de_Vendas.Properties.Resources.Otimizacao_de_vendas_com_ERP;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.barrastatus);
             this.Controls.Add(this.mnPrincipal);

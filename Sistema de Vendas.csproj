@@ -50,11 +50,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cadastros\cad_categorias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cadastros\cad_categorias.Designer.cs">
+      <DependentUpon>cad_categorias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastros\cad_pagamentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cadastros\cad_pagamentos.Designer.cs">
+      <DependentUpon>cad_pagamentos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastros\cad_transportadoras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cadastros\cad_transportadoras.Designer.cs">
+      <DependentUpon>cad_transportadoras.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastros\cad_veiculos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cadastros\cad_veiculos.Designer.cs">
+      <DependentUpon>cad_veiculos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Cadastros\frmcadfornecedores.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Cadastros\frmcadfornecedores.Designer.cs">
       <DependentUpon>frmcadfornecedores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastros\frmcadservicos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cadastros\frmcadservicos.Designer.cs">
+      <DependentUpon>frmcadservicos.cs</DependentUpon>
     </Compile>
     <Compile Include="Cadastros\frmcadUsuarios.cs">
       <SubType>Form</SubType>
@@ -81,6 +111,12 @@
       <DependentUpon>frmCargos.cs</DependentUpon>
     </Compile>
     <Compile Include="conn.cs" />
+    <Compile Include="Cadastros\frmcadProdutos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cadastros\frmcadProdutos.Designer.cs">
+      <DependentUpon>frmcadProdutos.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSplash.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,8 +143,26 @@
     </Compile>
     <Compile Include="Sistema de Vendas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Cadastros\cad_categorias.resx">
+      <DependentUpon>cad_categorias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastros\cad_pagamentos.resx">
+      <DependentUpon>cad_pagamentos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastros\cad_transportadoras.resx">
+      <DependentUpon>cad_transportadoras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastros\cad_veiculos.resx">
+      <DependentUpon>cad_veiculos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Cadastros\frmcadfornecedores.resx">
       <DependentUpon>frmcadfornecedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastros\frmcadProdutos.resx">
+      <DependentUpon>frmcadProdutos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastros\frmcadservicos.resx">
+      <DependentUpon>frmcadservicos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Cadastros\frmcadUsuarios.resx">
       <DependentUpon>frmcadUsuarios.cs</DependentUpon>
@@ -157,6 +211,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\images1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Otimizacao-de-vendas-com-ERP.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sistema-de-vendas.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
