@@ -506,7 +506,7 @@ namespace Sistema_de_Vendas
             if (res == DialogResult.Yes)
             {
                 con.AbrirConexao();
-                sql = "DELETE FROM cad_clientes WHERE cod_clientes = @id";
+                sql = "DELETE FROM cad_produtos WHERE cod_produto = @id";
                 cmd = new MySqlCommand(sql, con.con);
                 cmd.Parameters.AddWithValue("@id", id);
                 cmd.ExecuteNonQuery();
@@ -649,5 +649,6 @@ namespace Sistema_de_Vendas
             }
 
         }
+          
     }
 }

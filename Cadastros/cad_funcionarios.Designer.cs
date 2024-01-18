@@ -112,7 +112,7 @@
             this.txtcidade.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtcidade.Enabled = false;
             this.txtcidade.Location = new System.Drawing.Point(126, 88);
-            this.txtcidade.MaxLength = 50;
+            this.txtcidade.MaxLength = 80;
             this.txtcidade.Name = "txtcidade";
             this.txtcidade.Size = new System.Drawing.Size(195, 20);
             this.txtcidade.TabIndex = 7;
@@ -140,7 +140,7 @@
             this.txtnumero.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtnumero.Enabled = false;
             this.txtnumero.Location = new System.Drawing.Point(536, 64);
-            this.txtnumero.MaxLength = 5;
+            this.txtnumero.MaxLength = 10;
             this.txtnumero.Name = "txtnumero";
             this.txtnumero.Size = new System.Drawing.Size(44, 20);
             this.txtnumero.TabIndex = 6;
@@ -150,7 +150,7 @@
             this.txtbairro.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtbairro.Enabled = false;
             this.txtbairro.Location = new System.Drawing.Point(385, 62);
-            this.txtbairro.MaxLength = 50;
+            this.txtbairro.MaxLength = 80;
             this.txtbairro.Name = "txtbairro";
             this.txtbairro.Size = new System.Drawing.Size(100, 20);
             this.txtbairro.TabIndex = 5;
@@ -292,7 +292,7 @@
             this.txtendereco.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtendereco.Enabled = false;
             this.txtendereco.Location = new System.Drawing.Point(126, 62);
-            this.txtendereco.MaxLength = 100;
+            this.txtendereco.MaxLength = 80;
             this.txtendereco.Name = "txtendereco";
             this.txtendereco.Size = new System.Drawing.Size(195, 20);
             this.txtendereco.TabIndex = 4;
@@ -302,7 +302,7 @@
             this.txtnome.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtnome.Enabled = false;
             this.txtnome.Location = new System.Drawing.Point(126, 9);
-            this.txtnome.MaxLength = 100;
+            this.txtnome.MaxLength = 80;
             this.txtnome.Name = "txtnome";
             this.txtnome.Size = new System.Drawing.Size(195, 20);
             this.txtnome.TabIndex = 1;
@@ -432,7 +432,7 @@
             this.txtpesquisa.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtpesquisa.Enabled = false;
             this.txtpesquisa.Location = new System.Drawing.Point(3, 30);
-            this.txtpesquisa.MaxLength = 100;
+            this.txtpesquisa.MaxLength = 80;
             this.txtpesquisa.Name = "txtpesquisa";
             this.txtpesquisa.Size = new System.Drawing.Size(195, 20);
             this.txtpesquisa.TabIndex = 18;
@@ -452,7 +452,7 @@
             this.txtemail.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.txtemail.Enabled = false;
             this.txtemail.Location = new System.Drawing.Point(126, 36);
-            this.txtemail.MaxLength = 100;
+            this.txtemail.MaxLength = 80;
             this.txtemail.Name = "txtemail";
             this.txtemail.Size = new System.Drawing.Size(195, 20);
             this.txtemail.TabIndex = 3;
