@@ -5,28 +5,34 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Sistema_de_Vendas.Cadastros
 {
-    public partial class frmCargos : Form
+    public partial class cad_pagamentos : Form
     {
-        public frmCargos()
+        public cad_pagamentos()
         {
             InitializeComponent();
         }
+
         conn con = new conn();
         string sql;
         MySqlCommand cmd;
         string id;
 
+        private void cad_pagamentos_Load(object sender, EventArgs e)
+        {
+            Listar();
+            formatargrid();
+        }
+
         private void Listar()
         {
             con.AbrirConexao();
-            sql = "SELECT * FROM cad_cargos ORDER BY nome_cargo ASC";
+            sql = "SELECT * FROM cad_pagamentos ORDER BY forma_pagamento ASC";
             cmd = new MySqlCommand(sql, con.con);
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = cmd;
@@ -36,32 +42,32 @@ namespace Sistema_de_Vendas.Cadastros
             con.FecharConexao();
         }
 
+
         private void formatargrid()
         {
             dgCliente.Columns[0].HeaderText = "ID";
-            dgCliente.Columns[1].HeaderText = "Nome";
+            dgCliente.Columns[1].HeaderText = "Forma de Pagamento";
             dgCliente.Columns[0].Visible = false;
 
         }
 
-
         private void btnNovo_Click(object sender, EventArgs e)
         {
-            txtnome.Enabled = true;
+            txtpagamento.Enabled = true;
             btnNovo.Enabled = false;
             btnAdicionar.Enabled = true;
             btnAlterar.Enabled = false;
             btnExcluir.Enabled = false;
-            txtnome.Focus();
+            txtpagamento.Focus();
         }
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-            if (txtnome.Text.ToString().Trim() == "")
+            if (txtpagamento.Text.ToString().Trim() == "")
             {
-                MessageBox.Show("Digite um Cargo!");
-                txtnome.Clear();
-                txtnome.Focus();
+                MessageBox.Show("Digite uma Forma de Pagamento!");
+                txtpagamento.Clear();
+                txtpagamento.Focus();
                 return;
             }
 
@@ -73,16 +79,16 @@ namespace Sistema_de_Vendas.Cadastros
                     con.AbrirConexao();
                     MySqlCommand cmdVerificar;
                     MySqlDataReader reader;
-                    cmdVerificar = new MySqlCommand("SELECT * FROM cad_cargos WHERE nome_cargo = @cargo", con.con);
+                    cmdVerificar = new MySqlCommand("SELECT * FROM cad_pagamentos WHERE forma_pagamento = @pagamento", con.con);
                     MySqlDataAdapter da = new MySqlDataAdapter();
                     da.SelectCommand = cmdVerificar;
-                    cmdVerificar.Parameters.AddWithValue("@cargo", txtnome.Text);
+                    cmdVerificar.Parameters.AddWithValue("@pagamento", txtpagamento.Text);
                     reader = cmdVerificar.ExecuteReader();
                     if (reader.HasRows)
                     {
-                        MessageBox.Show("Cargo já cadastrado!");
-                        txtnome.Clear();
-                        txtnome.Focus();
+                        MessageBox.Show("Forma de pagamento já cadastrado!");
+                        txtpagamento.Clear();
+                        txtpagamento.Focus();
                         con.FecharConexao();
                         return;
                     }
@@ -91,17 +97,17 @@ namespace Sistema_de_Vendas.Cadastros
 
                         //insere dados na tabela
                         con.AbrirConexao();
-                        sql = "INSERT INTO cad_cargos(nome_cargo) VALUES (@cargo)";
+                        sql = "INSERT INTO cad_pagamentos(forma_pagamento) VALUES (@pagamento)";
                         cmd = new MySqlCommand(sql, con.con);
-                        cmd.Parameters.AddWithValue("@cargo", txtnome.Text);
+                        cmd.Parameters.AddWithValue("@pagamento", txtpagamento.Text);
 
 
 
                         cmd.ExecuteNonQuery();
                         con.FecharConexao();
                         //desabilitar botões e campos
-                        txtnome.Enabled = false;
-                        txtnome.Clear();
+                        txtpagamento.Enabled = false;
+                        txtpagamento.Clear();
                         btnAdicionar.Enabled = false;
                         btnAlterar.Enabled = false;
                         btnExcluir.Enabled = false;
@@ -109,7 +115,7 @@ namespace Sistema_de_Vendas.Cadastros
                         btnNovo.Focus();
                         Listar();
 
-                        MessageBox.Show("Cargo cadastado com sucesso!");
+                        MessageBox.Show("Forma de Pagamento cadastada com sucesso!");
                         return;
                     }
                 }
@@ -124,54 +130,54 @@ namespace Sistema_de_Vendas.Cadastros
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            if (txtnome.Text.ToString().Trim() == "")
+            if (txtpagamento.Text.ToString().Trim() == "")
             {
-                MessageBox.Show("Digite um Cargo!");
-                txtnome.Clear();
-                txtnome.Focus();
+                MessageBox.Show("Digite uma forma de pagamento!");
+                txtpagamento.Clear();
+                txtpagamento.Focus();
                 return;
             }
-                   
-                       
-                       
+
+
+
             try
             {
-                    
-                        con.AbrirConexao();
-                        sql = "UPDATE cad_cargos SET nome_cargo = @nome WHERE cod_cargo = @id";
-                        cmd = new MySqlCommand(sql, con.con);
-                        cmd.Parameters.AddWithValue("@id", id);
-                        cmd.Parameters.AddWithValue("@nome", txtnome.Text);
 
-                        cmd.ExecuteNonQuery();
-                        con.FecharConexao();
-                        Listar();
+                con.AbrirConexao();
+                sql = "UPDATE cad_pagamentos SET forma_pagamento = @pagamento WHERE cod_pagamento = @id";
+                cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@pagamento", txtpagamento.Text);
 
-                        MessageBox.Show("Registro Alterado com Sucesso!!");
-                        txtnome.Enabled = false;
-                        txtnome.Clear();
-                        btnAdicionar.Enabled = false;
-                        btnAlterar.Enabled = false;
-                        btnExcluir.Enabled = false;
-                        btnNovo.Enabled = true;
-                        btnNovo.Focus();
-                    
+                cmd.ExecuteNonQuery();
+                con.FecharConexao();
+                Listar();
+
+                MessageBox.Show("Registro Alterado com Sucesso!!");
+                txtpagamento.Enabled = false;
+                txtpagamento.Clear();
+                btnAdicionar.Enabled = false;
+                btnAlterar.Enabled = false;
+                btnExcluir.Enabled = false;
+                btnNovo.Enabled = true;
+                btnNovo.Focus();
+
             }
             catch (Exception)
             {
-                    MessageBox.Show("Erro ao Cadastrar!");
-                
+                MessageBox.Show("Erro ao Cadastrar!");
+
             }
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            var res = MessageBox.Show("Deseja realmente excluir esse registro?", "Excluir Cargo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var res = MessageBox.Show("Deseja realmente excluir esse registro?", "Excluir Forma de Pagamento", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (res == DialogResult.Yes)
             {
                 con.AbrirConexao();
-                sql = "DELETE FROM cad_cargos WHERE cod_cargo = @id";
+                sql = "DELETE FROM cad_pagamentos WHERE cod_pagamento = @id";
                 cmd = new MySqlCommand(sql, con.con);
                 cmd.Parameters.AddWithValue("@id", id);
                 cmd.ExecuteNonQuery();
@@ -179,8 +185,8 @@ namespace Sistema_de_Vendas.Cadastros
 
                 Listar();
 
-                txtnome.Enabled = false;
-                txtnome.Clear();
+                txtpagamento.Enabled = false;
+                txtpagamento.Clear();
                 btnAdicionar.Enabled = false;
                 btnAlterar.Enabled = false;
                 btnExcluir.Enabled = false;
@@ -193,28 +199,6 @@ namespace Sistema_de_Vendas.Cadastros
             }
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            txtnome.Enabled = false;
-            txtnome.Clear();
-            btnAdicionar.Enabled = false;
-            btnAlterar.Enabled = false;
-            btnExcluir.Enabled = false;
-
-
-
-            btnNovo.Enabled = true;
-
-            btnNovo.Focus();
-            Listar();
-        }
-
-        private void frmCargos_Load(object sender, EventArgs e)
-        {
-            Listar();
-            formatargrid();
-        }
-
         private void dgCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex > -1)
@@ -223,18 +207,25 @@ namespace Sistema_de_Vendas.Cadastros
                 id = dgCliente.CurrentRow.Cells[0].Value.ToString();
 
 
-                txtnome.Text = dgCliente.CurrentRow.Cells[1].Value.ToString();
+                txtpagamento.Text = dgCliente.CurrentRow.Cells[1].Value.ToString();
                 btnNovo.Enabled = false;
                 btnAdicionar.Enabled = false;
                 btnAlterar.Enabled = true;
                 btnCancelar.Enabled = true;
                 btnExcluir.Enabled = true;
-                txtnome.Enabled = true;
-                txtnome.Focus();
+                txtpagamento.Enabled = true;
+                txtpagamento.Focus();
             }
+        }
 
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            txtpagamento.Enabled = false;
+            txtpagamento.Clear();
+            btnNovo.Enabled = true;
+            btnAdicionar.Enabled = false;
+            btnAlterar.Enabled = false;
+            btnExcluir.Enabled = false;
         }
     }
 }
-
-

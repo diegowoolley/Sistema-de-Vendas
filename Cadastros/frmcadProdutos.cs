@@ -91,7 +91,7 @@ namespace Sistema_de_Vendas
 
         private void formatargrid()
         {
-            dgCliente.Columns[0].HeaderText = "ID";
+            dgCliente.Columns[0].HeaderText = "Cód. Produto";
             dgCliente.Columns[1].HeaderText = "Descrição";
             dgCliente.Columns[2].HeaderText = "Categoria";
             dgCliente.Columns[3].HeaderText = "Unidade de Medida";
@@ -108,7 +108,7 @@ namespace Sistema_de_Vendas
             dgCliente.Columns[14].HeaderText = "Código IPI";
             dgCliente.Columns[15].HeaderText = "Foto";
 
-            dgCliente.Columns[0].Visible = false;
+            
 
         }
 
@@ -116,9 +116,10 @@ namespace Sistema_de_Vendas
         {
             string pesquisa = txtpesquisa.Text;
             con.AbrirConexao();
-            sql = "SELECT * FROM cad_produtos WHERE nome_produto LIKE @nome";
+            sql = "SELECT * FROM cad_produtos WHERE nome_produto LIKE @nome or cod_produto LIKE @cod_produto";
             cmd = new MySqlCommand(sql, con.con);
-            cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");         
+            cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
+            cmd.Parameters.AddWithValue("@cod_produto", "%" + pesquisa + "%");
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = cmd;
             DataTable dt = new DataTable();
@@ -506,7 +507,7 @@ namespace Sistema_de_Vendas
             if (res == DialogResult.Yes)
             {
                 con.AbrirConexao();
-                sql = "DELETE FROM cad_clientes WHERE cod_clientes = @id";
+                sql = "DELETE FROM cad_produtos WHERE cod_produto = @id";
                 cmd = new MySqlCommand(sql, con.con);
                 cmd.Parameters.AddWithValue("@id", id);
                 cmd.ExecuteNonQuery();
@@ -649,5 +650,6 @@ namespace Sistema_de_Vendas
             }
 
         }
+          
     }
 }

@@ -5,16 +5,15 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Sistema_de_Vendas.Cadastros
 {
-    public partial class frmCargos : Form
+    public partial class frmcadservicos : Form
     {
-        public frmCargos()
+        public frmcadservicos()
         {
             InitializeComponent();
         }
@@ -22,11 +21,16 @@ namespace Sistema_de_Vendas.Cadastros
         string sql;
         MySqlCommand cmd;
         string id;
+        private void frmcadservicos_Load(object sender, EventArgs e)
+        {
+            Listar();
+            formatargrid();
+        }
 
         private void Listar()
         {
             con.AbrirConexao();
-            sql = "SELECT * FROM cad_cargos ORDER BY nome_cargo ASC";
+            sql = "SELECT * FROM cad_servicos ORDER BY descricao ASC";
             cmd = new MySqlCommand(sql, con.con);
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = cmd;
@@ -36,18 +40,20 @@ namespace Sistema_de_Vendas.Cadastros
             con.FecharConexao();
         }
 
+
         private void formatargrid()
         {
             dgCliente.Columns[0].HeaderText = "ID";
-            dgCliente.Columns[1].HeaderText = "Nome";
+            dgCliente.Columns[1].HeaderText = "Descrição";
+            dgCliente.Columns[2].HeaderText = "Valor";
             dgCliente.Columns[0].Visible = false;
 
         }
 
-
         private void btnNovo_Click(object sender, EventArgs e)
         {
             txtnome.Enabled = true;
+            txtvalor.Enabled = true;
             btnNovo.Enabled = false;
             btnAdicionar.Enabled = true;
             btnAlterar.Enabled = false;
@@ -59,9 +65,17 @@ namespace Sistema_de_Vendas.Cadastros
         {
             if (txtnome.Text.ToString().Trim() == "")
             {
-                MessageBox.Show("Digite um Cargo!");
+                MessageBox.Show("Digite um Serviço!");
                 txtnome.Clear();
                 txtnome.Focus();
+                return;
+            }
+
+            if (txtvalor.Text.ToString().Trim() == "")
+            {
+                MessageBox.Show("Digite um Valor!");
+                txtvalor.Clear();
+                txtvalor.Focus();
                 return;
             }
 
@@ -73,14 +87,14 @@ namespace Sistema_de_Vendas.Cadastros
                     con.AbrirConexao();
                     MySqlCommand cmdVerificar;
                     MySqlDataReader reader;
-                    cmdVerificar = new MySqlCommand("SELECT * FROM cad_cargos WHERE nome_cargo = @cargo", con.con);
+                    cmdVerificar = new MySqlCommand("SELECT * FROM cad_servicos WHERE descricao = @descricao", con.con);
                     MySqlDataAdapter da = new MySqlDataAdapter();
                     da.SelectCommand = cmdVerificar;
-                    cmdVerificar.Parameters.AddWithValue("@cargo", txtnome.Text);
+                    cmdVerificar.Parameters.AddWithValue("@descricao", txtnome.Text);
                     reader = cmdVerificar.ExecuteReader();
                     if (reader.HasRows)
                     {
-                        MessageBox.Show("Cargo já cadastrado!");
+                        MessageBox.Show("Serviço já cadastrado!");
                         txtnome.Clear();
                         txtnome.Focus();
                         con.FecharConexao();
@@ -91,9 +105,11 @@ namespace Sistema_de_Vendas.Cadastros
 
                         //insere dados na tabela
                         con.AbrirConexao();
-                        sql = "INSERT INTO cad_cargos(nome_cargo) VALUES (@cargo)";
+                        sql = "INSERT INTO cad_servicos(descricao, valor) VALUES (@descricao, @valor)";
                         cmd = new MySqlCommand(sql, con.con);
-                        cmd.Parameters.AddWithValue("@cargo", txtnome.Text);
+                        cmd.Parameters.AddWithValue("@descricao", txtnome.Text);
+                        cmd.Parameters.AddWithValue("@valor", txtvalor.Text);
+
 
 
 
@@ -102,6 +118,8 @@ namespace Sistema_de_Vendas.Cadastros
                         //desabilitar botões e campos
                         txtnome.Enabled = false;
                         txtnome.Clear();
+                        txtvalor.Enabled = false;
+                        txtvalor.Clear();
                         btnAdicionar.Enabled = false;
                         btnAlterar.Enabled = false;
                         btnExcluir.Enabled = false;
@@ -109,7 +127,7 @@ namespace Sistema_de_Vendas.Cadastros
                         btnNovo.Focus();
                         Listar();
 
-                        MessageBox.Show("Cargo cadastado com sucesso!");
+                        MessageBox.Show("Serviço cadastado com sucesso!");
                         return;
                     }
                 }
@@ -120,28 +138,38 @@ namespace Sistema_de_Vendas.Cadastros
                 }
 
             }
+
+
         }
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
             if (txtnome.Text.ToString().Trim() == "")
             {
-                MessageBox.Show("Digite um Cargo!");
+                MessageBox.Show("Digite um Serviço!");
                 txtnome.Clear();
                 txtnome.Focus();
                 return;
             }
-                   
-                       
-                       
-            try
+
+            if (txtvalor.Text.ToString().Trim() == "")
             {
-                    
+                MessageBox.Show("Digite um Valor!");
+                txtnome.Clear();
+                txtnome.Focus();
+                return;
+            }
+
+
+                try
+                {
+                                      
                         con.AbrirConexao();
-                        sql = "UPDATE cad_cargos SET nome_cargo = @nome WHERE cod_cargo = @id";
+                        sql = "UPDATE cad_servicos SET descricao = @descricao, valor = @valor WHERE cod_servico = @id";
                         cmd = new MySqlCommand(sql, con.con);
                         cmd.Parameters.AddWithValue("@id", id);
-                        cmd.Parameters.AddWithValue("@nome", txtnome.Text);
+                        cmd.Parameters.AddWithValue("@descricao", txtnome.Text);
+                        cmd.Parameters.AddWithValue("@valor", txtvalor.Text);
 
                         cmd.ExecuteNonQuery();
                         con.FecharConexao();
@@ -150,28 +178,30 @@ namespace Sistema_de_Vendas.Cadastros
                         MessageBox.Show("Registro Alterado com Sucesso!!");
                         txtnome.Enabled = false;
                         txtnome.Clear();
+                        txtvalor.Enabled = false;
+                        txtvalor.Clear();
                         btnAdicionar.Enabled = false;
                         btnAlterar.Enabled = false;
                         btnExcluir.Enabled = false;
                         btnNovo.Enabled = true;
                         btnNovo.Focus();
                     
-            }
-            catch (Exception)
-            {
+                }
+                catch (Exception)
+                {
                     MessageBox.Show("Erro ao Cadastrar!");
-                
-            }
+                }
+            
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            var res = MessageBox.Show("Deseja realmente excluir esse registro?", "Excluir Cargo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var res = MessageBox.Show("Deseja realmente excluir esse registro?", "Excluir serviço", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (res == DialogResult.Yes)
             {
                 con.AbrirConexao();
-                sql = "DELETE FROM cad_cargos WHERE cod_cargo = @id";
+                sql = "DELETE FROM cad_servico WHERE cod_servico = @id";
                 cmd = new MySqlCommand(sql, con.con);
                 cmd.Parameters.AddWithValue("@id", id);
                 cmd.ExecuteNonQuery();
@@ -181,6 +211,8 @@ namespace Sistema_de_Vendas.Cadastros
 
                 txtnome.Enabled = false;
                 txtnome.Clear();
+                txtvalor.Enabled = false;
+                txtvalor.Clear();
                 btnAdicionar.Enabled = false;
                 btnAlterar.Enabled = false;
                 btnExcluir.Enabled = false;
@@ -197,7 +229,10 @@ namespace Sistema_de_Vendas.Cadastros
         {
             txtnome.Enabled = false;
             txtnome.Clear();
+            txtvalor.Enabled = false;
+            txtvalor.Clear();
             btnAdicionar.Enabled = false;
+            btnNovo.Enabled = true;
             btnAlterar.Enabled = false;
             btnExcluir.Enabled = false;
 
@@ -209,12 +244,6 @@ namespace Sistema_de_Vendas.Cadastros
             Listar();
         }
 
-        private void frmCargos_Load(object sender, EventArgs e)
-        {
-            Listar();
-            formatargrid();
-        }
-
         private void dgCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex > -1)
@@ -224,6 +253,7 @@ namespace Sistema_de_Vendas.Cadastros
 
 
                 txtnome.Text = dgCliente.CurrentRow.Cells[1].Value.ToString();
+                txtvalor.Text = dgCliente.CurrentRow.Cells[2].Value.ToString();
                 btnNovo.Enabled = false;
                 btnAdicionar.Enabled = false;
                 btnAlterar.Enabled = true;
@@ -231,10 +261,14 @@ namespace Sistema_de_Vendas.Cadastros
                 btnExcluir.Enabled = true;
                 txtnome.Enabled = true;
                 txtnome.Focus();
+                txtvalor.Enabled=true;
+                
             }
+        }
 
+        private void txtvalor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            funcoes.DecNumber(sender , e);
         }
     }
 }
-
-

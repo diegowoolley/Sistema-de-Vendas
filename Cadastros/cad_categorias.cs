@@ -135,30 +135,10 @@ namespace Sistema_de_Vendas.Cadastros
                 txtnome.Focus();
                 return;
             }
-            else
-            {
+           
                 try
                 {
-                    con.AbrirConexao();
-                    MySqlCommand cmdVerificar;
-                    MySqlDataReader reader;
-                    cmdVerificar = new MySqlCommand("SELECT * FROM cad_categorias WHERE nome_categoria = @categoria", con.con);
-                    MySqlDataAdapter da = new MySqlDataAdapter();
-                    da.SelectCommand = cmdVerificar;
-                    cmdVerificar.Parameters.AddWithValue("@categoria", txtnome.Text);
-                    reader = cmdVerificar.ExecuteReader();
-                    if (reader.HasRows)
-                    {
-                        MessageBox.Show("Categoria já cadastrada!");
-                        txtnome.Clear();
-
-
-                        txtnome.Focus();
-                        con.FecharConexao();
-                        return;
-                    }
-                    else
-                    {
+                   
                         con.AbrirConexao();
                         sql = "UPDATE cad_categorias SET nome_categoria = @nome WHERE cod_categoria = @id";
                         cmd = new MySqlCommand(sql, con.con);
@@ -177,14 +157,14 @@ namespace Sistema_de_Vendas.Cadastros
                         btnExcluir.Enabled = false;
                         btnNovo.Enabled = true;
                         btnNovo.Focus();
-                    }
+                    
                 }
                 catch (Exception)
                 {
                     MessageBox.Show("Erro ao Cadastrar!");
                 }
-            }
         }
+        
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {

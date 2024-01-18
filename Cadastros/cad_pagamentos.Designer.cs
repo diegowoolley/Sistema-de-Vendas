@@ -1,6 +1,6 @@
 ﻿namespace Sistema_de_Vendas.Cadastros
 {
-    partial class frmcad_categorias
+    partial class cad_pagamentos
     {
         /// <summary>
         /// Required designer variable.
@@ -34,14 +34,14 @@
             this.btnAdicionar = new System.Windows.Forms.Button();
             this.btnNovo = new System.Windows.Forms.Button();
             this.dgCliente = new System.Windows.Forms.DataGridView();
-            this.txtnome = new System.Windows.Forms.TextBox();
-            this.lblnomecategoria = new System.Windows.Forms.Label();
+            this.txtpagamento = new System.Windows.Forms.TextBox();
+            this.lblpagamento = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgCliente)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(389, 194);
+            this.btnCancelar.Location = new System.Drawing.Point(393, 200);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 70;
@@ -52,7 +52,7 @@
             // btnExcluir
             // 
             this.btnExcluir.Enabled = false;
-            this.btnExcluir.Location = new System.Drawing.Point(299, 194);
+            this.btnExcluir.Location = new System.Drawing.Point(303, 200);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(75, 23);
             this.btnExcluir.TabIndex = 69;
@@ -63,7 +63,7 @@
             // btnAlterar
             // 
             this.btnAlterar.Enabled = false;
-            this.btnAlterar.Location = new System.Drawing.Point(206, 194);
+            this.btnAlterar.Location = new System.Drawing.Point(210, 200);
             this.btnAlterar.Name = "btnAlterar";
             this.btnAlterar.Size = new System.Drawing.Size(75, 23);
             this.btnAlterar.TabIndex = 68;
@@ -74,7 +74,7 @@
             // btnAdicionar
             // 
             this.btnAdicionar.Enabled = false;
-            this.btnAdicionar.Location = new System.Drawing.Point(108, 194);
+            this.btnAdicionar.Location = new System.Drawing.Point(112, 200);
             this.btnAdicionar.Name = "btnAdicionar";
             this.btnAdicionar.Size = new System.Drawing.Size(75, 23);
             this.btnAdicionar.TabIndex = 67;
@@ -84,7 +84,7 @@
             // 
             // btnNovo
             // 
-            this.btnNovo.Location = new System.Drawing.Point(12, 194);
+            this.btnNovo.Location = new System.Drawing.Point(16, 200);
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(75, 23);
             this.btnNovo.TabIndex = 66;
@@ -97,33 +97,33 @@
             this.dgCliente.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgCliente.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgCliente.Location = new System.Drawing.Point(12, 29);
+            this.dgCliente.Location = new System.Drawing.Point(16, 35);
             this.dgCliente.Name = "dgCliente";
             this.dgCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgCliente.Size = new System.Drawing.Size(452, 150);
             this.dgCliente.TabIndex = 72;
             this.dgCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgCliente_CellContentClick);
             // 
-            // txtnome
+            // txtpagamento
             // 
-            this.txtnome.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtnome.Enabled = false;
-            this.txtnome.Location = new System.Drawing.Point(118, 3);
-            this.txtnome.MaxLength = 80;
-            this.txtnome.Name = "txtnome";
-            this.txtnome.Size = new System.Drawing.Size(195, 20);
-            this.txtnome.TabIndex = 65;
+            this.txtpagamento.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtpagamento.Enabled = false;
+            this.txtpagamento.Location = new System.Drawing.Point(122, 9);
+            this.txtpagamento.MaxLength = 100;
+            this.txtpagamento.Name = "txtpagamento";
+            this.txtpagamento.Size = new System.Drawing.Size(195, 20);
+            this.txtpagamento.TabIndex = 65;
             // 
-            // lblnomecategoria
+            // lblpagamento
             // 
-            this.lblnomecategoria.AutoSize = true;
-            this.lblnomecategoria.Location = new System.Drawing.Point(6, 6);
-            this.lblnomecategoria.Name = "lblnomecategoria";
-            this.lblnomecategoria.Size = new System.Drawing.Size(101, 13);
-            this.lblnomecategoria.TabIndex = 71;
-            this.lblnomecategoria.Text = "Nome da Categoria:";
+            this.lblpagamento.AutoSize = true;
+            this.lblpagamento.Location = new System.Drawing.Point(10, 12);
+            this.lblpagamento.Name = "lblpagamento";
+            this.lblpagamento.Size = new System.Drawing.Size(111, 13);
+            this.lblpagamento.TabIndex = 71;
+            this.lblpagamento.Text = "Forma de Pagamento:";
             // 
-            // frmcad_categorias
+            // cad_pagamentos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -134,15 +134,15 @@
             this.Controls.Add(this.btnAdicionar);
             this.Controls.Add(this.btnNovo);
             this.Controls.Add(this.dgCliente);
-            this.Controls.Add(this.txtnome);
-            this.Controls.Add(this.lblnomecategoria);
+            this.Controls.Add(this.txtpagamento);
+            this.Controls.Add(this.lblpagamento);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmcad_categorias";
+            this.Name = "cad_pagamentos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Cadastro de Categorias";
-            this.Load += new System.EventHandler(this.frmcad_categorias_Load);
+            this.Text = "Cadastro de Formas de Pagamento:";
+            this.Load += new System.EventHandler(this.cad_pagamentos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgCliente)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -157,7 +157,7 @@
         private System.Windows.Forms.Button btnAdicionar;
         private System.Windows.Forms.Button btnNovo;
         private System.Windows.Forms.DataGridView dgCliente;
-        private System.Windows.Forms.TextBox txtnome;
-        private System.Windows.Forms.Label lblnomecategoria;
+        private System.Windows.Forms.TextBox txtpagamento;
+        private System.Windows.Forms.Label lblpagamento;
     }
 }
