@@ -128,18 +128,6 @@ namespace Sistema_de_Vendas
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
 
-            if (txtemail.Text.Contains("@"))
-            {
-                txtemail.Focus();
-            }
-            else
-            {
-                MessageBox.Show("E-mail inválido!");
-                txtemail.Clear();
-                txtemail.Focus();
-                return;
-            }
-
 
             if (txtnome.Text.ToString().Trim() == "")
             {
@@ -156,8 +144,24 @@ namespace Sistema_de_Vendas
                 return;
 
             }
+
+
+
+
+            if (txtemail.Text.Contains("@"))
+            {
+                txtemail.Focus();
+            }
             else
-            {       //verifica se o usuário já exite no banco de dados
+            {
+                MessageBox.Show("E-mail inválido!");
+                txtemail.Clear();
+                txtemail.Focus();
+                return;
+            }
+
+
+                //verifica se o usuário já exite no banco de dados
 
                 try
                 {
@@ -239,7 +243,7 @@ namespace Sistema_de_Vendas
                     MessageBox.Show("Erro ao cadastrar!" + ex);
                 }
 
-            }
+            
 
         }
 
@@ -391,19 +395,6 @@ namespace Sistema_de_Vendas
         private void btnAlterar_Click(object sender, EventArgs e)
         {
 
-            if (txtemail.Text.Contains("@"))
-            {
-                txtemail.Focus();
-            }
-            else
-            {
-                MessageBox.Show("E-mail inválido!");
-                txtemail.Clear();
-                txtemail.Focus();
-                return;
-            }
-
-
             if (txtnome.Text.ToString().Trim() == "")
             {
                 MessageBox.Show("Digite um nome para o fornecedor!");
@@ -419,8 +410,21 @@ namespace Sistema_de_Vendas
                 return;
 
             }
+
+
+
+            if (txtemail.Text.Contains("@"))
+            {
+                txtemail.Focus();
+            }
             else
             {
+                MessageBox.Show("E-mail inválido!");
+                txtemail.Clear();
+                txtemail.Focus();
+                return;
+            }                               
+            
 
 
                 if (alterou_foto == "s")
@@ -513,7 +517,7 @@ namespace Sistema_de_Vendas
                 Limparfoto();
                 btnNovo.Focus();
                 alterou_foto = "n";
-            }
+            
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
