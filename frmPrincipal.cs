@@ -87,5 +87,11 @@ namespace Sistema_de_Vendas
             cad_veiculos cad_Veiculos = new cad_veiculos();
             cad_Veiculos.ShowDialog();
         }
+
+        private void transportadorasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cad_transportadoras cad_Transportadoras = new cad_transportadoras();
+            cad_Transportadoras.ShowDialog();
+        }
     }
 }

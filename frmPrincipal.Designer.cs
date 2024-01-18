@@ -146,6 +146,7 @@
             this.transportadorasToolStripMenuItem.Name = "transportadorasToolStripMenuItem";
             this.transportadorasToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.transportadorasToolStripMenuItem.Text = "Transportadoras";
+            this.transportadorasToolStripMenuItem.Click += new System.EventHandler(this.transportadorasToolStripMenuItem_Click);
             // 
             // veiculosToolStripMenuItem
             // 
