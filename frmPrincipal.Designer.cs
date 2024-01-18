@@ -132,24 +132,28 @@
             this.serviçosToolStripMenuItem.Name = "serviçosToolStripMenuItem";
             this.serviçosToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.serviçosToolStripMenuItem.Text = "Serviços";
+            this.serviçosToolStripMenuItem.Click += new System.EventHandler(this.serviçosToolStripMenuItem_Click);
             // 
             // formasDePagamentoToolStripMenuItem
             // 
             this.formasDePagamentoToolStripMenuItem.Name = "formasDePagamentoToolStripMenuItem";
             this.formasDePagamentoToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.formasDePagamentoToolStripMenuItem.Text = "Formas de Pagamento";
+            this.formasDePagamentoToolStripMenuItem.Click += new System.EventHandler(this.formasDePagamentoToolStripMenuItem_Click);
             // 
             // transportadorasToolStripMenuItem
             // 
             this.transportadorasToolStripMenuItem.Name = "transportadorasToolStripMenuItem";
             this.transportadorasToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.transportadorasToolStripMenuItem.Text = "Transportadoras";
+            this.transportadorasToolStripMenuItem.Click += new System.EventHandler(this.transportadorasToolStripMenuItem_Click);
             // 
             // veiculosToolStripMenuItem
             // 
             this.veiculosToolStripMenuItem.Name = "veiculosToolStripMenuItem";
             this.veiculosToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.veiculosToolStripMenuItem.Text = "Veiculos";
+            this.veiculosToolStripMenuItem.Click += new System.EventHandler(this.veiculosToolStripMenuItem_Click);
             // 
             // vendasComprasToolStripMenuItem
             // 
@@ -269,6 +273,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::Sistema_de_Vendas.Properties.Resources.Otimizacao_de_vendas_com_ERP;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.barrastatus);
             this.Controls.Add(this.mnPrincipal);

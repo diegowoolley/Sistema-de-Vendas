@@ -69,5 +69,29 @@ namespace Sistema_de_Vendas
             frmcadProdutos frmcadProdutos = new frmcadProdutos();
             frmcadProdutos.ShowDialog();
         }
+
+        private void serviçosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmcadservicos frmservicos = new frmcadservicos();
+            frmservicos.ShowDialog();
+        }
+
+        private void formasDePagamentoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cad_pagamentos cad_pagamento = new cad_pagamentos();    
+            cad_pagamento.ShowDialog();
+        }
+
+        private void veiculosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cad_veiculos cad_Veiculos = new cad_veiculos();
+            cad_Veiculos.ShowDialog();
+        }
+
+        private void transportadorasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cad_transportadoras cad_Transportadoras = new cad_transportadoras();
+            cad_Transportadoras.ShowDialog();
+        }
     }
 }
