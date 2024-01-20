@@ -119,6 +119,7 @@
             this.txtmarca.Name = "txtmarca";
             this.txtmarca.Size = new System.Drawing.Size(140, 20);
             this.txtmarca.TabIndex = 65;
+            this.txtmarca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtmarca_KeyPress);
             // 
             // lblmarca
             // 
@@ -138,6 +139,7 @@
             this.txtmodelo.Name = "txtmodelo";
             this.txtmodelo.Size = new System.Drawing.Size(140, 20);
             this.txtmodelo.TabIndex = 73;
+            this.txtmodelo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtmodelo_KeyPress);
             // 
             // lblmodelo
             // 
@@ -157,6 +159,7 @@
             this.txtplaca.Name = "txtplaca";
             this.txtplaca.Size = new System.Drawing.Size(74, 20);
             this.txtplaca.TabIndex = 75;
+            this.txtplaca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtplaca_KeyPress);
             // 
             // label1
             // 

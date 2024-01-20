@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.SqlServer.Server;
+using MySql.Data.MySqlClient;
 using Sistema_de_Vendas.Cadastros;
 using System;
 using System.Collections.Generic;
@@ -355,41 +356,57 @@ namespace Sistema_de_Vendas
         private void txtquantidade_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                cbfornecedor.Focus();
         }
 
         private void txtpesomedio_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                txtpesobruto.Focus();
         }
 
         private void txtpesobruto_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                txtfabricante.Focus();
         }
 
         private void txtvalorcompra_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                txtvalorvenda.Focus();
         }
 
         private void txtvalorvenda_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                txtmargemlucro.Focus();
         }
 
         private void txtmargemlucro_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                txtsituacaotributaria.Focus();
         }
 
         private void txtsituacaotributaria_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                txtaliquota.Focus();
         }
              
         private void txtcodipi_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                txtdescricao.Focus();
         }
 
        
@@ -573,6 +590,8 @@ namespace Sistema_de_Vendas
         private void txtaliquota_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                txtcodipi.Focus();
         }
 
         private void cbcategoria_Enter(object sender, EventArgs e)
@@ -650,6 +669,36 @@ namespace Sistema_de_Vendas
             }
 
         }
-          
+
+        private void txtdescricao_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                cbcategoria.Focus();
+        }
+
+        private void cbcategoria_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                cbunidade.Focus();
+        }
+
+        private void cbunidade_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txtquantidade.Focus();
+        }
+
+        private void cbfornecedor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txtpesomedio.Focus();
+        }
+
+        private void txtfabricante_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txtvalorcompra.Focus();
+        }
+       
     }
 }

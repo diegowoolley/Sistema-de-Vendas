@@ -126,6 +126,7 @@
             this.txtnome.Name = "txtnome";
             this.txtnome.Size = new System.Drawing.Size(195, 20);
             this.txtnome.TabIndex = 1;
+            this.txtnome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtnome_KeyPress);
             // 
             // txtendereco
             // 
@@ -136,6 +137,7 @@
             this.txtendereco.Name = "txtendereco";
             this.txtendereco.Size = new System.Drawing.Size(195, 20);
             this.txtendereco.TabIndex = 4;
+            this.txtendereco.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtendereco_KeyPress);
             // 
             // txttelefone
             // 
@@ -278,6 +280,7 @@
             this.txtbairro.Name = "txtbairro";
             this.txtbairro.Size = new System.Drawing.Size(100, 20);
             this.txtbairro.TabIndex = 5;
+            this.txtbairro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbairro_KeyPress);
             // 
             // txtnumero
             // 
@@ -288,6 +291,7 @@
             this.txtnumero.Name = "txtnumero";
             this.txtnumero.Size = new System.Drawing.Size(44, 20);
             this.txtnumero.TabIndex = 6;
+            this.txtnumero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtnumero_KeyPress);
             // 
             // pbFoto
             // 
@@ -327,6 +331,7 @@
             this.txtcidade.Name = "txtcidade";
             this.txtcidade.Size = new System.Drawing.Size(100, 20);
             this.txtcidade.TabIndex = 7;
+            this.txtcidade.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtcidade_KeyPress);
             // 
             // cbestados
             // 
@@ -334,6 +339,7 @@
             this.cbestados.Enabled = false;
             this.cbestados.FormattingEnabled = true;
             this.cbestados.Items.AddRange(new object[] {
+            "",
             "AC",
             "AL",
             "AP",
@@ -365,6 +371,7 @@
             this.cbestados.Name = "cbestados";
             this.cbestados.Size = new System.Drawing.Size(44, 21);
             this.cbestados.TabIndex = 8;
+            this.cbestados.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbestados_KeyPress);
             // 
             // lblvalor
             // 
@@ -393,6 +400,7 @@
             this.txtvaloraberto.Name = "txtvaloraberto";
             this.txtvaloraberto.Size = new System.Drawing.Size(76, 20);
             this.txtvaloraberto.TabIndex = 12;
+            this.txtvaloraberto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtvaloraberto_KeyPress);
             // 
             // cbinadimplente
             // 
@@ -400,12 +408,14 @@
             this.cbinadimplente.Enabled = false;
             this.cbinadimplente.FormattingEnabled = true;
             this.cbinadimplente.Items.AddRange(new object[] {
+            "",
             "SIM",
             "NÃO"});
             this.cbinadimplente.Location = new System.Drawing.Point(578, 295);
             this.cbinadimplente.Name = "cbinadimplente";
             this.cbinadimplente.Size = new System.Drawing.Size(52, 21);
             this.cbinadimplente.TabIndex = 11;
+            this.cbinadimplente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbinadimplente_KeyPress);
             // 
             // txtemail
             // 
@@ -416,6 +426,7 @@
             this.txtemail.Name = "txtemail";
             this.txtemail.Size = new System.Drawing.Size(195, 20);
             this.txtemail.TabIndex = 3;
+            this.txtemail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtemail_KeyPress);
             // 
             // label1
             // 

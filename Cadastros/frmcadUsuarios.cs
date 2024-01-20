@@ -112,10 +112,24 @@ namespace Sistema_de_Vendas.Cadastros
         {
             Close();
         }
+     
 
-        private void frmcadUsuarios_Load(object sender, EventArgs e)
+        private void txtNome_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar == 13)
+                txtSenha.Focus();
+        }
 
+        private void txtSenha_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                cbPermissoes.Focus();
+        }
+
+        private void cbPermissoes_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txtNome.Focus();
         }
     }
 }

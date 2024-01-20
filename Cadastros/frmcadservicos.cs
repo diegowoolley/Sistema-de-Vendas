@@ -201,7 +201,7 @@ namespace Sistema_de_Vendas.Cadastros
             if (res == DialogResult.Yes)
             {
                 con.AbrirConexao();
-                sql = "DELETE FROM cad_servico WHERE cod_servico = @id";
+                sql = "DELETE FROM cad_servicos WHERE cod_servico = @id";
                 cmd = new MySqlCommand(sql, con.con);
                 cmd.Parameters.AddWithValue("@id", id);
                 cmd.ExecuteNonQuery();
@@ -269,6 +269,14 @@ namespace Sistema_de_Vendas.Cadastros
         private void txtvalor_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender , e);
+            if (e.KeyChar == 13)
+                txtnome.Focus();
+        }
+
+        private void txtnome_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txtvalor.Focus();
         }
     }
 }

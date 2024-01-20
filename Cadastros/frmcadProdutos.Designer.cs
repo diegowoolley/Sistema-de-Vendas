@@ -148,6 +148,7 @@
             this.txtfabricante.Name = "txtfabricante";
             this.txtfabricante.Size = new System.Drawing.Size(195, 20);
             this.txtfabricante.TabIndex = 8;
+            this.txtfabricante.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtfabricante_KeyPress);
             // 
             // lblfabricante
             // 
@@ -265,6 +266,7 @@
             this.txtdescricao.Name = "txtdescricao";
             this.txtdescricao.Size = new System.Drawing.Size(195, 20);
             this.txtdescricao.TabIndex = 1;
+            this.txtdescricao.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtdescricao_KeyPress);
             // 
             // lblmargemlucro
             // 
@@ -312,6 +314,7 @@
             this.cbcategoria.Size = new System.Drawing.Size(195, 21);
             this.cbcategoria.TabIndex = 2;
             this.cbcategoria.Enter += new System.EventHandler(this.cbcategoria_Enter);
+            this.cbcategoria.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbcategoria_KeyPress);
             // 
             // cbunidade
             // 
@@ -340,6 +343,7 @@
             this.cbunidade.Name = "cbunidade";
             this.cbunidade.Size = new System.Drawing.Size(51, 21);
             this.cbunidade.TabIndex = 3;
+            this.cbunidade.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbunidade_KeyPress);
             // 
             // lblunidadade
             // 
@@ -360,6 +364,7 @@
             this.cbfornecedor.Size = new System.Drawing.Size(195, 21);
             this.cbfornecedor.TabIndex = 5;
             this.cbfornecedor.Enter += new System.EventHandler(this.cbfornecedor_Enter);
+            this.cbfornecedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbfornecedor_KeyPress);
             // 
             // lblfornecedor
             // 

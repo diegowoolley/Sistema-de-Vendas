@@ -115,6 +115,7 @@
             this.txtemail.Name = "txtemail";
             this.txtemail.Size = new System.Drawing.Size(195, 20);
             this.txtemail.TabIndex = 74;
+            this.txtemail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtemail_KeyPress);
             // 
             // lblpesquisa
             // 
@@ -145,6 +146,7 @@
             this.cbestados.Enabled = false;
             this.cbestados.FormattingEnabled = true;
             this.cbestados.Items.AddRange(new object[] {
+            "",
             "AC",
             "AL",
             "AP",
@@ -176,6 +178,7 @@
             this.cbestados.Name = "cbestados";
             this.cbestados.Size = new System.Drawing.Size(44, 21);
             this.cbestados.TabIndex = 82;
+            this.cbestados.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbestados_KeyPress);
             // 
             // txtcidade
             // 
@@ -186,6 +189,7 @@
             this.txtcidade.Name = "txtcidade";
             this.txtcidade.Size = new System.Drawing.Size(100, 20);
             this.txtcidade.TabIndex = 81;
+            this.txtcidade.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtcidade_KeyPress);
             // 
             // lblestado
             // 
@@ -214,6 +218,7 @@
             this.txtnumero.Name = "txtnumero";
             this.txtnumero.Size = new System.Drawing.Size(44, 20);
             this.txtnumero.TabIndex = 79;
+            this.txtnumero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtnumero_KeyPress);
             // 
             // txtbairro
             // 
@@ -224,6 +229,7 @@
             this.txtbairro.Name = "txtbairro";
             this.txtbairro.Size = new System.Drawing.Size(100, 20);
             this.txtbairro.TabIndex = 78;
+            this.txtbairro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbairro_KeyPress);
             // 
             // lblnumero
             // 
@@ -366,6 +372,7 @@
             this.txtendereco.Name = "txtendereco";
             this.txtendereco.Size = new System.Drawing.Size(195, 20);
             this.txtendereco.TabIndex = 77;
+            this.txtendereco.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtendereco_KeyPress);
             // 
             // txtnome
             // 
@@ -376,6 +383,7 @@
             this.txtnome.Name = "txtnome";
             this.txtnome.Size = new System.Drawing.Size(195, 20);
             this.txtnome.TabIndex = 71;
+            this.txtnome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtnome_KeyPress);
             // 
             // lblcelular
             // 
