@@ -68,22 +68,42 @@ namespace Sistema_de_Vendas.Transacoes
 
         private void Buscarclientes()
         {
+
+
             try
             {
-                string pesquisa = cbclientes.Text;
+                string pesquisa = cbclientes.Text;            
+                              
                 con.AbrirConexao();
                 sql = "SELECT * FROM cad_clientes WHERE nome_clientes LIKE @nome or cod_clientes LIKE @cod_clientes";
                 cmd = new MySqlCommand(sql, con.con);
+                MySqlDataReader reader;
                 cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
                 cmd.Parameters.AddWithValue("@cod_clientes", "%" + pesquisa + "%");
-                MySqlDataAdapter da = new MySqlDataAdapter();
+                MySqlDataAdapter da = new MySqlDataAdapter();                
                 da.SelectCommand = cmd;
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 cbclientes.DataSource = dt;
                 cbclientes.DisplayMember = "nome_clientes";
-                con.FecharConexao();
-            }catch (Exception ex)
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    con.FecharConexao();
+
+                }
+                else
+                {
+                    MessageBox.Show("Cliente não cadastrado!");                    
+                    cbclientes.Text = "";
+                    cbclientes.Focus();                    
+                }
+
+
+
+
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show("Erro na Conexão", ex.Message);
             }
@@ -98,15 +118,26 @@ namespace Sistema_de_Vendas.Transacoes
                 con.AbrirConexao();
                 sql = "SELECT * FROM cad_servicos WHERE descricao LIKE @nome or cod_servico LIKE @cod_clientes";
                 cmd = new MySqlCommand(sql, con.con);
+                MySqlDataReader reader;
                 cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
-                cmd.Parameters.AddWithValue("@cod_clientes", "%" + pesquisa + "%");
+                cmd.Parameters.AddWithValue("@cod_clientes", "%" + pesquisa + "%");                
                 MySqlDataAdapter da = new MySqlDataAdapter();
                 da.SelectCommand = cmd;
                 DataTable dt = new DataTable();
                 da.Fill(dt);
-                cbclientes.DataSource = dt;
-                cbclientes.DisplayMember = "descricao";
-                con.FecharConexao();
+                cbservico.DataSource = dt;
+                cbservico.DisplayMember = "descricao";
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    con.FecharConexao();
+                }
+                else
+                {
+                    MessageBox.Show("Serviço não cadastrado!");
+                    cbservico.Text = "";
+                    cbservico.Focus();                    
+                }
             }catch(Exception ex)
             {
                 MessageBox.Show("Erro na Conexão", ex.Message);
@@ -121,6 +152,7 @@ namespace Sistema_de_Vendas.Transacoes
                 string pesquisa = cbproduto.Text;
                 con.AbrirConexao();
                 sql = "SELECT * FROM cad_produtos WHERE nome_produto LIKE @nome or cod_produto LIKE @cod_produto";
+                MySqlDataReader reader;
                 cmd = new MySqlCommand(sql, con.con);
                 cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
                 cmd.Parameters.AddWithValue("@cod_produto", "%" + pesquisa + "%");
@@ -130,7 +162,19 @@ namespace Sistema_de_Vendas.Transacoes
                 da.Fill(dt);
                 cbproduto.DataSource = dt;
                 cbproduto.DisplayMember = "nome_produto";
-                con.FecharConexao();
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    con.FecharConexao();
+                }
+                else
+                {
+                    MessageBox.Show("Produto não cadastrado!");
+                    cbproduto.Text = "";
+                    cbproduto.Focus();
+                    return;
+                }
+                
             }catch (Exception ex)
             {
                 MessageBox.Show("Erro na Conexão", ex.Message);
@@ -174,22 +218,11 @@ namespace Sistema_de_Vendas.Transacoes
 
         private void frmvendas_compras_Load(object sender, EventArgs e)
         {
-            listarvendedor();
-            
+            listarvendedor();            
             listarformapagamento();
             contarvendas();
 
-        }
-
-        private void btnbuscar_cliente_Click(object sender, EventArgs e)
-        {
-            Buscarclientes();
-        }
-
-        private void btnbuscar_produto_Click(object sender, EventArgs e)
-        {
-            Buscarprodutos();
-        }
+        }            
        
 
         private void btnadicionar_Click(object sender, EventArgs e)
@@ -232,6 +265,11 @@ namespace Sistema_de_Vendas.Transacoes
                 cbformapagamento.Focus();
                 return;
             }
+           
+           
+           
+            
+            
             try
             {
                 con.AbrirConexao();
@@ -245,12 +283,12 @@ namespace Sistema_de_Vendas.Transacoes
                    
                     int preco = int.Parse(txtquantidade.Text.ToString()) * int.Parse(r[10].ToString());
                     subtotal = preco;                    
-                    dataGridView1.Rows.Add(dataGridView1.RowCount, cbtransacao.Text, cbclientes.Text, r[1], txtquantidade.Text.Trim(), r[2], r[10], cbvendedor.Text, cbservico.Text, txtquantidadeservico.Text, txtdescontos.Text, cbformapagamento.Text, txtvalorpago.Text, txttroco.Text, preco);
+                    dataGridView1.Rows.Add(dataGridView1.RowCount, cbtransacao.Text, cbclientes.Text, r[1], txtquantidade.Text.Trim(), r[2], r[10], cbvendedor.Text, cbservico.Text, txtquantidadeservico.Text, preco);
                     
                 }
                 precototal = subtotal + precototal;
                 lbltotalitens.Text = "Total de itens: " +(dataGridView1.RowCount);
-                lblvalortotal.Text = "Valor Total:" + precototal;
+                lblvalortotal.Text = "Valor Total: " + precototal;
 
                 con.FecharConexao();
                 cbproduto.Text = "";
@@ -258,6 +296,7 @@ namespace Sistema_de_Vendas.Transacoes
                 cbtransacao.Enabled = false;
                 cbclientes.Enabled = false;
                 cbvendedor.Enabled = false;
+                cbproduto.Focus();
             }
             catch (Exception ex)
             {
@@ -272,6 +311,35 @@ namespace Sistema_de_Vendas.Transacoes
             BuscarServicos();
         }
 
-      
+        private void lbladdservico_DoubleClick(object sender, EventArgs e)
+        {
+            pnservico.Visible = true;
+            cbservico.Focus();
+        }
+
+        private void pnservico_Leave(object sender, EventArgs e)
+        {
+            pnservico.Visible = false;
+        }
+
+        private void btnfechar_Click(object sender, EventArgs e)
+        {
+            pnservico.Visible = false;
+        }
+
+        private void cbclientes_Leave(object sender, EventArgs e)
+        {
+            Buscarclientes();
+        }
+
+        private void cbproduto_Leave(object sender, EventArgs e)
+        {
+            Buscarprodutos();
+        }
+
+        private void txtquantidade_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            funcoes.DecNumber(sender, e);
+        }
     }
 }
