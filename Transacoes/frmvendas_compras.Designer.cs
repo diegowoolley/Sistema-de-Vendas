@@ -66,6 +66,7 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -183,6 +184,7 @@
             this.Column3,
             this.Column4,
             this.Column5,
+            this.Column15,
             this.Column14,
             this.Column6,
             this.Column7,
@@ -192,7 +194,7 @@
             this.Column13,
             this.Column11,
             this.Column12});
-            this.dataGridView1.Location = new System.Drawing.Point(5, 183);
+            this.dataGridView1.Location = new System.Drawing.Point(6, 162);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(615, 150);
@@ -201,7 +203,7 @@
             // lbldescontos
             // 
             this.lbldescontos.AutoSize = true;
-            this.lbldescontos.Location = new System.Drawing.Point(3, 125);
+            this.lbldescontos.Location = new System.Drawing.Point(143, 350);
             this.lbldescontos.Name = "lbldescontos";
             this.lbldescontos.Size = new System.Drawing.Size(61, 13);
             this.lbldescontos.TabIndex = 15;
@@ -219,7 +221,7 @@
             // 
             // txtdescontos
             // 
-            this.txtdescontos.Location = new System.Drawing.Point(61, 122);
+            this.txtdescontos.Location = new System.Drawing.Point(201, 347);
             this.txtdescontos.MaxLength = 10;
             this.txtdescontos.Name = "txtdescontos";
             this.txtdescontos.Size = new System.Drawing.Size(73, 20);
@@ -227,7 +229,7 @@
             // 
             // txtvalorpago
             // 
-            this.txtvalorpago.Location = new System.Drawing.Point(428, 122);
+            this.txtvalorpago.Location = new System.Drawing.Point(63, 347);
             this.txtvalorpago.MaxLength = 10;
             this.txtvalorpago.Name = "txtvalorpago";
             this.txtvalorpago.Size = new System.Drawing.Size(74, 20);
@@ -236,7 +238,7 @@
             // lblvalorpago
             // 
             this.lblvalorpago.AutoSize = true;
-            this.lblvalorpago.Location = new System.Drawing.Point(370, 125);
+            this.lblvalorpago.Location = new System.Drawing.Point(5, 350);
             this.lblvalorpago.Name = "lblvalorpago";
             this.lblvalorpago.Size = new System.Drawing.Size(61, 13);
             this.lblvalorpago.TabIndex = 18;
@@ -244,7 +246,8 @@
             // 
             // txttroco
             // 
-            this.txttroco.Location = new System.Drawing.Point(543, 122);
+            this.txttroco.Enabled = false;
+            this.txttroco.Location = new System.Drawing.Point(318, 347);
             this.txttroco.MaxLength = 10;
             this.txttroco.Name = "txttroco";
             this.txttroco.Size = new System.Drawing.Size(78, 20);
@@ -253,7 +256,7 @@
             // lbltroco
             // 
             this.lbltroco.AutoSize = true;
-            this.lbltroco.Location = new System.Drawing.Point(505, 125);
+            this.lbltroco.Location = new System.Drawing.Point(280, 350);
             this.lbltroco.Name = "lbltroco";
             this.lbltroco.Size = new System.Drawing.Size(38, 13);
             this.lbltroco.TabIndex = 20;
@@ -263,7 +266,7 @@
             // 
             this.cbformapagamento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbformapagamento.FormattingEnabled = true;
-            this.cbformapagamento.Location = new System.Drawing.Point(249, 122);
+            this.cbformapagamento.Location = new System.Drawing.Point(114, 320);
             this.cbformapagamento.Name = "cbformapagamento";
             this.cbformapagamento.Size = new System.Drawing.Size(121, 21);
             this.cbformapagamento.TabIndex = 12;
@@ -271,7 +274,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(140, 125);
+            this.label1.Location = new System.Drawing.Point(5, 323);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(111, 13);
             this.label1.TabIndex = 22;
@@ -300,7 +303,7 @@
             // 
             // btnconcluir
             // 
-            this.btnconcluir.Location = new System.Drawing.Point(246, 352);
+            this.btnconcluir.Location = new System.Drawing.Point(405, 344);
             this.btnconcluir.Name = "btnconcluir";
             this.btnconcluir.Size = new System.Drawing.Size(129, 23);
             this.btnconcluir.TabIndex = 17;
@@ -309,7 +312,7 @@
             // 
             // btncancelar
             // 
-            this.btncancelar.Location = new System.Drawing.Point(540, 352);
+            this.btncancelar.Location = new System.Drawing.Point(540, 344);
             this.btncancelar.Name = "btncancelar";
             this.btncancelar.Size = new System.Drawing.Size(74, 23);
             this.btncancelar.TabIndex = 18;
@@ -362,7 +365,7 @@
             // 
             // btnadicionar
             // 
-            this.btnadicionar.Location = new System.Drawing.Point(169, 154);
+            this.btnadicionar.Location = new System.Drawing.Point(153, 133);
             this.btnadicionar.Name = "btnadicionar";
             this.btnadicionar.Size = new System.Drawing.Size(134, 23);
             this.btnadicionar.TabIndex = 15;
@@ -392,7 +395,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(309, 154);
+            this.button1.Location = new System.Drawing.Point(293, 133);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(134, 23);
             this.button1.TabIndex = 16;
@@ -433,6 +436,13 @@
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
             this.Column5.Width = 103;
+            // 
+            // Column15
+            // 
+            this.Column15.HeaderText = "CATEGORIA";
+            this.Column15.Name = "Column15";
+            this.Column15.ReadOnly = true;
+            this.Column15.Width = 94;
             // 
             // Column14
             // 
@@ -501,7 +511,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(625, 384);
+            this.ClientSize = new System.Drawing.Size(625, 377);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.cbproduto);
             this.Controls.Add(this.cbclientes);
@@ -588,6 +598,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;

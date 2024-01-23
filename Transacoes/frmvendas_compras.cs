@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.LinkLabel;
 
 namespace Sistema_de_Vendas.Transacoes
 {
@@ -21,6 +22,7 @@ namespace Sistema_de_Vendas.Transacoes
         string sql;
         MySqlCommand cmd;      
         string id;
+        int subtotal;
         int precototal;
 
         private void listarvendedor()
@@ -126,6 +128,7 @@ namespace Sistema_de_Vendas.Transacoes
         {
             Buscarprodutos();
         }
+       
 
         private void btnadicionar_Click(object sender, EventArgs e)
         {
@@ -177,18 +180,27 @@ namespace Sistema_de_Vendas.Transacoes
                
                 while(r.Read())
                 {
+                    
                     int preco = int.Parse(txtquantidade.Text.ToString()) * int.Parse(r[10].ToString());
-                    precototal = preco;
-                    dataGridView1.Rows.Add(dataGridView1.RowCount, cbtransacao.Text, cbclientes.Text, r[1], txtquantidade.Text.Trim(), r[10], cbvendedor.Text, cbservico.Text, txtquantidadeservico.Text, txtdescontos.Text, cbformapagamento.Text, txtvalorpago.Text, txttroco.Text, preco);
+                    subtotal = preco;                    
+                    dataGridView1.Rows.Add(dataGridView1.RowCount, cbtransacao.Text, cbclientes.Text, r[1], txtquantidade.Text.Trim(), r[2], r[10], cbvendedor.Text, cbservico.Text, txtquantidadeservico.Text, txtdescontos.Text, cbformapagamento.Text, txtvalorpago.Text, txttroco.Text, preco);
+                    
                 }
-                lbltotalitens.Text = "Total de itens: " +(dataGridView1.RowCount );
+                precototal = subtotal + precototal;
+                lbltotalitens.Text = "Total de itens: " +(dataGridView1.RowCount);
                 lblvalortotal.Text = "Valor Total:" + precototal;
+
                 con.FecharConexao();
+                cbproduto.Text = "";
+                txtquantidade.Clear();
+                cbtransacao.Enabled = false;
+                cbclientes.Enabled = false;
+                cbvendedor.Enabled = false;
             }
             catch (Exception ex)
             {
 
-                MessageBox.Show("erro de conexão"+ ex);
+                MessageBox.Show("Erro de conexão"+ ex);
             }
            
         }
@@ -197,5 +209,7 @@ namespace Sistema_de_Vendas.Transacoes
         {
             BuscarServicos();
         }
+
+    
     }
 }
