@@ -1,4 +1,5 @@
 ﻿using Sistema_de_Vendas.Cadastros;
+using Sistema_de_Vendas.Transacoes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -92,6 +93,12 @@ namespace Sistema_de_Vendas
         {
             cad_transportadoras cad_Transportadoras = new cad_transportadoras();
             cad_Transportadoras.ShowDialog();
+        }
+
+        private void vendasComprasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+         frmvendas_compras frmvendas_Compras = new frmvendas_compras(); 
+            frmvendas_Compras.ShowDialog();
         }
     }
 }

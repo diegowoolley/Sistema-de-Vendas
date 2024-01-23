@@ -160,6 +160,7 @@
             this.vendasComprasToolStripMenuItem.Name = "vendasComprasToolStripMenuItem";
             this.vendasComprasToolStripMenuItem.Size = new System.Drawing.Size(112, 20);
             this.vendasComprasToolStripMenuItem.Text = "Vendas\\Compras:";
+            this.vendasComprasToolStripMenuItem.Click += new System.EventHandler(this.vendasComprasToolStripMenuItem_Click);
             // 
             // financeiroToolStripMenuItem
             // 
