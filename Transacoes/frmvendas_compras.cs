@@ -24,6 +24,7 @@ namespace Sistema_de_Vendas.Transacoes
         string id;
         int subtotal;
         int precototal;
+        string indiceselecionado;
 
         private void listarvendedor()
         {
@@ -329,17 +330,66 @@ namespace Sistema_de_Vendas.Transacoes
 
         private void cbclientes_Leave(object sender, EventArgs e)
         {
+            if (cbclientes.Text == "")
+            {
+                cbproduto.Focus();
+                return;
+            }
             Buscarclientes();
         }
 
         private void cbproduto_Leave(object sender, EventArgs e)
         {
+            if(cbproduto.Text == "")
+            {
+                txtquantidade.Focus();
+                return;
+            }
             Buscarprodutos();
         }
 
         private void txtquantidade_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender, e);
+        }
+
+        private void btnremoveritens_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dataGridView1.RowCount > 0)
+                {
+                    dataGridView1.Rows.RemoveAt(int.Parse(indiceselecionado));                    
+                    precototal = precototal - subtotal;
+                    lbltotalitens.Text = "Total de itens: " + (dataGridView1.RowCount);
+                    lblvalortotal.Text = "Valor total: " + precototal;
+                    if (dataGridView1.RowCount < 1)
+                    {
+                        precototal = 0;
+                        lblvalortotal.Text = "Valor total: " + precototal;
+                    }
+                }
+                else
+                {
+                    precototal = 0;
+                    MessageBox.Show("Não existem itens para remover!");
+                    lbltotalitens.Text = "Total de itens: " +(dataGridView1.RowCount);
+                    lblvalortotal.Text = "Valor total: " + precototal;
+                }
+                
+            }catch (Exception)
+            {
+                MessageBox.Show("Selecione um item para excluir");
+            }
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                indiceselecionado = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+                subtotal = int.Parse(dataGridView1.CurrentRow.Cells[10].Value.ToString());
+            }
         }
     }
 }
