@@ -39,6 +39,21 @@
             this.btnbuscar_cliente = new System.Windows.Forms.Button();
             this.lblcliente = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbldescontos = new System.Windows.Forms.Label();
             this.lblvalortotal = new System.Windows.Forms.Label();
             this.txtdescontos = new System.Windows.Forms.TextBox();
@@ -60,22 +75,7 @@
             this.btnadicionar = new System.Windows.Forms.Button();
             this.cbclientes = new System.Windows.Forms.ComboBox();
             this.cbproduto = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnremoveritens = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -200,214 +200,12 @@
             this.dataGridView1.Size = new System.Drawing.Size(615, 150);
             this.dataGridView1.TabIndex = 19;
             // 
-            // lbldescontos
-            // 
-            this.lbldescontos.AutoSize = true;
-            this.lbldescontos.Location = new System.Drawing.Point(143, 350);
-            this.lbldescontos.Name = "lbldescontos";
-            this.lbldescontos.Size = new System.Drawing.Size(61, 13);
-            this.lbldescontos.TabIndex = 15;
-            this.lbldescontos.Text = "Descontos:";
-            // 
-            // lblvalortotal
-            // 
-            this.lblvalortotal.AutoSize = true;
-            this.lblvalortotal.ForeColor = System.Drawing.Color.Red;
-            this.lblvalortotal.Location = new System.Drawing.Point(509, 9);
-            this.lblvalortotal.Name = "lblvalortotal";
-            this.lblvalortotal.Size = new System.Drawing.Size(57, 13);
-            this.lblvalortotal.TabIndex = 16;
-            this.lblvalortotal.Text = "Valor total:";
-            // 
-            // txtdescontos
-            // 
-            this.txtdescontos.Location = new System.Drawing.Point(201, 347);
-            this.txtdescontos.MaxLength = 10;
-            this.txtdescontos.Name = "txtdescontos";
-            this.txtdescontos.Size = new System.Drawing.Size(73, 20);
-            this.txtdescontos.TabIndex = 11;
-            // 
-            // txtvalorpago
-            // 
-            this.txtvalorpago.Location = new System.Drawing.Point(63, 347);
-            this.txtvalorpago.MaxLength = 10;
-            this.txtvalorpago.Name = "txtvalorpago";
-            this.txtvalorpago.Size = new System.Drawing.Size(74, 20);
-            this.txtvalorpago.TabIndex = 13;
-            // 
-            // lblvalorpago
-            // 
-            this.lblvalorpago.AutoSize = true;
-            this.lblvalorpago.Location = new System.Drawing.Point(5, 350);
-            this.lblvalorpago.Name = "lblvalorpago";
-            this.lblvalorpago.Size = new System.Drawing.Size(61, 13);
-            this.lblvalorpago.TabIndex = 18;
-            this.lblvalorpago.Text = "Valor pago:";
-            // 
-            // txttroco
-            // 
-            this.txttroco.Enabled = false;
-            this.txttroco.Location = new System.Drawing.Point(318, 347);
-            this.txttroco.MaxLength = 10;
-            this.txttroco.Name = "txttroco";
-            this.txttroco.Size = new System.Drawing.Size(78, 20);
-            this.txttroco.TabIndex = 14;
-            // 
-            // lbltroco
-            // 
-            this.lbltroco.AutoSize = true;
-            this.lbltroco.Location = new System.Drawing.Point(280, 350);
-            this.lbltroco.Name = "lbltroco";
-            this.lbltroco.Size = new System.Drawing.Size(38, 13);
-            this.lbltroco.TabIndex = 20;
-            this.lbltroco.Text = "Troco:";
-            // 
-            // cbformapagamento
-            // 
-            this.cbformapagamento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbformapagamento.FormattingEnabled = true;
-            this.cbformapagamento.Location = new System.Drawing.Point(114, 320);
-            this.cbformapagamento.Name = "cbformapagamento";
-            this.cbformapagamento.Size = new System.Drawing.Size(121, 21);
-            this.cbformapagamento.TabIndex = 12;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 323);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(111, 13);
-            this.label1.TabIndex = 22;
-            this.label1.Text = "Forma de Pagamento:";
-            // 
-            // cbtransacao
-            // 
-            this.cbtransacao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbtransacao.FormattingEnabled = true;
-            this.cbtransacao.Items.AddRange(new object[] {
-            "VENDA",
-            "ORÇAMENTO"});
-            this.cbtransacao.Location = new System.Drawing.Point(99, 37);
-            this.cbtransacao.Name = "cbtransacao";
-            this.cbtransacao.Size = new System.Drawing.Size(121, 21);
-            this.cbtransacao.TabIndex = 1;
-            // 
-            // lbltransacao
-            // 
-            this.lbltransacao.AutoSize = true;
-            this.lbltransacao.Location = new System.Drawing.Point(3, 41);
-            this.lbltransacao.Name = "lbltransacao";
-            this.lbltransacao.Size = new System.Drawing.Size(81, 13);
-            this.lbltransacao.TabIndex = 24;
-            this.lbltransacao.Text = "Tipo transação:";
-            // 
-            // btnconcluir
-            // 
-            this.btnconcluir.Location = new System.Drawing.Point(405, 344);
-            this.btnconcluir.Name = "btnconcluir";
-            this.btnconcluir.Size = new System.Drawing.Size(129, 23);
-            this.btnconcluir.TabIndex = 17;
-            this.btnconcluir.Text = "Concluir Transação";
-            this.btnconcluir.UseVisualStyleBackColor = true;
-            // 
-            // btncancelar
-            // 
-            this.btncancelar.Location = new System.Drawing.Point(540, 344);
-            this.btncancelar.Name = "btncancelar";
-            this.btncancelar.Size = new System.Drawing.Size(74, 23);
-            this.btncancelar.TabIndex = 18;
-            this.btncancelar.Text = "Cancelar";
-            this.btncancelar.UseVisualStyleBackColor = true;
-            // 
-            // btnbuscarservico
-            // 
-            this.btnbuscarservico.Location = new System.Drawing.Point(267, 93);
-            this.btnbuscarservico.Name = "btnbuscarservico";
-            this.btnbuscarservico.Size = new System.Drawing.Size(51, 23);
-            this.btnbuscarservico.TabIndex = 9;
-            this.btnbuscarservico.Text = "Buscar";
-            this.btnbuscarservico.UseVisualStyleBackColor = true;
-            this.btnbuscarservico.Click += new System.EventHandler(this.btnbuscarservico_Click);
-            // 
-            // lblservico
-            // 
-            this.lblservico.AutoSize = true;
-            this.lblservico.Location = new System.Drawing.Point(3, 96);
-            this.lblservico.Name = "lblservico";
-            this.lblservico.Size = new System.Drawing.Size(84, 13);
-            this.lblservico.TabIndex = 27;
-            this.lblservico.Text = "Agregar serviço:";
-            // 
-            // txtquantidadeservico
-            // 
-            this.txtquantidadeservico.Location = new System.Drawing.Point(386, 97);
-            this.txtquantidadeservico.MaxLength = 10;
-            this.txtquantidadeservico.Name = "txtquantidadeservico";
-            this.txtquantidadeservico.Size = new System.Drawing.Size(54, 20);
-            this.txtquantidadeservico.TabIndex = 10;
-            // 
-            // lblquantidadeservico
-            // 
-            this.lblquantidadeservico.AutoSize = true;
-            this.lblquantidadeservico.Location = new System.Drawing.Point(324, 100);
-            this.lblquantidadeservico.Name = "lblquantidadeservico";
-            this.lblquantidadeservico.Size = new System.Drawing.Size(65, 13);
-            this.lblquantidadeservico.TabIndex = 29;
-            this.lblquantidadeservico.Text = "Quantidade:";
-            // 
-            // cbservico
-            // 
-            this.cbservico.FormattingEnabled = true;
-            this.cbservico.Location = new System.Drawing.Point(99, 95);
-            this.cbservico.Name = "cbservico";
-            this.cbservico.Size = new System.Drawing.Size(167, 21);
-            this.cbservico.TabIndex = 8;
-            // 
-            // btnadicionar
-            // 
-            this.btnadicionar.Location = new System.Drawing.Point(153, 133);
-            this.btnadicionar.Name = "btnadicionar";
-            this.btnadicionar.Size = new System.Drawing.Size(134, 23);
-            this.btnadicionar.TabIndex = 15;
-            this.btnadicionar.Text = "Adicionar itens";
-            this.btnadicionar.UseVisualStyleBackColor = true;
-            this.btnadicionar.Click += new System.EventHandler(this.btnadicionar_Click);
-            // 
-            // cbclientes
-            // 
-            this.cbclientes.FormattingEnabled = true;
-            this.cbclientes.Location = new System.Drawing.Point(350, 37);
-            this.cbclientes.MaxDropDownItems = 10;
-            this.cbclientes.MaxLength = 80;
-            this.cbclientes.Name = "cbclientes";
-            this.cbclientes.Size = new System.Drawing.Size(167, 21);
-            this.cbclientes.TabIndex = 2;
-            // 
-            // cbproduto
-            // 
-            this.cbproduto.FormattingEnabled = true;
-            this.cbproduto.Location = new System.Drawing.Point(99, 66);
-            this.cbproduto.MaxDropDownItems = 10;
-            this.cbproduto.MaxLength = 80;
-            this.cbproduto.Name = "cbproduto";
-            this.cbproduto.Size = new System.Drawing.Size(167, 21);
-            this.cbproduto.TabIndex = 4;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(293, 133);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(134, 23);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "Remover itens";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // Column1
             // 
             this.Column1.HeaderText = "CÓD VENDA";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
-            this.Column1.Width = 95;
+            this.Column1.Width = 88;
             // 
             // Column2
             // 
@@ -507,12 +305,214 @@
             this.Column12.ReadOnly = true;
             this.Column12.Width = 97;
             // 
+            // lbldescontos
+            // 
+            this.lbldescontos.AutoSize = true;
+            this.lbldescontos.Location = new System.Drawing.Point(143, 350);
+            this.lbldescontos.Name = "lbldescontos";
+            this.lbldescontos.Size = new System.Drawing.Size(61, 13);
+            this.lbldescontos.TabIndex = 15;
+            this.lbldescontos.Text = "Descontos:";
+            // 
+            // lblvalortotal
+            // 
+            this.lblvalortotal.AutoSize = true;
+            this.lblvalortotal.ForeColor = System.Drawing.Color.Red;
+            this.lblvalortotal.Location = new System.Drawing.Point(509, 9);
+            this.lblvalortotal.Name = "lblvalortotal";
+            this.lblvalortotal.Size = new System.Drawing.Size(57, 13);
+            this.lblvalortotal.TabIndex = 16;
+            this.lblvalortotal.Text = "Valor total:";
+            // 
+            // txtdescontos
+            // 
+            this.txtdescontos.Location = new System.Drawing.Point(201, 347);
+            this.txtdescontos.MaxLength = 10;
+            this.txtdescontos.Name = "txtdescontos";
+            this.txtdescontos.Size = new System.Drawing.Size(73, 20);
+            this.txtdescontos.TabIndex = 15;
+            // 
+            // txtvalorpago
+            // 
+            this.txtvalorpago.Location = new System.Drawing.Point(63, 347);
+            this.txtvalorpago.MaxLength = 10;
+            this.txtvalorpago.Name = "txtvalorpago";
+            this.txtvalorpago.Size = new System.Drawing.Size(74, 20);
+            this.txtvalorpago.TabIndex = 14;
+            // 
+            // lblvalorpago
+            // 
+            this.lblvalorpago.AutoSize = true;
+            this.lblvalorpago.Location = new System.Drawing.Point(5, 350);
+            this.lblvalorpago.Name = "lblvalorpago";
+            this.lblvalorpago.Size = new System.Drawing.Size(61, 13);
+            this.lblvalorpago.TabIndex = 18;
+            this.lblvalorpago.Text = "Valor pago:";
+            // 
+            // txttroco
+            // 
+            this.txttroco.Enabled = false;
+            this.txttroco.Location = new System.Drawing.Point(318, 347);
+            this.txttroco.MaxLength = 10;
+            this.txttroco.Name = "txttroco";
+            this.txttroco.Size = new System.Drawing.Size(78, 20);
+            this.txttroco.TabIndex = 16;
+            // 
+            // lbltroco
+            // 
+            this.lbltroco.AutoSize = true;
+            this.lbltroco.Location = new System.Drawing.Point(280, 350);
+            this.lbltroco.Name = "lbltroco";
+            this.lbltroco.Size = new System.Drawing.Size(38, 13);
+            this.lbltroco.TabIndex = 20;
+            this.lbltroco.Text = "Troco:";
+            // 
+            // cbformapagamento
+            // 
+            this.cbformapagamento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbformapagamento.FormattingEnabled = true;
+            this.cbformapagamento.Location = new System.Drawing.Point(114, 320);
+            this.cbformapagamento.Name = "cbformapagamento";
+            this.cbformapagamento.Size = new System.Drawing.Size(121, 21);
+            this.cbformapagamento.TabIndex = 13;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(5, 323);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(111, 13);
+            this.label1.TabIndex = 22;
+            this.label1.Text = "Forma de Pagamento:";
+            // 
+            // cbtransacao
+            // 
+            this.cbtransacao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbtransacao.FormattingEnabled = true;
+            this.cbtransacao.Items.AddRange(new object[] {
+            "VENDA",
+            "ORÇAMENTO"});
+            this.cbtransacao.Location = new System.Drawing.Point(99, 37);
+            this.cbtransacao.Name = "cbtransacao";
+            this.cbtransacao.Size = new System.Drawing.Size(121, 21);
+            this.cbtransacao.TabIndex = 1;
+            // 
+            // lbltransacao
+            // 
+            this.lbltransacao.AutoSize = true;
+            this.lbltransacao.Location = new System.Drawing.Point(3, 41);
+            this.lbltransacao.Name = "lbltransacao";
+            this.lbltransacao.Size = new System.Drawing.Size(81, 13);
+            this.lbltransacao.TabIndex = 24;
+            this.lbltransacao.Text = "Tipo transação:";
+            // 
+            // btnconcluir
+            // 
+            this.btnconcluir.Location = new System.Drawing.Point(405, 344);
+            this.btnconcluir.Name = "btnconcluir";
+            this.btnconcluir.Size = new System.Drawing.Size(129, 23);
+            this.btnconcluir.TabIndex = 17;
+            this.btnconcluir.Text = "Concluir Transação";
+            this.btnconcluir.UseVisualStyleBackColor = true;
+            // 
+            // btncancelar
+            // 
+            this.btncancelar.Location = new System.Drawing.Point(540, 344);
+            this.btncancelar.Name = "btncancelar";
+            this.btncancelar.Size = new System.Drawing.Size(74, 23);
+            this.btncancelar.TabIndex = 18;
+            this.btncancelar.Text = "Cancelar";
+            this.btncancelar.UseVisualStyleBackColor = true;
+            // 
+            // btnbuscarservico
+            // 
+            this.btnbuscarservico.Location = new System.Drawing.Point(267, 93);
+            this.btnbuscarservico.Name = "btnbuscarservico";
+            this.btnbuscarservico.Size = new System.Drawing.Size(51, 23);
+            this.btnbuscarservico.TabIndex = 9;
+            this.btnbuscarservico.Text = "Buscar";
+            this.btnbuscarservico.UseVisualStyleBackColor = true;
+            this.btnbuscarservico.Click += new System.EventHandler(this.btnbuscarservico_Click);
+            // 
+            // lblservico
+            // 
+            this.lblservico.AutoSize = true;
+            this.lblservico.Location = new System.Drawing.Point(3, 96);
+            this.lblservico.Name = "lblservico";
+            this.lblservico.Size = new System.Drawing.Size(84, 13);
+            this.lblservico.TabIndex = 27;
+            this.lblservico.Text = "Agregar serviço:";
+            // 
+            // txtquantidadeservico
+            // 
+            this.txtquantidadeservico.Location = new System.Drawing.Point(386, 97);
+            this.txtquantidadeservico.MaxLength = 10;
+            this.txtquantidadeservico.Name = "txtquantidadeservico";
+            this.txtquantidadeservico.Size = new System.Drawing.Size(54, 20);
+            this.txtquantidadeservico.TabIndex = 10;
+            // 
+            // lblquantidadeservico
+            // 
+            this.lblquantidadeservico.AutoSize = true;
+            this.lblquantidadeservico.Location = new System.Drawing.Point(324, 100);
+            this.lblquantidadeservico.Name = "lblquantidadeservico";
+            this.lblquantidadeservico.Size = new System.Drawing.Size(65, 13);
+            this.lblquantidadeservico.TabIndex = 29;
+            this.lblquantidadeservico.Text = "Quantidade:";
+            // 
+            // cbservico
+            // 
+            this.cbservico.FormattingEnabled = true;
+            this.cbservico.Location = new System.Drawing.Point(99, 95);
+            this.cbservico.Name = "cbservico";
+            this.cbservico.Size = new System.Drawing.Size(167, 21);
+            this.cbservico.TabIndex = 8;
+            // 
+            // btnadicionar
+            // 
+            this.btnadicionar.Location = new System.Drawing.Point(153, 133);
+            this.btnadicionar.Name = "btnadicionar";
+            this.btnadicionar.Size = new System.Drawing.Size(134, 23);
+            this.btnadicionar.TabIndex = 11;
+            this.btnadicionar.Text = "Adicionar itens";
+            this.btnadicionar.UseVisualStyleBackColor = true;
+            this.btnadicionar.Click += new System.EventHandler(this.btnadicionar_Click);
+            // 
+            // cbclientes
+            // 
+            this.cbclientes.FormattingEnabled = true;
+            this.cbclientes.Location = new System.Drawing.Point(350, 37);
+            this.cbclientes.MaxDropDownItems = 10;
+            this.cbclientes.MaxLength = 80;
+            this.cbclientes.Name = "cbclientes";
+            this.cbclientes.Size = new System.Drawing.Size(167, 21);
+            this.cbclientes.TabIndex = 2;
+            // 
+            // cbproduto
+            // 
+            this.cbproduto.FormattingEnabled = true;
+            this.cbproduto.Location = new System.Drawing.Point(99, 66);
+            this.cbproduto.MaxDropDownItems = 10;
+            this.cbproduto.MaxLength = 80;
+            this.cbproduto.Name = "cbproduto";
+            this.cbproduto.Size = new System.Drawing.Size(167, 21);
+            this.cbproduto.TabIndex = 4;
+            // 
+            // btnremoveritens
+            // 
+            this.btnremoveritens.Location = new System.Drawing.Point(293, 133);
+            this.btnremoveritens.Name = "btnremoveritens";
+            this.btnremoveritens.Size = new System.Drawing.Size(134, 23);
+            this.btnremoveritens.TabIndex = 12;
+            this.btnremoveritens.Text = "Remover itens";
+            this.btnremoveritens.UseVisualStyleBackColor = true;            
+            // 
             // frmvendas_compras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(625, 377);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnremoveritens);
             this.Controls.Add(this.cbproduto);
             this.Controls.Add(this.cbclientes);
             this.Controls.Add(this.btnadicionar);
@@ -592,7 +592,7 @@
         private System.Windows.Forms.Button btnadicionar;
         private System.Windows.Forms.ComboBox cbclientes;
         private System.Windows.Forms.ComboBox cbproduto;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnremoveritens;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;

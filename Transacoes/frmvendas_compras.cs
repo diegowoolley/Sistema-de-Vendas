@@ -27,88 +27,149 @@ namespace Sistema_de_Vendas.Transacoes
 
         private void listarvendedor()
         {
-            con.AbrirConexao();
-            sql = "SELECT nome_funcionario FROM cad_funcionarios WHERE cargo_funcionario = 'VENDEDOR' ORDER BY nome_funcionario asc";
-            cmd = new MySqlCommand(sql, con.con);            
-            MySqlDataAdapter da = new MySqlDataAdapter();
-            da.SelectCommand = cmd;
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            cbvendedor.DataSource = dt;
-            cbvendedor.DisplayMember = "nome_funcionario";
-            con.FecharConexao();
-        }      
+            try
+            {
+                con.AbrirConexao();
+                sql = "SELECT nome_funcionario FROM cad_funcionarios WHERE cargo_funcionario = 'VENDEDOR' ORDER BY nome_funcionario asc";
+                cmd = new MySqlCommand(sql, con.con);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                cbvendedor.DataSource = dt;
+                cbvendedor.DisplayMember = "nome_funcionario";
+                con.FecharConexao();
+            }catch (Exception ex)
+            {
+                MessageBox.Show("Erro na Conexão",ex.Message);
+            }
+            }
 
         private void listarformapagamento()
         {
-            con.AbrirConexao();
-            sql = "SELECT forma_pagamento FROM cad_pagamentos ORDER BY forma_pagamento asc";
-            cmd = new MySqlCommand(sql, con.con);
-            MySqlDataAdapter da = new MySqlDataAdapter();
-            da.SelectCommand = cmd;
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            cbformapagamento.DataSource = dt;
-            cbformapagamento.DisplayMember = "forma_pagamento";
-            con.FecharConexao();
-        }
+            try
+            {
+                con.AbrirConexao();
+                sql = "SELECT forma_pagamento FROM cad_pagamentos ORDER BY forma_pagamento asc";
+                cmd = new MySqlCommand(sql, con.con);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                cbformapagamento.DataSource = dt;
+                cbformapagamento.DisplayMember = "forma_pagamento";
+                con.FecharConexao();
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Erro na Conexão", ex.Message);
+            }
+
+            }
 
         private void Buscarclientes()
         {
-            string pesquisa = cbclientes.Text;
-            con.AbrirConexao();
-            sql = "SELECT * FROM cad_clientes WHERE nome_clientes LIKE @nome or cod_clientes LIKE @cod_clientes";
-            cmd = new MySqlCommand(sql, con.con);
-            cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
-            cmd.Parameters.AddWithValue("@cod_clientes", "%" + pesquisa + "%");
-            MySqlDataAdapter da = new MySqlDataAdapter();
-            da.SelectCommand = cmd;
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            cbclientes.DataSource = dt;
-            cbclientes.DisplayMember = "nome_clientes";
-            con.FecharConexao();
-           
+            try
+            {
+                string pesquisa = cbclientes.Text;
+                con.AbrirConexao();
+                sql = "SELECT * FROM cad_clientes WHERE nome_clientes LIKE @nome or cod_clientes LIKE @cod_clientes";
+                cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
+                cmd.Parameters.AddWithValue("@cod_clientes", "%" + pesquisa + "%");
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                cbclientes.DataSource = dt;
+                cbclientes.DisplayMember = "nome_clientes";
+                con.FecharConexao();
+            }catch (Exception ex)
+            {
+                MessageBox.Show("Erro na Conexão", ex.Message);
+            }
 
         }
 
         private void BuscarServicos()
         {
-            string pesquisa = cbservico.Text;
-            con.AbrirConexao();
-            sql = "SELECT * FROM cad_servicos WHERE descricao LIKE @nome or cod_servico LIKE @cod_clientes";
-            cmd = new MySqlCommand(sql, con.con);
-            cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
-            cmd.Parameters.AddWithValue("@cod_clientes", "%" + pesquisa + "%");
-            MySqlDataAdapter da = new MySqlDataAdapter();
-            da.SelectCommand = cmd;
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            cbclientes.DataSource = dt;
-            cbclientes.DisplayMember = "descricao";
-            con.FecharConexao();
-
+            try
+            {
+                string pesquisa = cbservico.Text;
+                con.AbrirConexao();
+                sql = "SELECT * FROM cad_servicos WHERE descricao LIKE @nome or cod_servico LIKE @cod_clientes";
+                cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
+                cmd.Parameters.AddWithValue("@cod_clientes", "%" + pesquisa + "%");
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                cbclientes.DataSource = dt;
+                cbclientes.DisplayMember = "descricao";
+                con.FecharConexao();
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Erro na Conexão", ex.Message);
+            }
 
         }
 
         private void Buscarprodutos()
         {
-            string pesquisa = cbproduto.Text;
-            con.AbrirConexao();
-            sql = "SELECT * FROM cad_produtos WHERE nome_produto LIKE @nome or cod_produto LIKE @cod_produto";
-            cmd = new MySqlCommand(sql, con.con);
-            cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
-            cmd.Parameters.AddWithValue("@cod_produto", "%" + pesquisa + "%");
-            MySqlDataAdapter da = new MySqlDataAdapter();
-            da.SelectCommand = cmd;
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            cbproduto.DataSource = dt;
-            cbproduto.DisplayMember = "nome_produto";
-            con.FecharConexao();
-
+            try
+            {
+                string pesquisa = cbproduto.Text;
+                con.AbrirConexao();
+                sql = "SELECT * FROM cad_produtos WHERE nome_produto LIKE @nome or cod_produto LIKE @cod_produto";
+                cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
+                cmd.Parameters.AddWithValue("@cod_produto", "%" + pesquisa + "%");
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                cbproduto.DataSource = dt;
+                cbproduto.DisplayMember = "nome_produto";
+                con.FecharConexao();
+            }catch (Exception ex)
+            {
+                MessageBox.Show("Erro na Conexão", ex.Message);
+            }
 
         }
+
+        private void contarvendas()
+        {
+            try
+            {
+                con.AbrirConexao();
+                sql = "SELECT MAX(id) FROM vendas";
+                MySqlCommand cmd = new MySqlCommand(sql, con.con);
+                MySqlDataReader dr;
+                dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    string val = dr[0].ToString();
+                    if (val == "")
+                    {
+                        int i = 1;
+                        lblcodigovenda.Text = "Número da venda: " + i;
+                    }
+                    else
+                    {
+                        int i;
+                        i = int.Parse(dr[0].ToString());
+                        i = i + 1;
+                        lblcodigovenda.Text = "Número da venda: " + i.ToString();
+
+                    }
+                }
+                con.FecharConexao();
+            }catch (Exception ex)
+            {
+                MessageBox.Show("Erro na conexão",ex.Message);
+            }
+         }
 
 
         private void frmvendas_compras_Load(object sender, EventArgs e)
@@ -116,6 +177,7 @@ namespace Sistema_de_Vendas.Transacoes
             listarvendedor();
             
             listarformapagamento();
+            contarvendas();
 
         }
 
@@ -180,7 +242,7 @@ namespace Sistema_de_Vendas.Transacoes
                
                 while(r.Read())
                 {
-                    
+                   
                     int preco = int.Parse(txtquantidade.Text.ToString()) * int.Parse(r[10].ToString());
                     subtotal = preco;                    
                     dataGridView1.Rows.Add(dataGridView1.RowCount, cbtransacao.Text, cbclientes.Text, r[1], txtquantidade.Text.Trim(), r[2], r[10], cbvendedor.Text, cbservico.Text, txtquantidadeservico.Text, txtdescontos.Text, cbformapagamento.Text, txtvalorpago.Text, txttroco.Text, preco);
@@ -210,6 +272,6 @@ namespace Sistema_de_Vendas.Transacoes
             BuscarServicos();
         }
 
-    
+      
     }
 }
