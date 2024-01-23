@@ -75,6 +75,7 @@
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(100, 20);
             this.txtNome.TabIndex = 1;
+            this.txtNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNome_KeyPress);
             // 
             // txtSenha
             // 
@@ -85,6 +86,7 @@
             this.txtSenha.PasswordChar = '*';
             this.txtSenha.Size = new System.Drawing.Size(100, 20);
             this.txtSenha.TabIndex = 2;
+            this.txtSenha.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSenha_KeyPress);
             // 
             // cbPermissoes
             // 
@@ -100,6 +102,7 @@
             this.cbPermissoes.Name = "cbPermissoes";
             this.cbPermissoes.Size = new System.Drawing.Size(100, 21);
             this.cbPermissoes.TabIndex = 3;
+            this.cbPermissoes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbPermissoes_KeyPress);
             // 
             // btnNovo
             // 
@@ -152,8 +155,7 @@
             this.MinimizeBox = false;
             this.Name = "frmcadUsuarios";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Cadastro de Usuários";
-            this.Load += new System.EventHandler(this.frmcadUsuarios_Load);
+            this.Text = "Cadastro de Usuários";            
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -272,6 +272,26 @@ namespace Sistema_de_Vendas.Cadastros
         private void txtkm_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                txtmarca.Focus();
+        }
+
+        private void txtmarca_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txtmodelo.Focus();
+        }
+
+        private void txtplaca_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txtkm.Focus();
+        }
+
+        private void txtmodelo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txtplaca.Focus();
         }
     }
 }

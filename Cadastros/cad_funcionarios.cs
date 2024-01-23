@@ -211,11 +211,12 @@ namespace Sistema_de_Vendas
                         txtcidade.Enabled = false;
                         txtcidade.Clear();
                         cbestados.Enabled = false;
+                        cbestados.SelectedIndex = 0;
                         txttelefone.Enabled = false;
                         txttelefone.Clear();
                         txtcelular.Enabled = false;
                         txtcelular.Clear();
-                        cbcargo.Enabled = false;
+                        cbcargo.Enabled = false;                       
                         btnAdicionar.Enabled = false;
                         btnAlterar.Enabled = false;
                         btnExcluir.Enabled = false;
@@ -358,11 +359,12 @@ namespace Sistema_de_Vendas
                 txtcidade.Enabled = false;
                 txtcidade.Clear();
                 cbestados.Enabled = false;
+                cbestados.SelectedIndex = 0;
                 txttelefone.Enabled = false;
                 txttelefone.Clear();
                 txtcelular.Enabled = false;
                 txtcelular.Clear();
-                cbcargo.Enabled = false;
+                cbcargo.Enabled = false;                
                 btnAdicionar.Enabled = false;
                 btnAlterar.Enabled = false;
                 btnExcluir.Enabled = false;
@@ -404,11 +406,12 @@ namespace Sistema_de_Vendas
                 txtcidade.Enabled = false;
                 txtcidade.Clear();
                 cbestados.Enabled = false;
+                cbestados.SelectedIndex = 0;
                 txttelefone.Enabled = false;
                 txttelefone.Clear();
                 txtcelular.Enabled = false;
                 txtcelular.Clear();
-                cbcargo.Enabled = false;
+                cbcargo.Enabled = false;                
                 btnAdicionar.Enabled = false;
                 btnAlterar.Enabled = false;
                 btnExcluir.Enabled = false;
@@ -439,6 +442,7 @@ namespace Sistema_de_Vendas
             txtcidade.Enabled = false;
             txtcidade.Clear();
             cbestados.Enabled = false;
+            cbestados.SelectedIndex = 0;
             txttelefone.Enabled = false;
             txttelefone.Clear();
             txtcelular.Enabled = false;
@@ -446,7 +450,7 @@ namespace Sistema_de_Vendas
             btnAdicionar.Enabled = false;
             btnAlterar.Enabled = false;
             btnExcluir.Enabled = false;
-            cbcargo.Enabled = false;
+            cbcargo.Enabled = false;            
 
             btnfoto.Enabled = false;
             btnNovo.Enabled = true;
@@ -486,11 +490,15 @@ namespace Sistema_de_Vendas
         private void txtdocumento_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                txtemail.Focus();
         }
 
         private void txttelefone_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                txtcelular.Focus();
         }
 
 
@@ -523,7 +531,7 @@ namespace Sistema_de_Vendas
         {
             if (txtcelular.Text == "")
             {
-                btnAdicionar.Focus();
+                txtnome.Focus();
             }
             else
             {
@@ -536,6 +544,9 @@ namespace Sistema_de_Vendas
         private void txtcelular_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                txtnome.Focus();
+
         }
 
         private void frmcad_funcionarios_Load(object sender, EventArgs e)
@@ -674,6 +685,55 @@ namespace Sistema_de_Vendas
                 }
 
             }
+        }
+
+        private void txtnome_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)            
+                txtdocumento.Focus();
+            
+        }
+
+        private void txtemail_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txtendereco.Focus();
+        }
+
+        private void txtendereco_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txtbairro.Focus();
+        }
+
+        private void txtbairro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txtnumero.Focus();
+        }
+
+        private void txtnumero_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txtcidade.Focus();
+        }
+
+        private void txtcidade_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                cbestados.Focus();
+        }
+
+        private void cbestados_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                cbcargo.Focus();
+        }
+
+        private void cbcargo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txttelefone.Focus();
         }
     }
         

@@ -70,7 +70,8 @@ namespace Sistema_de_Vendas
             txtnumero.Clear();
             txtcidade.Enabled = false;
             txtcidade.Clear();
-            cbestados.Enabled = false;
+            cbestados.Enabled = false; 
+            cbestados.SelectedIndex = 0;
             txttelefone.Enabled = false;
             txttelefone.Clear();
             txtcelular.Enabled = false;
@@ -78,6 +79,7 @@ namespace Sistema_de_Vendas
             txtvaloraberto.Enabled = false;
             txtvaloraberto.Clear();
             cbinadimplente.Enabled = false;
+            cbinadimplente.SelectedIndex = 0;
             rbbloqueado.Enabled = false;
             rbdesbloqueado.Enabled = false;
 
@@ -224,6 +226,7 @@ namespace Sistema_de_Vendas
                         txtcidade.Enabled = false;
                         txtcidade.Clear();
                         cbestados.Enabled = false;
+                        cbestados.SelectedIndex = 0;
                         txttelefone.Enabled = false;
                         txttelefone.Clear();
                         txtcelular.Enabled = false;
@@ -231,6 +234,7 @@ namespace Sistema_de_Vendas
                         txtvaloraberto.Enabled = false;
                         txtvaloraberto.Clear();
                         cbinadimplente.Enabled = false;
+                        cbinadimplente.SelectedIndex = 0;
                         rbbloqueado.Enabled = false;
                         rbdesbloqueado.Enabled = false;
 
@@ -317,18 +321,24 @@ namespace Sistema_de_Vendas
         private void txtdocumento_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender, e);
-           
+            if (e.KeyChar == 13)
+                txtemail.Focus();
+
         }
        
 
         private void txttelefone_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                txtcelular.Focus();
         }
 
         private void txtcelular_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                cbinadimplente.Focus();
         }
 
         private void txtdocumento_Leave(object sender, EventArgs e)
@@ -536,6 +546,7 @@ namespace Sistema_de_Vendas
                 txtcidade.Enabled = false;
                 txtcidade.Clear();
                 cbestados.Enabled = false;
+                cbestados.SelectedIndex = 0;
                 txttelefone.Enabled = false;
                 txttelefone.Clear();
                 txtcelular.Enabled = false;
@@ -543,6 +554,7 @@ namespace Sistema_de_Vendas
                 txtvaloraberto.Enabled = false;
                 txtvaloraberto.Clear();
                 cbinadimplente.Enabled = false;
+                cbinadimplente.SelectedIndex = 0;
                 rbbloqueado.Enabled = false;
                 rbdesbloqueado.Enabled = false;
 
@@ -587,6 +599,7 @@ namespace Sistema_de_Vendas
                 txtcidade.Enabled = false;
                 txtcidade.Clear();
                 cbestados.Enabled = false;
+                cbestados.SelectedIndex = 0;
                 txttelefone.Enabled = false;
                 txttelefone.Clear();
                 txtcelular.Enabled = false;
@@ -594,6 +607,7 @@ namespace Sistema_de_Vendas
                 txtvaloraberto.Enabled = false;
                 txtvaloraberto.Clear();
                 cbinadimplente.Enabled = false;
+                cbinadimplente.SelectedIndex = 0;
                 rbbloqueado.Enabled = false;
                 rbdesbloqueado.Enabled = false;
 
@@ -733,6 +747,60 @@ namespace Sistema_de_Vendas
 
 
             }
+        }
+
+        private void txtnome_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txtdocumento.Focus();
+        }
+
+        private void txtemail_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txtendereco.Focus();
+        }
+
+        private void txtendereco_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txtbairro.Focus();
+        }
+
+        private void txtbairro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txtnumero.Focus();
+        }
+
+        private void txtnumero_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txtcidade.Focus();
+        }
+
+        private void txtcidade_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+               cbestados.Focus();
+        }
+
+        private void cbestados_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txttelefone.Focus();
+        }
+
+        private void cbinadimplente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txtvaloraberto.Focus();
+        }
+
+        private void txtvaloraberto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txtnome.Focus();
         }
     }
 }
