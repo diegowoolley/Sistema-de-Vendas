@@ -71,7 +71,7 @@ namespace Sistema_de_Vendas
             txtcidade.Enabled = false;
             txtcidade.Clear();
             cbestados.Enabled = false; 
-            cbestados.SelectedIndex = 0;
+            cbestados.SelectedIndex = -1;
             txttelefone.Enabled = false;
             txttelefone.Clear();
             txtcelular.Enabled = false;
@@ -79,7 +79,7 @@ namespace Sistema_de_Vendas
             txtvaloraberto.Enabled = false;
             txtvaloraberto.Clear();
             cbinadimplente.Enabled = false;
-            cbinadimplente.SelectedIndex = 0;
+            cbinadimplente.SelectedIndex = -1;
             rbbloqueado.Enabled = false;
             rbdesbloqueado.Enabled = false;
 
@@ -226,7 +226,7 @@ namespace Sistema_de_Vendas
                         txtcidade.Enabled = false;
                         txtcidade.Clear();
                         cbestados.Enabled = false;
-                        cbestados.SelectedIndex = 0;
+                        cbestados.SelectedIndex = -1;
                         txttelefone.Enabled = false;
                         txttelefone.Clear();
                         txtcelular.Enabled = false;
@@ -234,7 +234,7 @@ namespace Sistema_de_Vendas
                         txtvaloraberto.Enabled = false;
                         txtvaloraberto.Clear();
                         cbinadimplente.Enabled = false;
-                        cbinadimplente.SelectedIndex = 0;
+                        cbinadimplente.SelectedIndex = -1;
                         rbbloqueado.Enabled = false;
                         rbdesbloqueado.Enabled = false;
 
@@ -546,7 +546,7 @@ namespace Sistema_de_Vendas
                 txtcidade.Enabled = false;
                 txtcidade.Clear();
                 cbestados.Enabled = false;
-                cbestados.SelectedIndex = 0;
+                cbestados.SelectedIndex = -1;
                 txttelefone.Enabled = false;
                 txttelefone.Clear();
                 txtcelular.Enabled = false;
@@ -554,7 +554,7 @@ namespace Sistema_de_Vendas
                 txtvaloraberto.Enabled = false;
                 txtvaloraberto.Clear();
                 cbinadimplente.Enabled = false;
-                cbinadimplente.SelectedIndex = 0;
+                cbinadimplente.SelectedIndex = -1;
                 rbbloqueado.Enabled = false;
                 rbdesbloqueado.Enabled = false;
 
@@ -599,7 +599,7 @@ namespace Sistema_de_Vendas
                 txtcidade.Enabled = false;
                 txtcidade.Clear();
                 cbestados.Enabled = false;
-                cbestados.SelectedIndex = 0;
+                cbestados.SelectedIndex = -1;
                 txttelefone.Enabled = false;
                 txttelefone.Clear();
                 txtcelular.Enabled = false;
@@ -607,7 +607,7 @@ namespace Sistema_de_Vendas
                 txtvaloraberto.Enabled = false;
                 txtvaloraberto.Clear();
                 cbinadimplente.Enabled = false;
-                cbinadimplente.SelectedIndex = 0;
+                cbinadimplente.SelectedIndex = -1;
                 rbbloqueado.Enabled = false;
                 rbdesbloqueado.Enabled = false;
 

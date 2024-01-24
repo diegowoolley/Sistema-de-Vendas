@@ -211,12 +211,13 @@ namespace Sistema_de_Vendas
                         txtcidade.Enabled = false;
                         txtcidade.Clear();
                         cbestados.Enabled = false;
-                        cbestados.SelectedIndex = 0;
+                        cbestados.SelectedIndex = -1;
                         txttelefone.Enabled = false;
                         txttelefone.Clear();
                         txtcelular.Enabled = false;
                         txtcelular.Clear();
-                        cbcargo.Enabled = false;                       
+                        cbcargo.Enabled = false;
+                        cbcargo.SelectedIndex = -1;
                         btnAdicionar.Enabled = false;
                         btnAlterar.Enabled = false;
                         btnExcluir.Enabled = false;
@@ -359,12 +360,13 @@ namespace Sistema_de_Vendas
                 txtcidade.Enabled = false;
                 txtcidade.Clear();
                 cbestados.Enabled = false;
-                cbestados.SelectedIndex = 0;
+                cbestados.SelectedIndex = -1;
                 txttelefone.Enabled = false;
                 txttelefone.Clear();
                 txtcelular.Enabled = false;
                 txtcelular.Clear();
-                cbcargo.Enabled = false;                
+                cbcargo.Enabled = false;
+                cbcargo.SelectedIndex = -1; 
                 btnAdicionar.Enabled = false;
                 btnAlterar.Enabled = false;
                 btnExcluir.Enabled = false;
@@ -406,12 +408,13 @@ namespace Sistema_de_Vendas
                 txtcidade.Enabled = false;
                 txtcidade.Clear();
                 cbestados.Enabled = false;
-                cbestados.SelectedIndex = 0;
+                cbestados.SelectedIndex = -1;
                 txttelefone.Enabled = false;
                 txttelefone.Clear();
                 txtcelular.Enabled = false;
                 txtcelular.Clear();
-                cbcargo.Enabled = false;                
+                cbcargo.Enabled = false; 
+                cbcargo.SelectedIndex = -1;
                 btnAdicionar.Enabled = false;
                 btnAlterar.Enabled = false;
                 btnExcluir.Enabled = false;
@@ -442,7 +445,8 @@ namespace Sistema_de_Vendas
             txtcidade.Enabled = false;
             txtcidade.Clear();
             cbestados.Enabled = false;
-            cbestados.SelectedIndex = 0;
+            cbestados.SelectedIndex = -1;
+            cbcargo.SelectedIndex = -1;
             txttelefone.Enabled = false;
             txttelefone.Clear();
             txtcelular.Enabled = false;
@@ -553,6 +557,7 @@ namespace Sistema_de_Vendas
         {
             Limparfoto();
             ListarCargos();
+            cbcargo.SelectedIndex = -1;
             Listar();
             formatargrid();
 

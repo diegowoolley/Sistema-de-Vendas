@@ -145,7 +145,9 @@ namespace Sistema_de_Vendas
             Limparfoto();
             Listar();
             Listarcategoria();
+            cbcategoria.SelectedIndex = -1;
             listarfornecedor();
+            cbfornecedor.SelectedIndex = -1;
             formatargrid();
         }
 
@@ -163,10 +165,13 @@ namespace Sistema_de_Vendas
             txtdescricao.Enabled = false;
             txtdescricao.Clear();
             cbcategoria.Enabled = false;
+            cbcategoria.SelectedIndex = -1;
             cbunidade.Enabled = false;
+            cbunidade.SelectedIndex = -1;
             txtquantidade.Enabled = false;
             txtquantidade.Clear();
             cbfornecedor.Enabled = false;
+            cbfornecedor.SelectedIndex = -1;
             txtpesomedio.Enabled = false;
             txtpesomedio.Clear();
             txtpesobruto.Enabled = false;
@@ -249,8 +254,11 @@ namespace Sistema_de_Vendas
                     if (reader.HasRows)
                     {
                         MessageBox.Show("Produto já cadastrado!");
-                        txtdescricao.Clear();                        
+                        txtdescricao.Clear();
+                        cbcategoria.SelectedIndex = -1;
+                        cbunidade.SelectedIndex = -1;
                         txtquantidade.Clear();
+                        cbfornecedor.SelectedIndex = -1;
                         txtpesomedio.Clear();
                         txtpesobruto.Clear();
                         txtfabricante.Clear();
@@ -294,10 +302,13 @@ namespace Sistema_de_Vendas
                         txtdescricao.Enabled = false;
                         txtdescricao.Clear();
                         cbcategoria.Enabled = false;
+                        cbcategoria.SelectedIndex = -1;
                         cbunidade.Enabled = false;
+                        cbunidade.SelectedIndex = -1;
                         txtquantidade.Enabled = false;
                         txtquantidade.Clear();
                         cbfornecedor.Enabled = false;
+                        cbfornecedor.SelectedIndex = -1;
                         txtpesomedio.Enabled = false;
                         txtpesomedio.Clear();
                         txtpesobruto.Enabled = false;
@@ -481,10 +492,13 @@ namespace Sistema_de_Vendas
                 txtdescricao.Enabled = false;
                 txtdescricao.Clear();
                 cbcategoria.Enabled = false;
+                cbcategoria.SelectedIndex = -1;
                 cbunidade.Enabled = false;
+                cbunidade.SelectedIndex = -1;
                 txtquantidade.Enabled = false;
                 txtquantidade.Clear();
                 cbfornecedor.Enabled = false;
+                cbfornecedor.SelectedIndex = -1;
                 txtpesomedio.Enabled = false;
                 txtpesomedio.Clear();
                 txtpesobruto.Enabled = false;
@@ -532,10 +546,13 @@ namespace Sistema_de_Vendas
                 txtdescricao.Enabled = false;
                 txtdescricao.Clear();
                 cbcategoria.Enabled = false;
+                cbcategoria.SelectedIndex = -1;
                 cbunidade.Enabled = false;
+                cbunidade.SelectedIndex = -1;
                 txtquantidade.Enabled = false;
                 txtquantidade.Clear();
                 cbfornecedor.Enabled = false;
+                cbfornecedor.SelectedIndex = -1;
                 txtpesomedio.Enabled = false;
                 txtpesomedio.Clear();
                 txtpesobruto.Enabled = false;
