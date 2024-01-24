@@ -56,23 +56,22 @@
             this.txttroco = new System.Windows.Forms.TextBox();
             this.lbltroco = new System.Windows.Forms.Label();
             this.cbformapagamento = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblformapagamento = new System.Windows.Forms.Label();
             this.cbtransacao = new System.Windows.Forms.ComboBox();
             this.lbltransacao = new System.Windows.Forms.Label();
             this.btnconcluir = new System.Windows.Forms.Button();
             this.btncancelar = new System.Windows.Forms.Button();
-            this.btnbuscarservico = new System.Windows.Forms.Button();
-            this.lblservico = new System.Windows.Forms.Label();
-            this.txtquantidadeservico = new System.Windows.Forms.TextBox();
-            this.lblquantidadeservico = new System.Windows.Forms.Label();
-            this.cbservico = new System.Windows.Forms.ComboBox();
             this.btnadicionar = new System.Windows.Forms.Button();
             this.cbclientes = new System.Windows.Forms.ComboBox();
             this.cbproduto = new System.Windows.Forms.ComboBox();
             this.btnremoveritens = new System.Windows.Forms.Button();
+            this.lbladdservico = new System.Windows.Forms.Label();
             this.pnservico = new System.Windows.Forms.Panel();
             this.btnfechar = new System.Windows.Forms.Button();
-            this.lbladdservico = new System.Windows.Forms.Label();
+            this.cbservico = new System.Windows.Forms.ComboBox();
+            this.lblservico = new System.Windows.Forms.Label();
+            this.lblquantidadeservico = new System.Windows.Forms.Label();
+            this.txtquantidadeservico = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.pnservico.SuspendLayout();
             this.SuspendLayout();
@@ -141,6 +140,7 @@
             this.cbvendedor.Name = "cbvendedor";
             this.cbvendedor.Size = new System.Drawing.Size(121, 21);
             this.cbvendedor.TabIndex = 7;
+            this.cbvendedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbvendedor_KeyPress);
             // 
             // lblcliente
             // 
@@ -179,10 +179,10 @@
             // 
             // Column1
             // 
-            this.Column1.HeaderText = "CÓD VENDA";
+            this.Column1.HeaderText = "ID";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
-            this.Column1.Width = 88;
+            this.Column1.Width = 43;
             // 
             // Column2
             // 
@@ -242,10 +242,10 @@
             // 
             // Column8
             // 
-            this.Column8.HeaderText = "QUANT SERVIÇO";
+            this.Column8.HeaderText = "QUANT. SERVIÇO";
             this.Column8.Name = "Column8";
             this.Column8.ReadOnly = true;
-            this.Column8.Width = 110;
+            this.Column8.Width = 113;
             // 
             // Column12
             // 
@@ -280,6 +280,7 @@
             this.txtdescontos.Name = "txtdescontos";
             this.txtdescontos.Size = new System.Drawing.Size(73, 20);
             this.txtdescontos.TabIndex = 12;
+            this.txtdescontos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtdescontos_KeyPress);
             // 
             // txtvalorpago
             // 
@@ -288,6 +289,7 @@
             this.txtvalorpago.Name = "txtvalorpago";
             this.txtvalorpago.Size = new System.Drawing.Size(74, 20);
             this.txtvalorpago.TabIndex = 11;
+            this.txtvalorpago.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtvalorpago_KeyPress);
             // 
             // lblvalorpago
             // 
@@ -305,7 +307,7 @@
             this.txttroco.MaxLength = 10;
             this.txttroco.Name = "txttroco";
             this.txttroco.Size = new System.Drawing.Size(78, 20);
-            this.txttroco.TabIndex = 13;
+            this.txttroco.TabIndex = 13;            
             // 
             // lbltroco
             // 
@@ -324,15 +326,16 @@
             this.cbformapagamento.Name = "cbformapagamento";
             this.cbformapagamento.Size = new System.Drawing.Size(121, 21);
             this.cbformapagamento.TabIndex = 10;
+            this.cbformapagamento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbformapagamento_KeyPress);
             // 
-            // label1
+            // lblformapagamento
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 295);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(111, 13);
-            this.label1.TabIndex = 22;
-            this.label1.Text = "Forma de Pagamento:";
+            this.lblformapagamento.AutoSize = true;
+            this.lblformapagamento.Location = new System.Drawing.Point(7, 295);
+            this.lblformapagamento.Name = "lblformapagamento";
+            this.lblformapagamento.Size = new System.Drawing.Size(111, 13);
+            this.lblformapagamento.TabIndex = 22;
+            this.lblformapagamento.Text = "Forma de Pagamento:";
             // 
             // cbtransacao
             // 
@@ -346,6 +349,7 @@
             this.cbtransacao.Name = "cbtransacao";
             this.cbtransacao.Size = new System.Drawing.Size(121, 21);
             this.cbtransacao.TabIndex = 1;
+            this.cbtransacao.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbtransacao_KeyPress);
             // 
             // lbltransacao
             // 
@@ -358,12 +362,14 @@
             // 
             // btnconcluir
             // 
+            this.btnconcluir.Enabled = false;
             this.btnconcluir.Location = new System.Drawing.Point(407, 316);
             this.btnconcluir.Name = "btnconcluir";
             this.btnconcluir.Size = new System.Drawing.Size(129, 23);
             this.btnconcluir.TabIndex = 14;
             this.btnconcluir.Text = "Concluir Transação";
             this.btnconcluir.UseVisualStyleBackColor = true;
+            this.btnconcluir.Click += new System.EventHandler(this.btnconcluir_Click);
             // 
             // btncancelar
             // 
@@ -373,50 +379,7 @@
             this.btncancelar.TabIndex = 15;
             this.btncancelar.Text = "Cancelar";
             this.btncancelar.UseVisualStyleBackColor = true;
-            // 
-            // btnbuscarservico
-            // 
-            this.btnbuscarservico.Location = new System.Drawing.Point(135, 52);
-            this.btnbuscarservico.Name = "btnbuscarservico";
-            this.btnbuscarservico.Size = new System.Drawing.Size(51, 23);
-            this.btnbuscarservico.TabIndex = 18;
-            this.btnbuscarservico.Text = "Buscar";
-            this.btnbuscarservico.UseVisualStyleBackColor = true;
-            this.btnbuscarservico.Click += new System.EventHandler(this.btnbuscarservico_Click);
-            // 
-            // lblservico
-            // 
-            this.lblservico.AutoSize = true;
-            this.lblservico.Location = new System.Drawing.Point(65, 9);
-            this.lblservico.Name = "lblservico";
-            this.lblservico.Size = new System.Drawing.Size(84, 13);
-            this.lblservico.TabIndex = 27;
-            this.lblservico.Text = "Agregar serviço:";
-            // 
-            // txtquantidadeservico
-            // 
-            this.txtquantidadeservico.Location = new System.Drawing.Point(79, 54);
-            this.txtquantidadeservico.MaxLength = 10;
-            this.txtquantidadeservico.Name = "txtquantidadeservico";
-            this.txtquantidadeservico.Size = new System.Drawing.Size(54, 20);
-            this.txtquantidadeservico.TabIndex = 17;
-            // 
-            // lblquantidadeservico
-            // 
-            this.lblquantidadeservico.AutoSize = true;
-            this.lblquantidadeservico.Location = new System.Drawing.Point(16, 57);
-            this.lblquantidadeservico.Name = "lblquantidadeservico";
-            this.lblquantidadeservico.Size = new System.Drawing.Size(65, 13);
-            this.lblquantidadeservico.TabIndex = 29;
-            this.lblquantidadeservico.Text = "Quantidade:";
-            // 
-            // cbservico
-            // 
-            this.cbservico.FormattingEnabled = true;
-            this.cbservico.Location = new System.Drawing.Point(19, 25);
-            this.cbservico.Name = "cbservico";
-            this.cbservico.Size = new System.Drawing.Size(167, 21);
-            this.cbservico.TabIndex = 16;
+            this.btncancelar.Click += new System.EventHandler(this.btncancelar_Click);
             // 
             // btnadicionar
             // 
@@ -437,6 +400,7 @@
             this.cbclientes.Name = "cbclientes";
             this.cbclientes.Size = new System.Drawing.Size(167, 21);
             this.cbclientes.TabIndex = 2;
+            this.cbclientes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbclientes_KeyPress);
             this.cbclientes.Leave += new System.EventHandler(this.cbclientes_Leave);
             // 
             // cbproduto
@@ -448,6 +412,7 @@
             this.cbproduto.Name = "cbproduto";
             this.cbproduto.Size = new System.Drawing.Size(167, 21);
             this.cbproduto.TabIndex = 4;
+            this.cbproduto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbproduto_KeyPress);
             this.cbproduto.Leave += new System.EventHandler(this.cbproduto_Leave);
             // 
             // btnremoveritens
@@ -460,31 +425,6 @@
             this.btnremoveritens.UseVisualStyleBackColor = true;
             this.btnremoveritens.Click += new System.EventHandler(this.btnremoveritens_Click);
             // 
-            // pnservico
-            // 
-            this.pnservico.Controls.Add(this.btnfechar);
-            this.pnservico.Controls.Add(this.cbservico);
-            this.pnservico.Controls.Add(this.lblservico);
-            this.pnservico.Controls.Add(this.btnbuscarservico);
-            this.pnservico.Controls.Add(this.lblquantidadeservico);
-            this.pnservico.Controls.Add(this.txtquantidadeservico);
-            this.pnservico.Location = new System.Drawing.Point(417, 163);
-            this.pnservico.Name = "pnservico";
-            this.pnservico.Size = new System.Drawing.Size(204, 100);
-            this.pnservico.TabIndex = 30;
-            this.pnservico.Visible = false;
-            this.pnservico.Leave += new System.EventHandler(this.pnservico_Leave);
-            // 
-            // btnfechar
-            // 
-            this.btnfechar.Location = new System.Drawing.Point(79, 76);
-            this.btnfechar.Name = "btnfechar";
-            this.btnfechar.Size = new System.Drawing.Size(51, 23);
-            this.btnfechar.TabIndex = 19;
-            this.btnfechar.Text = "Fechar";
-            this.btnfechar.UseVisualStyleBackColor = true;
-            this.btnfechar.Click += new System.EventHandler(this.btnfechar_Click);
-            // 
             // lbladdservico
             // 
             this.lbladdservico.AutoSize = true;
@@ -494,6 +434,65 @@
             this.lbladdservico.TabIndex = 31;
             this.lbladdservico.Text = "Dê dois clicks para adicionar serviço";
             this.lbladdservico.DoubleClick += new System.EventHandler(this.lbladdservico_DoubleClick);
+            // 
+            // pnservico
+            // 
+            this.pnservico.Controls.Add(this.btnfechar);
+            this.pnservico.Controls.Add(this.cbservico);
+            this.pnservico.Controls.Add(this.lblservico);
+            this.pnservico.Controls.Add(this.lblquantidadeservico);
+            this.pnservico.Controls.Add(this.txtquantidadeservico);
+            this.pnservico.Location = new System.Drawing.Point(378, 163);
+            this.pnservico.Name = "pnservico";
+            this.pnservico.Size = new System.Drawing.Size(243, 100);
+            this.pnservico.TabIndex = 30;
+            this.pnservico.Visible = false;
+            this.pnservico.Leave += new System.EventHandler(this.pnservico_Leave);
+            // 
+            // btnfechar
+            // 
+            this.btnfechar.Location = new System.Drawing.Point(94, 64);
+            this.btnfechar.Name = "btnfechar";
+            this.btnfechar.Size = new System.Drawing.Size(51, 23);
+            this.btnfechar.TabIndex = 19;
+            this.btnfechar.Text = "Fechar";
+            this.btnfechar.UseVisualStyleBackColor = true;
+            this.btnfechar.Click += new System.EventHandler(this.btnfechar_Click);
+            // 
+            // cbservico
+            // 
+            this.cbservico.FormattingEnabled = true;
+            this.cbservico.Location = new System.Drawing.Point(6, 27);
+            this.cbservico.Name = "cbservico";
+            this.cbservico.Size = new System.Drawing.Size(167, 21);
+            this.cbservico.TabIndex = 16;
+            this.cbservico.Leave += new System.EventHandler(this.cbservico_Leave);
+            // 
+            // lblservico
+            // 
+            this.lblservico.AutoSize = true;
+            this.lblservico.Location = new System.Drawing.Point(61, 11);
+            this.lblservico.Name = "lblservico";
+            this.lblservico.Size = new System.Drawing.Size(81, 13);
+            this.lblservico.TabIndex = 27;
+            this.lblservico.Text = "Agregar serviço";
+            // 
+            // lblquantidadeservico
+            // 
+            this.lblquantidadeservico.AutoSize = true;
+            this.lblquantidadeservico.Location = new System.Drawing.Point(174, 11);
+            this.lblquantidadeservico.Name = "lblquantidadeservico";
+            this.lblquantidadeservico.Size = new System.Drawing.Size(62, 13);
+            this.lblquantidadeservico.TabIndex = 29;
+            this.lblquantidadeservico.Text = "Quantidade";
+            // 
+            // txtquantidadeservico
+            // 
+            this.txtquantidadeservico.Location = new System.Drawing.Point(179, 27);
+            this.txtquantidadeservico.MaxLength = 10;
+            this.txtquantidadeservico.Name = "txtquantidadeservico";
+            this.txtquantidadeservico.Size = new System.Drawing.Size(54, 20);
+            this.txtquantidadeservico.TabIndex = 17;
             // 
             // frmvendas_compras
             // 
@@ -511,7 +510,7 @@
             this.Controls.Add(this.cbtransacao);
             this.Controls.Add(this.lbltransacao);
             this.Controls.Add(this.cbformapagamento);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblformapagamento);
             this.Controls.Add(this.txttroco);
             this.Controls.Add(this.lbltroco);
             this.Controls.Add(this.txtvalorpago);
@@ -562,23 +561,22 @@
         private System.Windows.Forms.TextBox txttroco;
         private System.Windows.Forms.Label lbltroco;
         private System.Windows.Forms.ComboBox cbformapagamento;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblformapagamento;
         private System.Windows.Forms.ComboBox cbtransacao;
         private System.Windows.Forms.Label lbltransacao;
         private System.Windows.Forms.Button btnconcluir;
         private System.Windows.Forms.Button btncancelar;
-        private System.Windows.Forms.Button btnbuscarservico;
-        private System.Windows.Forms.Label lblservico;
-        private System.Windows.Forms.TextBox txtquantidadeservico;
-        private System.Windows.Forms.Label lblquantidadeservico;
-        private System.Windows.Forms.ComboBox cbservico;
         private System.Windows.Forms.Button btnadicionar;
         private System.Windows.Forms.ComboBox cbclientes;
         private System.Windows.Forms.ComboBox cbproduto;
         private System.Windows.Forms.Button btnremoveritens;
-        private System.Windows.Forms.Panel pnservico;
         private System.Windows.Forms.Label lbladdservico;
+        private System.Windows.Forms.Panel pnservico;
         private System.Windows.Forms.Button btnfechar;
+        private System.Windows.Forms.ComboBox cbservico;
+        private System.Windows.Forms.Label lblservico;
+        private System.Windows.Forms.Label lblquantidadeservico;
+        private System.Windows.Forms.TextBox txtquantidadeservico;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
