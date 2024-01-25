@@ -57,7 +57,7 @@
             this.lblfornecedor = new System.Windows.Forms.Label();
             this.txtquantidade = new System.Windows.Forms.TextBox();
             this.txtvalorvenda = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblvalorvenda = new System.Windows.Forms.Label();
             this.lblquantidade = new System.Windows.Forms.Label();
             this.txtmargemlucro = new System.Windows.Forms.TextBox();
             this.txtsituacaotributaria = new System.Windows.Forms.TextBox();
@@ -70,15 +70,27 @@
             this.lblpesomedio = new System.Windows.Forms.Label();
             this.txtpesobruto = new System.Windows.Forms.TextBox();
             this.lblpesobruto = new System.Windows.Forms.Label();
+            this.lbltributos = new System.Windows.Forms.Label();
+            this.pntributos = new System.Windows.Forms.Panel();
+            this.lblestoqueminimo = new System.Windows.Forms.Label();
+            this.txtestoqueminimo = new System.Windows.Forms.TextBox();
+            this.lblestoquemaximo = new System.Windows.Forms.Label();
+            this.txtestoquemaximo = new System.Windows.Forms.TextBox();
+            this.lbletiqueta = new System.Windows.Forms.Label();
+            this.txtetiqueta = new System.Windows.Forms.TextBox();
+            this.lblvalidade = new System.Windows.Forms.Label();
+            this.txtvalidade = new System.Windows.Forms.TextBox();
+            this.lblinformacao = new System.Windows.Forms.Label();
             this.pnpesquisa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgCliente)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).BeginInit();
+            this.pntributos.SuspendLayout();
             this.SuspendLayout();
             // 
             // btncancelarpesquisa
             // 
             this.btncancelarpesquisa.Enabled = false;
-            this.btncancelarpesquisa.Location = new System.Drawing.Point(66, 101);
+            this.btncancelarpesquisa.Location = new System.Drawing.Point(66, 119);
             this.btncancelarpesquisa.Name = "btncancelarpesquisa";
             this.btncancelarpesquisa.Size = new System.Drawing.Size(75, 23);
             this.btncancelarpesquisa.TabIndex = 22;
@@ -89,7 +101,7 @@
             // lblnomepesquisa
             // 
             this.lblnomepesquisa.AutoSize = true;
-            this.lblnomepesquisa.Location = new System.Drawing.Point(54, 15);
+            this.lblnomepesquisa.Location = new System.Drawing.Point(54, 33);
             this.lblnomepesquisa.Name = "lblnomepesquisa";
             this.lblnomepesquisa.Size = new System.Drawing.Size(96, 13);
             this.lblnomepesquisa.TabIndex = 2;
@@ -98,7 +110,8 @@
             // lblpesquisa
             // 
             this.lblpesquisa.AutoSize = true;
-            this.lblpesquisa.Location = new System.Drawing.Point(583, 127);
+            this.lblpesquisa.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblpesquisa.Location = new System.Drawing.Point(592, 145);
             this.lblpesquisa.Name = "lblpesquisa";
             this.lblpesquisa.Size = new System.Drawing.Size(173, 13);
             this.lblpesquisa.TabIndex = 96;
@@ -111,9 +124,9 @@
             this.pnpesquisa.Controls.Add(this.btncancelarpesquisa);
             this.pnpesquisa.Controls.Add(this.txtpesquisa);
             this.pnpesquisa.Controls.Add(this.lblnomepesquisa);
-            this.pnpesquisa.Location = new System.Drawing.Point(571, 147);
+            this.pnpesquisa.Location = new System.Drawing.Point(571, 165);
             this.pnpesquisa.Name = "pnpesquisa";
-            this.pnpesquisa.Size = new System.Drawing.Size(206, 131);
+            this.pnpesquisa.Size = new System.Drawing.Size(206, 159);
             this.pnpesquisa.TabIndex = 95;
             this.pnpesquisa.Visible = false;
             this.pnpesquisa.Leave += new System.EventHandler(this.pnpesquisa_Leave);
@@ -122,7 +135,7 @@
             // 
             this.txtpesquisa.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtpesquisa.Enabled = false;
-            this.txtpesquisa.Location = new System.Drawing.Point(4, 31);
+            this.txtpesquisa.Location = new System.Drawing.Point(4, 49);
             this.txtpesquisa.MaxLength = 100;
             this.txtpesquisa.Name = "txtpesquisa";
             this.txtpesquisa.Size = new System.Drawing.Size(195, 20);
@@ -132,7 +145,8 @@
             // lbladicionarcategorias
             // 
             this.lbladicionarcategorias.AutoSize = true;
-            this.lbladicionarcategorias.Location = new System.Drawing.Point(568, 109);
+            this.lbladicionarcategorias.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lbladicionarcategorias.Location = new System.Drawing.Point(571, 127);
             this.lbladicionarcategorias.Name = "lbladicionarcategorias";
             this.lbladicionarcategorias.Size = new System.Drawing.Size(220, 13);
             this.lbladicionarcategorias.TabIndex = 83;
@@ -143,17 +157,17 @@
             // 
             this.txtfabricante.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtfabricante.Enabled = false;
-            this.txtfabricante.Location = new System.Drawing.Point(394, 62);
+            this.txtfabricante.Location = new System.Drawing.Point(394, 80);
             this.txtfabricante.MaxLength = 80;
             this.txtfabricante.Name = "txtfabricante";
             this.txtfabricante.Size = new System.Drawing.Size(195, 20);
-            this.txtfabricante.TabIndex = 8;
+            this.txtfabricante.TabIndex = 9;
             this.txtfabricante.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtfabricante_KeyPress);
             // 
             // lblfabricante
             // 
             this.lblfabricante.AutoSize = true;
-            this.lblfabricante.Location = new System.Drawing.Point(328, 65);
+            this.lblfabricante.Location = new System.Drawing.Point(328, 83);
             this.lblfabricante.Name = "lblfabricante";
             this.lblfabricante.Size = new System.Drawing.Size(60, 13);
             this.lblfabricante.TabIndex = 92;
@@ -162,10 +176,10 @@
             // btnfoto
             // 
             this.btnfoto.Enabled = false;
-            this.btnfoto.Location = new System.Drawing.Point(596, 40);
+            this.btnfoto.Location = new System.Drawing.Point(596, 58);
             this.btnfoto.Name = "btnfoto";
             this.btnfoto.Size = new System.Drawing.Size(75, 23);
-            this.btnfoto.TabIndex = 20;
+            this.btnfoto.TabIndex = 21;
             this.btnfoto.TabStop = false;
             this.btnfoto.Text = "foto";
             this.btnfoto.UseVisualStyleBackColor = true;
@@ -173,10 +187,10 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(394, 315);
+            this.btnCancelar.Location = new System.Drawing.Point(394, 333);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 19;
+            this.btnCancelar.TabIndex = 20;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -184,10 +198,10 @@
             // btnExcluir
             // 
             this.btnExcluir.Enabled = false;
-            this.btnExcluir.Location = new System.Drawing.Point(304, 315);
+            this.btnExcluir.Location = new System.Drawing.Point(304, 333);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(75, 23);
-            this.btnExcluir.TabIndex = 18;
+            this.btnExcluir.TabIndex = 19;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
@@ -195,10 +209,10 @@
             // btnAlterar
             // 
             this.btnAlterar.Enabled = false;
-            this.btnAlterar.Location = new System.Drawing.Point(211, 315);
+            this.btnAlterar.Location = new System.Drawing.Point(211, 333);
             this.btnAlterar.Name = "btnAlterar";
             this.btnAlterar.Size = new System.Drawing.Size(75, 23);
-            this.btnAlterar.TabIndex = 17;
+            this.btnAlterar.TabIndex = 18;
             this.btnAlterar.Text = "Alterar";
             this.btnAlterar.UseVisualStyleBackColor = true;
             this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
@@ -206,20 +220,20 @@
             // btnAdicionar
             // 
             this.btnAdicionar.Enabled = false;
-            this.btnAdicionar.Location = new System.Drawing.Point(113, 315);
+            this.btnAdicionar.Location = new System.Drawing.Point(113, 333);
             this.btnAdicionar.Name = "btnAdicionar";
             this.btnAdicionar.Size = new System.Drawing.Size(75, 23);
-            this.btnAdicionar.TabIndex = 16;
+            this.btnAdicionar.TabIndex = 17;
             this.btnAdicionar.Text = "Adicionar";
             this.btnAdicionar.UseVisualStyleBackColor = true;
             this.btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
             // 
             // btnNovo
             // 
-            this.btnNovo.Location = new System.Drawing.Point(17, 315);
+            this.btnNovo.Location = new System.Drawing.Point(17, 333);
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(75, 23);
-            this.btnNovo.TabIndex = 15;
+            this.btnNovo.TabIndex = 16;
             this.btnNovo.Text = "Novo";
             this.btnNovo.UseVisualStyleBackColor = true;
             this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
@@ -228,10 +242,10 @@
             // 
             this.dgCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgCliente.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgCliente.Location = new System.Drawing.Point(17, 147);
+            this.dgCliente.Location = new System.Drawing.Point(17, 165);
             this.dgCliente.Name = "dgCliente";
             this.dgCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgCliente.Size = new System.Drawing.Size(763, 150);
+            this.dgCliente.Size = new System.Drawing.Size(763, 162);
             this.dgCliente.TabIndex = 23;
             this.dgCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgCliente_CellContentClick);
             // 
@@ -239,7 +253,7 @@
             // 
             this.pbFoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pbFoto.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pbFoto.Location = new System.Drawing.Point(677, 9);
+            this.pbFoto.Location = new System.Drawing.Point(677, 27);
             this.pbFoto.Name = "pbFoto";
             this.pbFoto.Size = new System.Drawing.Size(100, 84);
             this.pbFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -250,37 +264,39 @@
             // 
             this.txtvalorcompra.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtvalorcompra.Enabled = false;
-            this.txtvalorcompra.Location = new System.Drawing.Point(126, 87);
+            this.txtvalorcompra.Location = new System.Drawing.Point(126, 105);
             this.txtvalorcompra.MaxLength = 10;
             this.txtvalorcompra.Name = "txtvalorcompra";
             this.txtvalorcompra.Size = new System.Drawing.Size(95, 20);
-            this.txtvalorcompra.TabIndex = 9;
+            this.txtvalorcompra.TabIndex = 10;
+            this.txtvalorcompra.Enter += new System.EventHandler(this.txtvalorcompra_Enter);
             this.txtvalorcompra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtvalorcompra_KeyPress);
+            this.txtvalorcompra.Leave += new System.EventHandler(this.txtvalorcompra_Leave);
             // 
             // txtdescricao
             // 
             this.txtdescricao.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtdescricao.Enabled = false;
-            this.txtdescricao.Location = new System.Drawing.Point(126, 9);
+            this.txtdescricao.Location = new System.Drawing.Point(126, 27);
             this.txtdescricao.MaxLength = 80;
             this.txtdescricao.Name = "txtdescricao";
             this.txtdescricao.Size = new System.Drawing.Size(195, 20);
-            this.txtdescricao.TabIndex = 1;
+            this.txtdescricao.TabIndex = 2;
             this.txtdescricao.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtdescricao_KeyPress);
             // 
             // lblmargemlucro
             // 
             this.lblmargemlucro.AutoSize = true;
-            this.lblmargemlucro.Location = new System.Drawing.Point(14, 118);
+            this.lblmargemlucro.Location = new System.Drawing.Point(387, 112);
             this.lblmargemlucro.Name = "lblmargemlucro";
-            this.lblmargemlucro.Size = new System.Drawing.Size(93, 13);
+            this.lblmargemlucro.Size = new System.Drawing.Size(62, 13);
             this.lblmargemlucro.TabIndex = 88;
-            this.lblmargemlucro.Text = "Margem de Lucro:";
+            this.lblmargemlucro.Text = "M. lucro(%):";
             // 
             // lblvalorcompra
             // 
             this.lblvalorcompra.AutoSize = true;
-            this.lblvalorcompra.Location = new System.Drawing.Point(14, 89);
+            this.lblvalorcompra.Location = new System.Drawing.Point(14, 107);
             this.lblvalorcompra.Name = "lblvalorcompra";
             this.lblvalorcompra.Size = new System.Drawing.Size(88, 13);
             this.lblvalorcompra.TabIndex = 87;
@@ -289,7 +305,7 @@
             // lblcategoria
             // 
             this.lblcategoria.AutoSize = true;
-            this.lblcategoria.Location = new System.Drawing.Point(328, 12);
+            this.lblcategoria.Location = new System.Drawing.Point(328, 30);
             this.lblcategoria.Name = "lblcategoria";
             this.lblcategoria.Size = new System.Drawing.Size(55, 13);
             this.lblcategoria.TabIndex = 86;
@@ -298,7 +314,7 @@
             // lbldescricao
             // 
             this.lbldescricao.AutoSize = true;
-            this.lbldescricao.Location = new System.Drawing.Point(14, 12);
+            this.lbldescricao.Location = new System.Drawing.Point(14, 30);
             this.lbldescricao.Name = "lbldescricao";
             this.lbldescricao.Size = new System.Drawing.Size(113, 13);
             this.lbldescricao.TabIndex = 84;
@@ -309,10 +325,10 @@
             this.cbcategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbcategoria.Enabled = false;
             this.cbcategoria.FormattingEnabled = true;
-            this.cbcategoria.Location = new System.Drawing.Point(395, 6);
+            this.cbcategoria.Location = new System.Drawing.Point(395, 24);
             this.cbcategoria.Name = "cbcategoria";
             this.cbcategoria.Size = new System.Drawing.Size(195, 21);
-            this.cbcategoria.TabIndex = 2;
+            this.cbcategoria.TabIndex = 3;
             this.cbcategoria.Enter += new System.EventHandler(this.cbcategoria_Enter);
             this.cbcategoria.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbcategoria_KeyPress);
             // 
@@ -339,16 +355,16 @@
             "MM",
             "PC",
             "UN"});
-            this.cbunidade.Location = new System.Drawing.Point(126, 34);
+            this.cbunidade.Location = new System.Drawing.Point(126, 52);
             this.cbunidade.Name = "cbunidade";
             this.cbunidade.Size = new System.Drawing.Size(51, 21);
-            this.cbunidade.TabIndex = 3;
+            this.cbunidade.TabIndex = 4;
             this.cbunidade.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbunidade_KeyPress);
             // 
             // lblunidadade
             // 
             this.lblunidadade.AutoSize = true;
-            this.lblunidadade.Location = new System.Drawing.Point(14, 38);
+            this.lblunidadade.Location = new System.Drawing.Point(14, 56);
             this.lblunidadade.Name = "lblunidadade";
             this.lblunidadade.Size = new System.Drawing.Size(103, 13);
             this.lblunidadade.TabIndex = 98;
@@ -359,17 +375,17 @@
             this.cbfornecedor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbfornecedor.Enabled = false;
             this.cbfornecedor.FormattingEnabled = true;
-            this.cbfornecedor.Location = new System.Drawing.Point(395, 35);
+            this.cbfornecedor.Location = new System.Drawing.Point(395, 53);
             this.cbfornecedor.Name = "cbfornecedor";
             this.cbfornecedor.Size = new System.Drawing.Size(195, 21);
-            this.cbfornecedor.TabIndex = 5;
+            this.cbfornecedor.TabIndex = 6;
             this.cbfornecedor.Enter += new System.EventHandler(this.cbfornecedor_Enter);
             this.cbfornecedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbfornecedor_KeyPress);
             // 
             // lblfornecedor
             // 
             this.lblfornecedor.AutoSize = true;
-            this.lblfornecedor.Location = new System.Drawing.Point(328, 40);
+            this.lblfornecedor.Location = new System.Drawing.Point(328, 58);
             this.lblfornecedor.Name = "lblfornecedor";
             this.lblfornecedor.Size = new System.Drawing.Size(64, 13);
             this.lblfornecedor.TabIndex = 100;
@@ -379,37 +395,39 @@
             // 
             this.txtquantidade.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtquantidade.Enabled = false;
-            this.txtquantidade.Location = new System.Drawing.Point(249, 34);
+            this.txtquantidade.Location = new System.Drawing.Point(249, 52);
             this.txtquantidade.MaxLength = 10;
             this.txtquantidade.Name = "txtquantidade";
             this.txtquantidade.Size = new System.Drawing.Size(73, 20);
-            this.txtquantidade.TabIndex = 4;
+            this.txtquantidade.TabIndex = 5;
             this.txtquantidade.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtquantidade_KeyPress);
             // 
             // txtvalorvenda
             // 
             this.txtvalorvenda.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtvalorvenda.Enabled = false;
-            this.txtvalorvenda.Location = new System.Drawing.Point(288, 87);
+            this.txtvalorvenda.Location = new System.Drawing.Point(288, 105);
             this.txtvalorvenda.MaxLength = 10;
             this.txtvalorvenda.Name = "txtvalorvenda";
             this.txtvalorvenda.Size = new System.Drawing.Size(95, 20);
-            this.txtvalorvenda.TabIndex = 10;
+            this.txtvalorvenda.TabIndex = 11;
+            this.txtvalorvenda.Enter += new System.EventHandler(this.txtvalorvenda_Enter);
             this.txtvalorvenda.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtvalorvenda_KeyPress);
+            this.txtvalorvenda.Leave += new System.EventHandler(this.txtvalorvenda_Leave);
             // 
-            // label1
+            // lblvalorvenda
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(223, 89);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 13);
-            this.label1.TabIndex = 104;
-            this.label1.Text = "Valor Venda:";
+            this.lblvalorvenda.AutoSize = true;
+            this.lblvalorvenda.Location = new System.Drawing.Point(223, 107);
+            this.lblvalorvenda.Name = "lblvalorvenda";
+            this.lblvalorvenda.Size = new System.Drawing.Size(68, 13);
+            this.lblvalorvenda.TabIndex = 104;
+            this.lblvalorvenda.Text = "Valor Venda:";
             // 
             // lblquantidade
             // 
             this.lblquantidade.AutoSize = true;
-            this.lblquantidade.Location = new System.Drawing.Point(183, 38);
+            this.lblquantidade.Location = new System.Drawing.Point(183, 56);
             this.lblquantidade.Name = "lblquantidade";
             this.lblquantidade.Size = new System.Drawing.Size(65, 13);
             this.lblquantidade.TabIndex = 105;
@@ -419,28 +437,30 @@
             // 
             this.txtmargemlucro.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtmargemlucro.Enabled = false;
-            this.txtmargemlucro.Location = new System.Drawing.Point(126, 115);
-            this.txtmargemlucro.MaxLength = 10;
+            this.txtmargemlucro.Location = new System.Drawing.Point(447, 107);
+            this.txtmargemlucro.MaxLength = 3;
             this.txtmargemlucro.Name = "txtmargemlucro";
-            this.txtmargemlucro.Size = new System.Drawing.Size(95, 20);
-            this.txtmargemlucro.TabIndex = 11;
+            this.txtmargemlucro.Size = new System.Drawing.Size(39, 20);
+            this.txtmargemlucro.TabIndex = 12;
+            this.txtmargemlucro.Enter += new System.EventHandler(this.txtmargemlucro_Enter);
             this.txtmargemlucro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtmargemlucro_KeyPress);
+            this.txtmargemlucro.Leave += new System.EventHandler(this.txtmargemlucro_Leave);
             // 
             // txtsituacaotributaria
             // 
             this.txtsituacaotributaria.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtsituacaotributaria.Enabled = false;
-            this.txtsituacaotributaria.Location = new System.Drawing.Point(342, 115);
+            this.txtsituacaotributaria.Location = new System.Drawing.Point(157, 44);
             this.txtsituacaotributaria.MaxLength = 3;
             this.txtsituacaotributaria.Name = "txtsituacaotributaria";
-            this.txtsituacaotributaria.Size = new System.Drawing.Size(41, 20);
-            this.txtsituacaotributaria.TabIndex = 12;
+            this.txtsituacaotributaria.Size = new System.Drawing.Size(70, 20);
+            this.txtsituacaotributaria.TabIndex = 23;
             this.txtsituacaotributaria.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtsituacaotributaria_KeyPress);
             // 
             // lblsituacaotributaria
             // 
             this.lblsituacaotributaria.AutoSize = true;
-            this.lblsituacaotributaria.Location = new System.Drawing.Point(223, 118);
+            this.lblsituacaotributaria.Location = new System.Drawing.Point(30, 47);
             this.lblsituacaotributaria.Name = "lblsituacaotributaria";
             this.lblsituacaotributaria.Size = new System.Drawing.Size(118, 13);
             this.lblsituacaotributaria.TabIndex = 107;
@@ -450,37 +470,37 @@
             // 
             this.txtaliquota.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtaliquota.Enabled = false;
-            this.txtaliquota.Location = new System.Drawing.Point(676, 300);
+            this.txtaliquota.Location = new System.Drawing.Point(157, 70);
             this.txtaliquota.MaxLength = 3;
             this.txtaliquota.Name = "txtaliquota";
-            this.txtaliquota.Size = new System.Drawing.Size(105, 20);
-            this.txtaliquota.TabIndex = 13;
+            this.txtaliquota.Size = new System.Drawing.Size(134, 20);
+            this.txtaliquota.TabIndex = 24;
             this.txtaliquota.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtaliquota_KeyPress);
             // 
             // lblaliquota
             // 
             this.lblaliquota.AutoSize = true;
-            this.lblaliquota.Location = new System.Drawing.Point(605, 300);
+            this.lblaliquota.Location = new System.Drawing.Point(52, 73);
             this.lblaliquota.Name = "lblaliquota";
-            this.lblaliquota.Size = new System.Drawing.Size(64, 13);
+            this.lblaliquota.Size = new System.Drawing.Size(78, 13);
             this.lblaliquota.TabIndex = 109;
-            this.lblaliquota.Text = "Aliquota IPI:";
+            this.lblaliquota.Text = "Aliquota IPI(%):";
             // 
             // txtcodipi
             // 
             this.txtcodipi.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtcodipi.Enabled = false;
-            this.txtcodipi.Location = new System.Drawing.Point(676, 325);
+            this.txtcodipi.Location = new System.Drawing.Point(157, 96);
             this.txtcodipi.MaxLength = 10;
             this.txtcodipi.Name = "txtcodipi";
-            this.txtcodipi.Size = new System.Drawing.Size(105, 20);
-            this.txtcodipi.TabIndex = 14;
+            this.txtcodipi.Size = new System.Drawing.Size(134, 20);
+            this.txtcodipi.TabIndex = 25;
             this.txtcodipi.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtcodipi_KeyPress);
             // 
             // lblcodipi
             // 
             this.lblcodipi.AutoSize = true;
-            this.lblcodipi.Location = new System.Drawing.Point(514, 328);
+            this.lblcodipi.Location = new System.Drawing.Point(3, 101);
             this.lblcodipi.Name = "lblcodipi";
             this.lblcodipi.Size = new System.Drawing.Size(157, 13);
             this.lblcodipi.TabIndex = 111;
@@ -490,17 +510,17 @@
             // 
             this.txtpesomedio.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtpesomedio.Enabled = false;
-            this.txtpesomedio.Location = new System.Drawing.Point(126, 61);
+            this.txtpesomedio.Location = new System.Drawing.Point(126, 79);
             this.txtpesomedio.MaxLength = 10;
             this.txtpesomedio.Name = "txtpesomedio";
             this.txtpesomedio.Size = new System.Drawing.Size(51, 20);
-            this.txtpesomedio.TabIndex = 6;
+            this.txtpesomedio.TabIndex = 7;
             this.txtpesomedio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtpesomedio_KeyPress);
             // 
             // lblpesomedio
             // 
             this.lblpesomedio.AutoSize = true;
-            this.lblpesomedio.Location = new System.Drawing.Point(14, 62);
+            this.lblpesomedio.Location = new System.Drawing.Point(14, 80);
             this.lblpesomedio.Name = "lblpesomedio";
             this.lblpesomedio.Size = new System.Drawing.Size(66, 13);
             this.lblpesomedio.TabIndex = 113;
@@ -510,41 +530,165 @@
             // 
             this.txtpesobruto.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtpesobruto.Enabled = false;
-            this.txtpesobruto.Location = new System.Drawing.Point(249, 61);
+            this.txtpesobruto.Location = new System.Drawing.Point(249, 79);
             this.txtpesobruto.MaxLength = 10;
             this.txtpesobruto.Name = "txtpesobruto";
             this.txtpesobruto.Size = new System.Drawing.Size(51, 20);
-            this.txtpesobruto.TabIndex = 7;
+            this.txtpesobruto.TabIndex = 8;
             this.txtpesobruto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtpesobruto_KeyPress);
             // 
             // lblpesobruto
             // 
             this.lblpesobruto.AutoSize = true;
-            this.lblpesobruto.Location = new System.Drawing.Point(182, 62);
+            this.lblpesobruto.Location = new System.Drawing.Point(182, 80);
             this.lblpesobruto.Name = "lblpesobruto";
             this.lblpesobruto.Size = new System.Drawing.Size(62, 13);
             this.lblpesobruto.TabIndex = 115;
             this.lblpesobruto.Text = "Peso Bruto:";
             // 
+            // lbltributos
+            // 
+            this.lbltributos.AutoSize = true;
+            this.lbltributos.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lbltributos.Location = new System.Drawing.Point(382, 145);
+            this.lbltributos.Name = "lbltributos";
+            this.lbltributos.Size = new System.Drawing.Size(188, 13);
+            this.lbltributos.TabIndex = 116;
+            this.lbltributos.Text = "(Dê duplo click para adicionar tributos)";
+            this.lbltributos.DoubleClick += new System.EventHandler(this.lbltributos_DoubleClick);
+            // 
+            // pntributos
+            // 
+            this.pntributos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pntributos.Controls.Add(this.lblsituacaotributaria);
+            this.pntributos.Controls.Add(this.txtsituacaotributaria);
+            this.pntributos.Controls.Add(this.txtaliquota);
+            this.pntributos.Controls.Add(this.lblaliquota);
+            this.pntributos.Controls.Add(this.lblcodipi);
+            this.pntributos.Controls.Add(this.txtcodipi);
+            this.pntributos.Location = new System.Drawing.Point(270, 165);
+            this.pntributos.Name = "pntributos";
+            this.pntributos.Size = new System.Drawing.Size(301, 159);
+            this.pntributos.TabIndex = 117;
+            this.pntributos.Visible = false;
+            this.pntributos.Leave += new System.EventHandler(this.pntributos_Leave);
+            // 
+            // lblestoqueminimo
+            // 
+            this.lblestoqueminimo.AutoSize = true;
+            this.lblestoqueminimo.Location = new System.Drawing.Point(15, 134);
+            this.lblestoqueminimo.Name = "lblestoqueminimo";
+            this.lblestoqueminimo.Size = new System.Drawing.Size(86, 13);
+            this.lblestoqueminimo.TabIndex = 119;
+            this.lblestoqueminimo.Text = "Estoque mínimo:";
+            // 
+            // txtestoqueminimo
+            // 
+            this.txtestoqueminimo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtestoqueminimo.Enabled = false;
+            this.txtestoqueminimo.Location = new System.Drawing.Point(126, 131);
+            this.txtestoqueminimo.MaxLength = 10;
+            this.txtestoqueminimo.Name = "txtestoqueminimo";
+            this.txtestoqueminimo.Size = new System.Drawing.Size(73, 20);
+            this.txtestoqueminimo.TabIndex = 13;
+            this.txtestoqueminimo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtestoqueminimo_KeyPress);
+            // 
+            // lblestoquemaximo
+            // 
+            this.lblestoquemaximo.AutoSize = true;
+            this.lblestoquemaximo.Location = new System.Drawing.Point(202, 134);
+            this.lblestoquemaximo.Name = "lblestoquemaximo";
+            this.lblestoquemaximo.Size = new System.Drawing.Size(88, 13);
+            this.lblestoquemaximo.TabIndex = 121;
+            this.lblestoquemaximo.Text = "Estoque Máximo:";
+            // 
+            // txtestoquemaximo
+            // 
+            this.txtestoquemaximo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtestoquemaximo.Enabled = false;
+            this.txtestoquemaximo.Location = new System.Drawing.Point(288, 131);
+            this.txtestoquemaximo.MaxLength = 10;
+            this.txtestoquemaximo.Name = "txtestoquemaximo";
+            this.txtestoquemaximo.Size = new System.Drawing.Size(73, 20);
+            this.txtestoquemaximo.TabIndex = 14;
+            this.txtestoquemaximo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtestoquemaximo_KeyPress);
+            // 
+            // lbletiqueta
+            // 
+            this.lbletiqueta.AutoSize = true;
+            this.lbletiqueta.Location = new System.Drawing.Point(15, 6);
+            this.lbletiqueta.Name = "lbletiqueta";
+            this.lbletiqueta.Size = new System.Drawing.Size(72, 13);
+            this.lbletiqueta.TabIndex = 123;
+            this.lbletiqueta.Text = "EAN \\ GTIN :";
+            // 
+            // txtetiqueta
+            // 
+            this.txtetiqueta.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtetiqueta.Enabled = false;
+            this.txtetiqueta.Location = new System.Drawing.Point(126, 3);
+            this.txtetiqueta.MaxLength = 20;
+            this.txtetiqueta.Name = "txtetiqueta";
+            this.txtetiqueta.Size = new System.Drawing.Size(195, 20);
+            this.txtetiqueta.TabIndex = 1;
+            this.txtetiqueta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtetiqueta_KeyPress);
+            // 
+            // lblvalidade
+            // 
+            this.lblvalidade.AutoSize = true;
+            this.lblvalidade.Location = new System.Drawing.Point(636, 338);
+            this.lblvalidade.Name = "lblvalidade";
+            this.lblvalidade.Size = new System.Drawing.Size(51, 13);
+            this.lblvalidade.TabIndex = 125;
+            this.lblvalidade.Text = "Validade:";
+            // 
+            // txtvalidade
+            // 
+            this.txtvalidade.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtvalidade.Enabled = false;
+            this.txtvalidade.Location = new System.Drawing.Point(693, 333);
+            this.txtvalidade.MaxLength = 10;
+            this.txtvalidade.Name = "txtvalidade";
+            this.txtvalidade.Size = new System.Drawing.Size(73, 20);
+            this.txtvalidade.TabIndex = 15;
+            this.txtvalidade.Enter += new System.EventHandler(this.txtvalidade_Enter);
+            this.txtvalidade.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtvalidade_KeyPress);
+            this.txtvalidade.Leave += new System.EventHandler(this.txtvalidade_Leave);
+            // 
+            // lblinformacao
+            // 
+            this.lblinformacao.AutoSize = true;
+            this.lblinformacao.ForeColor = System.Drawing.Color.Crimson;
+            this.lblinformacao.Location = new System.Drawing.Point(320, 7);
+            this.lblinformacao.Name = "lblinformacao";
+            this.lblinformacao.Size = new System.Drawing.Size(298, 13);
+            this.lblinformacao.TabIndex = 126;
+            this.lblinformacao.Text = "Use o leitor de código de barras ou digite o código do produto";
+            // 
             // frmcadProdutos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(795, 347);
+            this.ClientSize = new System.Drawing.Size(795, 363);
+            this.Controls.Add(this.lblinformacao);
+            this.Controls.Add(this.txtvalidade);
+            this.Controls.Add(this.lblvalidade);
+            this.Controls.Add(this.lbletiqueta);
+            this.Controls.Add(this.txtetiqueta);
+            this.Controls.Add(this.lblestoquemaximo);
+            this.Controls.Add(this.txtestoquemaximo);
+            this.Controls.Add(this.lblestoqueminimo);
+            this.Controls.Add(this.txtestoqueminimo);
+            this.Controls.Add(this.pntributos);
+            this.Controls.Add(this.lbltributos);
             this.Controls.Add(this.txtpesobruto);
             this.Controls.Add(this.lblpesobruto);
             this.Controls.Add(this.txtpesomedio);
             this.Controls.Add(this.lblpesomedio);
-            this.Controls.Add(this.txtcodipi);
-            this.Controls.Add(this.lblcodipi);
-            this.Controls.Add(this.txtaliquota);
-            this.Controls.Add(this.lblaliquota);
-            this.Controls.Add(this.txtsituacaotributaria);
-            this.Controls.Add(this.lblsituacaotributaria);
             this.Controls.Add(this.lblquantidade);
             this.Controls.Add(this.txtquantidade);
             this.Controls.Add(this.txtvalorvenda);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblvalorvenda);
             this.Controls.Add(this.cbfornecedor);
             this.Controls.Add(this.lblfornecedor);
             this.Controls.Add(this.cbunidade);
@@ -581,6 +725,8 @@
             this.pnpesquisa.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgCliente)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).EndInit();
+            this.pntributos.ResumeLayout(false);
+            this.pntributos.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -617,7 +763,7 @@
         private System.Windows.Forms.Label lblfornecedor;
         private System.Windows.Forms.TextBox txtquantidade;
         private System.Windows.Forms.TextBox txtvalorvenda;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblvalorvenda;
         private System.Windows.Forms.Label lblquantidade;
         private System.Windows.Forms.TextBox txtmargemlucro;
         private System.Windows.Forms.TextBox txtsituacaotributaria;
@@ -630,5 +776,16 @@
         private System.Windows.Forms.Label lblpesomedio;
         private System.Windows.Forms.TextBox txtpesobruto;
         private System.Windows.Forms.Label lblpesobruto;
+        private System.Windows.Forms.Label lbltributos;
+        private System.Windows.Forms.Panel pntributos;
+        private System.Windows.Forms.Label lblestoqueminimo;
+        private System.Windows.Forms.TextBox txtestoqueminimo;
+        private System.Windows.Forms.Label lblestoquemaximo;
+        private System.Windows.Forms.TextBox txtestoquemaximo;
+        private System.Windows.Forms.Label lbletiqueta;
+        private System.Windows.Forms.TextBox txtetiqueta;
+        private System.Windows.Forms.Label lblvalidade;
+        private System.Windows.Forms.TextBox txtvalidade;
+        private System.Windows.Forms.Label lblinformacao;
     }
 }

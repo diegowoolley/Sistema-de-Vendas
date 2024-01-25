@@ -135,7 +135,9 @@
             this.txtvalor.Name = "txtvalor";
             this.txtvalor.Size = new System.Drawing.Size(75, 20);
             this.txtvalor.TabIndex = 2;
+            this.txtvalor.Enter += new System.EventHandler(this.txtvalor_Enter);
             this.txtvalor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtvalor_KeyPress);
+            this.txtvalor.Leave += new System.EventHandler(this.txtvalor_Leave);
             // 
             // lblvalor
             // 

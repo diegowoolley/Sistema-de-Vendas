@@ -6,11 +6,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace Sistema_de_Vendas
@@ -103,13 +105,17 @@ namespace Sistema_de_Vendas
             dgCliente.Columns[8].HeaderText = "Fabricante";
             dgCliente.Columns[9].HeaderText = "Valor Compra";
             dgCliente.Columns[10].HeaderText = "Valor Venda";
-            dgCliente.Columns[11].HeaderText = "Margem de Lucro";
+            dgCliente.Columns[11].HeaderText = "Margem de Lucro";           
             dgCliente.Columns[12].HeaderText = "Situação Tributária";
             dgCliente.Columns[13].HeaderText = "Aliquota IPI";
             dgCliente.Columns[14].HeaderText = "Código IPI";
             dgCliente.Columns[15].HeaderText = "Foto";
+            dgCliente.Columns[16].HeaderText = "Estoque Mínimo";
+            dgCliente.Columns[17].HeaderText = "Estoque Máximo";
+            dgCliente.Columns[18].HeaderText = "Validade";
+            dgCliente.Columns[19].HeaderText = "Etiqueta";
 
-            
+
 
         }
 
@@ -162,6 +168,8 @@ namespace Sistema_de_Vendas
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
+            txtetiqueta.Enabled = false;
+            txtetiqueta.Clear();
             txtdescricao.Enabled = false;
             txtdescricao.Clear();
             cbcategoria.Enabled = false;
@@ -183,14 +191,14 @@ namespace Sistema_de_Vendas
             txtvalorvenda.Enabled = false;
             txtvalorvenda.Clear();
             txtmargemlucro.Enabled = false;
-            txtmargemlucro.Clear();            
-            txtsituacaotributaria.Enabled = false;
-            txtsituacaotributaria.Clear();
-            txtaliquota.Enabled = false;
-            txtaliquota.Clear();
-            txtcodipi.Enabled = false;
-            txtcodipi.Clear();
-            
+            txtmargemlucro.Clear();
+            txtestoqueminimo.Enabled = false;
+            txtestoqueminimo.Clear();
+            txtestoquemaximo.Enabled = false;
+            txtestoquemaximo.Clear();
+            txtvalidade.Enabled = false;
+            txtvalidade.Clear();
+
 
             btnAdicionar.Enabled = false;
             btnAlterar.Enabled = false;
@@ -205,31 +213,36 @@ namespace Sistema_de_Vendas
 
         private void btnNovo_Click(object sender, EventArgs e)
         {
+            txtetiqueta.Enabled = true;
             txtdescricao.Enabled = true;
             cbcategoria.Enabled = true;
             cbunidade.Enabled = true;
             txtquantidade.Enabled = true;
             cbfornecedor.Enabled = true;
             txtpesomedio.Enabled = true;
-            txtpesobruto.Enabled = true;            
+            txtpesobruto.Enabled = true;
             txtfabricante.Enabled = true;
             txtvalorcompra.Enabled = true;
             txtvalorvenda.Enabled = true;
             txtmargemlucro.Enabled = true;
-            txtsituacaotributaria.Enabled = true;
-            txtaliquota.Enabled = true;
-            txtcodipi.Enabled = true;
-           
+            txtestoqueminimo.Enabled = true;
+            txtestoquemaximo.Enabled = true;
+            txtvalidade.Enabled = true;
+
+
             btnNovo.Enabled = false;
             btnAdicionar.Enabled = true;
             btnAlterar.Enabled = false;
             btnExcluir.Enabled = false;
             btnfoto.Enabled = true;
-            txtdescricao.Focus();
+            txtetiqueta.Focus();
         }
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
+           
+
+
             if (txtdescricao.Text.ToString().Trim() == "")
             {
                 MessageBox.Show("Digite um nome para o Produto!");
@@ -237,11 +250,57 @@ namespace Sistema_de_Vendas
                 txtdescricao.Focus();
                 return;
             }
-            
-            else
-            {       //verifica se o usuário já exite no banco de dados
 
-                try
+
+            if(cbcategoria.Text == "")
+            {
+                MessageBox.Show("Digite uma categoria para o Produto!");
+                cbcategoria.SelectedIndex = -1;
+                cbcategoria.Focus();
+                return;
+            }
+
+            if (cbunidade.Text == "")
+            {
+                MessageBox.Show("Digite uma unidade para o Produto!");
+                cbunidade.SelectedIndex = -1;
+                cbunidade.Focus();
+                return;
+            }
+
+
+            if (txtquantidade.Text.ToString().Trim() == "")
+            {
+                MessageBox.Show("Digite uma quantidade para o Produto!");
+                txtquantidade.Clear();
+                txtquantidade.Focus();
+                return;
+            }
+
+            if (txtvalorcompra.Text.ToString().Trim() == "")
+            {
+                MessageBox.Show("Digite um valor de compra para o Produto!");
+                txtvalorcompra.Clear();
+                txtvalorcompra.Focus();
+                return;
+            }
+
+            if (txtvalorvenda.Text.ToString().Trim() == "")
+            {
+                MessageBox.Show("Digite um valor de venda para o Produto!");
+                txtvalorvenda.Clear();
+                txtvalorvenda.Focus();
+                return;
+            }
+                    
+
+          
+
+
+
+            //verifica se o usuário já exite no banco de dados
+
+            try
                 {
                     con.AbrirConexao();
                     MySqlCommand cmdVerificar;
@@ -254,6 +313,7 @@ namespace Sistema_de_Vendas
                     if (reader.HasRows)
                     {
                         MessageBox.Show("Produto já cadastrado!");
+                        txtetiqueta.Clear();
                         txtdescricao.Clear();
                         cbcategoria.SelectedIndex = -1;
                         cbunidade.SelectedIndex = -1;
@@ -265,9 +325,9 @@ namespace Sistema_de_Vendas
                         txtvalorcompra.Clear();
                         txtvalorvenda.Clear();
                         txtmargemlucro.Clear();
-                        txtsituacaotributaria.Clear();
-                        txtaliquota.Clear();
-                        txtcodipi.Clear();
+                        txtestoqueminimo.Clear();
+                        txtestoquemaximo.Clear();
+                        txtvalidade.Clear();
 
                         txtdescricao.Focus();
                         con.FecharConexao();
@@ -278,7 +338,7 @@ namespace Sistema_de_Vendas
 
                         //insere dados na tabela
                         con.AbrirConexao();
-                        sql = "INSERT INTO cad_produtos(nome_produto, categoria_produto, unidade_medida, quantidade, fornecedor, peso_medio, peso_bruto, fabricante, valor_compra, valor_venda, margem_lucro, situacao_tributaria, aliquota_ipi, cod_ipi, foto) VALUES (@nome, @categoria, @unidade_medida, @quantidade, @fornecedor,  @peso_medio, @peso_bruto, @fabricante, @valor_compra, @valor_venda, @margem_lucro, @situacao_tributaria, @aliquota_ipi, @cod_ipi, @foto)";
+                        sql = "INSERT INTO cad_produtos(nome_produto, categoria_produto, unidade_medida, quantidade, fornecedor, peso_medio, peso_bruto, fabricante, valor_compra, valor_venda, margem_lucro, situacao_tributaria, aliquota_ipi, cod_ipi, foto, estoque_minimo, estoque_maximo, validade, etiqueta) VALUES (@nome, @categoria, @unidade_medida, @quantidade, @fornecedor,  @peso_medio, @peso_bruto, @fabricante, @valor_compra, @valor_venda, @margem_lucro, @situacao_tributaria, @aliquota_ipi, @cod_ipi, @foto, @estoque_minimo, @estoque_maximo, @validade, @etiqueta)";
                         cmd = new MySqlCommand(sql, con.con);
                         cmd.Parameters.AddWithValue("@nome", txtdescricao.Text);
                         cmd.Parameters.AddWithValue("@categoria", cbcategoria.Text);
@@ -288,17 +348,23 @@ namespace Sistema_de_Vendas
                         cmd.Parameters.AddWithValue("@peso_medio", txtpesomedio.Text);
                         cmd.Parameters.AddWithValue("@peso_bruto", txtpesobruto.Text);
                         cmd.Parameters.AddWithValue("@fabricante", txtfabricante.Text);
-                        cmd.Parameters.AddWithValue("@valor_compra", txtvalorcompra.Text);
-                        cmd.Parameters.AddWithValue("@valor_venda", txtvalorvenda.Text);
-                        cmd.Parameters.AddWithValue("@margem_lucro", txtmargemlucro.Text);
+                        cmd.Parameters.AddWithValue("@valor_compra", txtvalorcompra.Text.Replace("R$", "").Trim().Replace(",", "."));
+                        cmd.Parameters.AddWithValue("@valor_venda", txtvalorvenda.Text.Replace("R$", "").Trim().Replace(",", "."));
+                        cmd.Parameters.AddWithValue("@margem_lucro", txtmargemlucro.Text.Replace("%", ""));
                         cmd.Parameters.AddWithValue("@situacao_tributaria", txtsituacaotributaria.Text);
                         cmd.Parameters.AddWithValue("@aliquota_ipi", txtaliquota.Text);
-                        cmd.Parameters.AddWithValue("@cod_ipi", txtcodipi.Text);                      
+                        cmd.Parameters.AddWithValue("@cod_ipi", txtcodipi.Text);
                         cmd.Parameters.AddWithValue("@foto", img());
+                        cmd.Parameters.AddWithValue("@estoque_minimo", txtestoqueminimo.Text);
+                        cmd.Parameters.AddWithValue("@estoque_maximo", txtestoquemaximo.Text);
+                        cmd.Parameters.AddWithValue("@validade", txtvalidade.Text);
+                        cmd.Parameters.AddWithValue("@etiqueta", txtetiqueta.Text);
 
                         cmd.ExecuteNonQuery();
                         con.FecharConexao();
                         //desabilitar botões e campos
+                        txtetiqueta.Enabled = false;
+                        txtetiqueta.Clear();
                         txtdescricao.Enabled = false;
                         txtdescricao.Clear();
                         cbcategoria.Enabled = false;
@@ -316,17 +382,17 @@ namespace Sistema_de_Vendas
                         txtfabricante.Enabled = false;
                         txtfabricante.Clear();
                         txtvalorcompra.Enabled = false;
-                        txtvalorcompra.Clear();                       
+                        txtvalorcompra.Clear();
                         txtvalorvenda.Enabled = false;
                         txtvalorvenda.Clear();
                         txtmargemlucro.Enabled = false;
                         txtmargemlucro.Clear();
-                        txtsituacaotributaria.Enabled = false;
-                        txtsituacaotributaria.Clear();
-                        txtaliquota.Enabled = false;
-                        txtaliquota.Clear();
-                        txtcodipi.Enabled = false;
-                        txtcodipi.Clear();
+                        txtestoqueminimo.Enabled = false;
+                        txtestoqueminimo.Clear();
+                        txtestoquemaximo.Enabled = false;
+                        txtestoquemaximo.Clear();
+                        txtvalidade.Enabled = false;
+                        txtvalidade.Clear();
 
                         btnAdicionar.Enabled = false;
                         btnAlterar.Enabled = false;
@@ -348,7 +414,7 @@ namespace Sistema_de_Vendas
                     MessageBox.Show("Erro ao cadastrar!" + ex);
                 }
 
-            }
+            
         }
 
         private void btnfoto_Click(object sender, EventArgs e)
@@ -403,7 +469,7 @@ namespace Sistema_de_Vendas
         {
             funcoes.DecNumber(sender, e);
             if (e.KeyChar == 13)
-                txtsituacaotributaria.Focus();
+                txtestoqueminimo.Focus();
         }
 
         private void txtsituacaotributaria_KeyPress(object sender, KeyPressEventArgs e)
@@ -412,15 +478,15 @@ namespace Sistema_de_Vendas
             if (e.KeyChar == 13)
                 txtaliquota.Focus();
         }
-             
+
         private void txtcodipi_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender, e);
             if (e.KeyChar == 13)
-                txtdescricao.Focus();
+                txtetiqueta.Focus();
         }
 
-       
+
         private void btnAlterar_Click(object sender, EventArgs e)
         {
             if (txtdescricao.Text.ToString().Trim() == "")
@@ -429,17 +495,57 @@ namespace Sistema_de_Vendas
                 txtdescricao.Clear();
                 txtdescricao.Focus();
                 return;
-            }
-           
-            else
+            }        
+
+            if (cbcategoria.Text == "")
             {
+                MessageBox.Show("Digite uma categoria para o Produto!");
+                cbcategoria.SelectedIndex = -1;
+                cbcategoria.Focus();
+                return;
+            }
+
+            if (cbunidade.Text == "")
+            {
+                MessageBox.Show("Digite uma unidade para o Produto!");
+                cbunidade.SelectedIndex = -1;
+                cbunidade.Focus();
+                return;
+            }
+
+            if (txtquantidade.Text.ToString().Trim() == "")
+            {
+                MessageBox.Show("Digite uma quantidade para o Produto!");
+                txtquantidade.Clear();
+                txtquantidade.Focus();
+                return;
+            }
+
+            if (txtvalorcompra.Text.ToString().Trim() == "")
+            {
+                MessageBox.Show("Digite um valor de compra para o Produto!");
+                txtvalorcompra.Clear();
+                txtvalorcompra.Focus();
+                return;
+            }
+
+            if (txtvalorvenda.Text.ToString().Trim() == "")
+            {
+                MessageBox.Show("Digite um valor de venda para o Produto!");
+                txtvalorvenda.Clear();
+                txtvalorvenda.Focus();
+                return;
+            }
+
+
+            
 
 
                 if (alterou_foto == "s")
                 {
-                   
+
                     con.AbrirConexao();
-                    sql = "UPDATE cad_produtos SET nome_produto = @nome, categoria_produto = @categoria, unidade_medida = @unidade_medida, quantidade = @quantidade, fornecedor = @fornecedor, peso_medio = @peso_medio, peso_bruto = @peso_bruto, fabricante = @fabricante, valor_compra = @valor_compra, valor_venda = @valor_venda, margem_lucro = @margem_lucro, situacao_tributaria = @situacao_tributaria, aliquota_ipi = @aliquota_ipi, cod_ipi = @cod_ipi, foto = @foto WHERE cod_produto = @id";
+                    sql = "UPDATE cad_produtos SET nome_produto = @nome, categoria_produto = @categoria, unidade_medida = @unidade_medida, quantidade = @quantidade, fornecedor = @fornecedor, peso_medio = @peso_medio, peso_bruto = @peso_bruto, fabricante = @fabricante, valor_compra = @valor_compra, valor_venda = @valor_venda, margem_lucro = @margem_lucro, situacao_tributaria = @situacao_tributaria, aliquota_ipi = @aliquota_ipi, cod_ipi = @cod_ipi, foto = @foto, estoque_minimo = @estoque_minimo, estoque_maximo = @estoque_maximo, validade = @validade, etiqueta = @etiqueta WHERE cod_produto = @id";
                     cmd = new MySqlCommand(sql, con.con);
                     cmd.Parameters.AddWithValue("@id", id);
                     cmd.Parameters.AddWithValue("@nome", txtdescricao.Text);
@@ -450,19 +556,23 @@ namespace Sistema_de_Vendas
                     cmd.Parameters.AddWithValue("@peso_medio", txtpesomedio.Text);
                     cmd.Parameters.AddWithValue("@peso_bruto", txtpesobruto.Text);
                     cmd.Parameters.AddWithValue("@fabricante", txtfabricante.Text);
-                    cmd.Parameters.AddWithValue("@valor_compra", txtvalorcompra.Text);
-                    cmd.Parameters.AddWithValue("@valor_venda", txtvalorvenda.Text);
+                    cmd.Parameters.AddWithValue("@valor_compra", txtvalorcompra.Text.Replace("R$", "").Trim().Replace(",", "."));
+                    cmd.Parameters.AddWithValue("@valor_venda", txtvalorvenda.Text.Replace("R$", "").Trim().Replace(",", "."));
                     cmd.Parameters.AddWithValue("@margem_lucro", txtmargemlucro.Text);
                     cmd.Parameters.AddWithValue("@situacao_tributaria", txtsituacaotributaria.Text);
                     cmd.Parameters.AddWithValue("@aliquota_ipi", txtaliquota.Text);
                     cmd.Parameters.AddWithValue("@cod_ipi", txtcodipi.Text);
                     cmd.Parameters.AddWithValue("@foto", img());
+                    cmd.Parameters.AddWithValue("@estoque_minimo", txtestoqueminimo.Text);
+                    cmd.Parameters.AddWithValue("@estoque_maximo", txtestoquemaximo.Text);
+                    cmd.Parameters.AddWithValue("@validade", txtvalidade.Text);
+                    cmd.Parameters.AddWithValue("@etiqueta", txtetiqueta.Text);
 
                 }
                 else if (alterou_foto == "n")
                 {
                     con.AbrirConexao();
-                    sql = "UPDATE cad_produtos SET nome_produto = @nome, categoria_produto = @categoria, unidade_medida = @unidade_medida, quantidade = @quantidade, fornecedor = @fornecedor, peso_medio = @peso_medio, peso_bruto = @peso_bruto, fabricante = @fabricante, valor_compra = @valor_compra, valor_venda = @valor_venda, margem_lucro = @margem_lucro, situacao_tributaria = @situacao_tributaria, aliquota_ipi = @aliquota_ipi, cod_ipi = @cod_ipi WHERE cod_produto = @id";
+                    sql = "UPDATE cad_produtos SET nome_produto = @nome, categoria_produto = @categoria, unidade_medida = @unidade_medida, quantidade = @quantidade, fornecedor = @fornecedor, peso_medio = @peso_medio, peso_bruto = @peso_bruto, fabricante = @fabricante, valor_compra = @valor_compra, valor_venda = @valor_venda, margem_lucro = @margem_lucro, situacao_tributaria = @situacao_tributaria, aliquota_ipi = @aliquota_ipi, cod_ipi = @cod_ipi, estoque_minimo = @estoque_minimo, estoque_maximo = @estoque_maximo, validade = @validade, etiqueta = @etiqueta WHERE cod_produto = @id";
                     cmd = new MySqlCommand(sql, con.con);
                     cmd.Parameters.AddWithValue("@id", id);
                     cmd.Parameters.AddWithValue("@nome", txtdescricao.Text);
@@ -473,22 +583,28 @@ namespace Sistema_de_Vendas
                     cmd.Parameters.AddWithValue("@peso_medio", txtpesomedio.Text);
                     cmd.Parameters.AddWithValue("@peso_bruto", txtpesobruto.Text);
                     cmd.Parameters.AddWithValue("@fabricante", txtfabricante.Text);
-                    cmd.Parameters.AddWithValue("@valor_compra", txtvalorcompra.Text);
-                    cmd.Parameters.AddWithValue("@valor_venda", txtvalorvenda.Text);
+                    cmd.Parameters.AddWithValue("@valor_compra", txtvalorcompra.Text.Replace("R$", "").Trim().Replace(",", "."));
+                    cmd.Parameters.AddWithValue("@valor_venda", txtvalorvenda.Text.Replace("R$", "").Trim().Replace(",", "."));
                     cmd.Parameters.AddWithValue("@margem_lucro", txtmargemlucro.Text);
                     cmd.Parameters.AddWithValue("@situacao_tributaria", txtsituacaotributaria.Text);
                     cmd.Parameters.AddWithValue("@aliquota_ipi", txtaliquota.Text);
                     cmd.Parameters.AddWithValue("@cod_ipi", txtcodipi.Text);
+                    cmd.Parameters.AddWithValue("@estoque_minimo", txtestoqueminimo.Text);
+                    cmd.Parameters.AddWithValue("@estoque_maximo", txtestoquemaximo.Text);
+                    cmd.Parameters.AddWithValue("@validade", txtvalidade.Text);
+                    cmd.Parameters.AddWithValue("@etiqueta", txtetiqueta.Text);
 
 
                 }
-               
+
                 cmd.ExecuteNonQuery();
                 con.FecharConexao();
                 Listar();
 
 
                 MessageBox.Show("Registro Alterado com Sucesso!!");
+                txtetiqueta.Enabled = false;
+                txtetiqueta.Clear();
                 txtdescricao.Enabled = false;
                 txtdescricao.Clear();
                 cbcategoria.Enabled = false;
@@ -511,12 +627,12 @@ namespace Sistema_de_Vendas
                 txtvalorvenda.Clear();
                 txtmargemlucro.Enabled = false;
                 txtmargemlucro.Clear();
-                txtsituacaotributaria.Enabled = false;
-                txtsituacaotributaria.Clear();
-                txtaliquota.Enabled = false;
-                txtaliquota.Clear();
-                txtcodipi.Enabled = false;
-                txtcodipi.Clear();
+                txtestoqueminimo.Enabled = false;
+                txtestoqueminimo.Clear();
+                txtestoquemaximo.Enabled = false;
+                txtestoquemaximo.Clear();
+                txtvalidade.Enabled = false;
+                txtvalidade.Clear();
 
                 btnAdicionar.Enabled = false;
                 btnAlterar.Enabled = false;
@@ -528,7 +644,7 @@ namespace Sistema_de_Vendas
                 btnNovo.Focus();
                 Listar();
                 alterou_foto = "n";
-            }
+            
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
@@ -543,6 +659,8 @@ namespace Sistema_de_Vendas
                 cmd.Parameters.AddWithValue("@id", id);
                 cmd.ExecuteNonQuery();
                 con.FecharConexao();
+                txtetiqueta.Enabled = false;
+                txtetiqueta.Clear();
                 txtdescricao.Enabled = false;
                 txtdescricao.Clear();
                 cbcategoria.Enabled = false;
@@ -565,12 +683,12 @@ namespace Sistema_de_Vendas
                 txtvalorvenda.Clear();
                 txtmargemlucro.Enabled = false;
                 txtmargemlucro.Clear();
-                txtsituacaotributaria.Enabled = false;
-                txtsituacaotributaria.Clear();
-                txtaliquota.Enabled = false;
-                txtaliquota.Clear();
-                txtcodipi.Enabled = false;
-                txtcodipi.Clear();
+                txtestoqueminimo.Enabled = false;
+                txtestoqueminimo.Clear();
+                txtestoquemaximo.Enabled = false;
+                txtestoquemaximo.Clear();
+                txtvalidade.Enabled = false;
+                txtvalidade.Clear();
 
                 btnAdicionar.Enabled = false;
                 btnAlterar.Enabled = false;
@@ -636,12 +754,16 @@ namespace Sistema_de_Vendas
                 txtpesomedio.Text = dgCliente.CurrentRow.Cells[6].Value.ToString();
                 txtpesobruto.Text = dgCliente.CurrentRow.Cells[7].Value.ToString();
                 txtfabricante.Text = dgCliente.CurrentRow.Cells[8].Value.ToString();
-                txtvalorcompra.Text = dgCliente.CurrentRow.Cells[9].Value.ToString();
-                txtvalorvenda.Text = dgCliente.CurrentRow.Cells[10].Value.ToString();
-                txtmargemlucro.Text = dgCliente.CurrentRow.Cells[11].Value.ToString();
+                txtvalorcompra.Text = "R$ " + dgCliente.CurrentRow.Cells[9].Value.ToString();
+                txtvalorvenda.Text = "R$ " + dgCliente.CurrentRow.Cells[10].Value.ToString();
+                txtmargemlucro.Text = dgCliente.CurrentRow.Cells[11].Value.ToString() + "%";
                 txtsituacaotributaria.Text = dgCliente.CurrentRow.Cells[12].Value.ToString();
                 txtaliquota.Text = dgCliente.CurrentRow.Cells[13].Value.ToString();
                 txtcodipi.Text = dgCliente.CurrentRow.Cells[14].Value.ToString();
+                txtestoqueminimo.Text = dgCliente.CurrentRow.Cells[16].Value.ToString();
+                txtestoquemaximo.Text = dgCliente.CurrentRow.Cells[17].Value.ToString();
+                txtvalidade.Text = dgCliente.CurrentRow.Cells[18].Value.ToString();
+                txtetiqueta.Text = dgCliente.CurrentRow.Cells[19].Value.ToString();
 
                 btnNovo.Enabled = false;
                 btnAdicionar.Enabled = false;
@@ -649,6 +771,7 @@ namespace Sistema_de_Vendas
                 btnCancelar.Enabled = true;
                 btnExcluir.Enabled = true;
                 btnfoto.Enabled = true;
+                txtetiqueta.Enabled = true;
                 txtdescricao.Enabled = true;
                 cbcategoria.Enabled = true;
                 cbunidade.Enabled = true;
@@ -660,9 +783,9 @@ namespace Sistema_de_Vendas
                 txtvalorcompra.Enabled = true;
                 txtvalorvenda.Enabled = true;
                 txtmargemlucro.Enabled = true;
-                txtsituacaotributaria.Enabled = true;
-                txtaliquota.Enabled = true;
-                txtcodipi.Enabled = true;
+                txtestoqueminimo.Enabled = true;
+                txtestoquemaximo.Enabled = true;
+                txtvalidade.Enabled = true;
 
 
 
@@ -716,6 +839,121 @@ namespace Sistema_de_Vendas
             if (e.KeyChar == 13)
                 txtvalorcompra.Focus();
         }
-       
-    }
+
+        private void txtvalorcompra_Leave(object sender, EventArgs e)
+        {
+            if (decimal.TryParse(txtvalorcompra.Text, out decimal valor))
+            {
+                
+                txtvalorcompra.Text = valor.ToString("C", CultureInfo.CurrentCulture);
+            }
+
+        }
+
+        private void txtvalorvenda_Leave(object sender, EventArgs e)
+        {  
+
+           if (decimal.TryParse(txtvalorvenda.Text, out decimal valor))
+           {
+                
+                txtvalorvenda.Text = valor.ToString("C", CultureInfo.CurrentCulture);
+            }
+
+        }
+
+        private void txtmargemlucro_Leave(object sender, EventArgs e)
+        {
+            if(txtmargemlucro.Text == "")
+            {
+                txtmargemlucro.Text = "0";
+            }
+            decimal valorPorcentagem = (decimal)float.Parse(txtmargemlucro.Text);
+
+            txtmargemlucro.Text = (valorPorcentagem).ToString() + "%";
+        }
+
+        private void txtestoqueminimo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                txtestoquemaximo.Focus();
+        }
+
+        private void txtestoquemaximo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                txtvalidade.Focus();
+        }
+
+        private void lbltributos_DoubleClick(object sender, EventArgs e)
+        {
+            pntributos.Visible = true;
+            txtsituacaotributaria.Enabled = true;
+            txtsituacaotributaria.Clear();
+            txtaliquota.Enabled = true;
+            txtaliquota.Clear();
+            txtcodipi.Enabled = true;
+            txtcodipi.Clear();
+            txtsituacaotributaria.Focus();
+        }
+
+        private void pntributos_Leave(object sender, EventArgs e)
+        {
+            pntributos.Visible = false;
+        }
+
+        private void txtvalidade_Leave(object sender, EventArgs e)
+        {
+            if (txtvalidade.Text == "")
+            {
+                txtetiqueta.Focus();
+            }
+            else
+            {
+                string validade = txtvalidade.Text;
+                txtvalidade.Text = Convert.ToInt64(validade).ToString("00/00/0000");
+            }
+        }
+
+        private void txtvalidade_Enter(object sender, EventArgs e)
+        {
+            string validade = txtvalidade.Text.Replace("/", "");
+            txtvalidade.Text = validade;            
+        }
+
+        private void txtvalidade_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                txtetiqueta.Focus();
+        }
+
+        private void txtvalorvenda_Enter(object sender, EventArgs e)
+        {
+            string valor = txtvalorvenda.Text.Replace("R$ ", "");
+            txtvalorvenda.Text = valor;
+        }
+
+        private void txtvalorcompra_Enter(object sender, EventArgs e)
+        {
+            string valor = txtvalorcompra.Text.Replace("R$ ", "");
+            txtvalorcompra.Text = valor;
+        }
+
+        private void txtmargemlucro_Enter(object sender, EventArgs e)
+        {
+            string percentual = txtmargemlucro.Text.Replace("%", "");
+            txtmargemlucro.Text = percentual;
+        }
+
+        private void txtetiqueta_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                txtdescricao.Focus();
+        }
+
+      
+    }  
 }

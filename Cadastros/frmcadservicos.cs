@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -108,7 +109,7 @@ namespace Sistema_de_Vendas.Cadastros
                         sql = "INSERT INTO cad_servicos(descricao, valor) VALUES (@descricao, @valor)";
                         cmd = new MySqlCommand(sql, con.con);
                         cmd.Parameters.AddWithValue("@descricao", txtnome.Text);
-                        cmd.Parameters.AddWithValue("@valor", txtvalor.Text);
+                        cmd.Parameters.AddWithValue("@valor", txtvalor.Text.Replace("R$", "").Trim().Replace(",", "."));
 
 
 
@@ -169,7 +170,7 @@ namespace Sistema_de_Vendas.Cadastros
                         cmd = new MySqlCommand(sql, con.con);
                         cmd.Parameters.AddWithValue("@id", id);
                         cmd.Parameters.AddWithValue("@descricao", txtnome.Text);
-                        cmd.Parameters.AddWithValue("@valor", txtvalor.Text);
+                        cmd.Parameters.AddWithValue("@valor", txtvalor.Text.Replace("R$", "").Trim().Replace(",", "."));
 
                         cmd.ExecuteNonQuery();
                         con.FecharConexao();
@@ -253,7 +254,7 @@ namespace Sistema_de_Vendas.Cadastros
 
 
                 txtnome.Text = dgCliente.CurrentRow.Cells[1].Value.ToString();
-                txtvalor.Text = dgCliente.CurrentRow.Cells[2].Value.ToString();
+                txtvalor.Text = "R$ " + dgCliente.CurrentRow.Cells[2].Value.ToString();
                 btnNovo.Enabled = false;
                 btnAdicionar.Enabled = false;
                 btnAlterar.Enabled = true;
@@ -277,6 +278,21 @@ namespace Sistema_de_Vendas.Cadastros
         {
             if (e.KeyChar == 13)
                 txtvalor.Focus();
+        }
+
+        private void txtvalor_Enter(object sender, EventArgs e)
+        {
+            string valor = txtvalor.Text.Replace("R$ ", "");
+            txtvalor.Text = valor;
+        }
+
+        private void txtvalor_Leave(object sender, EventArgs e)
+        {
+            if (decimal.TryParse(txtvalor.Text, out decimal valor))
+            {
+
+                txtvalor.Text = valor.ToString("C", CultureInfo.CurrentCulture);
+            }
         }
     }
 }
