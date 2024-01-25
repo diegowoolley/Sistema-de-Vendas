@@ -72,9 +72,7 @@
             this.lblservico = new System.Windows.Forms.Label();
             this.lblquantidadeservico = new System.Windows.Forms.Label();
             this.txtquantidadeservico = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.btnfecharvenda = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.pnservico.SuspendLayout();
             this.SuspendLayout();
@@ -279,21 +277,27 @@
             // 
             // txtdescontos
             // 
+            this.txtdescontos.Enabled = false;
             this.txtdescontos.Location = new System.Drawing.Point(203, 319);
             this.txtdescontos.MaxLength = 10;
             this.txtdescontos.Name = "txtdescontos";
             this.txtdescontos.Size = new System.Drawing.Size(73, 20);
             this.txtdescontos.TabIndex = 12;
+            this.txtdescontos.Enter += new System.EventHandler(this.txtdescontos_Enter);
             this.txtdescontos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtdescontos_KeyPress);
+            this.txtdescontos.Leave += new System.EventHandler(this.txtdescontos_Leave);
             // 
             // txtvalorpago
             // 
+            this.txtvalorpago.Enabled = false;
             this.txtvalorpago.Location = new System.Drawing.Point(65, 319);
             this.txtvalorpago.MaxLength = 10;
             this.txtvalorpago.Name = "txtvalorpago";
             this.txtvalorpago.Size = new System.Drawing.Size(74, 20);
             this.txtvalorpago.TabIndex = 11;
+            this.txtvalorpago.Enter += new System.EventHandler(this.txtvalorpago_Enter);
             this.txtvalorpago.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtvalorpago_KeyPress);
+            this.txtvalorpago.Leave += new System.EventHandler(this.txtvalorpago_Leave);
             // 
             // lblvalorpago
             // 
@@ -312,6 +316,7 @@
             this.txttroco.Name = "txttroco";
             this.txttroco.Size = new System.Drawing.Size(78, 20);
             this.txttroco.TabIndex = 13;
+            this.txttroco.TextChanged += new System.EventHandler(this.txttroco_TextChanged);
             // 
             // lbltroco
             // 
@@ -325,6 +330,7 @@
             // cbformapagamento
             // 
             this.cbformapagamento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbformapagamento.Enabled = false;
             this.cbformapagamento.FormattingEnabled = true;
             this.cbformapagamento.Location = new System.Drawing.Point(116, 292);
             this.cbformapagamento.Name = "cbformapagamento";
@@ -387,7 +393,7 @@
             // 
             // btnadicionar
             // 
-            this.btnadicionar.Location = new System.Drawing.Point(155, 105);
+            this.btnadicionar.Location = new System.Drawing.Point(12, 105);
             this.btnadicionar.Name = "btnadicionar";
             this.btnadicionar.Size = new System.Drawing.Size(134, 23);
             this.btnadicionar.TabIndex = 8;
@@ -421,7 +427,7 @@
             // 
             // btnremoveritens
             // 
-            this.btnremoveritens.Location = new System.Drawing.Point(295, 105);
+            this.btnremoveritens.Location = new System.Drawing.Point(152, 105);
             this.btnremoveritens.Name = "btnremoveritens";
             this.btnremoveritens.Size = new System.Drawing.Size(134, 23);
             this.btnremoveritens.TabIndex = 9;
@@ -457,9 +463,9 @@
             // 
             this.btnfechar.Location = new System.Drawing.Point(94, 64);
             this.btnfechar.Name = "btnfechar";
-            this.btnfechar.Size = new System.Drawing.Size(51, 23);
+            this.btnfechar.Size = new System.Drawing.Size(52, 23);
             this.btnfechar.TabIndex = 19;
-            this.btnfechar.Text = "Fechar";
+            this.btnfechar.Text = "Agregar";
             this.btnfechar.UseVisualStyleBackColor = true;
             this.btnfechar.Click += new System.EventHandler(this.btnfechar_Click);
             // 
@@ -498,41 +504,23 @@
             this.txtquantidadeservico.Size = new System.Drawing.Size(54, 20);
             this.txtquantidadeservico.TabIndex = 17;
             // 
-            // label1
+            // btnfecharvenda
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(437, 296);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 32;
-            this.label1.Text = "label1";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(496, 295);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 33;
-            this.label2.Text = "label2";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(552, 296);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 34;
-            this.label3.Text = "label3";
+            this.btnfecharvenda.Enabled = false;
+            this.btnfecharvenda.Location = new System.Drawing.Point(292, 105);
+            this.btnfecharvenda.Name = "btnfecharvenda";
+            this.btnfecharvenda.Size = new System.Drawing.Size(134, 23);
+            this.btnfecharvenda.TabIndex = 32;
+            this.btnfecharvenda.Text = "Fechar venda";
+            this.btnfecharvenda.UseVisualStyleBackColor = true;
+            this.btnfecharvenda.Click += new System.EventHandler(this.btnfecharvenda_Click);
             // 
             // frmvendas_compras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(625, 346);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnfecharvenda);
             this.Controls.Add(this.lbladdservico);
             this.Controls.Add(this.pnservico);
             this.Controls.Add(this.btnremoveritens);
@@ -622,8 +610,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnfecharvenda;
     }
 }

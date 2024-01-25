@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,9 +23,9 @@ namespace Sistema_de_Vendas.Transacoes
         conn con = new conn();
         string sql;
         MySqlCommand cmd;      
-        string id;
-        double subtotal;
+        string id;        
         double precototal;
+        double subtotal;
         int cod_venda;
         string indiceselecionado;
 
@@ -283,13 +284,7 @@ namespace Sistema_de_Vendas.Transacoes
                 MessageBox.Show("Selecione um vendedor");
                 cbvendedor.Focus();
                 return;
-            }
-            if(cbformapagamento.Text == "")
-            {
-                MessageBox.Show("Selecione uma forma de pagamento!");
-                cbformapagamento.Focus();
-                return;
-            }
+            }        
            
                                  
             
@@ -338,14 +333,14 @@ namespace Sistema_de_Vendas.Transacoes
                 
 
                 con.FecharConexao();
+                btnfecharvenda.Enabled = true;
                 cbproduto.Text = "";
                 txtquantidade.Clear();
                 cbtransacao.Enabled = false;
                 cbclientes.Enabled = false;
-                cbvendedor.Enabled = false;
-                cbformapagamento.Enabled = false;
+                cbvendedor.Enabled = false;                
                 cbproduto.Focus();
-                btnconcluir.Enabled = true;
+               
             }
             catch (Exception ex)
             {
@@ -414,15 +409,16 @@ namespace Sistema_de_Vendas.Transacoes
                         AtualizarTotais();
                         txtquantidade.Clear();
                         cbproduto.Focus();
-                        btnconcluir.Enabled = true;
+                        btnfecharvenda.Enabled = true;
+                        
                     }
                 }
                 else
                 {
-                    precototal = 0;
-                    MessageBox.Show("Não existem itens para remover!");
-                    AtualizarTotais();
-                    btnconcluir.Enabled = false;
+                        btnfecharvenda.Enabled = false;
+                        MessageBox.Show("Não existem itens para remover!");
+                        AtualizarTotais();                                       
+                    
                 }
                 
             }catch (Exception)
@@ -442,18 +438,31 @@ namespace Sistema_de_Vendas.Transacoes
 
         private void btncancelar_Click(object sender, EventArgs e)
         {
+            cbtransacao.Enabled = true;
             cbtransacao.SelectedIndex = -1;
+            cbclientes.Enabled = true;
             cbclientes.Text = "";
+            cbproduto.Enabled = true;
             cbproduto.Text = "";
-            txtquantidade.Clear();            
+            txtquantidade.Enabled = true;
+            txtquantidade.Clear(); 
+            cbvendedor.Enabled = true;
             cbvendedor.SelectedIndex = -1;
+            cbformapagamento.SelectedIndex = -1;           
+            dataGridView1.Rows.Clear();
+            cbformapagamento.Enabled = false;
             cbformapagamento.SelectedIndex = -1;
+            txtvalorpago.Enabled = false;
             txtvalorpago.Clear();
+            txtdescontos.Enabled = false;
             txtdescontos.Clear();
             txttroco.Clear();
-            dataGridView1.Rows.Clear();
+            btnadicionar.Enabled = true;
+            btnremoveritens.Enabled = true;
+            btnconcluir.Enabled = false;
             lbltotalitens.Text = "Total de itens: ";
             lblvalortotal.Text = "Valor Total: ";
+            cbtransacao.Focus();
         }
 
         private void cbservico_Leave(object sender, EventArgs e)
@@ -466,13 +475,25 @@ namespace Sistema_de_Vendas.Transacoes
         {
             if (dataGridView1.Rows.Count == 0)
             {
-                btnconcluir.Enabled = false;
+                
                 MessageBox.Show("Insira produtos na sua venda!");
                 cbproduto.Focus();
                 return;
             }
             else 
             {
+                if (cbformapagamento.Text == "")
+                {
+                    MessageBox.Show("Selecione uma forma de pagamento!");
+                    cbformapagamento.Focus();
+                    return;
+                }
+                if (txtvalorpago.Text == "")
+                {
+                    MessageBox.Show("Digite o valor pago pagamento!");
+                    cbformapagamento.Focus();
+                    return;
+                }
 
                 try
                 {
@@ -490,11 +511,11 @@ namespace Sistema_de_Vendas.Transacoes
                         cmd.Parameters.AddWithValue("@vendedor", dataGridView1.Rows[i].Cells[7].Value);
                         cmd.Parameters.AddWithValue("@servico", dataGridView1.Rows[i].Cells[8].Value);
                         cmd.Parameters.AddWithValue("@quantidade_servico", dataGridView1.Rows[i].Cells[9].Value);
-                        cmd.Parameters.AddWithValue("@descontos", txtdescontos.Text);
+                        cmd.Parameters.AddWithValue("@descontos", txtdescontos.Text.Replace("R$", "").Trim().Replace(",", "."));
                         cmd.Parameters.AddWithValue("@forma_pagamento", cbformapagamento.Text);
-                        cmd.Parameters.AddWithValue("@valor_total", precototal);
-                        cmd.Parameters.AddWithValue("@valor_pago", txtvalorpago.Text);
-                        cmd.Parameters.AddWithValue("@troco", txttroco.Text);
+                        cmd.Parameters.AddWithValue("@valor_total", precototal.ToString().Replace("R$", "").Trim().Replace(",", "."));
+                        cmd.Parameters.AddWithValue("@valor_pago", txtvalorpago.Text.Replace("R$", "").Trim().Replace(",", "."));
+                        cmd.Parameters.AddWithValue("@troco", txttroco.Text.Replace("R$", "").Trim().Replace(",", "."));
                         cmd.Parameters.AddWithValue("@data", DateTime.Today);
                         cmd.Parameters.AddWithValue("@hora", DateTime.Now);
 
@@ -511,20 +532,25 @@ namespace Sistema_de_Vendas.Transacoes
                     cbtransacao.Focus();
                     cbclientes.Enabled = true;
                     cbclientes.Text = "";
+                    cbproduto.Enabled = true;
                     cbproduto.Text = "";
+                    txtquantidade.Enabled = true;
                     txtquantidade.Clear();
                     cbvendedor.Enabled = true;
                     cbvendedor.SelectedIndex = -1;
-                    cbformapagamento.Enabled = true;
+                    cbformapagamento.Enabled = false;
                     cbformapagamento.SelectedIndex = -1;
+                    txtvalorpago.Enabled = false;
                     txtvalorpago.Clear();
+                    txtdescontos.Enabled = false;
                     txtdescontos.Clear();
                     txttroco.Clear();
+                    btnadicionar.Enabled = true;
+                    btnremoveritens.Enabled = true;
                     btnconcluir.Enabled = false;
                     lbltotalitens.Text = "Total de itens: ";
                     lblvalortotal.Text = "Valor Total: ";
-                    precototal = 0;
-                    subtotal = 0;
+                  
                    
                 }
                 catch (Exception)
@@ -577,6 +603,68 @@ namespace Sistema_de_Vendas.Transacoes
             if (e.KeyChar == 13)
                 cbtransacao.Focus();
         }
-               
+
+        private void txtvalorpago_Enter(object sender, EventArgs e)
+        {
+            string valor = txtvalorpago.Text.Replace("R$ ", "");
+            txtvalorpago.Text = valor;
+        }
+
+        private void txtvalorpago_Leave(object sender, EventArgs e)
+        {
+            if (decimal.TryParse(txtvalorpago.Text, out decimal valor))
+            {
+
+                txtvalorpago.Text = valor.ToString("C", CultureInfo.CurrentCulture);
+            }
+        }
+
+        private void txtdescontos_Leave(object sender, EventArgs e)
+        {
+          
+            decimal valorPorcentagem = (decimal)float.Parse(txtdescontos.Text);
+
+            txtdescontos.Text = (valorPorcentagem).ToString() + "%";
+        }
+
+        private void txtdescontos_Enter(object sender, EventArgs e)
+        {
+            string percentual = txtdescontos.Text.Replace("%", "");
+            txtdescontos.Text = percentual;
+        }
+
+        private void txttroco_TextChanged(object sender, EventArgs e)
+        {
+            if (decimal.TryParse(txtdescontos.Text, out decimal valor))
+            {
+
+                txtdescontos.Text = valor.ToString("C", CultureInfo.CurrentCulture);
+            }
+        }
+
+        private void btnfecharvenda_Click(object sender, EventArgs e)
+        {
+               if(dataGridView1.RowCount <= 0)
+            {
+                MessageBox.Show("Insira produtos antes de finalizar a venda!");
+                cbproduto.Focus();
+
+            }
+            else
+            {
+                cbformapagamento.Enabled = true;
+                txtvalorpago.Enabled = true;
+                txtdescontos.Enabled = true;
+                btnconcluir.Enabled = true;
+                cbproduto.Enabled = false;
+                txtquantidade.Enabled = false;
+                btnadicionar.Enabled = false;
+                btnremoveritens.Enabled = false;
+                btnfecharvenda.Enabled = false;
+                lbladdservico.Enabled = false;
+            }
+                                   
+                      
+        }
     }
 }
