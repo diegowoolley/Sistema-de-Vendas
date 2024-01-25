@@ -23,8 +23,8 @@ namespace Sistema_de_Vendas.Transacoes
         string sql;
         MySqlCommand cmd;      
         string id;
-        int subtotal;
-        int precototal;
+        double subtotal;
+        double precototal;
         int cod_venda;
         string indiceselecionado;
 
@@ -47,6 +47,22 @@ namespace Sistema_de_Vendas.Transacoes
                 MessageBox.Show("Erro na Conexão",ex.Message);
             }
             }
+
+        private void AtualizarTotais()
+        {
+            precototal = 0;
+
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                if (dataGridView1.Rows[i].Cells[10].Value != null)
+                {
+                    precototal += Convert.ToDouble(dataGridView1.Rows[i].Cells[10].Value);
+                }
+            }
+
+            lbltotalitens.Text = "Total de itens: " + dataGridView1.RowCount;
+            lblvalortotal.Text = "Valor Total: " + precototal.ToString("C");
+        }
 
         private void listarformapagamento()
         {
@@ -285,18 +301,41 @@ namespace Sistema_de_Vendas.Transacoes
                 MySqlCommand cmd = new MySqlCommand(sql, con.con);
                 
                 MySqlDataReader r = cmd.ExecuteReader();
-               
-                while(r.Read())
+
+                              
+
+                
+                while (r.Read())
                 {
-                   
-                    int preco = int.Parse(txtquantidade.Text.ToString()) * int.Parse(r[10].ToString());
-                    subtotal = preco;                    
-                    dataGridView1.Rows.Add(dataGridView1.RowCount, cbtransacao.Text, cbclientes.Text, r[1], txtquantidade.Text.Trim(), r[2], r[10], cbvendedor.Text, cbservico.Text, txtquantidadeservico.Text, preco);
-                    
+
+                    for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                    {
+                        if (dataGridView1.Rows[i].Cells[3].Value != null && dataGridView1.Rows[i].Cells[3].Value.ToString() == cbproduto.Text)
+                        {                            
+                            double novaQuantidade = double.Parse(txtquantidade.Text.Trim());
+                            double quantidadeAtual = double.Parse(dataGridView1.Rows[i].Cells[4].Value.ToString());                           
+
+                            dataGridView1.Rows[i].Cells[4].Value = (quantidadeAtual + novaQuantidade).ToString();
+                            double teste1 = double.Parse(dataGridView1.Rows[i].Cells[4].Value.ToString());
+                            double teste2 = double.Parse(dataGridView1.Rows[i].Cells[6].Value.ToString());
+                            double resultado = teste1 * teste2;
+                            dataGridView1.Rows[i].Cells[10].Value = resultado.ToString();
+
+                            AtualizarTotais();
+
+                            return;
+                        }
+                    }         
+                        double preco = double.Parse(txtquantidade.Text.ToString()) * double.Parse(r[10].ToString());
+
+                        subtotal = preco;
+                        dataGridView1.Rows.Add(dataGridView1.RowCount, cbtransacao.Text, cbclientes.Text, r[1], txtquantidade.Text.Trim(), r[2], Convert.ToDouble(r[10]), cbvendedor.Text, cbservico.Text, txtquantidadeservico.Text, preco);
+                        AtualizarTotais();                                  
+
                 }
-                precototal = subtotal + precototal;
-                lbltotalitens.Text = "Total de itens: " +(dataGridView1.RowCount);
-                lblvalortotal.Text = "Valor Total: " + precototal;
+
+                
+                
 
                 con.FecharConexao();
                 cbproduto.Text = "";
@@ -368,14 +407,13 @@ namespace Sistema_de_Vendas.Transacoes
             {
                 if (dataGridView1.RowCount > 0)
                 {
-                    dataGridView1.Rows.RemoveAt(int.Parse(indiceselecionado));                    
-                    precototal = precototal - subtotal;
-                    lbltotalitens.Text = "Total de itens: " + (dataGridView1.RowCount);
-                    lblvalortotal.Text = "Valor total: " + precototal;
+                    dataGridView1.Rows.RemoveAt(int.Parse(indiceselecionado));
+                    AtualizarTotais();
                     if (dataGridView1.RowCount < 1)
                     {
-                        precototal = 0;
-                        lblvalortotal.Text = "Valor total: " + precototal;
+                        AtualizarTotais();
+                        txtquantidade.Clear();
+                        cbproduto.Focus();
                         btnconcluir.Enabled = true;
                     }
                 }
@@ -383,8 +421,7 @@ namespace Sistema_de_Vendas.Transacoes
                 {
                     precototal = 0;
                     MessageBox.Show("Não existem itens para remover!");
-                    lbltotalitens.Text = "Total de itens: " +(dataGridView1.RowCount);
-                    lblvalortotal.Text = "Valor total: " + precototal;
+                    AtualizarTotais();
                     btnconcluir.Enabled = false;
                 }
                 
@@ -399,21 +436,24 @@ namespace Sistema_de_Vendas.Transacoes
             if (e.RowIndex > -1)
             {
                 indiceselecionado = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-                subtotal = int.Parse(dataGridView1.CurrentRow.Cells[10].Value.ToString());
+                
             }
         }
 
         private void btncancelar_Click(object sender, EventArgs e)
         {
-            cbtransacao.SelectedIndex = 0;
+            cbtransacao.SelectedIndex = -1;
             cbclientes.Text = "";
             cbproduto.Text = "";
             txtquantidade.Clear();            
-            //cbvendedor.SelectedIndex = 0;
-            //cbformapagamento.SelectedIndex = 0;
+            cbvendedor.SelectedIndex = -1;
+            cbformapagamento.SelectedIndex = -1;
             txtvalorpago.Clear();
             txtdescontos.Clear();
             txttroco.Clear();
+            dataGridView1.Rows.Clear();
+            lbltotalitens.Text = "Total de itens: ";
+            lblvalortotal.Text = "Valor Total: ";
         }
 
         private void cbservico_Leave(object sender, EventArgs e)

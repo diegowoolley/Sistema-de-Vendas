@@ -72,6 +72,9 @@
             this.lblservico = new System.Windows.Forms.Label();
             this.lblquantidadeservico = new System.Windows.Forms.Label();
             this.txtquantidadeservico = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.pnservico.SuspendLayout();
             this.SuspendLayout();
@@ -79,6 +82,7 @@
             // lblcodigovenda
             // 
             this.lblcodigovenda.AutoSize = true;
+            this.lblcodigovenda.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblcodigovenda.ForeColor = System.Drawing.Color.Red;
             this.lblcodigovenda.Location = new System.Drawing.Point(3, 9);
             this.lblcodigovenda.Name = "lblcodigovenda";
@@ -267,11 +271,11 @@
             // 
             this.lblvalortotal.AutoSize = true;
             this.lblvalortotal.ForeColor = System.Drawing.Color.Red;
-            this.lblvalortotal.Location = new System.Drawing.Point(509, 9);
+            this.lblvalortotal.Location = new System.Drawing.Point(463, 9);
             this.lblvalortotal.Name = "lblvalortotal";
-            this.lblvalortotal.Size = new System.Drawing.Size(57, 13);
+            this.lblvalortotal.Size = new System.Drawing.Size(61, 13);
             this.lblvalortotal.TabIndex = 16;
-            this.lblvalortotal.Text = "Valor total:";
+            this.lblvalortotal.Text = "Valor Total:";
             // 
             // txtdescontos
             // 
@@ -307,7 +311,7 @@
             this.txttroco.MaxLength = 10;
             this.txttroco.Name = "txttroco";
             this.txttroco.Size = new System.Drawing.Size(78, 20);
-            this.txttroco.TabIndex = 13;            
+            this.txttroco.TabIndex = 13;
             // 
             // lbltroco
             // 
@@ -494,11 +498,41 @@
             this.txtquantidadeservico.Size = new System.Drawing.Size(54, 20);
             this.txtquantidadeservico.TabIndex = 17;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(437, 296);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 32;
+            this.label1.Text = "label1";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(496, 295);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 33;
+            this.label2.Text = "label2";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(552, 296);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.TabIndex = 34;
+            this.label3.Text = "label3";
+            // 
             // frmvendas_compras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(625, 346);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lbladdservico);
             this.Controls.Add(this.pnservico);
             this.Controls.Add(this.btnremoveritens);
@@ -588,5 +622,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
