@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -20,7 +21,7 @@ namespace Sistema_de_Vendas
 
         public static void DecNumber(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8)//&& e.KeyChar != 44)
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8 && e.KeyChar != 44)
                 e.Handled = true;
         }
 
@@ -132,6 +133,8 @@ namespace Sistema_de_Vendas
 
 
         }
+
+       
     }
     
 }
