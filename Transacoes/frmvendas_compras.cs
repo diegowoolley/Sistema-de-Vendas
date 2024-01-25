@@ -148,11 +148,12 @@ namespace Sistema_de_Vendas.Transacoes
                 cbservico.DataSource = dt;
                 cbservico.DisplayMember = "descricao";
                 reader = cmd.ExecuteReader();
-               
+                
                 if (reader.HasRows)
                 {                    
                    
                     con.FecharConexao();
+                    
 
                 }
                 else
@@ -161,7 +162,9 @@ namespace Sistema_de_Vendas.Transacoes
                     cbservico.Text = "";
                     cbservico.Focus();                    
                 }
-            }catch(Exception ex)
+                
+            }
+            catch(Exception ex)
             {
                 MessageBox.Show("Erro na Conexão", ex.Message);
             }
@@ -621,7 +624,11 @@ namespace Sistema_de_Vendas.Transacoes
 
         private void txtdescontos_Leave(object sender, EventArgs e)
         {
-          
+            if(txtdescontos.Text == "")
+            {
+                txtdescontos.Text = "0";
+            }
+
             decimal valorPorcentagem = (decimal)float.Parse(txtdescontos.Text);
 
             txtdescontos.Text = (valorPorcentagem).ToString() + "%";

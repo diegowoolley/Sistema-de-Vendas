@@ -65,14 +65,14 @@
             this.cbclientes = new System.Windows.Forms.ComboBox();
             this.cbproduto = new System.Windows.Forms.ComboBox();
             this.btnremoveritens = new System.Windows.Forms.Button();
-            this.lbladdservico = new System.Windows.Forms.Label();
+            this.btnfecharvenda = new System.Windows.Forms.Button();
             this.pnservico = new System.Windows.Forms.Panel();
             this.btnfechar = new System.Windows.Forms.Button();
-            this.cbservico = new System.Windows.Forms.ComboBox();
-            this.lblservico = new System.Windows.Forms.Label();
             this.lblquantidadeservico = new System.Windows.Forms.Label();
             this.txtquantidadeservico = new System.Windows.Forms.TextBox();
-            this.btnfecharvenda = new System.Windows.Forms.Button();
+            this.cbservico = new System.Windows.Forms.ComboBox();
+            this.lblservico = new System.Windows.Forms.Label();
+            this.lbladdservico = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.pnservico.SuspendLayout();
             this.SuspendLayout();
@@ -435,15 +435,16 @@
             this.btnremoveritens.UseVisualStyleBackColor = true;
             this.btnremoveritens.Click += new System.EventHandler(this.btnremoveritens_Click);
             // 
-            // lbladdservico
+            // btnfecharvenda
             // 
-            this.lbladdservico.AutoSize = true;
-            this.lbladdservico.Location = new System.Drawing.Point(435, 115);
-            this.lbladdservico.Name = "lbladdservico";
-            this.lbladdservico.Size = new System.Drawing.Size(180, 13);
-            this.lbladdservico.TabIndex = 31;
-            this.lbladdservico.Text = "Dê dois clicks para adicionar serviço";
-            this.lbladdservico.DoubleClick += new System.EventHandler(this.lbladdservico_DoubleClick);
+            this.btnfecharvenda.Enabled = false;
+            this.btnfecharvenda.Location = new System.Drawing.Point(292, 105);
+            this.btnfecharvenda.Name = "btnfecharvenda";
+            this.btnfecharvenda.Size = new System.Drawing.Size(134, 23);
+            this.btnfecharvenda.TabIndex = 32;
+            this.btnfecharvenda.Text = "Fechar venda";
+            this.btnfecharvenda.UseVisualStyleBackColor = true;
+            this.btnfecharvenda.Click += new System.EventHandler(this.btnfecharvenda_Click);
             // 
             // pnservico
             // 
@@ -469,6 +470,23 @@
             this.btnfechar.UseVisualStyleBackColor = true;
             this.btnfechar.Click += new System.EventHandler(this.btnfechar_Click);
             // 
+            // lblquantidadeservico
+            // 
+            this.lblquantidadeservico.AutoSize = true;
+            this.lblquantidadeservico.Location = new System.Drawing.Point(174, 11);
+            this.lblquantidadeservico.Name = "lblquantidadeservico";
+            this.lblquantidadeservico.Size = new System.Drawing.Size(62, 13);
+            this.lblquantidadeservico.TabIndex = 29;
+            this.lblquantidadeservico.Text = "Quantidade";
+            // 
+            // txtquantidadeservico
+            // 
+            this.txtquantidadeservico.Location = new System.Drawing.Point(179, 27);
+            this.txtquantidadeservico.MaxLength = 10;
+            this.txtquantidadeservico.Name = "txtquantidadeservico";
+            this.txtquantidadeservico.Size = new System.Drawing.Size(54, 20);
+            this.txtquantidadeservico.TabIndex = 17;
+            // 
             // cbservico
             // 
             this.cbservico.FormattingEnabled = true;
@@ -487,33 +505,15 @@
             this.lblservico.TabIndex = 27;
             this.lblservico.Text = "Agregar serviço";
             // 
-            // lblquantidadeservico
+            // lbladdservico
             // 
-            this.lblquantidadeservico.AutoSize = true;
-            this.lblquantidadeservico.Location = new System.Drawing.Point(174, 11);
-            this.lblquantidadeservico.Name = "lblquantidadeservico";
-            this.lblquantidadeservico.Size = new System.Drawing.Size(62, 13);
-            this.lblquantidadeservico.TabIndex = 29;
-            this.lblquantidadeservico.Text = "Quantidade";
-            // 
-            // txtquantidadeservico
-            // 
-            this.txtquantidadeservico.Location = new System.Drawing.Point(179, 27);
-            this.txtquantidadeservico.MaxLength = 10;
-            this.txtquantidadeservico.Name = "txtquantidadeservico";
-            this.txtquantidadeservico.Size = new System.Drawing.Size(54, 20);
-            this.txtquantidadeservico.TabIndex = 17;
-            // 
-            // btnfecharvenda
-            // 
-            this.btnfecharvenda.Enabled = false;
-            this.btnfecharvenda.Location = new System.Drawing.Point(292, 105);
-            this.btnfecharvenda.Name = "btnfecharvenda";
-            this.btnfecharvenda.Size = new System.Drawing.Size(134, 23);
-            this.btnfecharvenda.TabIndex = 32;
-            this.btnfecharvenda.Text = "Fechar venda";
-            this.btnfecharvenda.UseVisualStyleBackColor = true;
-            this.btnfecharvenda.Click += new System.EventHandler(this.btnfecharvenda_Click);
+            this.lbladdservico.AutoSize = true;
+            this.lbladdservico.Location = new System.Drawing.Point(435, 115);
+            this.lbladdservico.Name = "lbladdservico";
+            this.lbladdservico.Size = new System.Drawing.Size(180, 13);
+            this.lbladdservico.TabIndex = 31;
+            this.lbladdservico.Text = "Dê dois clicks para adicionar serviço";
+            this.lbladdservico.DoubleClick += new System.EventHandler(this.lbladdservico_DoubleClick);
             // 
             // frmvendas_compras
             // 
@@ -592,13 +592,6 @@
         private System.Windows.Forms.ComboBox cbclientes;
         private System.Windows.Forms.ComboBox cbproduto;
         private System.Windows.Forms.Button btnremoveritens;
-        private System.Windows.Forms.Label lbladdservico;
-        private System.Windows.Forms.Panel pnservico;
-        private System.Windows.Forms.Button btnfechar;
-        private System.Windows.Forms.ComboBox cbservico;
-        private System.Windows.Forms.Label lblservico;
-        private System.Windows.Forms.Label lblquantidadeservico;
-        private System.Windows.Forms.TextBox txtquantidadeservico;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
@@ -611,5 +604,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
         private System.Windows.Forms.Button btnfecharvenda;
+        private System.Windows.Forms.Panel pnservico;
+        private System.Windows.Forms.Button btnfechar;
+        private System.Windows.Forms.ComboBox cbservico;
+        private System.Windows.Forms.Label lblservico;
+        private System.Windows.Forms.Label lblquantidadeservico;
+        private System.Windows.Forms.TextBox txtquantidadeservico;
+        private System.Windows.Forms.Label lbladdservico;
     }
 }
