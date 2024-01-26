@@ -24,8 +24,7 @@ namespace Sistema_de_Vendas.Transacoes
         string sql;
         MySqlCommand cmd;      
         string id;        
-        double precototal;
-        double subtotal;
+        double precototal;        
         int cod_venda;
         string indiceselecionado;
 
@@ -325,8 +324,7 @@ namespace Sistema_de_Vendas.Transacoes
                         }
                     }         
                         double preco = double.Parse(txtquantidade.Text.ToString()) * double.Parse(r[10].ToString());
-
-                        subtotal = preco;
+                                            
                         dataGridView1.Rows.Add(dataGridView1.RowCount, cbtransacao.Text, cbclientes.Text, r[1], txtquantidade.Text.Trim(), r[2], Convert.ToDouble(r[10]), cbvendedor.Text, cbservico.Text, txtquantidadeservico.Text, preco);
                         AtualizarTotais();                                  
 
@@ -615,10 +613,21 @@ namespace Sistema_de_Vendas.Transacoes
 
         private void txtvalorpago_Leave(object sender, EventArgs e)
         {
+            double valorpago = double.Parse(txtvalorpago.Text);
+            if(valorpago < precototal )
+            {
+                MessageBox.Show("Valor pago não pode ser menor que o valor total da venda!");
+                txtvalorpago.Clear();
+                txtvalorpago.Focus();
+                return;
+            }
+
             if (decimal.TryParse(txtvalorpago.Text, out decimal valor))
             {
-
+                double troco = valorpago - precototal;
                 txtvalorpago.Text = valor.ToString("C", CultureInfo.CurrentCulture);
+                txttroco.Text = troco.ToString("C");
+
             }
         }
 
@@ -626,12 +635,19 @@ namespace Sistema_de_Vendas.Transacoes
         {
             if(txtdescontos.Text == "")
             {
+                txtdescontos.Text = "0";           
+            }  
+            if(decimal.Parse( txtdescontos.Text) > 100)
+            {
+                MessageBox.Show("Desconto não pode exceder 100%!");                
                 txtdescontos.Text = "0";
+                txtdescontos.Focus();
             }
-
+            
             decimal valorPorcentagem = (decimal)float.Parse(txtdescontos.Text);
 
             txtdescontos.Text = (valorPorcentagem).ToString() + "%";
+            CalcularValorVenda();
         }
 
         private void txtdescontos_Enter(object sender, EventArgs e)
@@ -672,6 +688,24 @@ namespace Sistema_de_Vendas.Transacoes
             }
                                    
                       
+        }
+
+        private void CalcularValorVenda()
+        {
+            if (decimal.TryParse(txtvalorpago.Text.Trim().Replace("R$ ", ""), out decimal valorpago) &&
+                decimal.TryParse(txtdescontos.Text.Replace("%", ""), out decimal descontos))
+            {
+                decimal valordescontos = valorpago * (1 - (descontos / 100));
+
+                
+                txttroco.Text = valordescontos.ToString("N2");
+            }
+            else
+            {
+
+                MessageBox.Show("Por favor, insira valores válidos para a compra e a margem de lucro.");
+            }
+
         }
     }
 }

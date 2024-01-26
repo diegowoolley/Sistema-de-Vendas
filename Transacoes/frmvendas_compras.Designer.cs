@@ -68,10 +68,10 @@
             this.btnfecharvenda = new System.Windows.Forms.Button();
             this.pnservico = new System.Windows.Forms.Panel();
             this.btnfechar = new System.Windows.Forms.Button();
-            this.lblquantidadeservico = new System.Windows.Forms.Label();
-            this.txtquantidadeservico = new System.Windows.Forms.TextBox();
             this.cbservico = new System.Windows.Forms.ComboBox();
             this.lblservico = new System.Windows.Forms.Label();
+            this.lblquantidadeservico = new System.Windows.Forms.Label();
+            this.txtquantidadeservico = new System.Windows.Forms.TextBox();
             this.lbladdservico = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.pnservico.SuspendLayout();
@@ -470,23 +470,6 @@
             this.btnfechar.UseVisualStyleBackColor = true;
             this.btnfechar.Click += new System.EventHandler(this.btnfechar_Click);
             // 
-            // lblquantidadeservico
-            // 
-            this.lblquantidadeservico.AutoSize = true;
-            this.lblquantidadeservico.Location = new System.Drawing.Point(174, 11);
-            this.lblquantidadeservico.Name = "lblquantidadeservico";
-            this.lblquantidadeservico.Size = new System.Drawing.Size(62, 13);
-            this.lblquantidadeservico.TabIndex = 29;
-            this.lblquantidadeservico.Text = "Quantidade";
-            // 
-            // txtquantidadeservico
-            // 
-            this.txtquantidadeservico.Location = new System.Drawing.Point(179, 27);
-            this.txtquantidadeservico.MaxLength = 10;
-            this.txtquantidadeservico.Name = "txtquantidadeservico";
-            this.txtquantidadeservico.Size = new System.Drawing.Size(54, 20);
-            this.txtquantidadeservico.TabIndex = 17;
-            // 
             // cbservico
             // 
             this.cbservico.FormattingEnabled = true;
@@ -504,6 +487,23 @@
             this.lblservico.Size = new System.Drawing.Size(81, 13);
             this.lblservico.TabIndex = 27;
             this.lblservico.Text = "Agregar serviço";
+            // 
+            // lblquantidadeservico
+            // 
+            this.lblquantidadeservico.AutoSize = true;
+            this.lblquantidadeservico.Location = new System.Drawing.Point(174, 11);
+            this.lblquantidadeservico.Name = "lblquantidadeservico";
+            this.lblquantidadeservico.Size = new System.Drawing.Size(62, 13);
+            this.lblquantidadeservico.TabIndex = 29;
+            this.lblquantidadeservico.Text = "Quantidade";
+            // 
+            // txtquantidadeservico
+            // 
+            this.txtquantidadeservico.Location = new System.Drawing.Point(179, 27);
+            this.txtquantidadeservico.MaxLength = 10;
+            this.txtquantidadeservico.Name = "txtquantidadeservico";
+            this.txtquantidadeservico.Size = new System.Drawing.Size(54, 20);
+            this.txtquantidadeservico.TabIndex = 17;
             // 
             // lbladdservico
             // 
