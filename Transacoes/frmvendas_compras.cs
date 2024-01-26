@@ -463,6 +463,7 @@ namespace Sistema_de_Vendas.Transacoes
             btnconcluir.Enabled = false;
             lbltotalitens.Text = "Total de itens: ";
             lblvalortotal.Text = "Valor Total: ";
+            lbladdservico.Enabled = true;
             cbtransacao.Focus();
         }
 
@@ -549,6 +550,7 @@ namespace Sistema_de_Vendas.Transacoes
                     btnadicionar.Enabled = true;
                     btnremoveritens.Enabled = true;
                     btnconcluir.Enabled = false;
+                    lbladdservico.Enabled = true;
                     lbltotalitens.Text = "Total de itens: ";
                     lblvalortotal.Text = "Valor Total: ";
                   
@@ -698,7 +700,7 @@ namespace Sistema_de_Vendas.Transacoes
                 decimal valordescontos =  valorpago * (1 - (descontos / 100)) ;
                 decimal descontotal = valordescontos - (decimal)precototal;
                 
-                txttroco.Text = descontotal.ToString("N2");
+                txttroco.Text = descontotal.ToString("C");
             }
             else
             {
