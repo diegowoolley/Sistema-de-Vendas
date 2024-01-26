@@ -338,7 +338,7 @@ namespace Sistema_de_Vendas
 
                     //insere dados na tabela
                     con.AbrirConexao();
-                    sql = "INSERT INTO cad_produtos(nome_produto, categoria_produto, unidade_medida, quantidade, fornecedor, peso_medio, peso_bruto, fabricante, valor_compra, valor_venda, margem_lucro, situacao_tributaria, aliquota_ipi, cod_ipi, foto, estoque_minimo, estoque_maximo, validade, etiqueta) VALUES (@nome, @categoria, @unidade_medida, @quantidade, @fornecedor,  @peso_medio, @peso_bruto, @fabricante, @valor_compra, @valor_venda, @margem_lucro, @situacao_tributaria, @aliquota_ipi, @cod_ipi, @foto, @estoque_minimo, @estoque_maximo, @validade, @etiqueta)";
+                    sql = "INSERT INTO cad_produtos(nome_produto, categoria_produto, unidade_medida, quantidade, fornecedor, peso_medio, peso_bruto, fabricante, valor_compra, valor_venda, margem_lucro, situacao_tributaria, aliquota_ipi, cod_ipi, foto, estoque_minimo, estoque_maximo, validade, etiqueta, usuario, datahora) VALUES (@nome, @categoria, @unidade_medida, @quantidade, @fornecedor,  @peso_medio, @peso_bruto, @fabricante, @valor_compra, @valor_venda, @margem_lucro, @situacao_tributaria, @aliquota_ipi, @cod_ipi, @foto, @estoque_minimo, @estoque_maximo, @validade, @etiqueta, @usuario, @datahora)";
                     cmd = new MySqlCommand(sql, con.con);
                     cmd.Parameters.AddWithValue("@nome", txtdescricao.Text);
                     cmd.Parameters.AddWithValue("@categoria", cbcategoria.Text);
@@ -359,6 +359,8 @@ namespace Sistema_de_Vendas
                     cmd.Parameters.AddWithValue("@estoque_maximo", txtestoquemaximo.Text);
                     cmd.Parameters.AddWithValue("@validade", txtvalidade.Text);
                     cmd.Parameters.AddWithValue("@etiqueta", txtetiqueta.Text);
+                    cmd.Parameters.AddWithValue("@usuario", funcoes.conectado);
+                    cmd.Parameters.AddWithValue("@datahora", DateTime.Now);
 
                     cmd.ExecuteNonQuery();
                     con.FecharConexao();
@@ -545,7 +547,7 @@ namespace Sistema_de_Vendas
             {
 
                 con.AbrirConexao();
-                sql = "UPDATE cad_produtos SET nome_produto = @nome, categoria_produto = @categoria, unidade_medida = @unidade_medida, quantidade = @quantidade, fornecedor = @fornecedor, peso_medio = @peso_medio, peso_bruto = @peso_bruto, fabricante = @fabricante, valor_compra = @valor_compra, valor_venda = @valor_venda, margem_lucro = @margem_lucro, situacao_tributaria = @situacao_tributaria, aliquota_ipi = @aliquota_ipi, cod_ipi = @cod_ipi, foto = @foto, estoque_minimo = @estoque_minimo, estoque_maximo = @estoque_maximo, validade = @validade, etiqueta = @etiqueta WHERE cod_produto = @id";
+                sql = "UPDATE cad_produtos SET nome_produto = @nome, categoria_produto = @categoria, unidade_medida = @unidade_medida, quantidade = @quantidade, fornecedor = @fornecedor, peso_medio = @peso_medio, peso_bruto = @peso_bruto, fabricante = @fabricante, valor_compra = @valor_compra, valor_venda = @valor_venda, margem_lucro = @margem_lucro, situacao_tributaria = @situacao_tributaria, aliquota_ipi = @aliquota_ipi, cod_ipi = @cod_ipi, foto = @foto, estoque_minimo = @estoque_minimo, estoque_maximo = @estoque_maximo, validade = @validade, etiqueta = @etiqueta, usuario = @usuario, datahora = @datahora WHERE cod_produto = @id";
                 cmd = new MySqlCommand(sql, con.con);
                 cmd.Parameters.AddWithValue("@id", id);
                 cmd.Parameters.AddWithValue("@nome", txtdescricao.Text);
@@ -567,12 +569,14 @@ namespace Sistema_de_Vendas
                 cmd.Parameters.AddWithValue("@estoque_maximo", txtestoquemaximo.Text);
                 cmd.Parameters.AddWithValue("@validade", txtvalidade.Text);
                 cmd.Parameters.AddWithValue("@etiqueta", txtetiqueta.Text);
+                cmd.Parameters.AddWithValue("@usuario", funcoes.conectado);
+                cmd.Parameters.AddWithValue("@datahora", DateTime.Now);
 
             }
             else if (alterou_foto == "n")
             {
                 con.AbrirConexao();
-                sql = "UPDATE cad_produtos SET nome_produto = @nome, categoria_produto = @categoria, unidade_medida = @unidade_medida, quantidade = @quantidade, fornecedor = @fornecedor, peso_medio = @peso_medio, peso_bruto = @peso_bruto, fabricante = @fabricante, valor_compra = @valor_compra, valor_venda = @valor_venda, margem_lucro = @margem_lucro, situacao_tributaria = @situacao_tributaria, aliquota_ipi = @aliquota_ipi, cod_ipi = @cod_ipi, estoque_minimo = @estoque_minimo, estoque_maximo = @estoque_maximo, validade = @validade, etiqueta = @etiqueta WHERE cod_produto = @id";
+                sql = "UPDATE cad_produtos SET nome_produto = @nome, categoria_produto = @categoria, unidade_medida = @unidade_medida, quantidade = @quantidade, fornecedor = @fornecedor, peso_medio = @peso_medio, peso_bruto = @peso_bruto, fabricante = @fabricante, valor_compra = @valor_compra, valor_venda = @valor_venda, margem_lucro = @margem_lucro, situacao_tributaria = @situacao_tributaria, aliquota_ipi = @aliquota_ipi, cod_ipi = @cod_ipi, estoque_minimo = @estoque_minimo, estoque_maximo = @estoque_maximo, validade = @validade, etiqueta = @etiqueta, usuario = @usuario, datahora = @datahora WHERE cod_produto = @id";
                 cmd = new MySqlCommand(sql, con.con);
                 cmd.Parameters.AddWithValue("@id", id);
                 cmd.Parameters.AddWithValue("@nome", txtdescricao.Text);
@@ -593,6 +597,8 @@ namespace Sistema_de_Vendas
                 cmd.Parameters.AddWithValue("@estoque_maximo", txtestoquemaximo.Text);
                 cmd.Parameters.AddWithValue("@validade", txtvalidade.Text);
                 cmd.Parameters.AddWithValue("@etiqueta", txtetiqueta.Text);
+                cmd.Parameters.AddWithValue("@usuario", funcoes.conectado);
+                cmd.Parameters.AddWithValue("@datahora", DateTime.Now);
 
 
             }
