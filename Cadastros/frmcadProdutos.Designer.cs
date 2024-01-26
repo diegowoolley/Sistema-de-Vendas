@@ -287,7 +287,7 @@
             // lblmargemlucro
             // 
             this.lblmargemlucro.AutoSize = true;
-            this.lblmargemlucro.Location = new System.Drawing.Point(387, 112);
+            this.lblmargemlucro.Location = new System.Drawing.Point(227, 109);
             this.lblmargemlucro.Name = "lblmargemlucro";
             this.lblmargemlucro.Size = new System.Drawing.Size(62, 13);
             this.lblmargemlucro.TabIndex = 88;
@@ -406,11 +406,11 @@
             // 
             this.txtvalorvenda.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtvalorvenda.Enabled = false;
-            this.txtvalorvenda.Location = new System.Drawing.Point(288, 105);
+            this.txtvalorvenda.Location = new System.Drawing.Point(396, 105);
             this.txtvalorvenda.MaxLength = 10;
             this.txtvalorvenda.Name = "txtvalorvenda";
             this.txtvalorvenda.Size = new System.Drawing.Size(95, 20);
-            this.txtvalorvenda.TabIndex = 11;
+            this.txtvalorvenda.TabIndex = 12;
             this.txtvalorvenda.Enter += new System.EventHandler(this.txtvalorvenda_Enter);
             this.txtvalorvenda.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtvalorvenda_KeyPress);
             this.txtvalorvenda.Leave += new System.EventHandler(this.txtvalorvenda_Leave);
@@ -418,7 +418,7 @@
             // lblvalorvenda
             // 
             this.lblvalorvenda.AutoSize = true;
-            this.lblvalorvenda.Location = new System.Drawing.Point(223, 107);
+            this.lblvalorvenda.Location = new System.Drawing.Point(331, 107);
             this.lblvalorvenda.Name = "lblvalorvenda";
             this.lblvalorvenda.Size = new System.Drawing.Size(68, 13);
             this.lblvalorvenda.TabIndex = 104;
@@ -437,11 +437,11 @@
             // 
             this.txtmargemlucro.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtmargemlucro.Enabled = false;
-            this.txtmargemlucro.Location = new System.Drawing.Point(447, 107);
+            this.txtmargemlucro.Location = new System.Drawing.Point(287, 104);
             this.txtmargemlucro.MaxLength = 3;
             this.txtmargemlucro.Name = "txtmargemlucro";
             this.txtmargemlucro.Size = new System.Drawing.Size(39, 20);
-            this.txtmargemlucro.TabIndex = 12;
+            this.txtmargemlucro.TabIndex = 11;
             this.txtmargemlucro.Enter += new System.EventHandler(this.txtmargemlucro_Enter);
             this.txtmargemlucro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtmargemlucro_KeyPress);
             this.txtmargemlucro.Leave += new System.EventHandler(this.txtmargemlucro_Leave);
