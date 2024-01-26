@@ -695,10 +695,10 @@ namespace Sistema_de_Vendas.Transacoes
             if (decimal.TryParse(txtvalorpago.Text.Trim().Replace("R$ ", ""), out decimal valorpago) &&
                 decimal.TryParse(txtdescontos.Text.Replace("%", ""), out decimal descontos))
             {
-                decimal valordescontos = valorpago * (1 - (descontos / 100));
-
+                decimal valordescontos =  valorpago * (1 - (descontos / 100)) ;
+                decimal descontotal = valordescontos - (decimal)precototal;
                 
-                txttroco.Text = valordescontos.ToString("N2");
+                txttroco.Text = descontotal.ToString("N2");
             }
             else
             {
