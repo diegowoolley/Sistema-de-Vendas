@@ -123,10 +123,11 @@ namespace Sistema_de_Vendas
         {
             string pesquisa = txtpesquisa.Text;
             con.AbrirConexao();
-            sql = "SELECT * FROM cad_produtos WHERE nome_produto LIKE @nome or cod_produto LIKE @cod_produto";
+            sql = "SELECT * FROM cad_produtos WHERE nome_produto LIKE @nome or cod_produto LIKE @cod_produto or etiqueta LIKE @etiqueta";
             cmd = new MySqlCommand(sql, con.con);
             cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
             cmd.Parameters.AddWithValue("@cod_produto", "%" + pesquisa + "%");
+            cmd.Parameters.AddWithValue("@etiqueta", "%" + pesquisa + "%");
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = cmd;
             DataTable dt = new DataTable();
@@ -981,7 +982,22 @@ namespace Sistema_de_Vendas
 
         }
 
-        
+        private void txtetiqueta_TextChanged(object sender, EventArgs e)
+        {
+            string pesquisa = txtetiqueta.Text;
+            con.AbrirConexao();
+            sql = "SELECT * FROM cad_produtos WHERE etiqueta LIKE @etiqueta";
+            cmd = new MySqlCommand(sql, con.con);           
+            cmd.Parameters.AddWithValue("@etiqueta", "%" + pesquisa + "%");
+            MySqlDataAdapter da = new MySqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dgCliente.DataSource = dt;
+            con.FecharConexao();
+
+            formatargrid();
+        }
     }
 
       

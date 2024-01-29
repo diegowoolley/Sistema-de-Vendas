@@ -287,7 +287,7 @@
             // lblmargemlucro
             // 
             this.lblmargemlucro.AutoSize = true;
-            this.lblmargemlucro.Location = new System.Drawing.Point(227, 109);
+            this.lblmargemlucro.Location = new System.Drawing.Point(223, 109);
             this.lblmargemlucro.Name = "lblmargemlucro";
             this.lblmargemlucro.Size = new System.Drawing.Size(62, 13);
             this.lblmargemlucro.TabIndex = 88;
@@ -418,7 +418,7 @@
             // lblvalorvenda
             // 
             this.lblvalorvenda.AutoSize = true;
-            this.lblvalorvenda.Location = new System.Drawing.Point(331, 107);
+            this.lblvalorvenda.Location = new System.Drawing.Point(328, 107);
             this.lblvalorvenda.Name = "lblvalorvenda";
             this.lblvalorvenda.Size = new System.Drawing.Size(68, 13);
             this.lblvalorvenda.TabIndex = 104;
@@ -437,10 +437,10 @@
             // 
             this.txtmargemlucro.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtmargemlucro.Enabled = false;
-            this.txtmargemlucro.Location = new System.Drawing.Point(287, 104);
+            this.txtmargemlucro.Location = new System.Drawing.Point(281, 104);
             this.txtmargemlucro.MaxLength = 3;
             this.txtmargemlucro.Name = "txtmargemlucro";
-            this.txtmargemlucro.Size = new System.Drawing.Size(39, 20);
+            this.txtmargemlucro.Size = new System.Drawing.Size(49, 20);
             this.txtmargemlucro.TabIndex = 11;
             this.txtmargemlucro.Enter += new System.EventHandler(this.txtmargemlucro_Enter);
             this.txtmargemlucro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtmargemlucro_KeyPress);
@@ -631,6 +631,7 @@
             this.txtetiqueta.Name = "txtetiqueta";
             this.txtetiqueta.Size = new System.Drawing.Size(195, 20);
             this.txtetiqueta.TabIndex = 1;
+            this.txtetiqueta.TextChanged += new System.EventHandler(this.txtetiqueta_TextChanged);
             this.txtetiqueta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtetiqueta_KeyPress);
             // 
             // lblvalidade
