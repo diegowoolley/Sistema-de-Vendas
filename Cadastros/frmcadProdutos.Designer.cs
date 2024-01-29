@@ -618,16 +618,16 @@
             this.lbletiqueta.AutoSize = true;
             this.lbletiqueta.Location = new System.Drawing.Point(15, 6);
             this.lbletiqueta.Name = "lbletiqueta";
-            this.lbletiqueta.Size = new System.Drawing.Size(72, 13);
+            this.lbletiqueta.Size = new System.Drawing.Size(96, 13);
             this.lbletiqueta.TabIndex = 123;
-            this.lbletiqueta.Text = "EAN \\ GTIN :";
+            this.lbletiqueta.Text = "EAN13 \\ GTIN13 :";
             // 
             // txtetiqueta
             // 
             this.txtetiqueta.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtetiqueta.Enabled = false;
             this.txtetiqueta.Location = new System.Drawing.Point(126, 3);
-            this.txtetiqueta.MaxLength = 20;
+            this.txtetiqueta.MaxLength = 13;
             this.txtetiqueta.Name = "txtetiqueta";
             this.txtetiqueta.Size = new System.Drawing.Size(195, 20);
             this.txtetiqueta.TabIndex = 1;
