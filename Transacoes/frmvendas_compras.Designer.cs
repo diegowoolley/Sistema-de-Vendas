@@ -343,9 +343,9 @@
             this.lblformapagamento.AutoSize = true;
             this.lblformapagamento.Location = new System.Drawing.Point(7, 295);
             this.lblformapagamento.Name = "lblformapagamento";
-            this.lblformapagamento.Size = new System.Drawing.Size(111, 13);
+            this.lblformapagamento.Size = new System.Drawing.Size(110, 13);
             this.lblformapagamento.TabIndex = 22;
-            this.lblformapagamento.Text = "Forma de Pagamento:";
+            this.lblformapagamento.Text = "Forma de pagamento:";
             // 
             // cbtransacao
             // 

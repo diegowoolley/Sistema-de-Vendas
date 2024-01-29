@@ -22,8 +22,7 @@ namespace Sistema_de_Vendas.Transacoes
         }
         conn con = new conn();
         string sql;
-        MySqlCommand cmd;      
-        string id;        
+        MySqlCommand cmd;               
         double precototal;        
         int cod_venda;
         string indiceselecionado;
@@ -149,8 +148,8 @@ namespace Sistema_de_Vendas.Transacoes
                 reader = cmd.ExecuteReader();
                 
                 if (reader.HasRows)
-                {                    
-                   
+                {
+                    
                     con.FecharConexao();
                     
 
@@ -367,8 +366,9 @@ namespace Sistema_de_Vendas.Transacoes
         }
 
         private void btnfechar_Click(object sender, EventArgs e)
-        {
+        {           
             pnservico.Visible = false;
+           
         }
 
         private void cbclientes_Leave(object sender, EventArgs e)
