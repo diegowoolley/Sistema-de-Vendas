@@ -385,6 +385,7 @@
             // lbladicionarcargos
             // 
             this.lbladicionarcargos.AutoSize = true;
+            this.lbladicionarcargos.ForeColor = System.Drawing.SystemColors.Highlight;
             this.lbladicionarcargos.Location = new System.Drawing.Point(506, 113);
             this.lbladicionarcargos.Name = "lbladicionarcargos";
             this.lbladicionarcargos.Size = new System.Drawing.Size(203, 13);
@@ -406,6 +407,7 @@
             // lblpesquisa
             // 
             this.lblpesquisa.AutoSize = true;
+            this.lblpesquisa.ForeColor = System.Drawing.SystemColors.Highlight;
             this.lblpesquisa.Location = new System.Drawing.Point(521, 131);
             this.lblpesquisa.Name = "lblpesquisa";
             this.lblpesquisa.Size = new System.Drawing.Size(173, 13);

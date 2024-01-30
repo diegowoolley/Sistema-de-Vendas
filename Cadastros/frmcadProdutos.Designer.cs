@@ -101,21 +101,21 @@
             // lblnomepesquisa
             // 
             this.lblnomepesquisa.AutoSize = true;
-            this.lblnomepesquisa.Location = new System.Drawing.Point(54, 33);
+            this.lblnomepesquisa.Location = new System.Drawing.Point(59, 33);
             this.lblnomepesquisa.Name = "lblnomepesquisa";
-            this.lblnomepesquisa.Size = new System.Drawing.Size(96, 13);
+            this.lblnomepesquisa.Size = new System.Drawing.Size(95, 13);
             this.lblnomepesquisa.TabIndex = 2;
-            this.lblnomepesquisa.Text = "Pesquisar Produto:";
+            this.lblnomepesquisa.Text = "Pesquisar produto:";
             // 
             // lblpesquisa
             // 
             this.lblpesquisa.AutoSize = true;
             this.lblpesquisa.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lblpesquisa.Location = new System.Drawing.Point(592, 145);
+            this.lblpesquisa.Location = new System.Drawing.Point(583, 145);
             this.lblpesquisa.Name = "lblpesquisa";
-            this.lblpesquisa.Size = new System.Drawing.Size(173, 13);
+            this.lblpesquisa.Size = new System.Drawing.Size(190, 13);
             this.lblpesquisa.TabIndex = 96;
-            this.lblpesquisa.Text = "(Dê duplo click para abrir pesquisa)";
+            this.lblpesquisa.Text = "(Dê um duplo click para abrir pesquisa)";
             this.lblpesquisa.DoubleClick += new System.EventHandler(this.lblpesquisa_DoubleClick);
             // 
             // pnpesquisa
@@ -146,7 +146,7 @@
             // 
             this.lbladicionarcategorias.AutoSize = true;
             this.lbladicionarcategorias.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lbladicionarcategorias.Location = new System.Drawing.Point(571, 127);
+            this.lbladicionarcategorias.Location = new System.Drawing.Point(568, 127);
             this.lbladicionarcategorias.Name = "lbladicionarcategorias";
             this.lbladicionarcategorias.Size = new System.Drawing.Size(220, 13);
             this.lbladicionarcategorias.TabIndex = 83;
@@ -298,9 +298,9 @@
             this.lblvalorcompra.AutoSize = true;
             this.lblvalorcompra.Location = new System.Drawing.Point(14, 107);
             this.lblvalorcompra.Name = "lblvalorcompra";
-            this.lblvalorcompra.Size = new System.Drawing.Size(88, 13);
+            this.lblvalorcompra.Size = new System.Drawing.Size(87, 13);
             this.lblvalorcompra.TabIndex = 87;
-            this.lblvalorcompra.Text = "Valor de Compra:";
+            this.lblvalorcompra.Text = "Valor de compra:";
             // 
             // lblcategoria
             // 
@@ -316,9 +316,9 @@
             this.lbldescricao.AutoSize = true;
             this.lbldescricao.Location = new System.Drawing.Point(14, 30);
             this.lbldescricao.Name = "lbldescricao";
-            this.lbldescricao.Size = new System.Drawing.Size(113, 13);
+            this.lbldescricao.Size = new System.Drawing.Size(112, 13);
             this.lbldescricao.TabIndex = 84;
-            this.lbldescricao.Text = "Descrição do Produto:";
+            this.lbldescricao.Text = "Descrição do produto:";
             // 
             // cbcategoria
             // 
@@ -366,9 +366,9 @@
             this.lblunidadade.AutoSize = true;
             this.lblunidadade.Location = new System.Drawing.Point(14, 56);
             this.lblunidadade.Name = "lblunidadade";
-            this.lblunidadade.Size = new System.Drawing.Size(103, 13);
+            this.lblunidadade.Size = new System.Drawing.Size(102, 13);
             this.lblunidadade.TabIndex = 98;
-            this.lblunidadade.Text = "Unidade de Medida:";
+            this.lblunidadade.Text = "Unidade de medida:";
             // 
             // cbfornecedor
             // 
@@ -420,9 +420,9 @@
             this.lblvalorvenda.AutoSize = true;
             this.lblvalorvenda.Location = new System.Drawing.Point(328, 107);
             this.lblvalorvenda.Name = "lblvalorvenda";
-            this.lblvalorvenda.Size = new System.Drawing.Size(68, 13);
+            this.lblvalorvenda.Size = new System.Drawing.Size(67, 13);
             this.lblvalorvenda.TabIndex = 104;
-            this.lblvalorvenda.Text = "Valor Venda:";
+            this.lblvalorvenda.Text = "Valor venda:";
             // 
             // lblquantidade
             // 
@@ -462,9 +462,9 @@
             this.lblsituacaotributaria.AutoSize = true;
             this.lblsituacaotributaria.Location = new System.Drawing.Point(30, 47);
             this.lblsituacaotributaria.Name = "lblsituacaotributaria";
-            this.lblsituacaotributaria.Size = new System.Drawing.Size(118, 13);
+            this.lblsituacaotributaria.Size = new System.Drawing.Size(114, 13);
             this.lblsituacaotributaria.TabIndex = 107;
-            this.lblsituacaotributaria.Text = "Cód Situação Tibutária:";
+            this.lblsituacaotributaria.Text = "Cód Situação tibutária:";
             // 
             // txtaliquota
             // 
@@ -522,9 +522,9 @@
             this.lblpesomedio.AutoSize = true;
             this.lblpesomedio.Location = new System.Drawing.Point(14, 80);
             this.lblpesomedio.Name = "lblpesomedio";
-            this.lblpesomedio.Size = new System.Drawing.Size(66, 13);
+            this.lblpesomedio.Size = new System.Drawing.Size(65, 13);
             this.lblpesomedio.TabIndex = 113;
-            this.lblpesomedio.Text = "Peso Médio:";
+            this.lblpesomedio.Text = "Peso médio:";
             // 
             // txtpesobruto
             // 
@@ -542,19 +542,19 @@
             this.lblpesobruto.AutoSize = true;
             this.lblpesobruto.Location = new System.Drawing.Point(182, 80);
             this.lblpesobruto.Name = "lblpesobruto";
-            this.lblpesobruto.Size = new System.Drawing.Size(62, 13);
+            this.lblpesobruto.Size = new System.Drawing.Size(61, 13);
             this.lblpesobruto.TabIndex = 115;
-            this.lblpesobruto.Text = "Peso Bruto:";
+            this.lblpesobruto.Text = "Peso bruto:";
             // 
             // lbltributos
             // 
             this.lbltributos.AutoSize = true;
             this.lbltributos.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lbltributos.Location = new System.Drawing.Point(382, 145);
+            this.lbltributos.Location = new System.Drawing.Point(368, 145);
             this.lbltributos.Name = "lbltributos";
-            this.lbltributos.Size = new System.Drawing.Size(188, 13);
+            this.lbltributos.Size = new System.Drawing.Size(205, 13);
             this.lbltributos.TabIndex = 116;
-            this.lbltributos.Text = "(Dê duplo click para adicionar tributos)";
+            this.lbltributos.Text = "(Dê um duplo click para adicionar tributos)";
             this.lbltributos.DoubleClick += new System.EventHandler(this.lbltributos_DoubleClick);
             // 
             // pntributos
@@ -598,9 +598,9 @@
             this.lblestoquemaximo.AutoSize = true;
             this.lblestoquemaximo.Location = new System.Drawing.Point(202, 134);
             this.lblestoquemaximo.Name = "lblestoquemaximo";
-            this.lblestoquemaximo.Size = new System.Drawing.Size(88, 13);
+            this.lblestoquemaximo.Size = new System.Drawing.Size(87, 13);
             this.lblestoquemaximo.TabIndex = 121;
-            this.lblestoquemaximo.Text = "Estoque Máximo:";
+            this.lblestoquemaximo.Text = "Estoque máximo:";
             // 
             // txtestoquemaximo
             // 
@@ -631,8 +631,8 @@
             this.txtetiqueta.Name = "txtetiqueta";
             this.txtetiqueta.Size = new System.Drawing.Size(195, 20);
             this.txtetiqueta.TabIndex = 1;
-            this.txtetiqueta.TextChanged += new System.EventHandler(this.txtetiqueta_TextChanged);
             this.txtetiqueta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtetiqueta_KeyPress);
+            this.txtetiqueta.Leave += new System.EventHandler(this.txtetiqueta_Leave);
             // 
             // lblvalidade
             // 

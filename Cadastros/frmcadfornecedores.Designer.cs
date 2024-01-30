@@ -370,6 +370,7 @@
             // lblpesquisa
             // 
             this.lblpesquisa.AutoSize = true;
+            this.lblpesquisa.ForeColor = System.Drawing.SystemColors.Highlight;
             this.lblpesquisa.Location = new System.Drawing.Point(518, 128);
             this.lblpesquisa.Name = "lblpesquisa";
             this.lblpesquisa.Size = new System.Drawing.Size(173, 13);
