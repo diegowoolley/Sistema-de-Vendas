@@ -53,9 +53,9 @@ namespace Sistema_de_Vendas.Transacoes
 
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
-                if (dataGridView1.Rows[i].Cells[10].Value != null)
+                if (dataGridView1.Rows[i].Cells[11].Value != null)
                 {
-                    precototal += Convert.ToDouble(dataGridView1.Rows[i].Cells[10].Value);
+                    precototal += Convert.ToDouble(dataGridView1.Rows[i].Cells[11].Value);
                 }
             }
 
@@ -325,13 +325,13 @@ namespace Sistema_de_Vendas.Transacoes
                     }         
                         double preco = double.Parse(txtquantidade.Text.ToString()) * double.Parse(r[10].ToString());
                                             
-                        dataGridView1.Rows.Add(dataGridView1.RowCount, cbtransacao.Text, cbclientes.Text, r[1], txtquantidade.Text.Trim(), r[2], Convert.ToDouble(r[10]), cbvendedor.Text, cbservico.Text, txtquantidadeservico.Text, preco);
+                        dataGridView1.Rows.Add(dataGridView1.RowCount, r[0], cbtransacao.Text, cbclientes.Text, r[1], txtquantidade.Text.Trim(), r[2], Convert.ToDouble(r[10]), cbvendedor.Text, cbservico.Text, txtquantidadeservico.Text, preco);
                         AtualizarTotais();                                  
 
                 }
 
-                
-                
+
+
 
                 con.FecharConexao();
                 btnfecharvenda.Enabled = true;
@@ -497,6 +497,7 @@ namespace Sistema_de_Vendas.Transacoes
                     cbformapagamento.Focus();
                     return;
                 }
+                
 
                 try
                 {
@@ -521,13 +522,26 @@ namespace Sistema_de_Vendas.Transacoes
                         cmd.Parameters.AddWithValue("@troco", txttroco.Text.Replace("R$", "").Trim().Replace(",", "."));
                         cmd.Parameters.AddWithValue("@data", DateTime.Today);
                         cmd.Parameters.AddWithValue("@hora", DateTime.Now);
-
+                        
                         cmd.ExecuteNonQuery();
                         con.FecharConexao();
+                        
+
 
                     }
                     MessageBox.Show("Venda salva com sucesso!");
 
+                    if(cbtransacao.Text == "VENDA")
+                    {
+                        AtualizarQuantidadeProdutosVendidos();
+                        
+                    }
+                    if(cbtransacao.Text == "COMPRA")
+                    {
+                        AdicionarProdutosAoEstoque();
+                        
+                    }
+                    
                     dataGridView1.Rows.Clear();
                     contarvendas();
                     cbtransacao.Enabled = true;
@@ -710,5 +724,62 @@ namespace Sistema_de_Vendas.Transacoes
             }
 
         }
+
+        private void AtualizarQuantidadeProdutosVendidos()
+        {
+            try
+            {               
+
+                for(int i = 0; i < dataGridView1.Rows.Count; i++)
+                {
+                    con.AbrirConexao();
+
+                        int idProduto = Convert.ToInt32(dataGridView1.Rows[i].Cells[1].Value);
+                        int quantidadeVendida = Convert.ToInt32(dataGridView1.Rows[i].Cells[5].Value);
+
+                        string updateQuery = $"UPDATE cad_produtos SET quantidade = quantidade - {quantidadeVendida} WHERE cod_produto = {idProduto}";
+
+                        MySqlCommand updateCommand = new MySqlCommand(updateQuery, con.con);
+                        updateCommand.ExecuteNonQuery();
+
+                    con.FecharConexao();
+                }
+
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao atualizar a quantidade de produtos: " + ex.Message);
+            }
+
+        }
+
+
+        private void AdicionarProdutosAoEstoque()
+        {
+            try
+            {
+                con.AbrirConexao();
+
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                {
+                    int idProduto = Convert.ToInt32(dataGridView1.Rows[i].Cells[1].Value);
+                    int quantidadeComprada = Convert.ToInt32(dataGridView1.Rows[i].Cells[5].Value);
+
+                    string updateQuery = $"UPDATE cad_produtos SET quantidade = quantidade + {quantidadeComprada} WHERE cod_produto = {idProduto}";
+
+                    MySqlCommand updateCommand = new MySqlCommand(updateQuery, con.con);
+                    updateCommand.ExecuteNonQuery();
+                }
+
+                con.FecharConexao();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao adicionar produtos ao estoque: " + ex.Message);
+            }
+        }
+
+
     }
 }

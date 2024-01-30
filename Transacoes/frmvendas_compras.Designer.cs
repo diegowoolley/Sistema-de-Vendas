@@ -37,17 +37,6 @@
             this.cbvendedor = new System.Windows.Forms.ComboBox();
             this.lblcliente = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbldescontos = new System.Windows.Forms.Label();
             this.lblvalortotal = new System.Windows.Forms.Label();
             this.txtdescontos = new System.Windows.Forms.TextBox();
@@ -73,6 +62,18 @@
             this.lblquantidadeservico = new System.Windows.Forms.Label();
             this.txtquantidadeservico = new System.Windows.Forms.TextBox();
             this.lbladdservico = new System.Windows.Forms.Label();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.COD_PRODUTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TIPO_TRANSACAO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CLIENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PRODUTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QUANTIDADE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CATEGORIA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PRECO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VENDEDOR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SERVICO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QUANT_SERVICO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VALOR_TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.pnservico.SuspendLayout();
             this.SuspendLayout();
@@ -160,17 +161,18 @@
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5,
-            this.Column15,
-            this.Column14,
-            this.Column6,
-            this.Column7,
-            this.Column8,
-            this.Column12});
+            this.ID,
+            this.COD_PRODUTO,
+            this.TIPO_TRANSACAO,
+            this.CLIENTE,
+            this.PRODUTO,
+            this.QUANTIDADE,
+            this.CATEGORIA,
+            this.PRECO,
+            this.VENDEDOR,
+            this.SERVICO,
+            this.QUANT_SERVICO,
+            this.VALOR_TOTAL});
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView1.Location = new System.Drawing.Point(8, 134);
             this.dataGridView1.Name = "dataGridView1";
@@ -178,83 +180,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(615, 150);
             this.dataGridView1.TabIndex = 20;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "ID";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 43;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "TIPO TRANSAÇÂO";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 115;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "CLIENTE";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 77;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "PRODUTO";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 86;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "QUANTIDADE";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Width = 103;
-            // 
-            // Column15
-            // 
-            this.Column15.HeaderText = "CATEGORIA";
-            this.Column15.Name = "Column15";
-            this.Column15.ReadOnly = true;
-            this.Column15.Width = 94;
-            // 
-            // Column14
-            // 
-            this.Column14.HeaderText = "PREÇO";
-            this.Column14.Name = "Column14";
-            this.Column14.ReadOnly = true;
-            this.Column14.Width = 69;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "VENDEDOR";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Width = 93;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "SERVIÇO";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            this.Column7.Width = 79;
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "QUANT. SERVIÇO";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            this.Column8.Width = 113;
-            // 
-            // Column12
-            // 
-            this.Column12.HeaderText = "VALOR TOTAL";
-            this.Column12.Name = "Column12";
-            this.Column12.ReadOnly = true;
-            this.Column12.Width = 97;
             // 
             // lbldescontos
             // 
@@ -354,7 +279,8 @@
             this.cbtransacao.Items.AddRange(new object[] {
             "VENDA",
             "COMPRA",
-            "ORÇAMENTO"});
+            "ORÇAMENTO",
+            "TROCA\\DEVOLUÇÃO"});
             this.cbtransacao.Location = new System.Drawing.Point(99, 37);
             this.cbtransacao.Name = "cbtransacao";
             this.cbtransacao.Size = new System.Drawing.Size(121, 21);
@@ -508,12 +434,97 @@
             // lbladdservico
             // 
             this.lbladdservico.AutoSize = true;
+            this.lbladdservico.ForeColor = System.Drawing.SystemColors.Highlight;
             this.lbladdservico.Location = new System.Drawing.Point(435, 115);
             this.lbladdservico.Name = "lbladdservico";
             this.lbladdservico.Size = new System.Drawing.Size(180, 13);
             this.lbladdservico.TabIndex = 31;
             this.lbladdservico.Text = "Dê dois clicks para adicionar serviço";
             this.lbladdservico.DoubleClick += new System.EventHandler(this.lbladdservico_DoubleClick);
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Width = 43;
+            // 
+            // COD_PRODUTO
+            // 
+            this.COD_PRODUTO.HeaderText = "COD_PRODUTO";
+            this.COD_PRODUTO.Name = "COD_PRODUTO";
+            this.COD_PRODUTO.ReadOnly = true;
+            this.COD_PRODUTO.Width = 115;
+            // 
+            // TIPO_TRANSACAO
+            // 
+            this.TIPO_TRANSACAO.HeaderText = "TIPO TRANSAÇÂO";
+            this.TIPO_TRANSACAO.Name = "TIPO_TRANSACAO";
+            this.TIPO_TRANSACAO.ReadOnly = true;
+            this.TIPO_TRANSACAO.Width = 115;
+            // 
+            // CLIENTE
+            // 
+            this.CLIENTE.HeaderText = "CLIENTE";
+            this.CLIENTE.Name = "CLIENTE";
+            this.CLIENTE.ReadOnly = true;
+            this.CLIENTE.Width = 77;
+            // 
+            // PRODUTO
+            // 
+            this.PRODUTO.HeaderText = "PRODUTO";
+            this.PRODUTO.Name = "PRODUTO";
+            this.PRODUTO.ReadOnly = true;
+            this.PRODUTO.Width = 86;
+            // 
+            // QUANTIDADE
+            // 
+            this.QUANTIDADE.HeaderText = "QUANTIDADE";
+            this.QUANTIDADE.Name = "QUANTIDADE";
+            this.QUANTIDADE.ReadOnly = true;
+            this.QUANTIDADE.Width = 103;
+            // 
+            // CATEGORIA
+            // 
+            this.CATEGORIA.HeaderText = "CATEGORIA";
+            this.CATEGORIA.Name = "CATEGORIA";
+            this.CATEGORIA.ReadOnly = true;
+            this.CATEGORIA.Width = 94;
+            // 
+            // PRECO
+            // 
+            this.PRECO.HeaderText = "PREÇO";
+            this.PRECO.Name = "PRECO";
+            this.PRECO.ReadOnly = true;
+            this.PRECO.Width = 69;
+            // 
+            // VENDEDOR
+            // 
+            this.VENDEDOR.HeaderText = "VENDEDOR";
+            this.VENDEDOR.Name = "VENDEDOR";
+            this.VENDEDOR.ReadOnly = true;
+            this.VENDEDOR.Width = 93;
+            // 
+            // SERVICO
+            // 
+            this.SERVICO.HeaderText = "SERVIÇO";
+            this.SERVICO.Name = "SERVICO";
+            this.SERVICO.ReadOnly = true;
+            this.SERVICO.Width = 79;
+            // 
+            // QUANT_SERVICO
+            // 
+            this.QUANT_SERVICO.HeaderText = "QUANT. SERVIÇO";
+            this.QUANT_SERVICO.Name = "QUANT_SERVICO";
+            this.QUANT_SERVICO.ReadOnly = true;
+            this.QUANT_SERVICO.Width = 113;
+            // 
+            // VALOR_TOTAL
+            // 
+            this.VALOR_TOTAL.HeaderText = "VALOR TOTAL";
+            this.VALOR_TOTAL.Name = "VALOR_TOTAL";
+            this.VALOR_TOTAL.ReadOnly = true;
+            this.VALOR_TOTAL.Width = 97;
             // 
             // frmvendas_compras
             // 
@@ -592,17 +603,6 @@
         private System.Windows.Forms.ComboBox cbclientes;
         private System.Windows.Forms.ComboBox cbproduto;
         private System.Windows.Forms.Button btnremoveritens;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
         private System.Windows.Forms.Button btnfecharvenda;
         private System.Windows.Forms.Panel pnservico;
         private System.Windows.Forms.Button btnfechar;
@@ -611,5 +611,17 @@
         private System.Windows.Forms.Label lblquantidadeservico;
         private System.Windows.Forms.TextBox txtquantidadeservico;
         private System.Windows.Forms.Label lbladdservico;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn COD_PRODUTO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TIPO_TRANSACAO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CLIENTE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PRODUTO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QUANTIDADE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CATEGORIA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PRECO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn VENDEDOR;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SERVICO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QUANT_SERVICO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn VALOR_TOTAL;
     }
 }
