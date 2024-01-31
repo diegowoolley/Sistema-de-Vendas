@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -81,8 +82,39 @@ namespace Sistema_de_Vendas
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Close();
-        }    
-      
+        }
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+            testarBD();
+        }
+
+        private void testarBD()
+        {
+            try
+            {
+                StreamReader arquivo = new StreamReader("ConfigBD.txt");
+                conn.servidor = arquivo.ReadLine();
+                conn.banco = arquivo.ReadLine();
+                conn.usuario = arquivo.ReadLine();
+                conn.senha = arquivo.ReadLine();
+                conn.porta = arquivo.ReadLine();
+                arquivo.Close();
+                conn con = new conn();
+                con.AbrirConexao();
+                con.FecharConexao();
+
+            }
+            catch (MySqlException)
+            {
+                MessageBox.Show("Erro nos parâmentros de conexão, favor entrar com os dados corretos e tente conectar novamente!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+        }
     }
 
 }

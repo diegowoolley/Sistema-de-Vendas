@@ -1,11 +1,14 @@
-﻿using Sistema_de_Vendas.Cadastros;
+﻿using MySql.Data.MySqlClient;
+using Sistema_de_Vendas.Cadastros;
 using Sistema_de_Vendas.Transacoes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -25,6 +28,7 @@ namespace Sistema_de_Vendas
             lblconectado.Text = ("Usuário Conectado: " + conectado);
             lbldata.Text = DateTime.Today.ToString("dd/MM/yyyy");
             lblhora.Text = DateTime.Now.ToString("HH:mm:ss");
+            
             
         }
 
@@ -95,10 +99,40 @@ namespace Sistema_de_Vendas
             cad_Transportadoras.ShowDialog();
         }
 
-        private void vendasComprasToolStripMenuItem_Click(object sender, EventArgs e)
+        private void vendasComprasDetalhadasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-         frmvendas_compras frmvendas_Compras = new frmvendas_compras(); 
+            frmvendas_compras frmvendas_Compras = new frmvendas_compras();
             frmvendas_Compras.ShowDialog();
         }
+
+        private void estoqueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmcadProdutos frmcadprod = new frmcadProdutos();
+            frmcadprod.Text = "Estoque";
+            frmcadprod.ShowDialog();
+        }
+
+        private void configuraçãoDoBancoDeDadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmconfbancodados frmconfbd = new frmconfbancodados();
+            frmconfbd.ShowDialog();
+        }
+
+        private void calculadoraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("calc");
+        }
+
+        private void explorerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("explorer");
+        }
+
+        private void blocoDeNotasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("notepad");
+        }
+
+       
     }
 }

@@ -11,7 +11,23 @@ namespace Sistema_de_Vendas
 {
     internal class conn
     {
-        public String connec = "SERVER=localhost; DATABASE=dbsistema_vendas; UID=root; PID=; PORT=;";
+        public static string servidor = "";
+        public static string banco = "";
+        public static string usuario = "";
+        public static string senha = "";
+        public static string porta = "";
+       // public static string sql = "SERVER=localhost; DATABASE=dbsistema_vendas; UID=root; PID=; PORT=;";
+
+        public static String connec 
+        {
+            get
+            {
+                return @"SERVER="+servidor+";DATABASE="+banco+";UID="+usuario+";PID="+senha+";PORT = "+ porta +";"; 
+            }
+        }
+                
+
+
         public MySqlConnection con = null;
         public void AbrirConexao()
         {
@@ -37,5 +53,7 @@ namespace Sistema_de_Vendas
                 MessageBox.Show("Erro de Conexão" + ex.Message);
             }
         }
+
+       
     }
 }
