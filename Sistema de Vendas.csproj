@@ -123,6 +123,12 @@
     <Compile Include="Cadastros\frmcadProdutos.Designer.cs">
       <DependentUpon>frmcadProdutos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Manutencao\FrmbackupBD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Manutencao\FrmbackupBD.Designer.cs">
+      <DependentUpon>FrmbackupBD.cs</DependentUpon>
+    </Compile>
     <Compile Include="Manutencao\frmconfbancodados.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -193,6 +199,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Cadastros\frmCargos.resx">
       <DependentUpon>frmCargos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Manutencao\FrmbackupBD.resx">
+      <DependentUpon>FrmbackupBD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Manutencao\frmconfbancodados.resx">
       <DependentUpon>frmconfbancodados.cs</DependentUpon>

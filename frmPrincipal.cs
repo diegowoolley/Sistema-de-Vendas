@@ -133,6 +133,10 @@ namespace Sistema_de_Vendas
             System.Diagnostics.Process.Start("notepad");
         }
 
-       
+        private void backupDoBancoDeDadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmbackupBD bkpbd = new FrmbackupBD();
+            bkpbd.ShowDialog();
+        }
     }
 }
