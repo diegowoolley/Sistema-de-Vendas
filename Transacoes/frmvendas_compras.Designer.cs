@@ -81,21 +81,22 @@
             // lblcodigovenda
             // 
             this.lblcodigovenda.AutoSize = true;
-            this.lblcodigovenda.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblcodigovenda.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblcodigovenda.ForeColor = System.Drawing.Color.Red;
-            this.lblcodigovenda.Location = new System.Drawing.Point(3, 9);
+            this.lblcodigovenda.Location = new System.Drawing.Point(2, 1);
             this.lblcodigovenda.Name = "lblcodigovenda";
-            this.lblcodigovenda.Size = new System.Drawing.Size(91, 13);
+            this.lblcodigovenda.Size = new System.Drawing.Size(132, 20);
             this.lblcodigovenda.TabIndex = 0;
             this.lblcodigovenda.Text = "Código da venda:";
             // 
             // lbltotalitens
             // 
             this.lbltotalitens.AutoSize = true;
+            this.lbltotalitens.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbltotalitens.ForeColor = System.Drawing.Color.Red;
-            this.lbltotalitens.Location = new System.Drawing.Point(264, 9);
+            this.lbltotalitens.Location = new System.Drawing.Point(248, 1);
             this.lbltotalitens.Name = "lbltotalitens";
-            this.lbltotalitens.Size = new System.Drawing.Size(74, 13);
+            this.lbltotalitens.Size = new System.Drawing.Size(108, 20);
             this.lbltotalitens.TabIndex = 1;
             this.lbltotalitens.Text = "Total de itens:";
             // 
@@ -193,12 +194,13 @@
             // lblvalortotal
             // 
             this.lblvalortotal.AutoSize = true;
+            this.lblvalortotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblvalortotal.ForeColor = System.Drawing.Color.Red;
-            this.lblvalortotal.Location = new System.Drawing.Point(463, 9);
+            this.lblvalortotal.Location = new System.Drawing.Point(435, 1);
             this.lblvalortotal.Name = "lblvalortotal";
-            this.lblvalortotal.Size = new System.Drawing.Size(61, 13);
+            this.lblvalortotal.Size = new System.Drawing.Size(85, 20);
             this.lblvalortotal.TabIndex = 16;
-            this.lblvalortotal.Text = "Valor Total:";
+            this.lblvalortotal.Text = "Valor total:";
             // 
             // txtdescontos
             // 
@@ -444,87 +446,87 @@
             // 
             // ID
             // 
-            this.ID.HeaderText = "ID";
+            this.ID.HeaderText = "Id";
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
-            this.ID.Width = 43;
+            this.ID.Width = 41;
             // 
             // COD_PRODUTO
             // 
-            this.COD_PRODUTO.HeaderText = "COD_PRODUTO";
+            this.COD_PRODUTO.HeaderText = "Código do produto";
             this.COD_PRODUTO.Name = "COD_PRODUTO";
             this.COD_PRODUTO.ReadOnly = true;
-            this.COD_PRODUTO.Width = 115;
+            this.COD_PRODUTO.Width = 109;
             // 
             // TIPO_TRANSACAO
             // 
-            this.TIPO_TRANSACAO.HeaderText = "TIPO TRANSAÇÂO";
+            this.TIPO_TRANSACAO.HeaderText = "Tipo de transação";
             this.TIPO_TRANSACAO.Name = "TIPO_TRANSACAO";
             this.TIPO_TRANSACAO.ReadOnly = true;
-            this.TIPO_TRANSACAO.Width = 115;
+            this.TIPO_TRANSACAO.Width = 108;
             // 
             // CLIENTE
             // 
-            this.CLIENTE.HeaderText = "CLIENTE";
+            this.CLIENTE.HeaderText = "Cliente";
             this.CLIENTE.Name = "CLIENTE";
             this.CLIENTE.ReadOnly = true;
-            this.CLIENTE.Width = 77;
+            this.CLIENTE.Width = 64;
             // 
             // PRODUTO
             // 
-            this.PRODUTO.HeaderText = "PRODUTO";
+            this.PRODUTO.HeaderText = "Produto";
             this.PRODUTO.Name = "PRODUTO";
             this.PRODUTO.ReadOnly = true;
-            this.PRODUTO.Width = 86;
+            this.PRODUTO.Width = 69;
             // 
             // QUANTIDADE
             // 
-            this.QUANTIDADE.HeaderText = "QUANTIDADE";
+            this.QUANTIDADE.HeaderText = "Quantidade";
             this.QUANTIDADE.Name = "QUANTIDADE";
             this.QUANTIDADE.ReadOnly = true;
-            this.QUANTIDADE.Width = 103;
+            this.QUANTIDADE.Width = 87;
             // 
             // CATEGORIA
             // 
-            this.CATEGORIA.HeaderText = "CATEGORIA";
+            this.CATEGORIA.HeaderText = "Categoria";
             this.CATEGORIA.Name = "CATEGORIA";
             this.CATEGORIA.ReadOnly = true;
-            this.CATEGORIA.Width = 94;
+            this.CATEGORIA.Width = 77;
             // 
             // PRECO
             // 
-            this.PRECO.HeaderText = "PREÇO";
+            this.PRECO.HeaderText = "Preço";
             this.PRECO.Name = "PRECO";
             this.PRECO.ReadOnly = true;
-            this.PRECO.Width = 69;
+            this.PRECO.Width = 60;
             // 
             // VENDEDOR
             // 
-            this.VENDEDOR.HeaderText = "VENDEDOR";
+            this.VENDEDOR.HeaderText = "Vendedor";
             this.VENDEDOR.Name = "VENDEDOR";
             this.VENDEDOR.ReadOnly = true;
-            this.VENDEDOR.Width = 93;
+            this.VENDEDOR.Width = 78;
             // 
             // SERVICO
             // 
-            this.SERVICO.HeaderText = "SERVIÇO";
+            this.SERVICO.HeaderText = "Serviço";
             this.SERVICO.Name = "SERVICO";
             this.SERVICO.ReadOnly = true;
-            this.SERVICO.Width = 79;
+            this.SERVICO.Width = 68;
             // 
             // QUANT_SERVICO
             // 
-            this.QUANT_SERVICO.HeaderText = "QUANT. SERVIÇO";
+            this.QUANT_SERVICO.HeaderText = "Quantidade de Serviço";
             this.QUANT_SERVICO.Name = "QUANT_SERVICO";
             this.QUANT_SERVICO.ReadOnly = true;
-            this.QUANT_SERVICO.Width = 113;
+            this.QUANT_SERVICO.Width = 97;
             // 
             // VALOR_TOTAL
             // 
-            this.VALOR_TOTAL.HeaderText = "VALOR TOTAL";
+            this.VALOR_TOTAL.HeaderText = "Valor total";
             this.VALOR_TOTAL.Name = "VALOR_TOTAL";
             this.VALOR_TOTAL.ReadOnly = true;
-            this.VALOR_TOTAL.Width = 97;
+            this.VALOR_TOTAL.Width = 73;
             // 
             // frmvendas_compras
             // 

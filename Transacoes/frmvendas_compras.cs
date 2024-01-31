@@ -461,6 +461,7 @@ namespace Sistema_de_Vendas.Transacoes
             txttroco.Clear();
             btnadicionar.Enabled = true;
             btnremoveritens.Enabled = true;
+            btnfecharvenda.Enabled = false;
             btnconcluir.Enabled = false;
             lbltotalitens.Text = "Total de itens: ";
             lblvalortotal.Text = "Valor Total: ";
