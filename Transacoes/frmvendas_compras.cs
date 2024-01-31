@@ -53,9 +53,9 @@ namespace Sistema_de_Vendas.Transacoes
 
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
-                if (dataGridView1.Rows[i].Cells[11].Value != null)
+                if (dataGridView1.Rows[i].Cells[9].Value != null)
                 {
-                    precototal += Convert.ToDouble(dataGridView1.Rows[i].Cells[11].Value);
+                    precototal += Convert.ToDouble(dataGridView1.Rows[i].Cells[9].Value);
                 }
             }
 
@@ -127,49 +127,7 @@ namespace Sistema_de_Vendas.Transacoes
             }
 
         }
-
-        private void BuscarServicos()
-        {
-            try
-            {
-                string pesquisa = cbservico.Text;
-                con.AbrirConexao();
-                sql = "SELECT * FROM cad_servicos WHERE descricao LIKE @nome or cod_servico LIKE @cod_clientes";
-                cmd = new MySqlCommand(sql, con.con);
-                MySqlDataReader reader;
-                cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
-                cmd.Parameters.AddWithValue("@cod_clientes", "%" + pesquisa + "%");                
-                MySqlDataAdapter da = new MySqlDataAdapter();
-                da.SelectCommand = cmd;
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                cbservico.DataSource = dt;
-                cbservico.DisplayMember = "descricao";
-                reader = cmd.ExecuteReader();
-                
-                if (reader.HasRows)
-                {
-                    
-                    con.FecharConexao();
-                    
-
-                }
-                else
-                {
-                    MessageBox.Show("Serviço não cadastrado!");
-                    cbservico.Text = "";
-                    cbservico.Focus();                    
-                }
-                
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show("Erro na Conexão", ex.Message);
-            }
-            
-
-        }
-
+             
         private void Buscarprodutos()
         {
             try
@@ -241,7 +199,6 @@ namespace Sistema_de_Vendas.Transacoes
             }
          }
 
-
         private void frmvendas_compras_Load(object sender, EventArgs e)
         {
             listarvendedor();   
@@ -252,7 +209,6 @@ namespace Sistema_de_Vendas.Transacoes
 
         }            
        
-
         private void btnadicionar_Click(object sender, EventArgs e)
         {
             if(cbtransacao.Text == "")
@@ -307,25 +263,25 @@ namespace Sistema_de_Vendas.Transacoes
 
                     for (int i = 0; i < dataGridView1.Rows.Count; i++)
                     {
-                        if (dataGridView1.Rows[i].Cells[3].Value != null && dataGridView1.Rows[i].Cells[3].Value.ToString() == cbproduto.Text)
+                        if (dataGridView1.Rows[i].Cells[4].Value != null && dataGridView1.Rows[i].Cells[4].Value.ToString() == cbproduto.Text)
                         {                            
                             double novaQuantidade = double.Parse(txtquantidade.Text.Trim());
-                            double quantidadeAtual = double.Parse(dataGridView1.Rows[i].Cells[4].Value.ToString());                           
+                            double quantidadeAtual = double.Parse(dataGridView1.Rows[i].Cells[5].Value.ToString());                           
 
-                            dataGridView1.Rows[i].Cells[4].Value = (quantidadeAtual + novaQuantidade).ToString();
-                            double teste1 = double.Parse(dataGridView1.Rows[i].Cells[4].Value.ToString());
-                            double teste2 = double.Parse(dataGridView1.Rows[i].Cells[6].Value.ToString());
+                            dataGridView1.Rows[i].Cells[5].Value = (quantidadeAtual + novaQuantidade).ToString();
+                            double teste1 = double.Parse(dataGridView1.Rows[i].Cells[5].Value.ToString());
+                            double teste2 = double.Parse(dataGridView1.Rows[i].Cells[7].Value.ToString());
                             double resultado = teste1 * teste2;
-                            dataGridView1.Rows[i].Cells[10].Value = resultado.ToString();
+                            dataGridView1.Rows[i].Cells[9].Value = resultado.ToString();
 
                             AtualizarTotais();
 
                             return;
                         }
                     }         
-                        double preco = double.Parse(txtquantidade.Text.ToString()) * double.Parse(r[10].ToString());
+                        double preco = double.Parse(txtquantidade.Text.ToString()) * double.Parse(r[9].ToString());
                                             
-                        dataGridView1.Rows.Add(dataGridView1.RowCount, r[0], cbtransacao.Text, cbclientes.Text, r[1], txtquantidade.Text.Trim(), r[2], Convert.ToDouble(r[10]), cbvendedor.Text, cbservico.Text, txtquantidadeservico.Text, preco);
+                        dataGridView1.Rows.Add(dataGridView1.RowCount, r[0], cbtransacao.Text, cbclientes.Text, r[1], txtquantidade.Text.Trim(), r[2], Convert.ToDouble(r[9]), cbvendedor.Text, preco);
                         AtualizarTotais();                                  
 
                 }
@@ -349,28 +305,8 @@ namespace Sistema_de_Vendas.Transacoes
                 MessageBox.Show("Erro de conexão"+ ex);
             }
            
-        }
-              
-
-        private void lbladdservico_DoubleClick(object sender, EventArgs e)
-        {
-            pnservico.Visible = true;
-            cbservico.Text = "";
-            txtquantidadeservico.Clear();
-            cbservico.Focus();
-        }
-
-        private void pnservico_Leave(object sender, EventArgs e)
-        {
-            pnservico.Visible = false;
-        }
-
-        private void btnfechar_Click(object sender, EventArgs e)
-        {           
-            pnservico.Visible = false;
-           
-        }
-
+        }                              
+       
         private void cbclientes_Leave(object sender, EventArgs e)
         {
             if (cbclientes.Text == "")
@@ -464,17 +400,10 @@ namespace Sistema_de_Vendas.Transacoes
             btnfecharvenda.Enabled = false;
             btnconcluir.Enabled = false;
             lbltotalitens.Text = "Total de itens: ";
-            lblvalortotal.Text = "Valor Total: ";
-            lbladdservico.Enabled = true;
+            lblvalortotal.Text = "Valor Total: ";           
             cbtransacao.Focus();
         }
-
-        private void cbservico_Leave(object sender, EventArgs e)
-        {
-            BuscarServicos();
-            
-        }
-
+              
         private void btnconcluir_Click(object sender, EventArgs e)
         {
             if (dataGridView1.Rows.Count == 0)
@@ -506,16 +435,14 @@ namespace Sistema_de_Vendas.Transacoes
                     for (int i = 0; i < dataGridView1.Rows.Count; i++)
                     {
                         con.AbrirConexao();
-                        sql = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, vendedor, servico, quantidade_servico, descontos, forma_pagamento, valor_total, valor_pago, troco, data, hora) VALUES (@cod_venda, @tipo, @cliente, @produto, @quantidade, @vendedor, @servico, @quantidade_servico, @descontos, @forma_pagamento, @valor_total, @valor_pago, @troco, @data, @hora)";
+                        sql = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, vendedor, descontos, forma_pagamento, valor_total, valor_pago, troco, data, hora) VALUES (@cod_venda, @tipo, @cliente, @produto, @quantidade, @vendedor, @descontos, @forma_pagamento, @valor_total, @valor_pago, @troco, @data, @hora)";
                         cmd = new MySqlCommand(sql, con.con);
                         cmd.Parameters.AddWithValue("@cod_venda", cod_venda);
                         cmd.Parameters.AddWithValue("@tipo", cbtransacao.Text);
                         cmd.Parameters.AddWithValue("@cliente", cbclientes.Text);
-                        cmd.Parameters.AddWithValue("produto", dataGridView1.Rows[i].Cells[3].Value);
-                        cmd.Parameters.AddWithValue("@quantidade", dataGridView1.Rows[i].Cells[4].Value);
-                        cmd.Parameters.AddWithValue("@vendedor", dataGridView1.Rows[i].Cells[7].Value);
-                        cmd.Parameters.AddWithValue("@servico", dataGridView1.Rows[i].Cells[8].Value);
-                        cmd.Parameters.AddWithValue("@quantidade_servico", dataGridView1.Rows[i].Cells[9].Value);
+                        cmd.Parameters.AddWithValue("produto", dataGridView1.Rows[i].Cells[4].Value);
+                        cmd.Parameters.AddWithValue("@quantidade", dataGridView1.Rows[i].Cells[5].Value);
+                        cmd.Parameters.AddWithValue("@vendedor", dataGridView1.Rows[i].Cells[8].Value);                       
                         cmd.Parameters.AddWithValue("@descontos", txtdescontos.Text.Replace("R$", "").Trim().Replace(",", "."));
                         cmd.Parameters.AddWithValue("@forma_pagamento", cbformapagamento.Text);
                         cmd.Parameters.AddWithValue("@valor_total", precototal.ToString().Replace("R$", "").Trim().Replace(",", "."));
@@ -565,8 +492,7 @@ namespace Sistema_de_Vendas.Transacoes
                     txttroco.Clear();
                     btnadicionar.Enabled = true;
                     btnremoveritens.Enabled = true;
-                    btnconcluir.Enabled = false;
-                    lbladdservico.Enabled = true;
+                    btnconcluir.Enabled = false;                  
                     lbltotalitens.Text = "Total de itens: ";
                     lblvalortotal.Text = "Valor Total: ";
                   
@@ -702,7 +628,7 @@ namespace Sistema_de_Vendas.Transacoes
                 btnadicionar.Enabled = false;
                 btnremoveritens.Enabled = false;
                 btnfecharvenda.Enabled = false;
-                lbladdservico.Enabled = false;
+                
             }
                                    
                       
@@ -713,8 +639,8 @@ namespace Sistema_de_Vendas.Transacoes
             if (decimal.TryParse(txtvalorpago.Text.Trim().Replace("R$ ", ""), out decimal valorpago) &&
                 decimal.TryParse(txtdescontos.Text.Replace("%", ""), out decimal descontos))
             {
-                decimal valordescontos =  valorpago * (1 - (descontos / 100)) ;
-                decimal descontotal = valordescontos - (decimal)precototal;
+                decimal valordescontos =  (decimal)precototal * (1 - (descontos / 100)) ;
+                decimal descontotal = valorpago - valordescontos;
                 
                 txttroco.Text = descontotal.ToString("C");
             }
