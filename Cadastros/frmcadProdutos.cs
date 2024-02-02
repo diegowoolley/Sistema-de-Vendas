@@ -101,7 +101,7 @@ namespace Sistema_de_Vendas
             dgCliente.Columns[4].HeaderText = "Quantidade";
             dgCliente.Columns[5].HeaderText = "Fornecedor";
             dgCliente.Columns[6].HeaderText = "Peso Médio";
-            dgCliente.Columns[7].HeaderText = "Peso_Bruto";
+            dgCliente.Columns[7].HeaderText = "Peso Bruto";
             dgCliente.Columns[8].HeaderText = "Fabricante";
             dgCliente.Columns[9].HeaderText = "Valor Compra";
             dgCliente.Columns[10].HeaderText = "Valor Venda";
@@ -114,6 +114,8 @@ namespace Sistema_de_Vendas
             dgCliente.Columns[17].HeaderText = "Estoque Máximo";
             dgCliente.Columns[18].HeaderText = "Validade";
             dgCliente.Columns[19].HeaderText = "Etiqueta";
+            dgCliente.Columns[20].HeaderText = "Adicionado por";
+            dgCliente.Columns[21].HeaderText = "Data e hora da inclusão";
 
 
 
