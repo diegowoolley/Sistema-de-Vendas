@@ -104,13 +104,7 @@ namespace Sistema_de_Vendas
             frmvendas_compras frmvendas_Compras = new frmvendas_compras();
             frmvendas_Compras.ShowDialog();
         }
-
-        private void estoqueToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmcadProdutos frmcadprod = new frmcadProdutos();
-            frmcadprod.Text = "Estoque";
-            frmcadprod.ShowDialog();
-        }
+     
 
         private void configuraçãoDoBancoDeDadosToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -137,6 +131,12 @@ namespace Sistema_de_Vendas
         {
             FrmbackupBD bkpbd = new FrmbackupBD();
             bkpbd.ShowDialog();
+        }
+
+        private void inventárioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            inventario Inventario = new inventario();
+            Inventario.ShowDialog();
         }
     }
 }

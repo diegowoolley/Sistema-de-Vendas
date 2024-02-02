@@ -42,7 +42,7 @@
             this.veiculosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vendasComprasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vendasComprasDetalhadasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.estoqueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.inventárioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.financeiroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contasÀReceberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -166,7 +166,7 @@
             // 
             this.vendasComprasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.vendasComprasDetalhadasToolStripMenuItem,
-            this.estoqueToolStripMenuItem});
+            this.inventárioToolStripMenuItem});
             this.vendasComprasToolStripMenuItem.Name = "vendasComprasToolStripMenuItem";
             this.vendasComprasToolStripMenuItem.Size = new System.Drawing.Size(107, 20);
             this.vendasComprasToolStripMenuItem.Text = "Movimentações:";
@@ -178,12 +178,12 @@
             this.vendasComprasDetalhadasToolStripMenuItem.Text = "Vendas \\ Compras Detalhadas";
             this.vendasComprasDetalhadasToolStripMenuItem.Click += new System.EventHandler(this.vendasComprasDetalhadasToolStripMenuItem_Click);
             // 
-            // estoqueToolStripMenuItem
+            // inventárioToolStripMenuItem
             // 
-            this.estoqueToolStripMenuItem.Name = "estoqueToolStripMenuItem";
-            this.estoqueToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
-            this.estoqueToolStripMenuItem.Text = "Estoque";
-            this.estoqueToolStripMenuItem.Click += new System.EventHandler(this.estoqueToolStripMenuItem_Click);
+            this.inventárioToolStripMenuItem.Name = "inventárioToolStripMenuItem";
+            this.inventárioToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.inventárioToolStripMenuItem.Text = "Inventário";
+            this.inventárioToolStripMenuItem.Click += new System.EventHandler(this.inventárioToolStripMenuItem_Click);
             // 
             // financeiroToolStripMenuItem
             // 
@@ -392,10 +392,10 @@
         private System.Windows.Forms.ToolStripMenuItem configuraçãoDoBancoDeDadosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem backupDoBancoDeDadosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vendasComprasDetalhadasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem estoqueToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem calculadoraToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem explorerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem blocoDeNotasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem inventárioToolStripMenuItem;
     }
 }
 
