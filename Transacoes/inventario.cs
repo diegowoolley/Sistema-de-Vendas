@@ -80,10 +80,7 @@ namespace Sistema_de_Vendas
             DataTable dt = new DataTable();
             da.Fill(dt);
             dataGridView1.DataSource = dt;
-            con.FecharConexao();
-
-            
-
+            con.FecharConexao();                      
 
         }
 

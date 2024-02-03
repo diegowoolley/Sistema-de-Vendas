@@ -22,7 +22,9 @@ namespace Sistema_de_Vendas.Transacoes
         }
         conn con = new conn();
         string sql;
-        MySqlCommand cmd;               
+        string sql1;
+        MySqlCommand cmd;
+        MySqlCommand cmd1;
         double precototal;        
         int cod_venda;
         string indiceselecionado;
@@ -452,11 +454,30 @@ namespace Sistema_de_Vendas.Transacoes
                         cmd.Parameters.AddWithValue("@hora", DateTime.Now);
                         
                         cmd.ExecuteNonQuery();
-                        con.FecharConexao();
+                      
                         
 
 
                     }
+
+                    
+                    sql1 = "INSERT INTO caixa (cod_venda, tipo, cliente, vendedor, desconto, forma_pagamento, valor_total, valor_pago, data, hora) VALUES (@cod_venda, @tipo, @cliente, @vendedor, @desconto, @forma_pagamento, @valor_total, @valor_pago, @data, @hora)";
+                    cmd1 = new MySqlCommand(sql1, con.con);
+                    cmd1.Parameters.AddWithValue("@cod_venda", cod_venda);
+                    cmd1.Parameters.AddWithValue("@tipo", cbtransacao.Text);
+                    cmd1.Parameters.AddWithValue("@cliente", cbclientes.Text);                  
+                    cmd1.Parameters.AddWithValue("@vendedor", cbvendedor.Text);
+                    cmd1.Parameters.AddWithValue("@desconto", txtdescontos.Text.Replace("R$", "").Trim().Replace(",", "."));
+                    cmd1.Parameters.AddWithValue("@forma_pagamento", cbformapagamento.Text);
+                    cmd1.Parameters.AddWithValue("@valor_total", precototal.ToString().Replace("R$", "").Trim().Replace(",", "."));
+                    cmd1.Parameters.AddWithValue("@valor_pago", txtvalorpago.Text.Replace("R$", "").Trim().Replace(",", "."));                    
+                    cmd1.Parameters.AddWithValue("@data", DateTime.Today);
+                    cmd1.Parameters.AddWithValue("@hora", DateTime.Now);
+
+                    cmd1.ExecuteNonQuery();
+                    con.FecharConexao();
+
+
                     MessageBox.Show("Venda salva com sucesso!");
 
                     if(cbtransacao.Text == "VENDA")
@@ -498,10 +519,10 @@ namespace Sistema_de_Vendas.Transacoes
                   
                    
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
 
-                    MessageBox.Show("Erro de conexão!");
+                    MessageBox.Show("Erro de conexão!",ex.Message);
                 }
             }
             
@@ -539,12 +560,14 @@ namespace Sistema_de_Vendas.Transacoes
 
         private void txtvalorpago_KeyPress(object sender, KeyPressEventArgs e)
         {
+            funcoes.DecNumber(sender, e);
             if (e.KeyChar == 13)
                 txtdescontos.Focus();
         }
 
         private void txtdescontos_KeyPress(object sender, KeyPressEventArgs e)
         {
+            funcoes.DecNumber(sender, e);
             if (e.KeyChar == 13)
                 cbtransacao.Focus();
         }
