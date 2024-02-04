@@ -64,7 +64,7 @@
             this.MinimizeBox = false;
             this.Name = "FrmbackupBD";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Backup \\ Restatauração BD";
+            this.Text = "Backup \\ Restauração BD";
             this.ResumeLayout(false);
 
         }
