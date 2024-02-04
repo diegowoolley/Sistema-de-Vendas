@@ -59,20 +59,21 @@
             this.configuraçõesDoBancoDeDadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configuraçãoDeAtivaçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sobreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.barrastatus = new System.Windows.Forms.ToolStrip();
             this.lblconectado = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.lbllicenca = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.lblnomedata = new System.Windows.Forms.ToolStripLabel();
             this.lbldata = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.lblnomehora = new System.Windows.Forms.ToolStripLabel();
             this.lblhora = new System.Windows.Forms.ToolStripLabel();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.lbllicenca = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.sobreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.suporteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnPrincipal.SuspendLayout();
             this.barrastatus.SuspendLayout();
             this.SuspendLayout();
@@ -237,7 +238,8 @@
             this.backupDoBancoDeDadosToolStripMenuItem,
             this.calculadoraToolStripMenuItem,
             this.explorerToolStripMenuItem,
-            this.blocoDeNotasToolStripMenuItem});
+            this.blocoDeNotasToolStripMenuItem,
+            this.suporteToolStripMenuItem});
             this.manutençãoToolStripMenuItem.Name = "manutençãoToolStripMenuItem";
             this.manutençãoToolStripMenuItem.Size = new System.Drawing.Size(165, 20);
             this.manutençãoToolStripMenuItem.Text = "Manutenção \\ Ferramentas:";
@@ -304,8 +306,8 @@
             // configuraçãoDeAtivaçãoToolStripMenuItem
             // 
             this.configuraçãoDeAtivaçãoToolStripMenuItem.Name = "configuraçãoDeAtivaçãoToolStripMenuItem";
-            this.configuraçãoDeAtivaçãoToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
-            this.configuraçãoDeAtivaçãoToolStripMenuItem.Text = "Configuração de ativação";
+            this.configuraçãoDeAtivaçãoToolStripMenuItem.Size = new System.Drawing.Size(269, 22);
+            this.configuraçãoDeAtivaçãoToolStripMenuItem.Text = "Configuração de ativação do sistema";
             this.configuraçãoDeAtivaçãoToolStripMenuItem.Click += new System.EventHandler(this.configuraçãoDeAtivaçãoToolStripMenuItem_Click);
             // 
             // logoutToolStripMenuItem
@@ -314,6 +316,13 @@
             this.logoutToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.logoutToolStripMenuItem.Text = "Logout";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click_1);
+            // 
+            // sobreToolStripMenuItem
+            // 
+            this.sobreToolStripMenuItem.Name = "sobreToolStripMenuItem";
+            this.sobreToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
+            this.sobreToolStripMenuItem.Text = "Sobre";
+            this.sobreToolStripMenuItem.Click += new System.EventHandler(this.sobreToolStripMenuItem_Click);
             // 
             // barrastatus
             // 
@@ -348,6 +357,28 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
+            // lbllicenca
+            // 
+            this.lbllicenca.Name = "lbllicenca";
+            this.lbllicenca.Size = new System.Drawing.Size(62, 22);
+            this.lbllicenca.Text = "Expira em:";
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(433, 22);
+            this.toolStripLabel1.Text = "Desenvolvido por DW Sistemas - Copyright ©2024 - Todos os direitos reservados ";
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
+            // 
             // lblnomedata
             // 
             this.lblnomedata.Name = "lblnomedata";
@@ -359,6 +390,11 @@
             this.lbldata.Name = "lbldata";
             this.lbldata.Size = new System.Drawing.Size(95, 22);
             this.lbldata.Text = "Data: 00/00/0000";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
             // lblnomehora
             // 
@@ -377,39 +413,11 @@
             this.timer.Enabled = true;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
-            // toolStripSeparator3
+            // suporteToolStripMenuItem
             // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(433, 22);
-            this.toolStripLabel1.Text = "Desenvolvido por DW Sistemas - Copyright ©2024 - Todos os direitos reservados ";
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
-            // 
-            // lbllicenca
-            // 
-            this.lbllicenca.Name = "lbllicenca";
-            this.lbllicenca.Size = new System.Drawing.Size(62, 22);
-            this.lbllicenca.Text = "Expira em:";
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
-            // 
-            // sobreToolStripMenuItem
-            // 
-            this.sobreToolStripMenuItem.Name = "sobreToolStripMenuItem";
-            this.sobreToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
-            this.sobreToolStripMenuItem.Text = "Sobre";
-            this.sobreToolStripMenuItem.Click += new System.EventHandler(this.sobreToolStripMenuItem_Click);
+            this.suporteToolStripMenuItem.Name = "suporteToolStripMenuItem";
+            this.suporteToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.suporteToolStripMenuItem.Text = "Suporte";
             // 
             // frmPrincipal
             // 
@@ -482,6 +490,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem sobreToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem suporteToolStripMenuItem;
     }
 }
 

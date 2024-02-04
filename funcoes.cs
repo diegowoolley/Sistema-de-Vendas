@@ -20,8 +20,9 @@ namespace Sistema_de_Vendas
         public static string conectado ;
         public string numero { get; set; }
 
-        private static readonly string chaveCriptografia = "Nsx-sz21";
+        private const string chaveCripto = "Nsx-sz21"; // Altere isso para uma chave segura e única
 
+        
 
         public static void DecNumber(object sender, KeyPressEventArgs e)
         {
@@ -136,14 +137,14 @@ namespace Sistema_de_Vendas
 
 
 
-        }        
+        }
 
-        public static string Criptografar(string texto)
+        public static string Criptografar(string textoOriginal)
         {
             using (Aes aesAlg = Aes.Create())
             {
-                aesAlg.Key = Encoding.UTF8.GetBytes(chaveCriptografia);
-                aesAlg.IV = new byte[aesAlg.BlockSize / 8];
+                aesAlg.Key = Encoding.UTF8.GetBytes(chaveCripto);
+                aesAlg.IV = new byte[16]; // Um IV (Vetor de Inicialização) seguro deve ser usado para criptografia
 
                 ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
 
@@ -153,7 +154,7 @@ namespace Sistema_de_Vendas
                     {
                         using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
                         {
-                            swEncrypt.Write(texto);
+                            swEncrypt.Write(textoOriginal);
                         }
                     }
                     return Convert.ToBase64String(msEncrypt.ToArray());
@@ -165,8 +166,8 @@ namespace Sistema_de_Vendas
         {
             using (Aes aesAlg = Aes.Create())
             {
-                aesAlg.Key = Encoding.UTF8.GetBytes(chaveCriptografia);
-                aesAlg.IV = new byte[aesAlg.BlockSize / 8];
+                aesAlg.Key = Encoding.UTF8.GetBytes(chaveCripto);
+                aesAlg.IV = new byte[16];
 
                 ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
 

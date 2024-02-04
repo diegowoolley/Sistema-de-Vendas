@@ -23,20 +23,38 @@ namespace Sistema_de_Vendas
         public frmPrincipal()
         {
             InitializeComponent();
-        }       
-               
+        }
+
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
             string conectado = funcoes.conectado;
             lblconectado.Text = ("Usuário Conectado: " + conectado);
             lbldata.Text = DateTime.Today.ToString("dd/MM/yyyy");
             lblhora.Text = DateTime.Now.ToString("HH:mm:ss");
-            KeyValuesClass kv = new KeyValuesClass();
-            string expiracaoem = string.Format("Expira em {0} Dias", (kv.Expiration - DateTime.Now.Date).Days);
-            lbllicenca.Text = expiracaoem;
+            string produto = ComputerInfo.GetComputerId();
+            KeyManager km = new KeyManager(produto);
+            LicenseInfo lic = new LicenseInfo();
+            int value = km.LoadSuretyFile(string.Format(@"{0}\Key.lic", Application.StartupPath), ref lic);
+            string productKey = lic.ProductKey;
+            if (km.ValidKey(ref productKey))
+            {
+                KeyValuesClass kv = new KeyValuesClass();
+                if (km.DisassembleKey(productKey, ref kv))
+                {
+                    if (kv.Type == LicenseType.TRIAL)
+                    {
+                        string expiracaoem = string.Format("Licença expira em {0} Dias", (kv.Expiration - DateTime.Now.Date).Days);
+                        lbllicenca.Text = expiracaoem;
+                    }
+                    else
+                    {
+                        lbllicenca.Text = "Sistema Full";
+                    }
 
+                }
+                               
 
-
+            }
         }
 
         private void usuáriosToolStripMenuItem_Click_1(object sender, EventArgs e)
@@ -169,5 +187,6 @@ namespace Sistema_de_Vendas
             frmsobre frm = new frmsobre();
             frm.ShowDialog();
         }
+              
     }
 }
