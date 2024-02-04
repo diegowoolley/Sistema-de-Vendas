@@ -1,5 +1,7 @@
-﻿using MySql.Data.MySqlClient;
+﻿using FoxLearn.License;
+using MySql.Data.MySqlClient;
 using Sistema_de_Vendas.Cadastros;
+using Sistema_de_Vendas.Configuracoes;
 using Sistema_de_Vendas.Transacoes;
 using System;
 using System.Collections.Generic;
@@ -8,6 +10,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,8 +31,12 @@ namespace Sistema_de_Vendas
             lblconectado.Text = ("Usuário Conectado: " + conectado);
             lbldata.Text = DateTime.Today.ToString("dd/MM/yyyy");
             lblhora.Text = DateTime.Now.ToString("HH:mm:ss");
-            
-            
+            KeyValuesClass kv = new KeyValuesClass();
+            string expiracaoem = string.Format("Expira em {0} Dias", (kv.Expiration - DateTime.Now.Date).Days);
+            lbllicenca.Text = expiracaoem;
+
+
+
         }
 
         private void usuáriosToolStripMenuItem_Click_1(object sender, EventArgs e)
@@ -104,13 +111,7 @@ namespace Sistema_de_Vendas
             frmvendas_compras frmvendas_Compras = new frmvendas_compras();
             frmvendas_Compras.ShowDialog();
         }
-     
-
-        private void configuraçãoDoBancoDeDadosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmconfbancodados frmconfbd = new frmconfbancodados();
-            frmconfbd.ShowDialog();
-        }
+                   
 
         private void calculadoraToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -137,6 +138,36 @@ namespace Sistema_de_Vendas
         {
             inventario Inventario = new inventario();
             Inventario.ShowDialog();
+        }
+
+        private void historicoDeTransaçõesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            transacoes Transacoes = new transacoes();   
+            Transacoes.ShowDialog();
+        }
+
+        private void configuraçõesDoBancoDeDadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmconfbancodados frmconfbd = new frmconfbancodados();
+            frmconfbd.ShowDialog();
+        }
+
+        private void inserirDadosDaEmpresaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmcadempresas empresas = new frmcadempresas();
+            empresas.ShowDialog();
+        }
+
+        private void configuraçãoDeAtivaçãoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmlicencaprincipal frm = new frmlicencaprincipal();
+            frm.ShowDialog();
+        }
+
+        private void sobreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmsobre frm = new frmsobre();
+            frm.ShowDialog();
         }
     }
 }

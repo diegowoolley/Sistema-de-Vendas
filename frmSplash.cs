@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FoxLearn.License;
+using Sistema_de_Vendas.Configuracoes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,7 +18,7 @@ namespace Sistema_de_Vendas
         {
             InitializeComponent();
         }
-
+        
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (pbSplash.Value < 100)
@@ -31,5 +33,7 @@ namespace Sistema_de_Vendas
 
             }
         }
+
+       
     }
 }

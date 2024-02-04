@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FoxLearn.License">
+      <HintPath>..\..\..\..\Downloads\FoxLearn.License.dll</HintPath>
+    </Reference>
     <Reference Include="GenCode128, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\GenCode128.2.0.0\lib\netstandard2.0\GenCode128.dll</HintPath>
     </Reference>
@@ -116,12 +119,48 @@
     <Compile Include="Cadastros\frmCargos.Designer.cs">
       <DependentUpon>frmCargos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Configuracoes\frmcadempresas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Configuracoes\frmcadempresas.Designer.cs">
+      <DependentUpon>frmcadempresas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracoes\frmlicencaprincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Configuracoes\frmlicencaprincipal.Designer.cs">
+      <DependentUpon>frmlicencaprincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracoes\frmlicensa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Configuracoes\frmlicensa.Designer.cs">
+      <DependentUpon>frmlicensa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracoes\frmregistro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Configuracoes\frmregistro.Designer.cs">
+      <DependentUpon>frmregistro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracoes\frmsobre.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Configuracoes\frmsobre.Designer.cs">
+      <DependentUpon>frmsobre.cs</DependentUpon>
+    </Compile>
     <Compile Include="conn.cs" />
     <Compile Include="Cadastros\frmcadProdutos.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Cadastros\frmcadProdutos.Designer.cs">
       <DependentUpon>frmcadProdutos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transacoes\inventario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transacoes\inventario.Designer.cs">
+      <DependentUpon>inventario.cs</DependentUpon>
     </Compile>
     <Compile Include="Manutencao\FrmbackupBD.cs">
       <SubType>Form</SubType>
@@ -167,6 +206,12 @@
     <Compile Include="Transacoes\frmvendas_compras.Designer.cs">
       <DependentUpon>frmvendas_compras.cs</DependentUpon>
     </Compile>
+    <Compile Include="Transacoes\transacoes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transacoes\transacoes.Designer.cs">
+      <DependentUpon>transacoes.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Cadastros\cad_categorias.resx">
       <DependentUpon>cad_categorias.cs</DependentUpon>
     </EmbeddedResource>
@@ -200,6 +245,21 @@
     <EmbeddedResource Include="Cadastros\frmCargos.resx">
       <DependentUpon>frmCargos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Configuracoes\frmcadempresas.resx">
+      <DependentUpon>frmcadempresas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Configuracoes\frmlicencaprincipal.resx">
+      <DependentUpon>frmlicencaprincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Configuracoes\frmlicensa.resx">
+      <DependentUpon>frmlicensa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Configuracoes\frmregistro.resx">
+      <DependentUpon>frmregistro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Configuracoes\frmsobre.resx">
+      <DependentUpon>frmsobre.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Manutencao\FrmbackupBD.resx">
       <DependentUpon>FrmbackupBD.cs</DependentUpon>
     </EmbeddedResource>
@@ -222,6 +282,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transacoes\frmvendas_compras.resx">
       <DependentUpon>frmvendas_compras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transacoes\inventario.resx">
+      <DependentUpon>inventario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transacoes\transacoes.resx">
+      <DependentUpon>transacoes.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

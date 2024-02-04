@@ -1,4 +1,6 @@
-﻿using MySql.Data.MySqlClient;
+﻿using FoxLearn.License;
+using MySql.Data.MySqlClient;
+using Sistema_de_Vendas.Configuracoes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,6 +9,7 @@ using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,7 +23,7 @@ namespace Sistema_de_Vendas
             InitializeComponent();
         }
         conn con = new conn();
-        
+        const int ProductCode = 1;
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
@@ -87,6 +90,46 @@ namespace Sistema_de_Vendas
         private void frmLogin_Load(object sender, EventArgs e)
         {
             testarBD();
+            string produto = ComputerInfo.GetComputerId();
+            KeyManager km = new KeyManager(produto);
+            LicenseInfo lic = new LicenseInfo();
+            int value = km.LoadSuretyFile(string.Format(@"{0}\Key.lic", Application.StartupPath), ref lic);
+            string productKey = lic.ProductKey;
+            if (km.ValidKey(ref productKey))
+            {
+                KeyValuesClass kv = new KeyValuesClass();
+                if (km.DisassembleKey(productKey, ref kv))
+                {
+                    if (kv.Type == LicenseType.TRIAL)
+                        if (kv.Expiration <= DateTime.Now)
+                        {
+                            MessageBox.Show("Sistema Expirado, Por favor entre em contato com o Suporte!", "Registro do sistema");
+
+                            DialogResult result = MessageBox.Show("Deseja registrar o sistema agora?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                            if (result == DialogResult.Yes)
+                            {
+                                frmregistro frm = new frmregistro();
+                                DialogResult registroResult = frm.ShowDialog();
+
+                                if (registroResult != DialogResult.OK)
+                                {
+                                    Application.Exit();
+                                }
+
+                            }
+                            else
+                            {
+                                Application.Exit();
+                            }
+                        }
+
+                }
+
+
+
+            }
+
         }
 
         private void testarBD()
