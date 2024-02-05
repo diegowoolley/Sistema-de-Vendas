@@ -1,13 +1,17 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.WebRequestMethods;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Sistema_de_Vendas
 {
@@ -20,93 +24,97 @@ namespace Sistema_de_Vendas
 
         private void btnbackup_Click(object sender, EventArgs e)
         {
-            
-            SaveFileDialog saveFileDialog = new SaveFileDialog
+
+
+            if (MessageBox.Show(funcoes.conectado + ", deseja realizar o backUp total do Sistema? ", "Cópia de segurança", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                Filter = "Arquivo SQL (*.sql)|*.sql",
-                Title = "Salvar Backup",
-                FileName = DateTime.Now.ToString("yyyyMMdd_HHmmss") +"backup.sql" 
-            };
 
-           
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                
-                string caminhoBackup = saveFileDialog.FileName;
-
-                
-                string comando = $"mysqldump --user={"root"} --password={""} --host={"localhost"} --databases {"dbsistema_vendas"} > \"{caminhoBackup}\"";
-
-                
-                ProcessStartInfo psi = new ProcessStartInfo("cmd.exe")
+                SaveFileDialog saveFileDialog = new SaveFileDialog
                 {
-                    RedirectStandardInput = true,
-                    RedirectStandardOutput = true,
-                    RedirectStandardError = true,
-                    CreateNoWindow = true,
-                    UseShellExecute = false,
-                    WorkingDirectory = "C:\\xampp\\mysql\\bin"
+                    Filter = "Arquivo SQL (*.sql)|*.sql",
+                    Title = "Salvar Backup",
+                    FileName = DateTime.Now.ToString("yyyyMMdd_HHmmss") + "backup.sql"
                 };
 
-                Process processo = new Process { StartInfo = psi };
 
-                try
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    processo.Start();                    
-                    processo.StandardInput.WriteLine(comando);
-                    processo.StandardInput.Close();
-                    
-                    processo.WaitForExit();
 
-                    MessageBox.Show("Backup concluído com sucesso!");
+                    string path = saveFileDialog.FileName;
+
+                    // Specify the directory you want to manipulate.
+
+
+
+                    string constring = conn.connec;
+                    // Important Additional Connection Options
+                    constring += "charset=utf8;convertzerodatetime=true;";
+                    string data = DateTime.Now.ToString("dd-MM-yyyy-ss");
+                    string file = path + "backup-" + data + ".sql"; //caminho... optei criar uma pasta em C chamada Backup (nome 'backup'+data)
+                    using (MySqlConnection conn = new MySqlConnection(constring))
+                    {
+                        using (MySqlCommand cmd = new MySqlCommand())
+                        {
+                            using (MySqlBackup mb = new MySqlBackup(cmd)) //instalar o pacote NuGet MySqlBackup.NET
+                            {
+                                cmd.Connection = conn;
+                                conn.Open();
+                                mb.ExportToFile(file);
+                                conn.Close();
+                                MessageBox.Show("Backup Realizado com Sucesso!", "Backup Banco de Dados");
+                            }
+                        }
+                    }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Erro ao realizar backup: {ex.Message}");
-                }
+
+
 
             }
-        }
+        }    
 
         private void btnrestaurar_Click(object sender, EventArgs e)
         {
-
-            OpenFileDialog openFileDialog = new OpenFileDialog
+            if (MessageBox.Show(funcoes.conectado + ", deseja realizar o backUp total do Sistema? ", "Cópia de segurança", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                Filter = "Arquivo SQL (*.sql)|*.sql",
-                Title = "Selecionar Backup"
-            };
 
-           
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-               
-                string caminhoBackup = openFileDialog.FileName;
-
-                
-                DialogResult resultado = MessageBox.Show("Tem certeza que deseja restaurar o banco de dados? Isso substituirá todos os dados existentes.", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                
-                if (resultado == DialogResult.Yes)
+                SaveFileDialog saveFileDialog = new SaveFileDialog
                 {
-                   
-                    string comando = $"mysql --user={"root"} --password={""} --host={"localhost"} {"dbsistema_vendas"} < \"{caminhoBackup}\"";
+                    Filter = "Arquivo SQL (*.sql)|*.sql",
+                    Title = "Salvar Backup",
+                    FileName = DateTime.Now.ToString("yyyyMMdd_HHmmss") + "backup.sql"
+                };
 
-                    
 
-                    try
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+
+                    string path = saveFileDialog.FileName;
+
+                    // Specify the directory you want to manipulate.
+
+                    string constring = conn.connec;
+                    // Important Additional Connection Options
+                    constring += "charset=utf8;convertzerodatetime=true;";
+                    string data = DateTime.Now.ToString("dd-MM-yyyy-ss");
+                    string file = path + "backup-" + data + ".sql"; //caminho... optei criar uma pasta em C chamada Backup (nome 'backup'+data)
+                    using (MySqlConnection conn = new MySqlConnection(constring))
                     {
-                       
-
-                        MessageBox.Show("Restauração concluída com sucesso!");
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Erro ao realizar restauração: {ex.Message}");
+                        using (MySqlCommand cmd = new MySqlCommand())
+                        {
+                            using (MySqlBackup mb = new MySqlBackup(cmd)) //instalar o pacote NuGet MySqlBackup.NET
+                            {
+                                cmd.Connection = conn;
+                                conn.Open();
+                                mb.ImportFromFile(file);
+                                conn.Close();
+                                MessageBox.Show("Backup Realizado com Sucesso!", "Backup Banco de Dados");
+                            }
+                        }
                     }
                 }
-            }
 
+
+            }
         }
     }
 }
