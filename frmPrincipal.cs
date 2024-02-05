@@ -187,6 +187,11 @@ namespace Sistema_de_Vendas
             frmsobre frm = new frmsobre();
             frm.ShowDialog();
         }
-              
+
+        private void suporteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmsuporte frmsuporte = new frmsuporte();
+            frmsuporte.ShowDialog();
+        }
     }
 }
