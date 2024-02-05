@@ -73,7 +73,10 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.lblnomehora = new System.Windows.Forms.ToolStripLabel();
             this.lblhora = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.pDVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnPrincipal.SuspendLayout();
             this.barrastatus.SuspendLayout();
             this.SuspendLayout();
@@ -179,7 +182,8 @@
             this.vendasComprasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.vendasComprasDetalhadasToolStripMenuItem,
             this.inventárioToolStripMenuItem,
-            this.historicoDeTransaçõesToolStripMenuItem});
+            this.historicoDeTransaçõesToolStripMenuItem,
+            this.pDVToolStripMenuItem});
             this.vendasComprasToolStripMenuItem.Name = "vendasComprasToolStripMenuItem";
             this.vendasComprasToolStripMenuItem.Size = new System.Drawing.Size(107, 20);
             this.vendasComprasToolStripMenuItem.Text = "Movimentações:";
@@ -346,7 +350,9 @@
             this.lbldata,
             this.toolStripSeparator3,
             this.lblnomehora,
-            this.lblhora});
+            this.lblhora,
+            this.toolStripSeparator2,
+            this.toolStripLabel2});
             this.barrastatus.Location = new System.Drawing.Point(0, 452);
             this.barrastatus.Name = "barrastatus";
             this.barrastatus.Size = new System.Drawing.Size(864, 25);
@@ -415,10 +421,28 @@
             this.lblhora.Size = new System.Drawing.Size(81, 22);
             this.lblhora.Text = "Hora: 00:00:00";
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(68, 15);
+            this.toolStripLabel2.Text = "Versão: 1.0a";
+            // 
             // timer
             // 
             this.timer.Enabled = true;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
+            // pDVToolStripMenuItem
+            // 
+            this.pDVToolStripMenuItem.Name = "pDVToolStripMenuItem";
+            this.pDVToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.pDVToolStripMenuItem.Text = "PDV";
+            this.pDVToolStripMenuItem.Click += new System.EventHandler(this.pDVToolStripMenuItem_Click);
             // 
             // frmPrincipal
             // 
@@ -492,6 +516,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem sobreToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem suporteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel2;
+        private System.Windows.Forms.ToolStripMenuItem pDVToolStripMenuItem;
     }
 }
 

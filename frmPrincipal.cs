@@ -193,5 +193,11 @@ namespace Sistema_de_Vendas
             frmsuporte frmsuporte = new frmsuporte();
             frmsuporte.ShowDialog();
         }
+
+        private void pDVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmPDV frm = new frmPDV();
+            frm.ShowDialog();
+        }
     }
 }
