@@ -669,8 +669,7 @@ namespace Sistema_de_Vendas.Transacoes
             }
             else
             {
-
-                MessageBox.Show("Por favor, insira valores válidos para a compra e a margem de lucro.");
+                MessageBox.Show("Por favor, insira valores válidos para o valor pago e o desconto.");
             }
 
         }

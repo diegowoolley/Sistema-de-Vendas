@@ -37,6 +37,16 @@
             this.cbvendedor = new System.Windows.Forms.ComboBox();
             this.lblcliente = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.COD_PRODUTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TIPO_TRANSACAO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CLIENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PRODUTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QUANTIDADE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CATEGORIA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PRECO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VENDEDOR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VALOR_TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbldescontos = new System.Windows.Forms.Label();
             this.lblvalortotal = new System.Windows.Forms.Label();
             this.txtdescontos = new System.Windows.Forms.TextBox();
@@ -55,16 +65,6 @@
             this.cbproduto = new System.Windows.Forms.ComboBox();
             this.btnremoveritens = new System.Windows.Forms.Button();
             this.btnfecharvenda = new System.Windows.Forms.Button();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.COD_PRODUTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TIPO_TRANSACAO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CLIENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PRODUTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QUANTIDADE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CATEGORIA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PRECO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.VENDEDOR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.VALOR_TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,9 +75,9 @@
             this.lblcodigovenda.ForeColor = System.Drawing.Color.Red;
             this.lblcodigovenda.Location = new System.Drawing.Point(2, 1);
             this.lblcodigovenda.Name = "lblcodigovenda";
-            this.lblcodigovenda.Size = new System.Drawing.Size(132, 20);
+            this.lblcodigovenda.Size = new System.Drawing.Size(160, 20);
             this.lblcodigovenda.TabIndex = 0;
-            this.lblcodigovenda.Text = "Código da venda:";
+            this.lblcodigovenda.Text = "Código da transação:";
             // 
             // lbltotalitens
             // 
@@ -169,6 +169,76 @@
             this.dataGridView1.Size = new System.Drawing.Size(615, 150);
             this.dataGridView1.TabIndex = 20;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "Id";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Width = 41;
+            // 
+            // COD_PRODUTO
+            // 
+            this.COD_PRODUTO.HeaderText = "Código do produto";
+            this.COD_PRODUTO.Name = "COD_PRODUTO";
+            this.COD_PRODUTO.ReadOnly = true;
+            this.COD_PRODUTO.Width = 109;
+            // 
+            // TIPO_TRANSACAO
+            // 
+            this.TIPO_TRANSACAO.HeaderText = "Tipo de transação";
+            this.TIPO_TRANSACAO.Name = "TIPO_TRANSACAO";
+            this.TIPO_TRANSACAO.ReadOnly = true;
+            this.TIPO_TRANSACAO.Width = 108;
+            // 
+            // CLIENTE
+            // 
+            this.CLIENTE.HeaderText = "Cliente";
+            this.CLIENTE.Name = "CLIENTE";
+            this.CLIENTE.ReadOnly = true;
+            this.CLIENTE.Width = 64;
+            // 
+            // PRODUTO
+            // 
+            this.PRODUTO.HeaderText = "Produto";
+            this.PRODUTO.Name = "PRODUTO";
+            this.PRODUTO.ReadOnly = true;
+            this.PRODUTO.Width = 69;
+            // 
+            // QUANTIDADE
+            // 
+            this.QUANTIDADE.HeaderText = "Quantidade";
+            this.QUANTIDADE.Name = "QUANTIDADE";
+            this.QUANTIDADE.ReadOnly = true;
+            this.QUANTIDADE.Width = 87;
+            // 
+            // CATEGORIA
+            // 
+            this.CATEGORIA.HeaderText = "Categoria";
+            this.CATEGORIA.Name = "CATEGORIA";
+            this.CATEGORIA.ReadOnly = true;
+            this.CATEGORIA.Width = 77;
+            // 
+            // PRECO
+            // 
+            this.PRECO.HeaderText = "Preço";
+            this.PRECO.Name = "PRECO";
+            this.PRECO.ReadOnly = true;
+            this.PRECO.Width = 60;
+            // 
+            // VENDEDOR
+            // 
+            this.VENDEDOR.HeaderText = "Vendedor";
+            this.VENDEDOR.Name = "VENDEDOR";
+            this.VENDEDOR.ReadOnly = true;
+            this.VENDEDOR.Width = 78;
+            // 
+            // VALOR_TOTAL
+            // 
+            this.VALOR_TOTAL.HeaderText = "Valor total";
+            this.VALOR_TOTAL.Name = "VALOR_TOTAL";
+            this.VALOR_TOTAL.ReadOnly = true;
+            this.VALOR_TOTAL.Width = 73;
             // 
             // lbldescontos
             // 
@@ -358,79 +428,9 @@
             this.btnfecharvenda.Name = "btnfecharvenda";
             this.btnfecharvenda.Size = new System.Drawing.Size(134, 23);
             this.btnfecharvenda.TabIndex = 32;
-            this.btnfecharvenda.Text = "Fechar venda";
+            this.btnfecharvenda.Text = "Fechar transação";
             this.btnfecharvenda.UseVisualStyleBackColor = true;
             this.btnfecharvenda.Click += new System.EventHandler(this.btnfecharvenda_Click);
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "Id";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Width = 41;
-            // 
-            // COD_PRODUTO
-            // 
-            this.COD_PRODUTO.HeaderText = "Código do produto";
-            this.COD_PRODUTO.Name = "COD_PRODUTO";
-            this.COD_PRODUTO.ReadOnly = true;
-            this.COD_PRODUTO.Width = 109;
-            // 
-            // TIPO_TRANSACAO
-            // 
-            this.TIPO_TRANSACAO.HeaderText = "Tipo de transação";
-            this.TIPO_TRANSACAO.Name = "TIPO_TRANSACAO";
-            this.TIPO_TRANSACAO.ReadOnly = true;
-            this.TIPO_TRANSACAO.Width = 108;
-            // 
-            // CLIENTE
-            // 
-            this.CLIENTE.HeaderText = "Cliente";
-            this.CLIENTE.Name = "CLIENTE";
-            this.CLIENTE.ReadOnly = true;
-            this.CLIENTE.Width = 64;
-            // 
-            // PRODUTO
-            // 
-            this.PRODUTO.HeaderText = "Produto";
-            this.PRODUTO.Name = "PRODUTO";
-            this.PRODUTO.ReadOnly = true;
-            this.PRODUTO.Width = 69;
-            // 
-            // QUANTIDADE
-            // 
-            this.QUANTIDADE.HeaderText = "Quantidade";
-            this.QUANTIDADE.Name = "QUANTIDADE";
-            this.QUANTIDADE.ReadOnly = true;
-            this.QUANTIDADE.Width = 87;
-            // 
-            // CATEGORIA
-            // 
-            this.CATEGORIA.HeaderText = "Categoria";
-            this.CATEGORIA.Name = "CATEGORIA";
-            this.CATEGORIA.ReadOnly = true;
-            this.CATEGORIA.Width = 77;
-            // 
-            // PRECO
-            // 
-            this.PRECO.HeaderText = "Preço";
-            this.PRECO.Name = "PRECO";
-            this.PRECO.ReadOnly = true;
-            this.PRECO.Width = 60;
-            // 
-            // VENDEDOR
-            // 
-            this.VENDEDOR.HeaderText = "Vendedor";
-            this.VENDEDOR.Name = "VENDEDOR";
-            this.VENDEDOR.ReadOnly = true;
-            this.VENDEDOR.Width = 78;
-            // 
-            // VALOR_TOTAL
-            // 
-            this.VALOR_TOTAL.HeaderText = "Valor total";
-            this.VALOR_TOTAL.Name = "VALOR_TOTAL";
-            this.VALOR_TOTAL.ReadOnly = true;
-            this.VALOR_TOTAL.Width = 73;
             // 
             // frmvendas_compras
             // 

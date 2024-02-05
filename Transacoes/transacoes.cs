@@ -20,8 +20,7 @@ namespace Sistema_de_Vendas.Transacoes
         }
 
 
-        conn con = new conn();
-        string tipo = "";
+        conn con = new conn();        
         string sql;
         MySqlCommand cmd;
 
