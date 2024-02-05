@@ -70,7 +70,7 @@
             this.txtNome.Location = new System.Drawing.Point(31, 52);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(370, 20);
-            this.txtNome.TabIndex = 190;
+            this.txtNome.TabIndex = 1;
             this.txtNome.Text = "NOME";
             this.txtNome.Enter += new System.EventHandler(this.txtNome_Enter);
             this.txtNome.Leave += new System.EventHandler(this.txtNome_Leave);
@@ -82,7 +82,7 @@
             this.txtTitulo.Location = new System.Drawing.Point(31, 104);
             this.txtTitulo.Name = "txtTitulo";
             this.txtTitulo.Size = new System.Drawing.Size(370, 20);
-            this.txtTitulo.TabIndex = 189;
+            this.txtTitulo.TabIndex = 3;
             this.txtTitulo.Text = "TÍTULO DA MENSAGEM";
             this.txtTitulo.Enter += new System.EventHandler(this.txtTitulo_Enter);
             this.txtTitulo.Leave += new System.EventHandler(this.txtTitulo_Leave);
@@ -94,7 +94,7 @@
             this.txtEmail.Location = new System.Drawing.Point(31, 78);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(370, 20);
-            this.txtEmail.TabIndex = 188;
+            this.txtEmail.TabIndex = 2;
             this.txtEmail.Text = "EMAIL";
             this.txtEmail.Enter += new System.EventHandler(this.txtEmail_Enter);
             this.txtEmail.Leave += new System.EventHandler(this.txtEmail_Leave);
@@ -108,7 +108,7 @@
             this.txtMessagem.Multiline = true;
             this.txtMessagem.Name = "txtMessagem";
             this.txtMessagem.Size = new System.Drawing.Size(370, 119);
-            this.txtMessagem.TabIndex = 187;
+            this.txtMessagem.TabIndex = 4;
             this.txtMessagem.Text = "MENSAGEM";
             this.txtMessagem.Enter += new System.EventHandler(this.txtMessagem_Enter);
             this.txtMessagem.Leave += new System.EventHandler(this.txtMessagem_Leave);
@@ -139,7 +139,7 @@
             this.btnenviar.Location = new System.Drawing.Point(82, 273);
             this.btnenviar.Name = "btnenviar";
             this.btnenviar.Size = new System.Drawing.Size(75, 23);
-            this.btnenviar.TabIndex = 194;
+            this.btnenviar.TabIndex = 5;
             this.btnenviar.Text = "Enviar";
             this.btnenviar.UseVisualStyleBackColor = true;
             this.btnenviar.Click += new System.EventHandler(this.btnenviar_Click);
@@ -149,7 +149,7 @@
             this.btnlimpar.Location = new System.Drawing.Point(267, 273);
             this.btnlimpar.Name = "btnlimpar";
             this.btnlimpar.Size = new System.Drawing.Size(75, 23);
-            this.btnlimpar.TabIndex = 195;
+            this.btnlimpar.TabIndex = 6;
             this.btnlimpar.Text = "Limpar";
             this.btnlimpar.UseVisualStyleBackColor = true;
             this.btnlimpar.Click += new System.EventHandler(this.btnlimpar_Click);

@@ -27,12 +27,12 @@ namespace Sistema_de_Vendas
                 if (txtEmail.Text.Trim() != "")
                 {
                     //corpo da email
-                    MailMessage mail = new MailMessage(txtEmail.Text, "alex.zatec@gmail.com");
-                    mail.SubjectEncoding = Encoding.GetEncoding("UTF-8");
+                    MailMessage mail = new MailMessage(txtEmail.Text, "dwsistemasrecife@gmail.com");                    
                     mail.Subject = txtTitulo.Text;
-                    mail.BodyEncoding = Encoding.GetEncoding("UTF-8");
+                    mail.SubjectEncoding = Encoding.GetEncoding("UTF-8");                   
                     mail.IsBodyHtml = true;
                     mail.Body = "<p>" + txtNome.Text + "<br></br>" + txtEmail.Text + "<br></br>" + txtMessagem.Text + "</p>";
+                    mail.BodyEncoding = Encoding.GetEncoding("UTF-8");
                     //fim
 
                     //envio
