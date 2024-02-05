@@ -35,6 +35,29 @@ namespace Sistema_de_Vendas
             con.FecharConexao();
         }
 
+        private void listarminimo()
+        {
+            try
+            {
+                con.AbrirConexao();
+                sql = "SELECT * FROM cad_produtos WHERE quantidade <= estoque_minimo ORDER BY nome_produto ASC";
+                cmd = new MySqlCommand(sql, con.con);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dataGridView1.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao listar produtos com estoque mínimo: " + ex.Message);
+            }
+            finally
+            {
+                con.FecharConexao();
+            }
+        }
+
         private void formatargrid()
         {
             dataGridView1.Columns[0].HeaderText = "Cód. Produto";
@@ -94,6 +117,16 @@ namespace Sistema_de_Vendas
         {
             Buscar();
             
+        }
+
+        private void btnestoqueminimo_Click(object sender, EventArgs e)
+        {
+            listarminimo();
+        }
+
+        private void btninventario_Click(object sender, EventArgs e)
+        {
+            Listar();
         }
     }
 }

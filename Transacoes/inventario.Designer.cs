@@ -32,6 +32,8 @@
             this.lblpesquisar = new System.Windows.Forms.Label();
             this.txtpesquisa = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnestoqueminimo = new System.Windows.Forms.Button();
+            this.btninventario = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -77,11 +79,33 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Digite o código, nome ou use o leitor de código de barras para buscar o produto";
             // 
+            // btnestoqueminimo
+            // 
+            this.btnestoqueminimo.Location = new System.Drawing.Point(98, 452);
+            this.btnestoqueminimo.Name = "btnestoqueminimo";
+            this.btnestoqueminimo.Size = new System.Drawing.Size(195, 23);
+            this.btnestoqueminimo.TabIndex = 3;
+            this.btnestoqueminimo.Text = "Listar produtos com estoque defazado";
+            this.btnestoqueminimo.UseVisualStyleBackColor = true;
+            this.btnestoqueminimo.Click += new System.EventHandler(this.btnestoqueminimo_Click);
+            // 
+            // btninventario
+            // 
+            this.btninventario.Location = new System.Drawing.Point(485, 452);
+            this.btninventario.Name = "btninventario";
+            this.btninventario.Size = new System.Drawing.Size(195, 23);
+            this.btninventario.TabIndex = 4;
+            this.btninventario.Text = "Listar inventário completo";
+            this.btninventario.UseVisualStyleBackColor = true;
+            this.btninventario.Click += new System.EventHandler(this.btninventario_Click);
+            // 
             // inventario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(830, 450);
+            this.ClientSize = new System.Drawing.Size(833, 482);
+            this.Controls.Add(this.btninventario);
+            this.Controls.Add(this.btnestoqueminimo);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtpesquisa);
             this.Controls.Add(this.lblpesquisar);
@@ -105,5 +129,7 @@
         private System.Windows.Forms.Label lblpesquisar;
         private System.Windows.Forms.TextBox txtpesquisa;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnestoqueminimo;
+        private System.Windows.Forms.Button btninventario;
     }
 }
