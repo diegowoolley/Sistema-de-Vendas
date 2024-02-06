@@ -220,7 +220,7 @@ namespace Sistema_de_Vendas.Cadastros
                 btnExcluir.Enabled = true;
                 txtpagamento.Enabled = true;
                 txtpagamento.Focus();
-                if (txtpagamento.Text.Trim() == "DINHEIRO" || txtpagamento.Text.Trim() == "PIX" || txtpagamento.Text.Trim() == "CARTÃO DE CRÉDITO" || txtpagamento.Text.Trim() == "CARTÃO DE DÉBITO" || txtpagamento.Text.Trim() == "FRACIONADO")
+                if (txtpagamento.Text.Trim() == "DINHEIRO" || txtpagamento.Text.Trim() == "PIX" || txtpagamento.Text.Trim() == "CARTÃO DE CRÉDITO" || txtpagamento.Text.Trim() == "CARTÃO DE DÉBITO" || txtpagamento.Text.Trim() == "FRACIONADO" || txtpagamento.Text.Trim() == "CRÉDITO CLIENTE")
                 {
 
                     txtpagamento.Enabled = false;
