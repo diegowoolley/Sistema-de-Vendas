@@ -57,6 +57,36 @@ namespace Sistema_de_Vendas
              
         }
 
+        private int ContarProdutosBaixoEstoque()
+        {
+            int contador = 0;
+
+            try
+            {
+                con.AbrirConexao();
+
+                sql = "SELECT COUNT(*) FROM cad_produtos WHERE quantidade <= estoque_minimo";
+                cmd = new MySqlCommand(sql, con.con);
+
+                object result = cmd.ExecuteScalar();
+
+                if (result != null && result != DBNull.Value)
+                {
+                    contador = Convert.ToInt32(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao contar produtos com estoque baixo: " + ex.Message);
+            }
+            finally
+            {
+                con.FecharConexao();
+            }
+            label3.Text = "Número de produtos com estoque baixo: " + contador.ToString();
+            return contador;
+        }
+
         private void Listar()
         {
             con.AbrirConexao();
@@ -174,6 +204,7 @@ namespace Sistema_de_Vendas
             Listar();
             formatargrid();
             ContarProdutosAVencer();
+            ContarProdutosBaixoEstoque();
         }
 
         private void txtpesquisa_TextChanged(object sender, EventArgs e)

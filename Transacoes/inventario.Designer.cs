@@ -36,6 +36,7 @@
             this.btninventario = new System.Windows.Forms.Button();
             this.btnlistarvalidade = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,7 +46,7 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridView1.Location = new System.Drawing.Point(4, 45);
+            this.dataGridView1.Location = new System.Drawing.Point(4, 69);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(826, 401);
@@ -54,7 +55,7 @@
             // lblpesquisar
             // 
             this.lblpesquisar.AutoSize = true;
-            this.lblpesquisar.Location = new System.Drawing.Point(1, 22);
+            this.lblpesquisar.Location = new System.Drawing.Point(142, 6);
             this.lblpesquisar.Name = "lblpesquisar";
             this.lblpesquisar.Size = new System.Drawing.Size(96, 13);
             this.lblpesquisar.TabIndex = 1;
@@ -63,7 +64,7 @@
             // txtpesquisa
             // 
             this.txtpesquisa.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtpesquisa.Location = new System.Drawing.Point(98, 19);
+            this.txtpesquisa.Location = new System.Drawing.Point(35, 22);
             this.txtpesquisa.MaxLength = 80;
             this.txtpesquisa.Name = "txtpesquisa";
             this.txtpesquisa.Size = new System.Drawing.Size(331, 20);
@@ -75,7 +76,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.SystemColors.Control;
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(434, 22);
+            this.label1.Location = new System.Drawing.Point(9, 47);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(383, 13);
             this.label1.TabIndex = 2;
@@ -83,17 +84,17 @@
             // 
             // btnestoqueminimo
             // 
-            this.btnestoqueminimo.Location = new System.Drawing.Point(4, 452);
+            this.btnestoqueminimo.Location = new System.Drawing.Point(657, 36);
             this.btnestoqueminimo.Name = "btnestoqueminimo";
-            this.btnestoqueminimo.Size = new System.Drawing.Size(195, 23);
+            this.btnestoqueminimo.Size = new System.Drawing.Size(174, 23);
             this.btnestoqueminimo.TabIndex = 3;
-            this.btnestoqueminimo.Text = "Listar produtos com estoque defazado";
+            this.btnestoqueminimo.Text = "Produtos com estoque baixo";
             this.btnestoqueminimo.UseVisualStyleBackColor = true;
             this.btnestoqueminimo.Click += new System.EventHandler(this.btnestoqueminimo_Click);
             // 
             // btninventario
             // 
-            this.btninventario.Location = new System.Drawing.Point(635, 452);
+            this.btninventario.Location = new System.Drawing.Point(635, 476);
             this.btninventario.Name = "btninventario";
             this.btninventario.Size = new System.Drawing.Size(195, 23);
             this.btninventario.TabIndex = 4;
@@ -103,7 +104,7 @@
             // 
             // btnlistarvalidade
             // 
-            this.btnlistarvalidade.Location = new System.Drawing.Point(656, 0);
+            this.btnlistarvalidade.Location = new System.Drawing.Point(657, 12);
             this.btnlistarvalidade.Name = "btnlistarvalidade";
             this.btnlistarvalidade.Size = new System.Drawing.Size(174, 23);
             this.btnlistarvalidade.TabIndex = 5;
@@ -115,17 +116,28 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(435, 5);
+            this.label2.Location = new System.Drawing.Point(426, 17);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(195, 13);
             this.label2.TabIndex = 6;
             this.label2.Text = "Número de produtos próximos a vencer:";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.Location = new System.Drawing.Point(426, 41);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(198, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Número de produtos com estoque baixo:";
+            // 
             // inventario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(833, 482);
+            this.ClientSize = new System.Drawing.Size(833, 507);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnlistarvalidade);
             this.Controls.Add(this.btninventario);
@@ -157,5 +169,6 @@
         private System.Windows.Forms.Button btninventario;
         private System.Windows.Forms.Button btnlistarvalidade;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
