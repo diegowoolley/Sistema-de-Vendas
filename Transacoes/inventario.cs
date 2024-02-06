@@ -20,8 +20,43 @@ namespace Sistema_de_Vendas
 
         conn con = new conn();
         string sql;
-        MySqlCommand cmd;       
-        
+        MySqlCommand cmd;
+
+        private int ContarProdutosAVencer()
+        {
+            int contador = 0;
+
+            try
+            {
+                con.AbrirConexao();
+
+                // Considere usar a função CURDATE() do MySQL para obter a data atual
+                sql = "SELECT COUNT(*) FROM cad_produtos WHERE STR_TO_DATE(validade, '%d/%m/%Y') <= (CURDATE() + INTERVAL 30 DAY)";
+                cmd = new MySqlCommand(sql, con.con);
+
+                // ExecuteScalar retorna o resultado da consulta como um objeto
+                object result = cmd.ExecuteScalar();
+
+                // Verifique se o resultado não é nulo e é um número
+                if (result != null && result != DBNull.Value)
+                {
+                    contador = Convert.ToInt32(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao contar produtos próximos a vencer" + ex.Message);
+            }
+            finally
+            {
+                con.FecharConexao();
+            }
+            label2.Text = "Número de produtos próximos a vencer: "+contador.ToString();
+
+            return contador;
+             
+        }
+
         private void Listar()
         {
             con.AbrirConexao();
@@ -51,6 +86,34 @@ namespace Sistema_de_Vendas
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao listar produtos com estoque mínimo: " + ex.Message);
+            }
+            finally
+            {
+                con.FecharConexao();
+            }
+        }
+        private void listarvalidade()
+        {
+            try
+            {
+                con.AbrirConexao();
+
+                // Obter a data atual
+                DateTime dataAtual = DateTime.Now;
+
+                // Consulta SQL para selecionar produtos com validade próxima de vencer
+                sql = "SELECT * FROM cad_produtos WHERE STR_TO_DATE(validade, '%d/%m/%Y') BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 1 MONTH) ORDER BY nome_produto ASC";
+                cmd = new MySqlCommand(sql, con.con);
+
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dataGridView1.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao listar produtos com validade para vencer: " + ex.Message);
             }
             finally
             {
@@ -88,7 +151,6 @@ namespace Sistema_de_Vendas
 
         }
 
-
         private void Buscar()
         {
             string pesquisa = txtpesquisa.Text;
@@ -111,6 +173,7 @@ namespace Sistema_de_Vendas
         {
             Listar();
             formatargrid();
+            ContarProdutosAVencer();
         }
 
         private void txtpesquisa_TextChanged(object sender, EventArgs e)
@@ -127,6 +190,11 @@ namespace Sistema_de_Vendas
         private void btninventario_Click(object sender, EventArgs e)
         {
             Listar();
+        }
+
+        private void btnlistarvalidade_Click(object sender, EventArgs e)
+        {
+            listarvalidade();
         }
     }
 }

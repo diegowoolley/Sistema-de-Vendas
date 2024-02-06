@@ -295,6 +295,7 @@ namespace Sistema_de_Vendas.Transacoes
                 txttotalpagar.Clear();
                 dataGridView1.Rows.Clear();
                 txtcod_barras.Focus();
+                MessageBox.Show("Venda cancelada com sucesso!");
             }
             txtcod_barras.Focus();
 

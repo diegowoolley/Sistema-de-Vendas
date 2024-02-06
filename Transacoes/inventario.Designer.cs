@@ -34,6 +34,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnestoqueminimo = new System.Windows.Forms.Button();
             this.btninventario = new System.Windows.Forms.Button();
+            this.btnlistarvalidade = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -43,10 +45,10 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 45);
+            this.dataGridView1.Location = new System.Drawing.Point(4, 45);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(830, 401);
+            this.dataGridView1.Size = new System.Drawing.Size(826, 401);
             this.dataGridView1.TabIndex = 0;
             // 
             // lblpesquisar
@@ -81,7 +83,7 @@
             // 
             // btnestoqueminimo
             // 
-            this.btnestoqueminimo.Location = new System.Drawing.Point(98, 452);
+            this.btnestoqueminimo.Location = new System.Drawing.Point(4, 452);
             this.btnestoqueminimo.Name = "btnestoqueminimo";
             this.btnestoqueminimo.Size = new System.Drawing.Size(195, 23);
             this.btnestoqueminimo.TabIndex = 3;
@@ -91,7 +93,7 @@
             // 
             // btninventario
             // 
-            this.btninventario.Location = new System.Drawing.Point(485, 452);
+            this.btninventario.Location = new System.Drawing.Point(635, 452);
             this.btninventario.Name = "btninventario";
             this.btninventario.Size = new System.Drawing.Size(195, 23);
             this.btninventario.TabIndex = 4;
@@ -99,11 +101,33 @@
             this.btninventario.UseVisualStyleBackColor = true;
             this.btninventario.Click += new System.EventHandler(this.btninventario_Click);
             // 
+            // btnlistarvalidade
+            // 
+            this.btnlistarvalidade.Location = new System.Drawing.Point(656, 0);
+            this.btnlistarvalidade.Name = "btnlistarvalidade";
+            this.btnlistarvalidade.Size = new System.Drawing.Size(174, 23);
+            this.btnlistarvalidade.TabIndex = 5;
+            this.btnlistarvalidade.Text = "Listar produtos próximos a vencer";
+            this.btnlistarvalidade.UseVisualStyleBackColor = true;
+            this.btnlistarvalidade.Click += new System.EventHandler(this.btnlistarvalidade_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.Red;
+            this.label2.Location = new System.Drawing.Point(435, 5);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(195, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Número de produtos próximos a vencer:";
+            // 
             // inventario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(833, 482);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.btnlistarvalidade);
             this.Controls.Add(this.btninventario);
             this.Controls.Add(this.btnestoqueminimo);
             this.Controls.Add(this.label1);
@@ -131,5 +155,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnestoqueminimo;
         private System.Windows.Forms.Button btninventario;
+        private System.Windows.Forms.Button btnlistarvalidade;
+        private System.Windows.Forms.Label label2;
     }
 }
