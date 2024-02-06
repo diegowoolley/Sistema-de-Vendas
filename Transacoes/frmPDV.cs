@@ -64,6 +64,55 @@ namespace Sistema_de_Vendas.Transacoes
             }
 
         }
+
+        private void Buscarclientes()
+        {
+
+
+            try
+            {
+                string pesquisa = txtClientes.Text;
+
+                con.AbrirConexao();
+                sql = "SELECT * FROM cad_clientes WHERE nome_clientes LIKE @nome or cod_clientes LIKE @cod_clientes";
+                cmd = new MySqlCommand(sql, con.con);
+                MySqlDataReader reader;
+                cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
+                cmd.Parameters.AddWithValue("@cod_clientes", "%" + pesquisa + "%");
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows && reader.Read())
+                {
+                    decimal valoraberto = Convert.ToDecimal(reader[11].ToString());
+                    txtClientes.Text = reader[1].ToString();
+                    lblCliente.Text = reader[1].ToString();
+                    lblClienteBloqueado.Text = reader[13].ToString();
+                    lblValoremAberto.Text = valoraberto.ToString("C2");
+                    con.FecharConexao();
+
+                }
+                else
+                {
+                    MessageBox.Show("Cliente não cadastrado!");
+                    txtClientes.Text = "";
+                    txtClientes.Focus();
+                }
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro na Conexão", ex.Message);
+            }
+
+        }
+
         private void AtualizarTotais()
         {
             precototal = 0;
@@ -114,6 +163,28 @@ namespace Sistema_de_Vendas.Transacoes
             }
         }
 
+        private void listarformapagamento()
+        {
+            try
+            {
+                con.AbrirConexao();
+                sql = "SELECT forma_pagamento FROM cad_pagamentos ORDER BY forma_pagamento desc";
+                cmd = new MySqlCommand(sql, con.con);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                cbformapagamento.DataSource = dt;
+                cbformapagamento.DisplayMember = "forma_pagamento";
+                con.FecharConexao();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro na Conexão", ex.Message);
+            }
+
+        }
+
         private void AtualizarQuantidadeProdutosVendidos()
         {
             try
@@ -145,8 +216,12 @@ namespace Sistema_de_Vendas.Transacoes
 
         private void frmPDV_Load(object sender, EventArgs e)
         {
+            
             txtcod_barras.Focus();
             contarvendas();
+            listarformapagamento();
+            cbformapagamento.SelectedIndex = -1;
+
         }
 
         private void txtcod_barras_Leave(object sender, EventArgs e)
@@ -277,6 +352,8 @@ namespace Sistema_de_Vendas.Transacoes
         private void txtquantidade_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                txtcod_barras.Focus();
         }
 
         private void btncancelar_Click(object sender, EventArgs e)
@@ -295,10 +372,46 @@ namespace Sistema_de_Vendas.Transacoes
                 txttotalpagar.Clear();
                 dataGridView1.Rows.Clear();
                 txtcod_barras.Focus();
+                cbformapagamento.SelectedIndex = -1;
                 MessageBox.Show("Venda cancelada com sucesso!");
             }
             txtcod_barras.Focus();
 
+        }
+
+        private void cbformapagamento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (cbformapagamento.SelectedIndex == 1)
+            {
+                pnfracionado.Visible = true;
+                pnvendaprazo.Visible = false;
+                txtClientes.Clear();
+                txtValorPagar.Text = "0";
+                lblCliente.Text = "...";
+                lblClienteBloqueado.Text = "...";
+                lblValoremAberto.Text = "0";
+            }
+            if(cbformapagamento.SelectedIndex == 3)
+            {
+                pnvendaprazo.Visible=true;
+                pnfracionado.Visible=false;
+                txtDinheiro.Clear();
+                txtPix.Clear();
+                txtCartao.Clear();
+            }
+
+        }
+
+        private void txtClientes_Leave(object sender, EventArgs e)
+        {
+            Buscarclientes();
+        }
+
+        private void txtproduto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txtquantidade.Focus();
         }
     }
     

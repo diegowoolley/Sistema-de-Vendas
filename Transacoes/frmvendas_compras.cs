@@ -84,7 +84,7 @@ namespace Sistema_de_Vendas.Transacoes
                 MessageBox.Show("Erro na Conexão", ex.Message);
             }
 
-            }
+        }
 
         private void Buscarclientes()
         {
