@@ -130,6 +130,8 @@ namespace Sistema_de_Vendas.Cadastros
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
+
+
             if (txtpagamento.Text.ToString().Trim() == "")
             {
                 MessageBox.Show("Digite uma forma de pagamento!");
@@ -139,7 +141,7 @@ namespace Sistema_de_Vendas.Cadastros
             }
 
 
-
+            
             try
             {
 
@@ -172,6 +174,7 @@ namespace Sistema_de_Vendas.Cadastros
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
+                      
             var res = MessageBox.Show("Deseja realmente excluir esse registro?", "Excluir Forma de Pagamento", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (res == DialogResult.Yes)
@@ -201,8 +204,10 @@ namespace Sistema_de_Vendas.Cadastros
 
         private void dgCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            
             if (e.RowIndex > -1)
             {
+                              
 
                 id = dgCliente.CurrentRow.Cells[0].Value.ToString();
 
@@ -215,6 +220,16 @@ namespace Sistema_de_Vendas.Cadastros
                 btnExcluir.Enabled = true;
                 txtpagamento.Enabled = true;
                 txtpagamento.Focus();
+                if (txtpagamento.Text.Trim() == "DINHEIRO" || txtpagamento.Text.Trim() == "PIX" || txtpagamento.Text.Trim() == "CARTÃO DE CRÉDITO" || txtpagamento.Text.Trim() == "CARTÃO DE DÉBITO" || txtpagamento.Text.Trim() == "FRACIONADO")
+                {
+
+                    txtpagamento.Enabled = false;
+                    btnAlterar.Enabled = false;
+                    btnExcluir.Enabled=false;
+
+
+                    return;
+                }
             }
         }
 
