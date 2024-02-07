@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,8 +27,9 @@ namespace Sistema_de_Vendas.Transacoes
         MySqlCommand cmd;
         MySqlCommand cmd1;
         double precototal;        
-        int cod_venda;
+        int cod_venda;       
         string indiceselecionado;
+       
 
         private void listarvendedor()
         {
@@ -70,7 +72,7 @@ namespace Sistema_de_Vendas.Transacoes
             try
             {
                 con.AbrirConexao();
-                sql = "SELECT forma_pagamento FROM cad_pagamentos ORDER BY forma_pagamento asc";
+                sql = "SELECT forma_pagamento FROM cad_pagamentos ORDER BY forma_pagamento desc";
                 cmd = new MySqlCommand(sql, con.con);
                 MySqlDataAdapter da = new MySqlDataAdapter();
                 da.SelectCommand = cmd;
@@ -84,7 +86,7 @@ namespace Sistema_de_Vendas.Transacoes
                 MessageBox.Show("Erro na Conexão", ex.Message);
             }
 
-        }
+        }       
 
         private void Buscarclientes()
         {
@@ -209,8 +211,90 @@ namespace Sistema_de_Vendas.Transacoes
             cbformapagamento.SelectedIndex = -1;
             contarvendas();
 
-        }            
-       
+        }
+
+        private void compradevolucao()
+        {   
+           
+            cod_venda = int.Parse(txtretornagrid.Text);
+            try
+            {
+
+                con.AbrirConexao();
+                sql = "SELECT * FROM vendas WHERE cod_venda = @cod_venda ORDER BY cod_venda ASC";
+                MySqlCommand cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@cod_venda", cod_venda);
+
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                con.FecharConexao();
+                              
+
+                if (dt.Rows.Count > 0 && dt.Rows[0]["tipo"].ToString() != "DEVOLUÇÃO" && dt.Rows[0]["tipo"].ToString() != "TROCA")
+                {
+                    
+                    dataGridView1.Rows.Clear();
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        dataGridView1.Rows.Add(
+                            dataGridView1.RowCount,
+                            dt.Rows[i]["cod_produto"],
+                            dt.Rows[i]["tipo"],
+                            dt.Rows[i]["cliente"],
+                            dt.Rows[i]["produto"],
+                            dt.Rows[i]["quantidade"],
+                            dt.Rows[i]["categoria"],
+                            dt.Rows[i]["valor_unitario"],
+                            dt.Rows[i]["vendedor"],
+                            dt.Rows[i]["valor_total"]                             
+                        );                                             
+                                              
+                       
+                    }
+                    dataGridView1.Enabled = false;
+                    cbtransacao.Enabled = false;
+                    cbclientes.Enabled = false;
+                    cbproduto.Enabled = false;
+                    txtquantidade.Enabled = false;
+                    cbvendedor.Enabled = false;
+                    btnadicionar.Enabled = false;
+                    btnremoveritens.Enabled = false;
+                    lblcodigovenda.Text = "Código da transação: " + cod_venda;
+                    lblvalortotal.Text = "Valor Total: " + dt.Rows[0]["valor_total"];
+                    DialogResult result = MessageBox.Show("Realmente deseja fazer essa " + cbtransacao.Text + " ?", "Confirmação", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        if(cbtransacao.Text == "DEVOLUÇÃO")
+                        {
+                            
+                            AdicionarProdutosAoEstoque();
+                            
+                        }
+                        AtualizartransacaoEstoque();
+
+
+
+                    }
+
+
+
+                }
+                else
+                {
+                    MessageBox.Show("Transação não encontrada!");
+                    contarvendas();
+                    txtretornagrid.Clear();
+                    txtretornagrid.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void btnadicionar_Click(object sender, EventArgs e)
         {
             if(cbtransacao.Text == "")
@@ -404,6 +488,7 @@ namespace Sistema_de_Vendas.Transacoes
             lbltotalitens.Text = "Total de itens: ";
             lblvalortotal.Text = "Valor Total: ";           
             cbtransacao.Focus();
+            contarvendas();
         }
               
         private void btnconcluir_Click(object sender, EventArgs e)
@@ -429,7 +514,7 @@ namespace Sistema_de_Vendas.Transacoes
                     cbformapagamento.Focus();
                     return;
                 }
-                
+
 
                 try
                 {
@@ -437,13 +522,21 @@ namespace Sistema_de_Vendas.Transacoes
                     for (int i = 0; i < dataGridView1.Rows.Count; i++)
                     {
                         con.AbrirConexao();
-                        sql = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, vendedor, descontos, forma_pagamento, valor_total, valor_pago, troco, data, hora) VALUES (@cod_venda, @tipo, @cliente, @produto, @quantidade, @vendedor, @descontos, @forma_pagamento, @valor_total, @valor_pago, @troco, @data, @hora)";
+                        sql = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, categoria, cod_produto, valor_unitario, vendedor, descontos, forma_pagamento, valor_total, valor_pago, troco, data, hora ) VALUES (@cod_venda, @tipo, @cliente, @produto, @quantidade, @categoria, @cod_produto, @valor_unitario, @vendedor, @descontos, @forma_pagamento, @valor_total, @valor_pago, @troco, @data, @hora)";
                         cmd = new MySqlCommand(sql, con.con);
                         cmd.Parameters.AddWithValue("@cod_venda", cod_venda);
                         cmd.Parameters.AddWithValue("@tipo", cbtransacao.Text);
                         cmd.Parameters.AddWithValue("@cliente", cbclientes.Text);
                         cmd.Parameters.AddWithValue("produto", dataGridView1.Rows[i].Cells[4].Value);
                         cmd.Parameters.AddWithValue("@quantidade", dataGridView1.Rows[i].Cells[5].Value);
+                        cmd.Parameters.AddWithValue("@categoria", dataGridView1.Rows[i].Cells[6].Value);
+                        cmd.Parameters.AddWithValue("@cod_produto", dataGridView1.Rows[i].Cells[1].Value);
+                        cmd.Parameters.AddWithValue("@valor_unitario", dataGridView1.Rows[i].Cells[7].Value);
+                        //cmd.Parameters.AddWithValue("@dinheiro", "");
+                        //cmd.Parameters.AddWithValue("@pix", "");
+                        //cmd.Parameters.AddWithValue("@cartao", "");
+                        //cmd.Parameters.AddWithValue("@vencimento", "");
+                        //cmd.Parameters.AddWithValue("@taxa", "");
                         cmd.Parameters.AddWithValue("@vendedor", dataGridView1.Rows[i].Cells[8].Value);                       
                         cmd.Parameters.AddWithValue("@descontos", txtdescontos.Text.Replace("R$", "").Trim().Replace(",", "."));
                         cmd.Parameters.AddWithValue("@forma_pagamento", cbformapagamento.Text);
@@ -480,18 +573,18 @@ namespace Sistema_de_Vendas.Transacoes
 
                     MessageBox.Show("Venda salva com sucesso!");
 
-                    if(cbtransacao.Text == "VENDA")
-                    {
-                        AtualizarQuantidadeProdutosVendidos();
-                        
-                    }
-                    if(cbtransacao.Text == "COMPRA")
-                    {
-                        AdicionarProdutosAoEstoque();
-                        
-                    }
-                    
-                    dataGridView1.Rows.Clear();
+                if (cbtransacao.Text == "VENDA")
+                {
+                    AtualizarQuantidadeProdutosVendidos();
+
+                }
+                if (cbtransacao.Text == "COMPRA")
+                {
+                    AdicionarProdutosAoEstoque();
+
+                }
+
+                dataGridView1.Rows.Clear();
                     contarvendas();
                     cbtransacao.Enabled = true;
                     cbtransacao.SelectedIndex = -1;
@@ -516,15 +609,15 @@ namespace Sistema_de_Vendas.Transacoes
                     btnconcluir.Enabled = false;                  
                     lbltotalitens.Text = "Total de itens: ";
                     lblvalortotal.Text = "Valor Total: ";
-                  
-                   
-                }
+
+
+            }
                 catch (Exception ex)
                 {
 
-                    MessageBox.Show("Erro de conexão!",ex.Message);
-                }
+                MessageBox.Show(ex.Message);
             }
+        }
             
         }
 
@@ -703,7 +796,6 @@ namespace Sistema_de_Vendas.Transacoes
 
         }
 
-
         private void AdicionarProdutosAoEstoque()
         {
             try
@@ -713,8 +805,7 @@ namespace Sistema_de_Vendas.Transacoes
                 for (int i = 0; i < dataGridView1.Rows.Count; i++)
                 {
                     int idProduto = Convert.ToInt32(dataGridView1.Rows[i].Cells[1].Value);
-                    int quantidadeComprada = Convert.ToInt32(dataGridView1.Rows[i].Cells[5].Value);
-
+                    int quantidadeComprada = Convert.ToInt32(dataGridView1.Rows[i].Cells[5].Value);                   
                     string updateQuery = $"UPDATE cad_produtos SET quantidade = quantidade + {quantidadeComprada} WHERE cod_produto = {idProduto}";
 
                     MySqlCommand updateCommand = new MySqlCommand(updateQuery, con.con);
@@ -729,6 +820,118 @@ namespace Sistema_de_Vendas.Transacoes
             }
         }
 
+        private void AtualizartransacaoEstoque()
+        {
+            try
+            {
+                
+                con.AbrirConexao();
 
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    
+                    string updateQuery = "UPDATE vendas SET tipo = @tipo WHERE cod_venda = @cod_venda";
+                    MySqlCommand updateCommand = new MySqlCommand(updateQuery, con.con);
+                    string updateQuery2 = "UPDATE caixa SET tipo = @tipo WHERE cod_venda = @cod_venda";
+                    MySqlCommand updateCommand2 = new MySqlCommand(updateQuery2, con.con);
+
+                    updateCommand.Parameters.AddWithValue("@tipo", cbtransacao.Text);
+                    updateCommand.Parameters.AddWithValue("@cod_venda", cod_venda);
+                    updateCommand2.Parameters.AddWithValue("@tipo", cbtransacao.Text);
+                    updateCommand2.Parameters.AddWithValue("@cod_venda", cod_venda);
+
+                    updateCommand.ExecuteNonQuery();
+                    updateCommand2.ExecuteNonQuery();
+                }
+
+                MessageBox.Show("Transação realizada com sucesso!");
+
+                
+                cbtransacao.Enabled = true;
+                cbtransacao.SelectedIndex = -1;
+                cbclientes.Enabled = true;
+                cbclientes.Text = "";
+                cbproduto.Enabled = true;
+                cbproduto.Text = "";
+                txtquantidade.Enabled = true;
+                txtquantidade.Clear();
+                cbvendedor.Enabled = true;
+                cbvendedor.SelectedIndex = -1;
+                cbformapagamento.SelectedIndex = -1;
+                dataGridView1.Rows.Clear();
+                cbformapagamento.Enabled = false;
+                cbformapagamento.SelectedIndex = -1;
+                txtvalorpago.Enabled = false;
+                txtvalorpago.Clear();
+                txtdescontos.Enabled = false;
+                txtdescontos.Clear();
+                txttroco.Clear();
+                btnadicionar.Enabled = true;
+                btnremoveritens.Enabled = true;
+                btnfecharvenda.Enabled = false;
+                btnconcluir.Enabled = false;
+                lbltotalitens.Text = "Total de itens: ";
+                lblvalortotal.Text = "Valor Total: ";
+                cbtransacao.Focus();
+                contarvendas();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao devolver produtos ao estoque: " + ex.Message);
+            }
+            finally
+            {
+                con.FecharConexao();
+            }
+        }
+
+        private void cbtransacao_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cbtransacao.SelectedIndex == 3 || cbtransacao.SelectedIndex == 4)
+            {
+                panel1.Visible = true;
+                txtretornagrid.Clear();
+                txtretornagrid.Focus();
+            }
+        }
+
+        private void panel1_Leave(object sender, EventArgs e)
+        {
+            txtretornagrid.Clear();
+            cbtransacao.SelectedIndex = -1;
+            cbtransacao.Focus();
+            panel1.Visible = false;
+                       
+        }
+
+        private void txtretornagrid_Leave(object sender, EventArgs e)
+        {
+            if(txtretornagrid.Text.Trim() == "")
+            {
+                btncancelarretorno.Focus();
+                return;
+            }
+           
+                compradevolucao();
+           
+             
+            
+           
+        }
+
+        private void txtretornagrid_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                panel1.Focus();
+            txtretornagrid.Focus();
+        }
+
+        private void btncancelarretorno_Click(object sender, EventArgs e)
+        {
+            panel1.Visible=false;
+            cbtransacao.SelectedIndex = -1;
+            cbtransacao.Focus();
+        }
     }
 }

@@ -65,7 +65,12 @@
             this.cbproduto = new System.Windows.Forms.ComboBox();
             this.btnremoveritens = new System.Windows.Forms.Button();
             this.btnfecharvenda = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.txtretornagrid = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btncancelarretorno = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblcodigovenda
@@ -340,11 +345,13 @@
             "VENDA",
             "COMPRA",
             "ORÇAMENTO",
-            "TROCA\\DEVOLUÇÃO"});
+            "TROCA",
+            "DEVOLUÇÃO"});
             this.cbtransacao.Location = new System.Drawing.Point(99, 37);
             this.cbtransacao.Name = "cbtransacao";
             this.cbtransacao.Size = new System.Drawing.Size(121, 21);
             this.cbtransacao.TabIndex = 1;
+            this.cbtransacao.SelectedIndexChanged += new System.EventHandler(this.cbtransacao_SelectedIndexChanged);
             this.cbtransacao.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbtransacao_KeyPress);
             // 
             // lbltransacao
@@ -432,11 +439,54 @@
             this.btnfecharvenda.UseVisualStyleBackColor = true;
             this.btnfecharvenda.Click += new System.EventHandler(this.btnfecharvenda_Click);
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.btncancelarretorno);
+            this.panel1.Controls.Add(this.txtretornagrid);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Location = new System.Drawing.Point(224, 44);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(202, 84);
+            this.panel1.TabIndex = 33;
+            this.panel1.Visible = false;
+            this.panel1.Leave += new System.EventHandler(this.panel1_Leave);
+            // 
+            // txtretornagrid
+            // 
+            this.txtretornagrid.Location = new System.Drawing.Point(52, 30);
+            this.txtretornagrid.MaxLength = 20;
+            this.txtretornagrid.Name = "txtretornagrid";
+            this.txtretornagrid.Size = new System.Drawing.Size(88, 20);
+            this.txtretornagrid.TabIndex = 1;
+            this.txtretornagrid.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtretornagrid_KeyPress);
+            this.txtretornagrid.Leave += new System.EventHandler(this.txtretornagrid_Leave);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(25, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(151, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Informe o código da transação";
+            // 
+            // btncancelarretorno
+            // 
+            this.btncancelarretorno.Location = new System.Drawing.Point(58, 56);
+            this.btncancelarretorno.Name = "btncancelarretorno";
+            this.btncancelarretorno.Size = new System.Drawing.Size(74, 23);
+            this.btncancelarretorno.TabIndex = 34;
+            this.btncancelarretorno.Text = "Cancelar";
+            this.btncancelarretorno.UseVisualStyleBackColor = true;
+            this.btncancelarretorno.Click += new System.EventHandler(this.btncancelarretorno_Click);
+            // 
             // frmvendas_compras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(625, 346);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnfecharvenda);
             this.Controls.Add(this.btnremoveritens);
             this.Controls.Add(this.cbproduto);
@@ -472,6 +522,8 @@
             this.Text = "Vendas \\ Compras";
             this.Load += new System.EventHandler(this.frmvendas_compras_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -516,5 +568,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PRECO;
         private System.Windows.Forms.DataGridViewTextBoxColumn VENDEDOR;
         private System.Windows.Forms.DataGridViewTextBoxColumn VALOR_TOTAL;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox txtretornagrid;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btncancelarretorno;
     }
 }

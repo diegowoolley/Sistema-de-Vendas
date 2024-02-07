@@ -221,6 +221,7 @@ namespace Sistema_de_Vendas.Transacoes
             contarvendas();
             listarformapagamento();
             cbformapagamento.SelectedIndex = -1;
+            lbloperador.Text = "Operador: " + funcoes.conectado;
 
         }
 

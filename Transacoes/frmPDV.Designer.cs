@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -84,6 +84,8 @@
             this.lblVencimento = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.btnconcluir = new System.Windows.Forms.Button();
+            this.lbloperador = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.pnfracionado.SuspendLayout();
@@ -181,14 +183,14 @@
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cod_produto,
@@ -202,11 +204,11 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataGridView1.RowHeadersVisible = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Yellow;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Yellow;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridView1.Size = new System.Drawing.Size(585, 451);
             this.dataGridView1.TabIndex = 25;
             // 
@@ -452,7 +454,7 @@
             this.pnfracionado.Controls.Add(this.txtCartao);
             this.pnfracionado.Controls.Add(this.label11);
             this.pnfracionado.Controls.Add(this.txtPix);
-            this.pnfracionado.Location = new System.Drawing.Point(37, 650);
+            this.pnfracionado.Location = new System.Drawing.Point(37, 636);
             this.pnfracionado.Name = "pnfracionado";
             this.pnfracionado.Size = new System.Drawing.Size(413, 126);
             this.pnfracionado.TabIndex = 3099;
@@ -545,7 +547,7 @@
             this.pnvendaprazo.Controls.Add(this.lblClienteBloqueado);
             this.pnvendaprazo.Controls.Add(this.lblValoremAberto);
             this.pnvendaprazo.Controls.Add(this.label21);
-            this.pnvendaprazo.Location = new System.Drawing.Point(456, 650);
+            this.pnvendaprazo.Location = new System.Drawing.Point(467, 636);
             this.pnvendaprazo.Name = "pnvendaprazo";
             this.pnvendaprazo.Size = new System.Drawing.Size(636, 126);
             this.pnvendaprazo.TabIndex = 3100;
@@ -707,19 +709,44 @@
             // 
             this.btnconcluir.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnconcluir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnconcluir.Location = new System.Drawing.Point(1207, 735);
+            this.btnconcluir.Location = new System.Drawing.Point(1207, 725);
             this.btnconcluir.Name = "btnconcluir";
             this.btnconcluir.Size = new System.Drawing.Size(156, 31);
             this.btnconcluir.TabIndex = 3106;
             this.btnconcluir.Text = "Concluir";
             this.btnconcluir.UseVisualStyleBackColor = false;
             // 
+            // lbloperador
+            // 
+            this.lbloperador.AutoSize = true;
+            this.lbloperador.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbloperador.ForeColor = System.Drawing.Color.White;
+            this.lbloperador.Location = new System.Drawing.Point(1, 167);
+            this.lbloperador.Name = "lbloperador";
+            this.lbloperador.Size = new System.Drawing.Size(89, 20);
+            this.lbloperador.TabIndex = 3107;
+            this.lbloperador.Text = "Operador:";
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(975, 138);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(118, 23);
+            this.button1.TabIndex = 3108;
+            this.button1.Text = "Fechar venda";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = false;
+            // 
             // frmPDV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1419, 788);
+            this.ClientSize = new System.Drawing.Size(1420, 782);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.lbloperador);
             this.Controls.Add(this.btnconcluir);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.pnvendaprazo);
@@ -819,5 +846,7 @@
         private System.Windows.Forms.Label lblVencimento;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button btnconcluir;
+        private System.Windows.Forms.Label lbloperador;
+        private System.Windows.Forms.Button button1;
     }
 }
