@@ -26,7 +26,8 @@ namespace Sistema_de_Vendas.Transacoes
         string sql1;
         MySqlCommand cmd;
         MySqlCommand cmd1;
-        double precototal;        
+        double precototal;
+        decimal valorfracionado;
         int cod_venda;       
         string indiceselecionado;
        
@@ -206,7 +207,7 @@ namespace Sistema_de_Vendas.Transacoes
         private void frmvendas_compras_Load(object sender, EventArgs e)
         {
             listarvendedor();   
-            cbvendedor.SelectedIndex = -1;
+            cbvendedor.SelectedIndex = -1;         
             listarformapagamento();
             cbformapagamento.SelectedIndex = -1;
             contarvendas();
@@ -277,8 +278,10 @@ namespace Sistema_de_Vendas.Transacoes
 
 
                     }
+                   
 
-
+                    
+                   
 
                 }
                 else
@@ -481,6 +484,14 @@ namespace Sistema_de_Vendas.Transacoes
             txtdescontos.Enabled = false;
             txtdescontos.Clear();
             txttroco.Clear();
+            txtdinheiro.Enabled = false;
+            txtdinheiro.Clear();
+            txtpix.Enabled = false;
+            txtpix.Clear();
+            txtcartao.Enabled = false;
+            txtcartao.Clear();
+            txttaxa.Enabled = false;
+            txttaxa.Clear();
             btnadicionar.Enabled = true;
             btnremoveritens.Enabled = true;
             btnfecharvenda.Enabled = false;
@@ -514,7 +525,15 @@ namespace Sistema_de_Vendas.Transacoes
                     cbformapagamento.Focus();
                     return;
                 }
+                if(cbformapagamento.Text == "FRACIONADO")
+                {
+                    if (valorfracionado < (decimal)precototal)
+                    {
+                        MessageBox.Show("Valor fracionado não pode ser menor q valor de venda!");
+                        return;
+                    }
 
+                }               
 
                 try
                 {
@@ -608,6 +627,15 @@ namespace Sistema_de_Vendas.Transacoes
                     txtvalorpago.Clear();
                     txtdescontos.Enabled = false;
                     txtdescontos.Clear();
+                    txtdinheiro.Enabled = false;
+                    txtdinheiro.Clear();
+                    txtpix.Enabled = false;
+                    txtpix.Clear();
+                    txtcartao.Enabled = false;
+                    txtcartao.Clear();
+                    txttaxa.Enabled = false;
+                    txttaxa.Clear();
+                    
                     txttroco.Clear();
                     btnadicionar.Enabled = true;
                     btnremoveritens.Enabled = true;
@@ -678,8 +706,13 @@ namespace Sistema_de_Vendas.Transacoes
 
         private void txtvalorpago_Leave(object sender, EventArgs e)
         {
+            if(txtvalorpago.Text.Trim() == "")
+            {
+                txtvalorpago.Text = "0";
+            }
+            
             double valorpago = double.Parse(txtvalorpago.Text);
-            if(valorpago < precototal )
+            if(valorpago < precototal)
             {
                 MessageBox.Show("Valor pago não pode ser menor que o valor total da venda!");
                 txtvalorpago.Clear();
@@ -711,8 +744,9 @@ namespace Sistema_de_Vendas.Transacoes
             
             decimal valorPorcentagem = (decimal)float.Parse(txtdescontos.Text);
 
-            txtdescontos.Text = (valorPorcentagem).ToString() + "%";
-            CalcularValorVenda();
+            txtdescontos.Text = (valorPorcentagem).ToString() + "%";           
+
+            calcularvalorvendafracionda();
         }
 
         private void txtdescontos_Enter(object sender, EventArgs e)
@@ -743,6 +777,7 @@ namespace Sistema_de_Vendas.Transacoes
                 cbformapagamento.Enabled = true;
                 txtvalorpago.Enabled = true;
                 txtdescontos.Enabled = true;
+                txttaxa.Enabled = true;
                 btnconcluir.Enabled = true;
                 cbproduto.Enabled = false;
                 txtquantidade.Enabled = false;
@@ -753,24 +788,76 @@ namespace Sistema_de_Vendas.Transacoes
             }
                                    
                       
-        }
+        }       
 
-        private void CalcularValorVenda()
+        private void calcularvalorvendafracionda()
         {
-            if (decimal.TryParse(txtvalorpago.Text.Trim().Replace("R$ ", ""), out decimal valorpago) &&
-                decimal.TryParse(txtdescontos.Text.Replace("%", ""), out decimal descontos))
+            
+            if (txtdinheiro.Text.Trim() == "")
             {
-                decimal valordescontos =  (decimal)precototal * (1 - (descontos / 100)) ;
-                decimal descontotal = valorpago - valordescontos;
-                
-                txttroco.Text = descontotal.ToString("C");
+                txtdinheiro.Text = "0";
+            }
+
+            if (txtpix.Text.Trim() == "")
+            {
+                txtpix.Text = "0";
+            }
+
+            if (txtcartao.Text.Trim() == "")
+            {
+                txtcartao.Text = "0";
+            }
+
+            if (txtdescontos.Text.Trim() == "")
+            {
+                txtdescontos.Text = "0";
+            }
+
+            if (txttaxa.Text.Trim() == "")
+            {
+                txttaxa.Text = "0";
+            }
+
+            if (txtvalorpago.Text.Trim() == "")
+            {
+                txtvalorpago.Text = "0";
+            }           
+
+
+            decimal dinheiro = decimal.Parse(txtdinheiro.Text.Trim().Replace("R$", ""));
+            decimal pix = decimal.Parse(txtpix.Text.Trim().Replace("R$", ""));
+            decimal cartao = decimal.Parse(txtcartao.Text.Trim().Replace("R$", ""));
+
+            // Somar os valores de dinheiro, pix e cartão
+            decimal somaFracionado = dinheiro + pix + cartao;
+            valorfracionado = (decimal)somaFracionado;
+            if (cbformapagamento.Text == "FRACIONADO")
+            {                
+                txtvalorpago.Text = somaFracionado.ToString();
             }
             else
             {
-                MessageBox.Show("Por favor, insira valores válidos para o valor pago e o desconto.");
+                somaFracionado = decimal.Parse(txtvalorpago.Text.Trim().Replace("R$", ""));
             }
+            
 
-        }
+            // Calcular descontos
+            decimal descontos = decimal.Parse(txtdescontos.Text.Replace("%", ""));
+            decimal valorDescontos = (decimal)precototal * (descontos / 100);
+
+            // Calcular valor com descontos
+            decimal valorComDescontos = (decimal)precototal - valorDescontos;
+
+            // Calcular taxa sobre o valor com descontos
+            decimal taxa = decimal.Parse(txttaxa.Text.Replace("%", ""));
+            decimal resultadoFracionado = valorComDescontos * (1 + (taxa / 100));
+
+            // Calcular troco com descontos e taxas
+            decimal troco = somaFracionado - resultadoFracionado;
+
+            // Atualizar o TextBox do troco
+            txttroco.Text = troco.ToString("C", CultureInfo.CurrentCulture);
+        }   
 
         private void AtualizarQuantidadeProdutosVendidos()
         {
@@ -937,6 +1024,150 @@ namespace Sistema_de_Vendas.Transacoes
             panel1.Visible=false;
             cbtransacao.SelectedIndex = -1;
             cbtransacao.Focus();
+        }
+
+        private void cbformapagamento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+
+            if(cbformapagamento.SelectedIndex == -1)
+            {
+                txtvalorpago.Enabled=false;
+            }
+            if(cbformapagamento.SelectedIndex == 1 || cbformapagamento.SelectedIndex == 2)
+            {
+                txtvalorpago.Enabled = false;
+                txtvalorpago.Text = "R$ 0,00";
+                txtdescontos.Text = "0%";
+                txttaxa.Text = "0%";
+                txtdinheiro.Enabled = true;
+                txtdinheiro.Text = "0,00";
+                txtdinheiro.Focus();
+                txtpix.Enabled = true;
+                txtpix.Text = "0,00";
+                txtcartao.Enabled = true;
+                txtcartao.Text = "0,00";
+                txttroco.Clear();
+            }
+            if(cbformapagamento.SelectedIndex == 0 || cbformapagamento.SelectedIndex == 3 || cbformapagamento.SelectedIndex == 4 || cbformapagamento.SelectedIndex == 5)
+            {
+                txtvalorpago.Enabled = true;
+                txtvalorpago.Focus();
+                txtvalorpago.Text = precototal.ToString();
+                txtdinheiro.Enabled = false;
+                txtpix.Enabled = false;
+                txtcartao.Enabled = false;
+                txtdinheiro.Text = "0,00";
+                txtpix.Text = "0,00";
+                txtcartao.Text = "0,00";
+                txttaxa.Text = "0%";
+                txtdescontos.Text = "0%";
+                txttroco.Clear();
+                txtvalorpago.Focus();
+            }
+        }
+
+        private void txtdinheiro_Leave(object sender, EventArgs e)
+        {            
+            if (decimal.TryParse(txtdinheiro.Text, out decimal valor))
+            {
+
+                txtdinheiro.Text = valor.ToString("C", CultureInfo.CurrentCulture);
+            }
+            calcularvalorvendafracionda();
+        }
+
+        private void txtdinheiro_Enter(object sender, EventArgs e)
+        {
+            if (txtdinheiro.Text.Trim() == "")
+            {
+                txtdinheiro.Text = "0";
+            }
+            string valor = txtdinheiro.Text.Replace("R$ ", "");
+            txtdinheiro.Text = valor;
+        }
+
+        private void txtdinheiro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            funcoes.DecNumber(sender, e);
+        }
+
+        private void txtpix_Leave(object sender, EventArgs e)
+        {            
+            if (decimal.TryParse(txtpix.Text, out decimal valor))
+            {
+
+                txtpix.Text = valor.ToString("C", CultureInfo.CurrentCulture);
+            }
+            calcularvalorvendafracionda();
+        }
+
+        private void txtpix_Enter(object sender, EventArgs e)
+        {
+            if (txtpix.Text.Trim() == "")
+            {
+                txtpix.Text = "0";
+            }
+            string valor = txtpix.Text.Replace("R$ ", "");
+            txtpix.Text = valor;
+        }
+
+        private void txtpix_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            funcoes.DecNumber(sender, e);
+        }
+
+        private void txtcartao_Leave(object sender, EventArgs e)
+        {            
+            if (decimal.TryParse(txtcartao.Text, out decimal valor))
+            {
+
+                txtcartao.Text = valor.ToString("C", CultureInfo.CurrentCulture);
+            }
+            calcularvalorvendafracionda();
+        }
+
+        private void txtcartao_Enter(object sender, EventArgs e)
+        {
+            if (txtcartao.Text.Trim() == "")
+            {
+                txtcartao.Text = "0";
+            }
+            string valor = txtcartao.Text.Replace("R$ ", "");
+            txtcartao.Text = valor;
+        }
+
+        private void txtcartao_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            funcoes.DecNumber(sender, e);
+        }
+
+        private void txttaxa_Leave(object sender, EventArgs e)
+        {            
+            if (txttaxa.Text == "")
+            {
+                txttaxa.Text = "0";
+            }           
+
+            decimal valorPorcentagem = (decimal)float.Parse(txttaxa.Text);
+
+            txttaxa.Text = (valorPorcentagem).ToString() + "%";
+            calcularvalorvendafracionda();
+        }
+
+        private void txttaxa_Enter(object sender, EventArgs e)
+        {
+            if (txttaxa.Text.Trim() == "")
+            {
+                txttaxa.Text = "0";
+            }
+            string valor = txttaxa.Text.Replace("%", "");
+            txttaxa.Text = valor;
+        }
+
+        private void txttaxa_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            funcoes.DecNumber(sender, e);
         }
     }
 }

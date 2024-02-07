@@ -256,11 +256,11 @@
             // lbldescontos
             // 
             this.lbldescontos.AutoSize = true;
-            this.lbldescontos.Location = new System.Drawing.Point(145, 322);
+            this.lbldescontos.Location = new System.Drawing.Point(251, 323);
             this.lbldescontos.Name = "lbldescontos";
-            this.lbldescontos.Size = new System.Drawing.Size(61, 13);
+            this.lbldescontos.Size = new System.Drawing.Size(58, 13);
             this.lbldescontos.TabIndex = 15;
-            this.lbldescontos.Text = "Descontos:";
+            this.lbldescontos.Text = "Descontos";
             // 
             // lblvalortotal
             // 
@@ -276,7 +276,7 @@
             // txtdescontos
             // 
             this.txtdescontos.Enabled = false;
-            this.txtdescontos.Location = new System.Drawing.Point(203, 319);
+            this.txtdescontos.Location = new System.Drawing.Point(244, 339);
             this.txtdescontos.MaxLength = 10;
             this.txtdescontos.Name = "txtdescontos";
             this.txtdescontos.Size = new System.Drawing.Size(73, 20);
@@ -288,7 +288,7 @@
             // txtvalorpago
             // 
             this.txtvalorpago.Enabled = false;
-            this.txtvalorpago.Location = new System.Drawing.Point(65, 319);
+            this.txtvalorpago.Location = new System.Drawing.Point(301, 293);
             this.txtvalorpago.MaxLength = 10;
             this.txtvalorpago.Name = "txtvalorpago";
             this.txtvalorpago.Size = new System.Drawing.Size(74, 20);
@@ -300,7 +300,7 @@
             // lblvalorpago
             // 
             this.lblvalorpago.AutoSize = true;
-            this.lblvalorpago.Location = new System.Drawing.Point(7, 322);
+            this.lblvalorpago.Location = new System.Drawing.Point(243, 295);
             this.lblvalorpago.Name = "lblvalorpago";
             this.lblvalorpago.Size = new System.Drawing.Size(61, 13);
             this.lblvalorpago.TabIndex = 18;
@@ -309,7 +309,7 @@
             // txttroco
             // 
             this.txttroco.Enabled = false;
-            this.txttroco.Location = new System.Drawing.Point(320, 319);
+            this.txttroco.Location = new System.Drawing.Point(545, 292);
             this.txttroco.MaxLength = 10;
             this.txttroco.Name = "txttroco";
             this.txttroco.Size = new System.Drawing.Size(78, 20);
@@ -319,7 +319,7 @@
             // lbltroco
             // 
             this.lbltroco.AutoSize = true;
-            this.lbltroco.Location = new System.Drawing.Point(282, 322);
+            this.lbltroco.Location = new System.Drawing.Point(501, 295);
             this.lbltroco.Name = "lbltroco";
             this.lbltroco.Size = new System.Drawing.Size(38, 13);
             this.lbltroco.TabIndex = 20;
@@ -334,6 +334,7 @@
             this.cbformapagamento.Name = "cbformapagamento";
             this.cbformapagamento.Size = new System.Drawing.Size(121, 21);
             this.cbformapagamento.TabIndex = 10;
+            this.cbformapagamento.SelectedIndexChanged += new System.EventHandler(this.cbformapagamento_SelectedIndexChanged);
             this.cbformapagamento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbformapagamento_KeyPress);
             // 
             // lblformapagamento
@@ -374,7 +375,7 @@
             // btnconcluir
             // 
             this.btnconcluir.Enabled = false;
-            this.btnconcluir.Location = new System.Drawing.Point(411, 366);
+            this.btnconcluir.Location = new System.Drawing.Point(411, 337);
             this.btnconcluir.Name = "btnconcluir";
             this.btnconcluir.Size = new System.Drawing.Size(129, 23);
             this.btnconcluir.TabIndex = 14;
@@ -384,7 +385,7 @@
             // 
             // btncancelar
             // 
-            this.btncancelar.Location = new System.Drawing.Point(546, 366);
+            this.btncancelar.Location = new System.Drawing.Point(546, 337);
             this.btncancelar.Name = "btncancelar";
             this.btncancelar.Size = new System.Drawing.Size(74, 23);
             this.btncancelar.TabIndex = 15;
@@ -492,16 +493,19 @@
             // txtdinheiro
             // 
             this.txtdinheiro.Enabled = false;
-            this.txtdinheiro.Location = new System.Drawing.Point(8, 366);
+            this.txtdinheiro.Location = new System.Drawing.Point(10, 339);
             this.txtdinheiro.MaxLength = 10;
             this.txtdinheiro.Name = "txtdinheiro";
             this.txtdinheiro.Size = new System.Drawing.Size(74, 20);
             this.txtdinheiro.TabIndex = 34;
+            this.txtdinheiro.Enter += new System.EventHandler(this.txtdinheiro_Enter);
+            this.txtdinheiro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtdinheiro_KeyPress);
+            this.txtdinheiro.Leave += new System.EventHandler(this.txtdinheiro_Leave);
             // 
             // lbldinheiro
             // 
             this.lbldinheiro.AutoSize = true;
-            this.lbldinheiro.Location = new System.Drawing.Point(22, 350);
+            this.lbldinheiro.Location = new System.Drawing.Point(24, 323);
             this.lbldinheiro.Name = "lbldinheiro";
             this.lbldinheiro.Size = new System.Drawing.Size(46, 13);
             this.lbldinheiro.TabIndex = 35;
@@ -510,16 +514,19 @@
             // txtpix
             // 
             this.txtpix.Enabled = false;
-            this.txtpix.Location = new System.Drawing.Point(86, 366);
+            this.txtpix.Location = new System.Drawing.Point(88, 339);
             this.txtpix.MaxLength = 10;
             this.txtpix.Name = "txtpix";
             this.txtpix.Size = new System.Drawing.Size(74, 20);
             this.txtpix.TabIndex = 36;
+            this.txtpix.Enter += new System.EventHandler(this.txtpix_Enter);
+            this.txtpix.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtpix_KeyPress);
+            this.txtpix.Leave += new System.EventHandler(this.txtpix_Leave);
             // 
             // lblpix
             // 
             this.lblpix.AutoSize = true;
-            this.lblpix.Location = new System.Drawing.Point(108, 350);
+            this.lblpix.Location = new System.Drawing.Point(110, 323);
             this.lblpix.Name = "lblpix";
             this.lblpix.Size = new System.Drawing.Size(21, 13);
             this.lblpix.TabIndex = 37;
@@ -528,16 +535,19 @@
             // txtcartao
             // 
             this.txtcartao.Enabled = false;
-            this.txtcartao.Location = new System.Drawing.Point(164, 366);
+            this.txtcartao.Location = new System.Drawing.Point(166, 339);
             this.txtcartao.MaxLength = 10;
             this.txtcartao.Name = "txtcartao";
             this.txtcartao.Size = new System.Drawing.Size(74, 20);
             this.txtcartao.TabIndex = 38;
+            this.txtcartao.Enter += new System.EventHandler(this.txtcartao_Enter);
+            this.txtcartao.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtcartao_KeyPress);
+            this.txtcartao.Leave += new System.EventHandler(this.txtcartao_Leave);
             // 
             // lblcartao
             // 
             this.lblcartao.AutoSize = true;
-            this.lblcartao.Location = new System.Drawing.Point(180, 350);
+            this.lblcartao.Location = new System.Drawing.Point(182, 323);
             this.lblcartao.Name = "lblcartao";
             this.lblcartao.Size = new System.Drawing.Size(38, 13);
             this.lblcartao.TabIndex = 39;
@@ -546,16 +556,19 @@
             // txttaxa
             // 
             this.txttaxa.Enabled = false;
-            this.txttaxa.Location = new System.Drawing.Point(243, 366);
+            this.txttaxa.Location = new System.Drawing.Point(323, 339);
             this.txttaxa.MaxLength = 10;
             this.txttaxa.Name = "txttaxa";
             this.txttaxa.Size = new System.Drawing.Size(74, 20);
-            this.txttaxa.TabIndex = 40;
+            this.txttaxa.TabIndex = 13;
+            this.txttaxa.Enter += new System.EventHandler(this.txttaxa_Enter);
+            this.txttaxa.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txttaxa_KeyPress);
+            this.txttaxa.Leave += new System.EventHandler(this.txttaxa_Leave);
             // 
             // lbltaxa
             // 
             this.lbltaxa.AutoSize = true;
-            this.lbltaxa.Location = new System.Drawing.Point(264, 350);
+            this.lbltaxa.Location = new System.Drawing.Point(344, 323);
             this.lbltaxa.Name = "lbltaxa";
             this.lbltaxa.Size = new System.Drawing.Size(31, 13);
             this.lbltaxa.TabIndex = 41;
@@ -565,7 +578,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(629, 398);
+            this.ClientSize = new System.Drawing.Size(628, 368);
             this.Controls.Add(this.txttaxa);
             this.Controls.Add(this.lbltaxa);
             this.Controls.Add(this.txtcartao);
