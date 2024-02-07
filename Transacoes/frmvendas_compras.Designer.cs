@@ -66,9 +66,17 @@
             this.btnremoveritens = new System.Windows.Forms.Button();
             this.btnfecharvenda = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btncancelarretorno = new System.Windows.Forms.Button();
             this.txtretornagrid = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btncancelarretorno = new System.Windows.Forms.Button();
+            this.txtdinheiro = new System.Windows.Forms.TextBox();
+            this.lbldinheiro = new System.Windows.Forms.Label();
+            this.txtpix = new System.Windows.Forms.TextBox();
+            this.lblpix = new System.Windows.Forms.Label();
+            this.txtcartao = new System.Windows.Forms.TextBox();
+            this.lblcartao = new System.Windows.Forms.Label();
+            this.txttaxa = new System.Windows.Forms.TextBox();
+            this.lbltaxa = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -366,7 +374,7 @@
             // btnconcluir
             // 
             this.btnconcluir.Enabled = false;
-            this.btnconcluir.Location = new System.Drawing.Point(407, 316);
+            this.btnconcluir.Location = new System.Drawing.Point(411, 366);
             this.btnconcluir.Name = "btnconcluir";
             this.btnconcluir.Size = new System.Drawing.Size(129, 23);
             this.btnconcluir.TabIndex = 14;
@@ -376,7 +384,7 @@
             // 
             // btncancelar
             // 
-            this.btncancelar.Location = new System.Drawing.Point(542, 316);
+            this.btncancelar.Location = new System.Drawing.Point(546, 366);
             this.btncancelar.Name = "btncancelar";
             this.btncancelar.Size = new System.Drawing.Size(74, 23);
             this.btncancelar.TabIndex = 15;
@@ -452,6 +460,16 @@
             this.panel1.Visible = false;
             this.panel1.Leave += new System.EventHandler(this.panel1_Leave);
             // 
+            // btncancelarretorno
+            // 
+            this.btncancelarretorno.Location = new System.Drawing.Point(58, 56);
+            this.btncancelarretorno.Name = "btncancelarretorno";
+            this.btncancelarretorno.Size = new System.Drawing.Size(74, 23);
+            this.btncancelarretorno.TabIndex = 34;
+            this.btncancelarretorno.Text = "Cancelar";
+            this.btncancelarretorno.UseVisualStyleBackColor = true;
+            this.btncancelarretorno.Click += new System.EventHandler(this.btncancelarretorno_Click);
+            // 
             // txtretornagrid
             // 
             this.txtretornagrid.Location = new System.Drawing.Point(52, 30);
@@ -471,21 +489,91 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Informe o código da transação";
             // 
-            // btncancelarretorno
+            // txtdinheiro
             // 
-            this.btncancelarretorno.Location = new System.Drawing.Point(58, 56);
-            this.btncancelarretorno.Name = "btncancelarretorno";
-            this.btncancelarretorno.Size = new System.Drawing.Size(74, 23);
-            this.btncancelarretorno.TabIndex = 34;
-            this.btncancelarretorno.Text = "Cancelar";
-            this.btncancelarretorno.UseVisualStyleBackColor = true;
-            this.btncancelarretorno.Click += new System.EventHandler(this.btncancelarretorno_Click);
+            this.txtdinheiro.Enabled = false;
+            this.txtdinheiro.Location = new System.Drawing.Point(8, 366);
+            this.txtdinheiro.MaxLength = 10;
+            this.txtdinheiro.Name = "txtdinheiro";
+            this.txtdinheiro.Size = new System.Drawing.Size(74, 20);
+            this.txtdinheiro.TabIndex = 34;
+            // 
+            // lbldinheiro
+            // 
+            this.lbldinheiro.AutoSize = true;
+            this.lbldinheiro.Location = new System.Drawing.Point(22, 350);
+            this.lbldinheiro.Name = "lbldinheiro";
+            this.lbldinheiro.Size = new System.Drawing.Size(46, 13);
+            this.lbldinheiro.TabIndex = 35;
+            this.lbldinheiro.Text = "Dinheiro";
+            // 
+            // txtpix
+            // 
+            this.txtpix.Enabled = false;
+            this.txtpix.Location = new System.Drawing.Point(86, 366);
+            this.txtpix.MaxLength = 10;
+            this.txtpix.Name = "txtpix";
+            this.txtpix.Size = new System.Drawing.Size(74, 20);
+            this.txtpix.TabIndex = 36;
+            // 
+            // lblpix
+            // 
+            this.lblpix.AutoSize = true;
+            this.lblpix.Location = new System.Drawing.Point(108, 350);
+            this.lblpix.Name = "lblpix";
+            this.lblpix.Size = new System.Drawing.Size(21, 13);
+            this.lblpix.TabIndex = 37;
+            this.lblpix.Text = "Pix";
+            // 
+            // txtcartao
+            // 
+            this.txtcartao.Enabled = false;
+            this.txtcartao.Location = new System.Drawing.Point(164, 366);
+            this.txtcartao.MaxLength = 10;
+            this.txtcartao.Name = "txtcartao";
+            this.txtcartao.Size = new System.Drawing.Size(74, 20);
+            this.txtcartao.TabIndex = 38;
+            // 
+            // lblcartao
+            // 
+            this.lblcartao.AutoSize = true;
+            this.lblcartao.Location = new System.Drawing.Point(180, 350);
+            this.lblcartao.Name = "lblcartao";
+            this.lblcartao.Size = new System.Drawing.Size(38, 13);
+            this.lblcartao.TabIndex = 39;
+            this.lblcartao.Text = "Cartão";
+            // 
+            // txttaxa
+            // 
+            this.txttaxa.Enabled = false;
+            this.txttaxa.Location = new System.Drawing.Point(243, 366);
+            this.txttaxa.MaxLength = 10;
+            this.txttaxa.Name = "txttaxa";
+            this.txttaxa.Size = new System.Drawing.Size(74, 20);
+            this.txttaxa.TabIndex = 40;
+            // 
+            // lbltaxa
+            // 
+            this.lbltaxa.AutoSize = true;
+            this.lbltaxa.Location = new System.Drawing.Point(264, 350);
+            this.lbltaxa.Name = "lbltaxa";
+            this.lbltaxa.Size = new System.Drawing.Size(31, 13);
+            this.lbltaxa.TabIndex = 41;
+            this.lbltaxa.Text = "Taxa";
             // 
             // frmvendas_compras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(625, 346);
+            this.ClientSize = new System.Drawing.Size(629, 398);
+            this.Controls.Add(this.txttaxa);
+            this.Controls.Add(this.lbltaxa);
+            this.Controls.Add(this.txtcartao);
+            this.Controls.Add(this.lblcartao);
+            this.Controls.Add(this.txtpix);
+            this.Controls.Add(this.lblpix);
+            this.Controls.Add(this.txtdinheiro);
+            this.Controls.Add(this.lbldinheiro);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnfecharvenda);
             this.Controls.Add(this.btnremoveritens);
@@ -572,5 +660,13 @@
         private System.Windows.Forms.TextBox txtretornagrid;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btncancelarretorno;
+        private System.Windows.Forms.TextBox txtdinheiro;
+        private System.Windows.Forms.Label lbldinheiro;
+        private System.Windows.Forms.TextBox txtpix;
+        private System.Windows.Forms.Label lblpix;
+        private System.Windows.Forms.TextBox txtcartao;
+        private System.Windows.Forms.Label lblcartao;
+        private System.Windows.Forms.TextBox txttaxa;
+        private System.Windows.Forms.Label lbltaxa;
     }
 }

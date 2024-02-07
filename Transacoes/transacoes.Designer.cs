@@ -76,7 +76,9 @@
             this.cbtransacao.FormattingEnabled = true;
             this.cbtransacao.Items.AddRange(new object[] {
             "COMPRA",
-            "VENDA"});
+            "VENDA",
+            "DEVOLUÇÃO",
+            "TROCA"});
             this.cbtransacao.Location = new System.Drawing.Point(109, 26);
             this.cbtransacao.Name = "cbtransacao";
             this.cbtransacao.Size = new System.Drawing.Size(121, 21);
