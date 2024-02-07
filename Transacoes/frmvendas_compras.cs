@@ -118,7 +118,7 @@ namespace Sistema_de_Vendas.Transacoes
                     }
                     else
                     {
-                        cbclientes.BackColor = Color.White;
+                        cbclientes.BackColor = SystemColors.ControlText;
                     }
                     con.FecharConexao();
 
