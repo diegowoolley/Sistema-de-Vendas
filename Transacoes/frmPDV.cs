@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,10 +19,14 @@ namespace Sistema_de_Vendas.Transacoes
             InitializeComponent();
         }
         conn con = new conn();
-        string sql;       
+        string sql;
+        string sql1;
         MySqlCommand cmd;
+        MySqlCommand cmd1;
         double precototal;
         int cod_venda;
+        decimal valorfracionado;
+        
 
 
 
@@ -185,6 +190,61 @@ namespace Sistema_de_Vendas.Transacoes
 
         }
 
+        private void calcularvalorvendafracionda()
+        {
+
+            if (txtdinheiro.Text.Trim() == "")
+            {
+                txtdinheiro.Text = "0";
+            }
+
+            if (txtpix.Text.Trim() == "")
+            {
+                txtpix.Text = "0";
+            }
+
+            if (txtcartao.Text.Trim() == "")
+            {
+                txtcartao.Text = "0";
+            }
+
+            if (txtdesconto.Text.Trim() == "")
+            {
+                txtdesconto.Text = "0";
+            }
+
+            if (txttaxa.Text.Trim() == "")
+            {
+                txttaxa.Text = "0";
+            }         
+
+            decimal dinheiro = decimal.Parse(txtdinheiro.Text.Trim().Replace("R$", ""));
+            decimal pix = decimal.Parse(txtpix.Text.Trim().Replace("R$", ""));
+            decimal cartao = decimal.Parse(txtcartao.Text.Trim().Replace("R$", ""));
+
+            // Somar os valores de dinheiro, pix e cartão
+            decimal somaFracionado = dinheiro + pix + cartao;
+            valorfracionado = (decimal)somaFracionado;
+            txttotalpagar.Text = precototal.ToString("C");
+            
+            // Calcular descontos
+            decimal descontos = decimal.Parse(txtdesconto.Text.Replace("%", ""));
+            decimal valorDescontos = (decimal)precototal * (descontos / 100);
+
+            // Calcular valor com descontos
+            decimal valorComDescontos = (decimal)precototal - valorDescontos;
+
+            // Calcular taxa sobre o valor com descontos
+            decimal taxa = decimal.Parse(txttaxa.Text.Replace("%", ""));
+            decimal resultadoFracionado = valorComDescontos * (1 + (taxa / 100));
+
+            // Calcular troco com descontos e taxas
+            decimal troco = somaFracionado - resultadoFracionado;
+
+            // Atualizar o TextBox do troco
+            lbltroco.Text = "Troco: " + troco.ToString("C", CultureInfo.CurrentCulture);
+        }
+
         private void AtualizarQuantidadeProdutosVendidos()
         {
             try
@@ -194,7 +254,7 @@ namespace Sistema_de_Vendas.Transacoes
                 {
                     con.AbrirConexao();
 
-                    int idProduto = Convert.ToInt32(dataGridView1.Rows[i].Cells[0].Value);
+                    string idProduto = dataGridView1.Rows[i].Cells[0].Value.ToString();
                     int quantidadeVendida = Convert.ToInt32(dataGridView1.Rows[i].Cells[2].Value);
 
                     string updateQuery = $"UPDATE cad_produtos SET quantidade = quantidade - {quantidadeVendida} WHERE etiqueta = {idProduto}";
@@ -374,6 +434,20 @@ namespace Sistema_de_Vendas.Transacoes
                 dataGridView1.Rows.Clear();
                 txtcod_barras.Focus();
                 cbformapagamento.SelectedIndex = -1;
+                pnfracionado.Visible = false;
+                pnvendaprazo.Visible = false;
+                txtdinheiro.Clear();
+                txtpix.Clear();
+                txtcartao.Clear();
+                txttaxa.Clear();
+                txtdesconto.Clear();
+                txtClientes.Clear();                
+                lblCliente.Text = "...";
+                lblClienteBloqueado.Text = "...";
+                lblValoremAberto.Text = "0";
+                precototal = 0;
+                txttotalpagar.Clear();
+                
                 MessageBox.Show("Venda cancelada com sucesso!");
             }
             txtcod_barras.Focus();
@@ -387,8 +461,7 @@ namespace Sistema_de_Vendas.Transacoes
             {
                 pnfracionado.Visible = true;
                 pnvendaprazo.Visible = false;
-                txtClientes.Clear();
-                txtValorPagar.Text = "0";
+                txtClientes.Clear();                
                 lblCliente.Text = "...";
                 lblClienteBloqueado.Text = "...";
                 lblValoremAberto.Text = "0";
@@ -397,10 +470,13 @@ namespace Sistema_de_Vendas.Transacoes
             {
                 pnvendaprazo.Visible=true;
                 pnfracionado.Visible=false;
-                txtDinheiro.Clear();
-                txtPix.Clear();
-                txtCartao.Clear();
+                txtdinheiro.Clear();
+                txtpix.Clear();
+                txtcartao.Clear();
+                txttaxa.Clear();
+                txtdesconto.Clear();
             }
+            txttotalpagar.Text = precototal.ToString("C");
 
         }
 
@@ -413,6 +489,275 @@ namespace Sistema_de_Vendas.Transacoes
         {
             if (e.KeyChar == 13)
                 txtquantidade.Focus();
+        }
+
+        private void txtDinheiro_Leave(object sender, EventArgs e)
+        {
+            if (decimal.TryParse(txtdinheiro.Text, out decimal valor))
+            {
+
+                txtdinheiro.Text = valor.ToString("C", CultureInfo.CurrentCulture);
+            }
+            calcularvalorvendafracionda();
+        }
+
+        private void txtdinheiro_Enter(object sender, EventArgs e)
+        {
+            if (txtdinheiro.Text.Trim() == "")
+            {
+                txtdinheiro.Text = "0";
+            }
+            string valor = txtdinheiro.Text.Replace("R$ ", "");
+            txtdinheiro.Text = valor;
+        }
+
+        private void txtdinheiro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            funcoes.DecNumber(sender, e);
+        }
+
+        private void txtpix_Leave(object sender, EventArgs e)
+        {
+            if (decimal.TryParse(txtpix.Text, out decimal valor))
+            {
+
+                txtpix.Text = valor.ToString("C", CultureInfo.CurrentCulture);
+            }
+            calcularvalorvendafracionda();
+        }
+
+        private void txtpix_Enter(object sender, EventArgs e)
+        {
+            if (txtpix.Text.Trim() == "")
+            {
+                txtpix.Text = "0";
+            }
+            string valor = txtpix.Text.Replace("R$ ", "");
+            txtpix.Text = valor;
+        }
+
+        private void txtpix_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            funcoes.DecNumber(sender, e);
+        }
+
+        private void txtcartao_Leave(object sender, EventArgs e)
+        {
+            if (decimal.TryParse(txtcartao.Text, out decimal valor))
+            {
+
+                txtcartao.Text = valor.ToString("C", CultureInfo.CurrentCulture);
+            }
+            calcularvalorvendafracionda();
+        }
+
+        private void txtcartao_Enter(object sender, EventArgs e)
+        {
+            if (txtcartao.Text.Trim() == "")
+            {
+                txtcartao.Text = "0";
+            }
+            string valor = txtcartao.Text.Replace("R$ ", "");
+            txtcartao.Text = valor;
+        }
+
+        private void txtcartao_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            funcoes.DecNumber(sender, e);
+        }
+
+        private void txttaxa_Leave(object sender, EventArgs e)
+        {
+            if (txttaxa.Text == "")
+            {
+                txttaxa.Text = "0";
+            }
+
+            decimal valorPorcentagem = (decimal)float.Parse(txttaxa.Text);
+
+            txttaxa.Text = (valorPorcentagem).ToString() + "%";
+            calcularvalorvendafracionda();
+        }
+
+        private void txttaxa_Enter(object sender, EventArgs e)
+        {
+            if (txttaxa.Text.Trim() == "")
+            {
+                txttaxa.Text = "0";
+            }
+            string valor = txttaxa.Text.Replace("%", "");
+            txttaxa.Text = valor;
+        }
+
+        private void txttaxa_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            funcoes.DecNumber(sender, e);
+        }
+
+        private void txtdesconto_Leave(object sender, EventArgs e)
+        {
+            if (txtdesconto.Text == "")
+            {
+                txtdesconto.Text = "0";
+            }
+            if (decimal.Parse(txtdesconto.Text) > 100)
+            {
+                MessageBox.Show("Desconto não pode exceder 100%!");
+                txtdesconto.Text = "0";
+                txtdesconto.Focus();
+            }
+
+            decimal valorPorcentagem = (decimal)float.Parse(txtdesconto.Text);
+
+            txtdesconto.Text = (valorPorcentagem).ToString() + "%";
+
+            calcularvalorvendafracionda();
+        }
+
+        private void txtdesconto_Enter(object sender, EventArgs e)
+        {
+            if (txtdesconto.Text.Trim() == "")
+            {
+                txtdesconto.Text = "0";
+            }
+            string valor = txtdesconto.Text.Replace("%", "");
+            txtdesconto.Text = valor;
+        }
+
+        private void txtdesconto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            funcoes.DecNumber(sender, e);
+        }
+
+        private void btnconcluir_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.Rows.Count == 0)
+            {
+
+                MessageBox.Show("Insira produtos na sua venda!");
+                txtcod_barras.Focus();
+                return;
+            }
+
+            if (cbformapagamento.Text == "")
+            {
+                MessageBox.Show("Selecione uma forma de pagamento!");
+                cbformapagamento.Focus();
+                return;
+            }
+
+            if (cbformapagamento.Text == "FRACIONADO" || cbformapagamento.Text == "DINHEIRO")
+            {
+                if (valorfracionado < (decimal)precototal)
+                {
+                    MessageBox.Show("Valor fracionado não pode ser menor q valor de venda!");
+                    return;
+                }
+
+            }
+            string descricaoProduto = Convert.ToString(dataGridView1.Rows[0].Cells["descricao"].Value);
+
+            // Verificar se a descrição do produto não é nula ou vazia
+            if (string.IsNullOrEmpty(descricaoProduto))
+            {
+                MessageBox.Show("A descrição do produto não pode ser nula ou vazia." + descricaoProduto);
+                // Adicione outras ações necessárias ou retorne, dependendo do fluxo do seu código
+                return;
+            }
+
+            try
+            {
+                con.AbrirConexao();
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                {
+
+                    sql = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, valor_unitario, dinheiro, pix, cartao, taxa, vendedor, descontos, forma_pagamento, valor_total, valor_pago, troco, data, hora ) VALUES (@cod_venda, @tipo, @cliente, @produto, @quantidade, @valor_unitario, @dinheiro, @pix, @cartao, @taxa, @vendedor, @descontos, @forma_pagamento, @valor_total, @valor_pago, @troco, @data, @hora)";
+                    cmd = new MySqlCommand(sql, con.con);
+                    cmd.Parameters.AddWithValue("@cod_venda", cod_venda);
+                    cmd.Parameters.AddWithValue("@tipo", "VENDA PDV");
+                    cmd.Parameters.AddWithValue("@cliente", txtClientes.Text);
+                    cmd.Parameters.AddWithValue("@produto", dataGridView1.Rows[i].Cells["descricao"].Value);
+                    cmd.Parameters.AddWithValue("@quantidade", dataGridView1.Rows[i].Cells["quantidade"].Value);
+                    cmd.Parameters.AddWithValue("@valor_unitario", dataGridView1.Rows[i].Cells["valor_unitario"].Value);
+                    cmd.Parameters.AddWithValue("@dinheiro", txtdinheiro.Text.Replace("R$", "").Trim().Replace(",", "."));
+                    cmd.Parameters.AddWithValue("@pix", txtpix.Text.Replace("R$", "").Trim().Replace(",", "."));
+                    cmd.Parameters.AddWithValue("@cartao", txtcartao.Text.Replace("R$", "").Trim().Replace(",", "."));
+                    cmd.Parameters.AddWithValue("@taxa", txttaxa.Text.Replace("%", "").Trim());
+                    cmd.Parameters.AddWithValue("@vendedor", funcoes.conectado);
+                    cmd.Parameters.AddWithValue("@descontos", txtdesconto.Text.Replace("%", "").Trim());
+                    cmd.Parameters.AddWithValue("@forma_pagamento", cbformapagamento.Text);
+                    cmd.Parameters.AddWithValue("@valor_total", precototal.ToString().Replace("R$", "").Trim().Replace(",", "."));
+                    cmd.Parameters.AddWithValue("@valor_pago", txttotalpagar.Text.Replace("R$", "").Trim().Replace(",", "."));
+                    cmd.Parameters.AddWithValue("@troco", lbltroco.Text.Replace("Troco: ", "").Replace("R$", "").Trim().Replace(",", "."));
+                    cmd.Parameters.AddWithValue("@data", DateTime.Today);
+                    cmd.Parameters.AddWithValue("@hora", DateTime.Now);
+
+                    cmd.ExecuteNonQuery();
+
+                }
+
+                sql1 = "INSERT INTO caixa (cod_venda, tipo, cliente, vendedor, desconto, forma_pagamento, valor_total, valor_pago, data, hora, dinheiro, pix, cartao, vencimento, taxa) VALUES (@cod_venda, @tipo, @cliente, @vendedor, @desconto, @forma_pagamento, @valor_total, @valor_pago, @data, @hora, @dinheiro, @pix, @cartao, @vencimento, @taxa)";
+                cmd1 = new MySqlCommand(sql1, con.con);
+                cmd1.Parameters.AddWithValue("@cod_venda", cod_venda);
+                cmd1.Parameters.AddWithValue("@tipo", "VENDA PDV");
+                cmd1.Parameters.AddWithValue("@cliente", txtClientes.Text);
+                cmd1.Parameters.AddWithValue("@vendedor", funcoes.conectado);
+                cmd1.Parameters.AddWithValue("@desconto", txtdesconto.Text.Replace("%", "").Trim());
+                cmd1.Parameters.AddWithValue("@forma_pagamento", cbformapagamento.Text);
+                cmd1.Parameters.AddWithValue("@valor_total", precototal.ToString().Replace("R$", "").Trim().Replace(",", "."));
+                cmd1.Parameters.AddWithValue("@valor_pago", Convert.ToString(precototal).Replace("R$", "").Trim().Replace(",", "."));
+                cmd1.Parameters.AddWithValue("@data", DateTime.Today);
+                cmd1.Parameters.AddWithValue("@hora", DateTime.Now);
+                cmd1.Parameters.AddWithValue("@dinheiro", txtdinheiro.Text.Replace("R$", "").Trim().Replace(",", "."));
+                cmd1.Parameters.AddWithValue("@pix", txtpix.Text.Replace("R$", "").Trim().Replace(",", "."));
+                cmd1.Parameters.AddWithValue("@cartao", txtcartao.Text.Replace("R$", "").Trim().Replace(",", "."));
+                cmd1.Parameters.AddWithValue("@vencimento", "");
+                cmd1.Parameters.AddWithValue("@taxa", txttaxa.Text.Replace("%", "").Trim());
+
+                cmd1.ExecuteNonQuery();
+                con.FecharConexao();
+
+
+                MessageBox.Show("Venda salva com sucesso!");
+
+                AtualizarQuantidadeProdutosVendidos();
+                dataGridView1.Rows.Clear();
+                txtcod_barras.Clear();
+                txtproduto.Clear();
+                txtquantidade.Text = "1";
+                txtitens.Clear();
+                txtdescricao.Clear();
+                txtquantidadeun.Clear();
+                txtvalorun.Clear();
+                txtsubtotal.Clear();
+                txttotalpagar.Clear();
+                dataGridView1.Rows.Clear();
+                txtcod_barras.Focus();
+                cbformapagamento.SelectedIndex = -1;
+                pnfracionado.Visible = false;
+                pnvendaprazo.Visible = false;
+                txtdinheiro.Clear();
+                txtpix.Clear();
+                txtcartao.Clear();
+                txttaxa.Clear();
+                txtdesconto.Clear();
+                txtClientes.Clear();                
+                lblCliente.Text = "...";
+                lblClienteBloqueado.Text = "...";
+                lblValoremAberto.Text = "0";
+                precototal = 0;
+                txttotalpagar.Clear();
+                txtcod_barras.Focus();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+
+           
+           
+
         }
     }
     

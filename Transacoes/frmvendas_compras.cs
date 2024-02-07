@@ -118,7 +118,7 @@ namespace Sistema_de_Vendas.Transacoes
                     }
                     else
                     {
-                        cbclientes.BackColor = SystemColors.ControlText;
+                        cbclientes.BackColor = Color.White;
                     }
                     con.FecharConexao();
 
@@ -241,7 +241,7 @@ namespace Sistema_de_Vendas.Transacoes
                 con.FecharConexao();
                               
 
-                if (dt.Rows.Count > 0 && dt.Rows[0]["tipo"].ToString() != "DEVOLUÇÃO" && dt.Rows[0]["tipo"].ToString() != "TROCA")
+                if (dt.Rows.Count > 0 && dt.Rows[0]["tipo"].ToString() != "DEVOLUÇÃO" && dt.Rows[0]["tipo"].ToString() != "TROCA" && dt.Rows[0]["tipo"].ToString() != "VENDA PDV")
                 {
                     
                     dataGridView1.Rows.Clear();
@@ -545,16 +545,16 @@ namespace Sistema_de_Vendas.Transacoes
 
                 try
                 {
-
+                    con.AbrirConexao();
                     for (int i = 0; i < dataGridView1.Rows.Count; i++)
                     {
-                        con.AbrirConexao();
+                        
                         sql = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, categoria, cod_produto, valor_unitario, dinheiro, pix, cartao, vencimento, taxa, vendedor, descontos, forma_pagamento, valor_total, valor_pago, troco, data, hora ) VALUES (@cod_venda, @tipo, @cliente, @produto, @quantidade, @categoria, @cod_produto, @valor_unitario, @dinheiro, @pix, @cartao, @vencimento, @taxa, @vendedor, @descontos, @forma_pagamento, @valor_total, @valor_pago, @troco, @data, @hora)";
                         cmd = new MySqlCommand(sql, con.con);
                         cmd.Parameters.AddWithValue("@cod_venda", cod_venda);
                         cmd.Parameters.AddWithValue("@tipo", cbtransacao.Text);
                         cmd.Parameters.AddWithValue("@cliente", cbclientes.Text);
-                        cmd.Parameters.AddWithValue("produto", dataGridView1.Rows[i].Cells[4].Value);
+                        cmd.Parameters.AddWithValue("@produto", dataGridView1.Rows[i].Cells[4].Value);
                         cmd.Parameters.AddWithValue("@quantidade", dataGridView1.Rows[i].Cells[5].Value);
                         cmd.Parameters.AddWithValue("@categoria", dataGridView1.Rows[i].Cells[6].Value);
                         cmd.Parameters.AddWithValue("@cod_produto", dataGridView1.Rows[i].Cells[1].Value);
