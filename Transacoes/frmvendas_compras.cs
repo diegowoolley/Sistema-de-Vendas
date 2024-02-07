@@ -110,8 +110,16 @@ namespace Sistema_de_Vendas.Transacoes
                 cbclientes.DataSource = dt;
                 cbclientes.DisplayMember = "nome_clientes";
                 reader = cmd.ExecuteReader();
-                if (reader.HasRows)
+                if (reader.HasRows && reader.Read())
                 {
+                    if (reader[13].ToString() == "BLOQUEADO")
+                    {
+                        cbclientes.BackColor = Color.IndianRed;
+                    }
+                    else
+                    {
+                        cbclientes.BackColor = Color.White;
+                    }
                     con.FecharConexao();
 
                 }

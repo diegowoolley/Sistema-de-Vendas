@@ -84,9 +84,9 @@
             // 
             // btnestoqueminimo
             // 
-            this.btnestoqueminimo.Location = new System.Drawing.Point(657, 36);
+            this.btnestoqueminimo.Location = new System.Drawing.Point(648, 36);
             this.btnestoqueminimo.Name = "btnestoqueminimo";
-            this.btnestoqueminimo.Size = new System.Drawing.Size(174, 23);
+            this.btnestoqueminimo.Size = new System.Drawing.Size(183, 23);
             this.btnestoqueminimo.TabIndex = 3;
             this.btnestoqueminimo.Text = "Produtos com estoque baixo";
             this.btnestoqueminimo.UseVisualStyleBackColor = true;
@@ -104,11 +104,11 @@
             // 
             // btnlistarvalidade
             // 
-            this.btnlistarvalidade.Location = new System.Drawing.Point(657, 12);
+            this.btnlistarvalidade.Location = new System.Drawing.Point(648, 7);
             this.btnlistarvalidade.Name = "btnlistarvalidade";
-            this.btnlistarvalidade.Size = new System.Drawing.Size(174, 23);
+            this.btnlistarvalidade.Size = new System.Drawing.Size(182, 23);
             this.btnlistarvalidade.TabIndex = 5;
-            this.btnlistarvalidade.Text = "Listar produtos próximos a vencer";
+            this.btnlistarvalidade.Text = "Listar produtos próximos de vencer";
             this.btnlistarvalidade.UseVisualStyleBackColor = true;
             this.btnlistarvalidade.Click += new System.EventHandler(this.btnlistarvalidade_Click);
             // 
@@ -118,9 +118,9 @@
             this.label2.ForeColor = System.Drawing.Color.Red;
             this.label2.Location = new System.Drawing.Point(426, 17);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(195, 13);
+            this.label2.Size = new System.Drawing.Size(201, 13);
             this.label2.TabIndex = 6;
-            this.label2.Text = "Número de produtos próximos a vencer:";
+            this.label2.Text = "Número de produtos próximos de vencer:";
             // 
             // label3
             // 

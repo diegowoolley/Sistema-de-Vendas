@@ -383,7 +383,7 @@ namespace Sistema_de_Vendas.Transacoes
         private void cbformapagamento_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            if (cbformapagamento.SelectedIndex == 1)
+            if (cbformapagamento.SelectedIndex == 1 || cbformapagamento.SelectedIndex == 2)
             {
                 pnfracionado.Visible = true;
                 pnvendaprazo.Visible = false;
