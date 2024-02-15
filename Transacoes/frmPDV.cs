@@ -3,8 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,8 +31,6 @@ namespace Sistema_de_Vendas.Transacoes
         
 
 
-
-
         private void Buscarprodutos()
         {
             try
@@ -50,8 +50,20 @@ namespace Sistema_de_Vendas.Transacoes
                 if (reader.HasRows && reader.Read())
                 {
                     txtcod_barras.Text = reader[19].ToString();
-                    txtproduto.Text = reader[1].ToString();                    
+                    txtproduto.Text = reader[1].ToString();
+                    if (reader[15] != DBNull.Value)
+                    {
+                        byte[] image = (byte[])reader[15];
+                        MemoryStream es = new MemoryStream(image);
+                        pbFoto.Image = Image.FromStream(es);
+
+                    }
+                    else
+                    {
+                        pbFoto.Image = Properties.Resources.download;
+                    }
                     con.FecharConexao();
+                    
                 }
                 else
                 {
@@ -59,6 +71,7 @@ namespace Sistema_de_Vendas.Transacoes
                     txtcod_barras.Clear();
                     txtproduto.Clear();
                     txtcod_barras.Focus();
+                    
                     return;
                 }
 
@@ -465,6 +478,7 @@ namespace Sistema_de_Vendas.Transacoes
                 lblCliente.Text = "...";
                 lblClienteBloqueado.Text = "...";
                 lblValoremAberto.Text = "0";
+                lbltroco.Text = "Troco: ";
             }
             if(cbformapagamento.SelectedIndex == 3)
             {
@@ -475,8 +489,27 @@ namespace Sistema_de_Vendas.Transacoes
                 txtcartao.Clear();
                 txttaxa.Clear();
                 txtdesconto.Clear();
+                lbltroco.Text = "Troco: ";
+            }
+            if (cbformapagamento.SelectedIndex == 0 || cbformapagamento.SelectedIndex == 4 || cbformapagamento.SelectedIndex == 5)
+            {
+                pnvendaprazo.Visible = false;
+                pnfracionado.Visible = false;
+                txtdinheiro.Clear();
+                txtpix.Clear();
+                txtcartao.Clear();
+                txttaxa.Clear();
+                txtdesconto.Clear();
+                txtClientes.Clear();
+                lblCliente.Text = "...";
+                lblClienteBloqueado.Text = "...";
+                lblValoremAberto.Text = "0";
+                lbltroco.Text = "Troco: ";
+                
             }
             txttotalpagar.Text = precototal.ToString("C");
+
+
 
         }
 
@@ -650,7 +683,7 @@ namespace Sistema_de_Vendas.Transacoes
             {
                 if (valorfracionado < (decimal)precototal)
                 {
-                    MessageBox.Show("Valor fracionado não pode ser menor q valor de venda!");
+                    MessageBox.Show("Valor fracionado não pode ser menor que o valor de venda!");
                     return;
                 }
 
@@ -748,6 +781,8 @@ namespace Sistema_de_Vendas.Transacoes
                 precototal = 0;
                 txttotalpagar.Clear();
                 txtcod_barras.Focus();
+                pbFoto.Image = Properties.Resources.download;
+
             }
             catch (Exception ex)
             {

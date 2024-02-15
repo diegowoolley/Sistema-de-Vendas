@@ -222,7 +222,7 @@ namespace Sistema_de_Vendas.Transacoes
 
         }
 
-        private void compradevolucao()
+        private void trocadevolucao()
         {   
            
             cod_venda = int.Parse(txtretornagrid.Text);
@@ -263,6 +263,8 @@ namespace Sistema_de_Vendas.Transacoes
                        
                     }
                     dataGridView1.Enabled = false;
+                    txtretornagrid.Clear();
+                    panel1.Visible = false;
                     cbtransacao.Enabled = false;
                     cbclientes.Enabled = false;
                     cbproduto.Enabled = false;
@@ -286,10 +288,27 @@ namespace Sistema_de_Vendas.Transacoes
 
 
                     }
-                   
+                    else
+                    {
+                        txtretornagrid.Clear();
+                        panel1.Visible = false;
+                        dataGridView1.Enabled = true;                     
+                        dataGridView1.Rows.Clear();
+                        cbtransacao.Enabled = true;                       
+                        cbclientes.Enabled = true;
+                        cbproduto.Enabled = true;
+                        txtquantidade.Enabled = true;
+                        cbvendedor.Enabled = true;
+                        btnadicionar.Enabled = true;
+                        btnremoveritens.Enabled = true;
+                        contarvendas();
+                        lblvalortotal.Text = "Valor Total: ";                        
+                        cbtransacao.SelectedIndex = -1;
+                        cbtransacao.Focus();
+                       
+                    }
 
-                    
-                   
+
 
                 }
                 else
@@ -1012,7 +1031,7 @@ namespace Sistema_de_Vendas.Transacoes
                 return;
             }
            
-                compradevolucao();
+                trocadevolucao();
            
              
             
