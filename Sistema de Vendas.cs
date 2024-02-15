@@ -23,7 +23,8 @@ namespace Sistema_de_Vendas
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new frmSplash());
-                Application.Run(new frmLogin());
+                Application.Run(new frmLogin());             
+                               
                 //Application.Run(new frmPrincipal());
 
             }

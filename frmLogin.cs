@@ -58,14 +58,15 @@ namespace Sistema_de_Vendas
                 if (reader.HasRows)
                 {
                     funcoes.conectado = txtUsuario.Text;
-                    frmPrincipal frmPrincipal = new frmPrincipal();
-                    frmPrincipal.ShowDialog();
+                    frmescolhaempresa frmescolha = new frmescolhaempresa();
+                    frmescolha.ShowDialog();
                     con.FecharConexao();
-                    Close();
+                    this.Close();
+
                 }
                 else
                 {
-                    MessageBox.Show("Usuário ou senha incorreto!");
+                    MessageBox.Show("Usuário ou senha incorretos!");
                     txtUsuario.Clear();
                     txtSenha.Clear();
                     txtUsuario.Focus();
@@ -78,13 +79,13 @@ namespace Sistema_de_Vendas
                 MessageBox.Show("Erro na consulta!" +ex);
 
             }
-            funcoes.conectado = txtUsuario.Text;
+           
             
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            Close();
+            Application.Exit();
         }
 
         private void frmLogin_Load(object sender, EventArgs e)

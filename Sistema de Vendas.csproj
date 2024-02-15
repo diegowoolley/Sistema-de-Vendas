@@ -54,6 +54,24 @@
     <Reference Include="K4os.Hash.xxHash, Version=1.0.6.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
       <HintPath>packages\K4os.Hash.xxHash.1.0.6\lib\net46\K4os.Hash.xxHash.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1620.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1620.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1620.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1620.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1620.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=8.0.31.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>packages\MySql.Data.8.0.31\lib\net48\MySql.Data.dll</HintPath>
     </Reference>
@@ -231,12 +249,27 @@
     <Compile Include="Cadastros\frmcadProdutos.Designer.cs">
       <DependentUpon>frmcadProdutos.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmescolhaempresa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmescolhaempresa.Designer.cs">
+      <DependentUpon>frmescolhaempresa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Manutencao\frmsuporte.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Manutencao\frmsuporte.Designer.cs">
       <DependentUpon>frmsuporte.cs</DependentUpon>
     </Compile>
+    <Compile Include="Relatorios\Empresa.cs" />
+    <Compile Include="Relatorios\produtos\produtos.cs" />
+    <Compile Include="Relatorios\produtos\relprodutos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Relatorios\produtos\relprodutos.Designer.cs">
+      <DependentUpon>relprodutos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Transacoes\frmPDV.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -347,6 +380,9 @@
     <EmbeddedResource Include="Configuracoes\frmsobre.resx">
       <DependentUpon>frmsobre.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmescolhaempresa.resx">
+      <DependentUpon>frmescolhaempresa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Manutencao\frmsuporte.resx">
       <DependentUpon>frmsuporte.cs</DependentUpon>
     </EmbeddedResource>
@@ -370,6 +406,10 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Relatorios\produtos\relprodutos.rdlc" />
+    <EmbeddedResource Include="Relatorios\produtos\relprodutos.resx">
+      <DependentUpon>relprodutos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transacoes\frmPDV.resx">
       <DependentUpon>frmPDV.cs</DependentUpon>
     </EmbeddedResource>
@@ -392,6 +432,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Sistema_de_Vendas.Relatorios.Empresa.datasource" />
+    <None Include="Sistema_de_Vendas.Relatorios.produtos.datasource" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -416,6 +458,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo.ico" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\download %281%29.png" />
     <None Include="Resources\icons8_cancel_480px.png" />
   </ItemGroup>
   <ItemGroup>

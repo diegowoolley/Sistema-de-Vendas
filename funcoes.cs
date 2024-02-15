@@ -17,19 +17,17 @@ namespace Sistema_de_Vendas
 {
     internal class funcoes
     {
-        public static string conectado ;
+        public static string conectado ;// pega usuario conectado ao sistema
         public string numero { get; set; }
+        public static int cod_empresa {  get; set; }// pega empresa conectada ao sistema
 
-        private const string chaveCripto = "Nsx-sz21"; // Altere isso para uma chave segura e única
-
-        
+        private const string chaveCripto = "Nsx-sz21"; // chave de cryptografia Altere isso para uma chave segura e única        
 
         public static void DecNumber(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8 && e.KeyChar != 44)
                 e.Handled = true;
         }
-
 
         public static bool CPF(string cpf)
         {
@@ -100,7 +98,6 @@ namespace Sistema_de_Vendas
             //        dig2 = 0;
             //     return true;                       
         }
-
 
         public static bool CNPJ(string cnpj)
         {

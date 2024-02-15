@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using Sistema_de_Vendas.Cadastros;
 using Sistema_de_Vendas.Configuracoes;
+using Sistema_de_Vendas.Relatorios;
 using Sistema_de_Vendas.Transacoes;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Sistema_de_Vendas
 {
@@ -24,10 +26,35 @@ namespace Sistema_de_Vendas
         {
             InitializeComponent();
         }
+        conn con = new conn();
+        string sql;
+        MySqlCommand cmd;
 
         private void frmPrincipal_Load(object sender, EventArgs e)
-        {
-            string conectado = funcoes.conectado;
+        {      
+         
+            try
+            {
+                con.AbrirConexao();
+                sql = "SELECT * FROM cad_empresas WHERE cod = @cod ORDER BY nome asc";
+                cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@cod", funcoes.cod_empresa);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                lblempresa.Text = "Empresa: " + dt.Rows[0]["nome"].ToString();
+                con.FecharConexao();              
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro na Conexão", ex.Message);
+            }
+
+
+            string conectado = funcoes.conectado;            
             lblconectado.Text = ("Usuário Conectado: " + conectado);
             lbldata.Text = DateTime.Today.ToString("dd/MM/yyyy");
             lblhora.Text = DateTime.Now.ToString("HH:mm:ss");
@@ -73,6 +100,7 @@ namespace Sistema_de_Vendas
         {
             frmLogin login = new frmLogin();
             login.ShowDialog();
+            
         }
 
         private void funcionáriosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -197,6 +225,12 @@ namespace Sistema_de_Vendas
         private void pDVToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmPDV frm = new frmPDV();
+            frm.ShowDialog();
+        }
+
+        private void relatórioDeProdutosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            relprodutos frm = new relprodutos();
             frm.ShowDialog();
         }
     }
