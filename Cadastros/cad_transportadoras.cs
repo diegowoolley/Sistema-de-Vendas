@@ -53,10 +53,11 @@ namespace Sistema_de_Vendas.Cadastros
         {
             string fornecedor = txtpesquisa.Text;
             con.AbrirConexao();
-            sql = "SELECT * FROM cad_transportadoras WHERE nome_transportadora LIKE @nome or documento_transportadora LIKE @documento";
+            sql = "SELECT * FROM cad_transportadoras WHERE cod_empresa = @cod_empresa AND nome_transportadora LIKE @nome or documento_transportadora LIKE @documento";
             cmd = new MySqlCommand(sql, con.con);
             cmd.Parameters.AddWithValue("@nome", "%" + fornecedor + "%");
             cmd.Parameters.AddWithValue("@documento", "%" + fornecedor + "%");
+            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = cmd;
             DataTable dt = new DataTable();
@@ -169,10 +170,11 @@ namespace Sistema_de_Vendas.Cadastros
                 con.AbrirConexao();
                 MySqlCommand cmdVerificar;
                 MySqlDataReader reader;
-                cmdVerificar = new MySqlCommand("SELECT * FROM cad_transportadoras WHERE documento_transportadora = @documento", con.con);
+                cmdVerificar = new MySqlCommand("SELECT * FROM cad_transportadoras WHERE cod_empresa = @cod_empresa AND documento_transportadora = @documento", con.con);
                 MySqlDataAdapter da = new MySqlDataAdapter();
                 da.SelectCommand = cmdVerificar;
                 cmdVerificar.Parameters.AddWithValue("@documento", txtdocumento.Text);
+                cmdVerificar.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
                 reader = cmdVerificar.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -188,7 +190,7 @@ namespace Sistema_de_Vendas.Cadastros
 
                     //insere dados na tabela
                     con.AbrirConexao();
-                    sql = "INSERT INTO cad_transportadoras(nome_transportadora, documento_transportadora, endereco_transportadora, bairro_transportadora, numero_transportadora, cidade_transportadora, estado_transportadora, telefone_transportadora, celular_transportadora, foto_transportadora, email_transportadora) VALUES (@nome_clientes, @documento_clientes, @endereco_clientes, @bairro_clientes, @numero_clientes, @cidade_clientes, @estado_clientes, @telefone_clientes, @celular_clientes, @foto, @email)";
+                    sql = "INSERT INTO cad_transportadoras(nome_transportadora, documento_transportadora, endereco_transportadora, bairro_transportadora, numero_transportadora, cidade_transportadora, estado_transportadora, telefone_transportadora, celular_transportadora, foto_transportadora, email_transportadora, cod_empresa) VALUES (@nome_clientes, @documento_clientes, @endereco_clientes, @bairro_clientes, @numero_clientes, @cidade_clientes, @estado_clientes, @telefone_clientes, @celular_clientes, @foto, @email, @cod_empresa)";
                     cmd = new MySqlCommand(sql, con.con);
                     cmd.Parameters.AddWithValue("@nome_clientes", txtnome.Text);
                     cmd.Parameters.AddWithValue("@documento_clientes", txtdocumento.Text);
@@ -201,6 +203,7 @@ namespace Sistema_de_Vendas.Cadastros
                     cmd.Parameters.AddWithValue("@telefone_clientes", txttelefone.Text);
                     cmd.Parameters.AddWithValue("@celular_clientes", txtcelular.Text);
                     cmd.Parameters.AddWithValue("@foto", img());
+                    cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
 
                     cmd.ExecuteNonQuery();
                     con.FecharConexao();
@@ -260,12 +263,12 @@ namespace Sistema_de_Vendas.Cadastros
             }
         }
 
-
         private void Listar()
         {
             con.AbrirConexao();
-            sql = "SELECT * FROM cad_transportadoras ORDER BY nome_transportadora ASC";
+            sql = "SELECT * FROM cad_transportadoras WHERE cod_empresa = @cod_empresa ORDER BY nome_transportadora ASC";
             cmd = new MySqlCommand(sql, con.con);
+            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = cmd;
             DataTable dt = new DataTable();
@@ -273,7 +276,6 @@ namespace Sistema_de_Vendas.Cadastros
             dgCliente.DataSource = dt;
             con.FecharConexao();
         }
-
 
         private void formatargrid()
         {

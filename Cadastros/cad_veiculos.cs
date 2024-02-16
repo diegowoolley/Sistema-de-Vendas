@@ -32,8 +32,9 @@ namespace Sistema_de_Vendas.Cadastros
         private void Listar()
         {
             con.AbrirConexao();
-            sql = "SELECT * FROM cad_veiculos ORDER BY placa ASC";
+            sql = "SELECT * FROM cad_veiculos WHERE cod_empresa = @cod_empresa ORDER BY placa ASC";
             cmd = new MySqlCommand(sql, con.con);
+            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = cmd;
             DataTable dt = new DataTable();
@@ -84,10 +85,11 @@ namespace Sistema_de_Vendas.Cadastros
                     con.AbrirConexao();
                     MySqlCommand cmdVerificar;
                     MySqlDataReader reader;
-                    cmdVerificar = new MySqlCommand("SELECT * FROM cad_veiculos WHERE placa = @placa", con.con);
+                    cmdVerificar = new MySqlCommand("SELECT * FROM cad_veiculos WHERE cod_empresa = @cod_empresa AND placa = @placa", con.con);
                     MySqlDataAdapter da = new MySqlDataAdapter();
                     da.SelectCommand = cmdVerificar;
                     cmdVerificar.Parameters.AddWithValue("@placa", txtplaca.Text);
+                    cmdVerificar.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
                     reader = cmdVerificar.ExecuteReader();
                     if (reader.HasRows)
                     {
@@ -102,12 +104,13 @@ namespace Sistema_de_Vendas.Cadastros
 
                         //insere dados na tabela
                         con.AbrirConexao();
-                        sql = "INSERT INTO cad_veiculos(marca, modelo, placa, km) VALUES (@marca, @modelo, @placa, @km)";
+                        sql = "INSERT INTO cad_veiculos(marca, modelo, placa, km, cod_empresa) VALUES (@marca, @modelo, @placa, @km, @cod_empresa)";
                         cmd = new MySqlCommand(sql, con.con);
                         cmd.Parameters.AddWithValue("@marca", txtmarca.Text);
                         cmd.Parameters.AddWithValue("@modelo", txtmodelo.Text);
                         cmd.Parameters.AddWithValue("@placa", txtplaca.Text);
                         cmd.Parameters.AddWithValue("@km", txtkm.Text);
+                        cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
 
 
 

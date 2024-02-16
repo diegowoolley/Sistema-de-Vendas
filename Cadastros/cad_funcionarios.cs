@@ -30,8 +30,9 @@ namespace Sistema_de_Vendas
         private void ListarCargos()
         {
             con.AbrirConexao();
-            sql = "SELECT * FROM cad_cargos ORDER BY nome_cargo asc";
+            sql = "SELECT * FROM cad_cargos WHERE cod_empresa = @cod_empresa ORDER BY nome_cargo asc";
             cmd = new MySqlCommand(sql, con.con);
+            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = cmd;
             DataTable dt = new DataTable();
@@ -64,8 +65,9 @@ namespace Sistema_de_Vendas
         private void Listar()
         {
             con.AbrirConexao();
-            sql = "SELECT * FROM cad_funcionarios ORDER BY nome_funcionario ASC";
+            sql = "SELECT * FROM cad_funcionarios WHERE cod_empresa = @cod_empresa ORDER BY nome_funcionario ASC";
             cmd = new MySqlCommand(sql, con.con);
+            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = cmd;
             DataTable dt = new DataTable();
@@ -159,10 +161,11 @@ namespace Sistema_de_Vendas
                     con.AbrirConexao();
                     MySqlCommand cmdVerificar;
                     MySqlDataReader reader;
-                    cmdVerificar = new MySqlCommand("SELECT * FROM cad_funcionarios WHERE documento_funcionario = @documento", con.con);
+                    cmdVerificar = new MySqlCommand("SELECT * FROM cad_funcionarios WHERE cod_empresa = @cod_empresa AND documento_funcionario = @documento", con.con);
                     MySqlDataAdapter da = new MySqlDataAdapter();
                     da.SelectCommand = cmdVerificar;
                     cmdVerificar.Parameters.AddWithValue("@documento", txtdocumento.Text);
+                    cmdVerificar.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
                     reader = cmdVerificar.ExecuteReader();
                     if (reader.HasRows)
                     {
@@ -178,7 +181,7 @@ namespace Sistema_de_Vendas
 
                         //insere dados na tabela
                         con.AbrirConexao();
-                        sql = "INSERT INTO cad_funcionarios(nome_funcionario, documento_funcionario, endereco_funcionario, bairro_funcionario, numero_funcionario, cidade_funcionario, estado_funcionario, telefone_funcionario, celular_funcionario, cargo_funcionario, foto_funcionario, email_funcionario) VALUES (@nome_funcionarios, @documento_funcionarios, @endereco_funcionarios, @bairro_funcionarios, @numero_funcionarios, @cidade_funcionarios, @estado_funcionarios, @telefone_funcionarios, @celular_funcionarios, @cargo_funcionarios, @foto, @email)";
+                        sql = "INSERT INTO cad_funcionarios(nome_funcionario, documento_funcionario, endereco_funcionario, bairro_funcionario, numero_funcionario, cidade_funcionario, estado_funcionario, telefone_funcionario, celular_funcionario, cargo_funcionario, foto_funcionario, email_funcionario, cod_empresa) VALUES (@nome_funcionarios, @documento_funcionarios, @endereco_funcionarios, @bairro_funcionarios, @numero_funcionarios, @cidade_funcionarios, @estado_funcionarios, @telefone_funcionarios, @celular_funcionarios, @cargo_funcionarios, @foto, @email, @cod_empresa)";
                         cmd = new MySqlCommand(sql, con.con);
                         cmd.Parameters.AddWithValue("@nome_funcionarios", txtnome.Text);
                         cmd.Parameters.AddWithValue("@documento_funcionarios", txtdocumento.Text);
@@ -192,8 +195,9 @@ namespace Sistema_de_Vendas
                         cmd.Parameters.AddWithValue("@celular_funcionarios", txtcelular.Text);
                         cmd.Parameters.AddWithValue("@cargo_funcionarios", cbcargo.Text);
                         cmd.Parameters.AddWithValue("@foto", img());
+                        cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
 
-                        cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
                         con.FecharConexao();
                         //desabilitar botões e campos
                         txtnome.Enabled = false;
@@ -587,10 +591,11 @@ namespace Sistema_de_Vendas
         {
             string funcionario = txtpesquisa.Text;
             con.AbrirConexao();
-            sql = "SELECT * FROM cad_funcionarios WHERE nome_funcionario LIKE @nome or documento_funcionario LIKE @documento";
+            sql = "SELECT * FROM cad_funcionarios WHERE cod_empresa = @cod_empresa AND nome_funcionario LIKE @nome or documento_funcionario LIKE @documento";
             cmd = new MySqlCommand(sql, con.con);
             cmd.Parameters.AddWithValue("@nome", "%" + funcionario + "%");
             cmd.Parameters.AddWithValue("@documento", "%" + funcionario + "%");
+            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = cmd;
             DataTable dt = new DataTable();

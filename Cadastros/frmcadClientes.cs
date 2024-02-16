@@ -44,9 +44,7 @@ namespace Sistema_de_Vendas
             image_byte = br.ReadBytes((int)fs.Length);
             return image_byte;
 
-        }
-        
-
+        }       
 
         private void Limparfoto()
         {
@@ -171,10 +169,11 @@ namespace Sistema_de_Vendas
                     con.AbrirConexao();
                     MySqlCommand cmdVerificar;
                     MySqlDataReader reader;
-                    cmdVerificar = new MySqlCommand("SELECT * FROM cad_clientes WHERE documento_clientes = @documento", con.con);
+                    cmdVerificar = new MySqlCommand("SELECT * FROM cad_clientes WHERE cod_empresa = @cod_empresa AND documento_clientes = @documento", con.con);
                     MySqlDataAdapter da = new MySqlDataAdapter();
                     da.SelectCommand = cmdVerificar;
                     cmdVerificar.Parameters.AddWithValue("@documento", txtdocumento.Text);
+                    cmdVerificar.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
                     reader = cmdVerificar.ExecuteReader();
                     if (reader.HasRows)
                     {
@@ -190,7 +189,7 @@ namespace Sistema_de_Vendas
 
                         //insere dados na tabela
                         con.AbrirConexao();
-                        sql = "INSERT INTO cad_clientes(nome_clientes, documento_clientes, email_clientes, endereco_clientes, bairro_clientes, numero_clientes, cidade_clientes, estado_clientes, telefone_clientes, celular_clientes, valor_aberto, inadimplente, status, foto_clientes) VALUES (@nome_clientes, @documento_clientes, @email_clientes, @endereco_clientes, @bairro_clientes, @numero_clientes, @cidade_clientes, @estado_clientes, @telefone_clientes, @celular_clientes, @valor_aberto, @inadimplente, @status, @foto)";
+                        sql = "INSERT INTO cad_clientes(nome_clientes, documento_clientes, email_clientes, endereco_clientes, bairro_clientes, numero_clientes, cidade_clientes, estado_clientes, telefone_clientes, celular_clientes, valor_aberto, inadimplente, status, foto_clientes, cod_empresa) VALUES (@nome_clientes, @documento_clientes, @email_clientes, @endereco_clientes, @bairro_clientes, @numero_clientes, @cidade_clientes, @estado_clientes, @telefone_clientes, @celular_clientes, @valor_aberto, @inadimplente, @status, @foto, @cod_empresa)";
                         cmd = new MySqlCommand(sql, con.con);
                         cmd.Parameters.AddWithValue("@nome_clientes", txtnome.Text);
                         cmd.Parameters.AddWithValue("@documento_clientes", txtdocumento.Text);
@@ -205,7 +204,7 @@ namespace Sistema_de_Vendas
                         cmd.Parameters.AddWithValue("@valor_aberto", txtvaloraberto.Text);
                         cmd.Parameters.AddWithValue("@inadimplente", cbinadimplente.Text);
                         cmd.Parameters.AddWithValue("@status", status);
-
+                        cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
                         cmd.Parameters.AddWithValue("@foto", img());
 
                         cmd.ExecuteNonQuery();
@@ -284,8 +283,9 @@ namespace Sistema_de_Vendas
         private void Listar()
         {
             con.AbrirConexao();
-            sql = "SELECT * FROM cad_clientes ORDER BY nome_clientes ASC";
+            sql = "SELECT * FROM cad_clientes WHERE cod_empresa = @cod_empresa ORDER BY nome_clientes ASC";
             cmd = new MySqlCommand(sql, con.con);
+            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = cmd;
             DataTable dt = new DataTable();
@@ -317,7 +317,6 @@ namespace Sistema_de_Vendas
 
         }
 
-
         private void txtdocumento_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender, e);
@@ -326,7 +325,6 @@ namespace Sistema_de_Vendas
 
         }
        
-
         private void txttelefone_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender, e);
@@ -414,8 +412,7 @@ namespace Sistema_de_Vendas
             var celular = txtcelular.Text.Replace("(", "").Replace(")", "").Replace("-", "");
             txtcelular.Text = celular;
 
-        }
-              
+        }             
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
@@ -628,10 +625,11 @@ namespace Sistema_de_Vendas
         {
             string pesquisa = txtpesquisa.Text;
             con.AbrirConexao();
-            sql = "SELECT * FROM cad_clientes WHERE nome_clientes LIKE @nome or documento_clientes LIKE @documento";
+            sql = "SELECT * FROM cad_clientes WHERE cod_empresa = @cod_empresa AND nome_clientes LIKE @nome or documento_clientes LIKE @documento";
             cmd = new MySqlCommand(sql, con.con);
             cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
             cmd.Parameters.AddWithValue("@documento", "%" + pesquisa + "%");
+            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = cmd;
             DataTable dt = new DataTable();
@@ -657,8 +655,7 @@ namespace Sistema_de_Vendas
         private void btncancelarpesquisa_Click(object sender, EventArgs e)
         {
             pnpesquisa.Visible =false;
-        }
-                           
+        }                           
 
         private void pnpesquisa_Leave(object sender, EventArgs e)
         {

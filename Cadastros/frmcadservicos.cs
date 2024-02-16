@@ -31,8 +31,9 @@ namespace Sistema_de_Vendas.Cadastros
         private void Listar()
         {
             con.AbrirConexao();
-            sql = "SELECT * FROM cad_servicos ORDER BY descricao ASC";
+            sql = "SELECT * FROM cad_servicos WHERE cod_empresa = @cod_empresa ORDER BY descricao ASC";
             cmd = new MySqlCommand(sql, con.con);
+            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = cmd;
             DataTable dt = new DataTable();
@@ -88,10 +89,11 @@ namespace Sistema_de_Vendas.Cadastros
                     con.AbrirConexao();
                     MySqlCommand cmdVerificar;
                     MySqlDataReader reader;
-                    cmdVerificar = new MySqlCommand("SELECT * FROM cad_servicos WHERE descricao = @descricao", con.con);
+                    cmdVerificar = new MySqlCommand("SELECT * FROM cad_servicos WHERE cod_empresa = @cod_empresa AND descricao = @descricao", con.con);
                     MySqlDataAdapter da = new MySqlDataAdapter();
                     da.SelectCommand = cmdVerificar;
                     cmdVerificar.Parameters.AddWithValue("@descricao", txtnome.Text);
+                    cmdVerificar.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
                     reader = cmdVerificar.ExecuteReader();
                     if (reader.HasRows)
                     {
@@ -106,10 +108,11 @@ namespace Sistema_de_Vendas.Cadastros
 
                         //insere dados na tabela
                         con.AbrirConexao();
-                        sql = "INSERT INTO cad_servicos(descricao, valor) VALUES (@descricao, @valor)";
+                        sql = "INSERT INTO cad_servicos(descricao, valor, cod_empresa) VALUES (@descricao, @valor, @cod_empresa)";
                         cmd = new MySqlCommand(sql, con.con);
                         cmd.Parameters.AddWithValue("@descricao", txtnome.Text);
                         cmd.Parameters.AddWithValue("@valor", txtvalor.Text.Replace("R$", "").Trim().Replace(",", "."));
+                        cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
 
 
 

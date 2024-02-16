@@ -48,8 +48,9 @@ namespace Sistema_de_Vendas
         private void Listarcategoria()
         {
             con.AbrirConexao();
-            sql = "SELECT * FROM cad_categorias ORDER BY nome_categoria asc";
+            sql = "SELECT * FROM cad_categorias WHERE cod_empresa = @cod_empresa ORDER BY nome_categoria asc";
             cmd = new MySqlCommand(sql, con.con);
+            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = cmd;
             DataTable dt = new DataTable();
@@ -62,8 +63,9 @@ namespace Sistema_de_Vendas
         private void listarfornecedor()
         {
             con.AbrirConexao();
-            sql = "SELECT * FROM cad_fornecedores ORDER BY nome_fornecedor asc";
+            sql = "SELECT * FROM cad_fornecedores WHERE cod_empresa = @cod_empresa ORDER BY nome_fornecedor asc";
             cmd = new MySqlCommand(sql, con.con);
+            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = cmd;
             DataTable dt = new DataTable();
@@ -82,8 +84,9 @@ namespace Sistema_de_Vendas
         private void Listar()
         {
             con.AbrirConexao();
-            sql = "SELECT * FROM cad_produtos ORDER BY nome_produto ASC";
+            sql = "SELECT * FROM cad_produtos WHERE cod_empresa = @cod_empresa ORDER BY nome_produto ASC";
             cmd = new MySqlCommand(sql, con.con);
+            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = cmd;
             DataTable dt = new DataTable();
@@ -125,11 +128,12 @@ namespace Sistema_de_Vendas
         {
             string pesquisa = txtpesquisa.Text;
             con.AbrirConexao();
-            sql = "SELECT * FROM cad_produtos WHERE nome_produto LIKE @nome or cod_produto LIKE @cod_produto or etiqueta LIKE @etiqueta";
+            sql = "SELECT * FROM cad_produtos WHERE cod_empresa = @cod_empresa AND nome_produto LIKE @nome or cod_produto LIKE @cod_produto or etiqueta LIKE @etiqueta";
             cmd = new MySqlCommand(sql, con.con);
             cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
             cmd.Parameters.AddWithValue("@cod_produto", "%" + pesquisa + "%");
             cmd.Parameters.AddWithValue("@etiqueta", "%" + pesquisa + "%");
+            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = cmd;
             DataTable dt = new DataTable();
@@ -308,10 +312,11 @@ namespace Sistema_de_Vendas
                 con.AbrirConexao();
                 MySqlCommand cmdVerificar;
                 MySqlDataReader reader;
-                cmdVerificar = new MySqlCommand("SELECT * FROM cad_produtos WHERE nome_produto = @nome", con.con);
+                cmdVerificar = new MySqlCommand("SELECT * FROM cad_produtos WHERE cod_empresa = @cod_empresa AND nome_produto = @nome", con.con);
                 MySqlDataAdapter da = new MySqlDataAdapter();
                 da.SelectCommand = cmdVerificar;
                 cmdVerificar.Parameters.AddWithValue("@nome", txtdescricao.Text);
+                cmdVerificar.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
                 reader = cmdVerificar.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -341,7 +346,7 @@ namespace Sistema_de_Vendas
 
                     //insere dados na tabela
                     con.AbrirConexao();
-                    sql = "INSERT INTO cad_produtos(nome_produto, categoria_produto, unidade_medida, quantidade, fornecedor, peso_medio, peso_bruto, fabricante, valor_compra, valor_venda, margem_lucro, situacao_tributaria, aliquota_ipi, cod_ipi, foto, estoque_minimo, estoque_maximo, validade, etiqueta, usuario, datahora) VALUES (@nome, @categoria, @unidade_medida, @quantidade, @fornecedor,  @peso_medio, @peso_bruto, @fabricante, @valor_compra, @valor_venda, @margem_lucro, @situacao_tributaria, @aliquota_ipi, @cod_ipi, @foto, @estoque_minimo, @estoque_maximo, @validade, @etiqueta, @usuario, @datahora)";
+                    sql = "INSERT INTO cad_produtos(nome_produto, categoria_produto, unidade_medida, quantidade, fornecedor, peso_medio, peso_bruto, fabricante, valor_compra, valor_venda, margem_lucro, situacao_tributaria, aliquota_ipi, cod_ipi, foto, estoque_minimo, estoque_maximo, validade, etiqueta, usuario, datahora, cod_empresa) VALUES (@nome, @categoria, @unidade_medida, @quantidade, @fornecedor,  @peso_medio, @peso_bruto, @fabricante, @valor_compra, @valor_venda, @margem_lucro, @situacao_tributaria, @aliquota_ipi, @cod_ipi, @foto, @estoque_minimo, @estoque_maximo, @validade, @etiqueta, @usuario, @datahora, @cod_empresa)";
                     cmd = new MySqlCommand(sql, con.con);
                     cmd.Parameters.AddWithValue("@nome", txtdescricao.Text);
                     cmd.Parameters.AddWithValue("@categoria", cbcategoria.Text);
@@ -364,6 +369,7 @@ namespace Sistema_de_Vendas
                     cmd.Parameters.AddWithValue("@etiqueta", txtetiqueta.Text);
                     cmd.Parameters.AddWithValue("@usuario", funcoes.conectado);
                     cmd.Parameters.AddWithValue("@datahora", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
 
                     cmd.ExecuteNonQuery();
                     con.FecharConexao();

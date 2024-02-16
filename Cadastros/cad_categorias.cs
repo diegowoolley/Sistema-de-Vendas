@@ -25,8 +25,9 @@ namespace Sistema_de_Vendas.Cadastros
         private void Listar()
         {
             con.AbrirConexao();
-            sql = "SELECT * FROM cad_categorias ORDER BY nome_categoria ASC";
+            sql = "SELECT * FROM cad_categorias WHERE cod_empresa = @cod_empresa ORDER BY nome_categoria ASC";
             cmd = new MySqlCommand(sql, con.con);
+            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = cmd;
             DataTable dt = new DataTable();
@@ -77,10 +78,11 @@ namespace Sistema_de_Vendas.Cadastros
                     con.AbrirConexao();
                     MySqlCommand cmdVerificar;
                     MySqlDataReader reader;
-                    cmdVerificar = new MySqlCommand("SELECT * FROM cad_categorias WHERE nome_categoria = @categoria", con.con);
+                    cmdVerificar = new MySqlCommand("SELECT * FROM cad_categorias WHERE cod_empresa = @cod_empresa AND nome_categoria = @categoria", con.con);
                     MySqlDataAdapter da = new MySqlDataAdapter();
                     da.SelectCommand = cmdVerificar;
                     cmdVerificar.Parameters.AddWithValue("@categoria", txtnome.Text);
+                    cmdVerificar.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
                     reader = cmdVerificar.ExecuteReader();
                     if (reader.HasRows)
                     {
@@ -95,9 +97,10 @@ namespace Sistema_de_Vendas.Cadastros
 
                         //insere dados na tabela
                         con.AbrirConexao();
-                        sql = "INSERT INTO cad_categorias(nome_categoria) VALUES (@categoria)";
+                        sql = "INSERT INTO cad_categorias(nome_categoria, cod_empresa) VALUES (@categoria, @cod_empresa)";
                         cmd = new MySqlCommand(sql, con.con);
                         cmd.Parameters.AddWithValue("@categoria", txtnome.Text);
+                        cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
 
 
 

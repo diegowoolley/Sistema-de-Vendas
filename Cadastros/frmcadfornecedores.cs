@@ -50,10 +50,11 @@ namespace Sistema_de_Vendas
         {
             string fornecedor = txtpesquisa.Text;
             con.AbrirConexao();
-            sql = "SELECT * FROM cad_fornecedores WHERE nome_fornecedor LIKE @nome or documento_fornecedor LIKE @documento";
+            sql = "SELECT * FROM cad_fornecedores WHERE cod_empresa = @cod_empresa AND nome_fornecedor LIKE @nome or documento_fornecedor LIKE @documento";
             cmd = new MySqlCommand(sql, con.con);
             cmd.Parameters.AddWithValue("@nome", "%" + fornecedor + "%");
             cmd.Parameters.AddWithValue("@documento", "%" + fornecedor + "%");
+            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = cmd;
             DataTable dt = new DataTable();
@@ -169,10 +170,11 @@ namespace Sistema_de_Vendas
                     con.AbrirConexao();
                     MySqlCommand cmdVerificar;
                     MySqlDataReader reader;
-                    cmdVerificar = new MySqlCommand("SELECT * FROM cad_fornecedores WHERE documento_fornecedor = @documento", con.con);
+                    cmdVerificar = new MySqlCommand("SELECT * FROM cad_fornecedores WHERE cod_empresa = @cod_empresa AND documento_fornecedor = @documento", con.con);
                     MySqlDataAdapter da = new MySqlDataAdapter();
                     da.SelectCommand = cmdVerificar;
                     cmdVerificar.Parameters.AddWithValue("@documento", txtdocumento.Text);
+                    cmdVerificar.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
                     reader = cmdVerificar.ExecuteReader();
                     if (reader.HasRows)
                     {
@@ -188,7 +190,7 @@ namespace Sistema_de_Vendas
 
                         //insere dados na tabela
                         con.AbrirConexao();
-                        sql = "INSERT INTO cad_fornecedores(nome_fornecedor, documento_fornecedor, endereco_fornecedor, bairro_fornecedor, numero_fornecedor, cidade_fornecedor, estado_fornecedor, telefone_fornecedor, celular_fornecedor, foto_fornecedor, email_fornecedor) VALUES (@nome_clientes, @documento_clientes, @endereco_clientes, @bairro_clientes, @numero_clientes, @cidade_clientes, @estado_clientes, @telefone_clientes, @celular_clientes, @foto, @email)";
+                        sql = "INSERT INTO cad_fornecedores(nome_fornecedor, documento_fornecedor, endereco_fornecedor, bairro_fornecedor, numero_fornecedor, cidade_fornecedor, estado_fornecedor, telefone_fornecedor, celular_fornecedor, foto_fornecedor, email_fornecedor, cod_empresa) VALUES (@nome_clientes, @documento_clientes, @endereco_clientes, @bairro_clientes, @numero_clientes, @cidade_clientes, @estado_clientes, @telefone_clientes, @celular_clientes, @foto, @email, @cod_empresa)";
                         cmd = new MySqlCommand(sql, con.con);
                         cmd.Parameters.AddWithValue("@nome_clientes", txtnome.Text);
                         cmd.Parameters.AddWithValue("@documento_clientes", txtdocumento.Text);
@@ -201,6 +203,7 @@ namespace Sistema_de_Vendas
                         cmd.Parameters.AddWithValue("@telefone_clientes", txttelefone.Text);
                         cmd.Parameters.AddWithValue("@celular_clientes", txtcelular.Text);
                         cmd.Parameters.AddWithValue("@foto", img());
+                        cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
 
                         cmd.ExecuteNonQuery();
                         con.FecharConexao();
@@ -271,8 +274,9 @@ namespace Sistema_de_Vendas
         private void Listar()
         {
             con.AbrirConexao();
-            sql = "SELECT * FROM cad_fornecedores ORDER BY nome_fornecedor ASC";
+            sql = "SELECT * FROM cad_fornecedores WHERE cod_empresa = @cod_empresa ORDER BY nome_fornecedor ASC";
             cmd = new MySqlCommand(sql, con.con);
+            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = cmd;
             DataTable dt = new DataTable();

@@ -26,8 +26,9 @@ namespace Sistema_de_Vendas.Cadastros
         private void Listar()
         {
             con.AbrirConexao();
-            sql = "SELECT * FROM cad_cargos ORDER BY nome_cargo ASC";
+            sql = "SELECT * FROM cad_cargos WHERE cod_empresa = @cod_empresa ORDER BY nome_cargo ASC";
             cmd = new MySqlCommand(sql, con.con);
+            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = cmd;
             DataTable dt = new DataTable();
@@ -73,9 +74,10 @@ namespace Sistema_de_Vendas.Cadastros
                     con.AbrirConexao();
                     MySqlCommand cmdVerificar;
                     MySqlDataReader reader;
-                    cmdVerificar = new MySqlCommand("SELECT * FROM cad_cargos WHERE nome_cargo = @cargo", con.con);
+                    cmdVerificar = new MySqlCommand("SELECT * FROM cad_cargos WHERE cod_empresa = @cod_empresa AND nome_cargo = @cargo", con.con);
                     MySqlDataAdapter da = new MySqlDataAdapter();
                     da.SelectCommand = cmdVerificar;
+                    cmdVerificar.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
                     cmdVerificar.Parameters.AddWithValue("@cargo", txtnome.Text);
                     reader = cmdVerificar.ExecuteReader();
                     if (reader.HasRows)
@@ -91,9 +93,10 @@ namespace Sistema_de_Vendas.Cadastros
 
                         //insere dados na tabela
                         con.AbrirConexao();
-                        sql = "INSERT INTO cad_cargos(nome_cargo) VALUES (@cargo)";
+                        sql = "INSERT INTO cad_cargos(nome_cargo, cod_empresa) VALUES (@cargo, @cod_empresa)";
                         cmd = new MySqlCommand(sql, con.con);
                         cmd.Parameters.AddWithValue("@cargo", txtnome.Text);
+                        cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
 
 
 
