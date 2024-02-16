@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI.Common;
+using Sistema_de_Vendas.Relatorios.Recibos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -98,11 +99,12 @@ namespace Sistema_de_Vendas.Transacoes
                 string pesquisa = cbclientes.Text;            
                               
                 con.AbrirConexao();
-                sql = "SELECT * FROM cad_clientes WHERE nome_clientes LIKE @nome or cod_clientes LIKE @cod_clientes";
+                sql = "SELECT * FROM cad_clientes WHERE cod_empresa = @cod_empresa AND nome_clientes LIKE @nome or cod_clientes LIKE @cod_clientes";
                 cmd = new MySqlCommand(sql, con.con);
                 MySqlDataReader reader;
                 cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
                 cmd.Parameters.AddWithValue("@cod_clientes", "%" + pesquisa + "%");
+                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
                 MySqlDataAdapter da = new MySqlDataAdapter();                
                 da.SelectCommand = cmd;
                 DataTable dt = new DataTable();
@@ -147,12 +149,13 @@ namespace Sistema_de_Vendas.Transacoes
             {
                 string pesquisa = cbproduto.Text;
                 con.AbrirConexao();
-                sql = "SELECT * FROM cad_produtos WHERE nome_produto LIKE @nome or cod_produto LIKE @cod_produto or etiqueta LIKE @etiqueta";
+                sql = "SELECT * FROM cad_produtos WHERE cod_empresa = @cod_empresa AND nome_produto LIKE @nome or cod_produto LIKE @cod_produto or etiqueta LIKE @etiqueta";
                 MySqlDataReader reader;
                 cmd = new MySqlCommand(sql, con.con);
                 cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
                 cmd.Parameters.AddWithValue("@cod_produto", "%" + pesquisa + "%");
                 cmd.Parameters.AddWithValue("@etiqueta", "%" + pesquisa + "%");
+                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
                 MySqlDataAdapter da = new MySqlDataAdapter();
                 da.SelectCommand = cmd;
                 DataTable dt = new DataTable();
@@ -219,6 +222,7 @@ namespace Sistema_de_Vendas.Transacoes
             listarformapagamento();
             cbformapagamento.SelectedIndex = -1;
             contarvendas();
+            
 
         }
 
@@ -531,6 +535,7 @@ namespace Sistema_de_Vendas.Transacoes
               
         private void btnconcluir_Click(object sender, EventArgs e)
         {
+            funcoes.cod_venda = cod_venda;
             if (dataGridView1.Rows.Count == 0)
             {
                 
@@ -568,7 +573,7 @@ namespace Sistema_de_Vendas.Transacoes
                     for (int i = 0; i < dataGridView1.Rows.Count; i++)
                     {
                         
-                        sql = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, categoria, cod_produto, valor_unitario, dinheiro, pix, cartao, vencimento, taxa, vendedor, descontos, forma_pagamento, valor_total, valor_pago, troco, data, hora ) VALUES (@cod_venda, @tipo, @cliente, @produto, @quantidade, @categoria, @cod_produto, @valor_unitario, @dinheiro, @pix, @cartao, @vencimento, @taxa, @vendedor, @descontos, @forma_pagamento, @valor_total, @valor_pago, @troco, @data, @hora)";
+                        sql = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, categoria, cod_produto, valor_unitario, dinheiro, pix, cartao, vencimento, taxa, vendedor, descontos, forma_pagamento, valor_total, valor_pago, troco, data, hora, cod_empresa ) VALUES (@cod_venda, @tipo, @cliente, @produto, @quantidade, @categoria, @cod_produto, @valor_unitario, @dinheiro, @pix, @cartao, @vencimento, @taxa, @vendedor, @descontos, @forma_pagamento, @valor_total, @valor_pago, @troco, @data, @hora, @cod_empresa)";
                         cmd = new MySqlCommand(sql, con.con);
                         cmd.Parameters.AddWithValue("@cod_venda", cod_venda);
                         cmd.Parameters.AddWithValue("@tipo", cbtransacao.Text);
@@ -591,7 +596,8 @@ namespace Sistema_de_Vendas.Transacoes
                         cmd.Parameters.AddWithValue("@troco", txttroco.Text.Replace("R$", "").Trim().Replace(",", "."));
                         cmd.Parameters.AddWithValue("@data", DateTime.Today);
                         cmd.Parameters.AddWithValue("@hora", DateTime.Now);
-                        
+                        cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+
                         cmd.ExecuteNonQuery();
                       
                         
@@ -600,7 +606,7 @@ namespace Sistema_de_Vendas.Transacoes
                     }
 
                     
-                    sql1 = "INSERT INTO caixa (cod_venda, tipo, cliente, vendedor, desconto, forma_pagamento, valor_total, valor_pago, data, hora, dinheiro, pix, cartao, vencimento, taxa) VALUES (@cod_venda, @tipo, @cliente, @vendedor, @desconto, @forma_pagamento, @valor_total, @valor_pago, @data, @hora, @dinheiro, @pix, @cartao, @vencimento, @taxa)";
+                    sql1 = "INSERT INTO caixa (cod_venda, tipo, cliente, vendedor, desconto, forma_pagamento, valor_total, valor_pago, data, hora, dinheiro, pix, cartao, vencimento, taxa, cod_empresa) VALUES (@cod_venda, @tipo, @cliente, @vendedor, @desconto, @forma_pagamento, @valor_total, @valor_pago, @data, @hora, @dinheiro, @pix, @cartao, @vencimento, @taxa, @cod_empresa)";
                     cmd1 = new MySqlCommand(sql1, con.con);
                     cmd1.Parameters.AddWithValue("@cod_venda", cod_venda);
                     cmd1.Parameters.AddWithValue("@tipo", cbtransacao.Text);
@@ -617,6 +623,7 @@ namespace Sistema_de_Vendas.Transacoes
                     cmd1.Parameters.AddWithValue("@cartao", txtcartao.Text.Replace("R$", "").Trim().Replace(",", "."));
                     cmd1.Parameters.AddWithValue("@vencimento", "");
                     cmd1.Parameters.AddWithValue("@taxa", txttaxa.Text.Replace("%", "").Trim());
+                    cmd1.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
 
                     cmd1.ExecuteNonQuery();
                     con.FecharConexao();
@@ -634,8 +641,9 @@ namespace Sistema_de_Vendas.Transacoes
                     AdicionarProdutosAoEstoque();
 
                 }
+                    
 
-                dataGridView1.Rows.Clear();
+                    dataGridView1.Rows.Clear();
                     contarvendas();
                     cbtransacao.Enabled = true;
                     cbtransacao.SelectedIndex = -1;
@@ -676,9 +684,17 @@ namespace Sistema_de_Vendas.Transacoes
                 {
 
                 MessageBox.Show(ex.Message);
+                }
+
+
             }
-        }
-            
+            DialogResult Result = MessageBox.Show("Deseja imprimir o recibo da venda?", "Confirmação", MessageBoxButtons.YesNo);
+            if (Result == DialogResult.Yes)
+            {
+                frmrecibodetalhado frmrecibo = new frmrecibodetalhado();
+                frmrecibo.ShowDialog();
+            }
+
         }
 
         private void cbtransacao_KeyPress(object sender, KeyPressEventArgs e)
@@ -858,6 +874,8 @@ namespace Sistema_de_Vendas.Transacoes
             // Somar os valores de dinheiro, pix e cartão
             decimal somaFracionado = dinheiro + pix + cartao;
             valorfracionado = (decimal)somaFracionado;
+           
+
             if (cbformapagamento.Text == "FRACIONADO")
             {                
                 txtvalorpago.Text = somaFracionado.ToString();
@@ -1061,7 +1079,7 @@ namespace Sistema_de_Vendas.Transacoes
             {
                 txtvalorpago.Enabled=false;
             }
-            if(cbformapagamento.SelectedIndex == 1 || cbformapagamento.SelectedIndex == 2)
+            if(cbformapagamento.SelectedIndex == 1 || cbformapagamento.SelectedIndex == 2 || cbformapagamento.SelectedIndex == 3)
             {
                 txtvalorpago.Enabled = false;
                 txtvalorpago.Text = "R$ 0,00";
@@ -1076,21 +1094,36 @@ namespace Sistema_de_Vendas.Transacoes
                 txtcartao.Text = "0,00";
                 txttroco.Clear();
             }
-            if(cbformapagamento.SelectedIndex == 0 || cbformapagamento.SelectedIndex == 3 || cbformapagamento.SelectedIndex == 4 || cbformapagamento.SelectedIndex == 5)
+            if(cbformapagamento.SelectedIndex == 0 )
             {
-                txtvalorpago.Enabled = true;
-                txtvalorpago.Focus();
-                txtvalorpago.Text = precototal.ToString();
+                txtvalorpago.Enabled = false;               
+                txtvalorpago.Text = precototal.ToString("C");
+                txtdinheiro.Enabled = false;
+                txtpix.Enabled = false;
+                txtcartao.Enabled = false;
+                txtdinheiro.Text = "0,00";
+                txtpix.Text = precototal.ToString("C");
+                txtcartao.Text = "0,00";
+                txttaxa.Text = "0%";
+                txtdescontos.Text = "0%";
+                txttroco.Clear();
+                txtdescontos.Focus();
+            }
+
+            if (cbformapagamento.SelectedIndex == 4 || cbformapagamento.SelectedIndex == 5)
+            {
+                txtvalorpago.Enabled = false;                
+                txtvalorpago.Text = precototal.ToString("C");
                 txtdinheiro.Enabled = false;
                 txtpix.Enabled = false;
                 txtcartao.Enabled = false;
                 txtdinheiro.Text = "0,00";
                 txtpix.Text = "0,00";
-                txtcartao.Text = "0,00";
+                txtcartao.Text = precototal.ToString("C");
                 txttaxa.Text = "0%";
                 txtdescontos.Text = "0%";
                 txttroco.Clear();
-                txtvalorpago.Focus();
+                txtdescontos.Focus();
             }
         }
 

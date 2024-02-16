@@ -704,7 +704,7 @@ namespace Sistema_de_Vendas.Transacoes
                 for (int i = 0; i < dataGridView1.Rows.Count; i++)
                 {
 
-                    sql = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, valor_unitario, dinheiro, pix, cartao, taxa, vendedor, descontos, forma_pagamento, valor_total, valor_pago, troco, data, hora ) VALUES (@cod_venda, @tipo, @cliente, @produto, @quantidade, @valor_unitario, @dinheiro, @pix, @cartao, @taxa, @vendedor, @descontos, @forma_pagamento, @valor_total, @valor_pago, @troco, @data, @hora)";
+                    sql = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, valor_unitario, dinheiro, pix, cartao, taxa, vendedor, descontos, forma_pagamento, valor_total, valor_pago, troco, data, hora, cod_empresa ) VALUES (@cod_venda, @tipo, @cliente, @produto, @quantidade, @valor_unitario, @dinheiro, @pix, @cartao, @taxa, @vendedor, @descontos, @forma_pagamento, @valor_total, @valor_pago, @troco, @data, @hora, @cod_empresa)";
                     cmd = new MySqlCommand(sql, con.con);
                     cmd.Parameters.AddWithValue("@cod_venda", cod_venda);
                     cmd.Parameters.AddWithValue("@tipo", "VENDA PDV");
@@ -724,12 +724,13 @@ namespace Sistema_de_Vendas.Transacoes
                     cmd.Parameters.AddWithValue("@troco", lbltroco.Text.Replace("Troco: ", "").Replace("R$", "").Trim().Replace(",", "."));
                     cmd.Parameters.AddWithValue("@data", DateTime.Today);
                     cmd.Parameters.AddWithValue("@hora", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
 
                     cmd.ExecuteNonQuery();
 
                 }
 
-                sql1 = "INSERT INTO caixa (cod_venda, tipo, cliente, vendedor, desconto, forma_pagamento, valor_total, valor_pago, data, hora, dinheiro, pix, cartao, vencimento, taxa) VALUES (@cod_venda, @tipo, @cliente, @vendedor, @desconto, @forma_pagamento, @valor_total, @valor_pago, @data, @hora, @dinheiro, @pix, @cartao, @vencimento, @taxa)";
+                sql1 = "INSERT INTO caixa (cod_venda, tipo, cliente, vendedor, desconto, forma_pagamento, valor_total, valor_pago, data, hora, dinheiro, pix, cartao, vencimento, taxa, cod_empresa) VALUES (@cod_venda, @tipo, @cliente, @vendedor, @desconto, @forma_pagamento, @valor_total, @valor_pago, @data, @hora, @dinheiro, @pix, @cartao, @vencimento, @taxa, @cod_empresa)";
                 cmd1 = new MySqlCommand(sql1, con.con);
                 cmd1.Parameters.AddWithValue("@cod_venda", cod_venda);
                 cmd1.Parameters.AddWithValue("@tipo", "VENDA PDV");
@@ -746,6 +747,7 @@ namespace Sistema_de_Vendas.Transacoes
                 cmd1.Parameters.AddWithValue("@cartao", txtcartao.Text.Replace("R$", "").Trim().Replace(",", "."));
                 cmd1.Parameters.AddWithValue("@vencimento", "");
                 cmd1.Parameters.AddWithValue("@taxa", txttaxa.Text.Replace("%", "").Trim());
+                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
 
                 cmd1.ExecuteNonQuery();
                 con.FecharConexao();

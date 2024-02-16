@@ -30,8 +30,9 @@ namespace Sistema_de_Vendas.Transacoes
             try
             {            
                 con.AbrirConexao();
-                sql = "SELECT * FROM caixa ORDER BY cod_venda ASC";                
+                sql = "SELECT * FROM caixa WHERE cod_empresa = @cod_empresa ORDER BY cod_venda ASC";                
                 cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
                 MySqlDataAdapter da = new MySqlDataAdapter();
                 da.SelectCommand = cmd;
                 DataTable dt = new DataTable();
@@ -52,11 +53,12 @@ namespace Sistema_de_Vendas.Transacoes
             string pesquisa = txtpesquisa.Text;          
                       
             con.AbrirConexao();
-            sql = "SELECT * FROM caixa WHERE cliente LIKE @cliente or cod_venda LIKE @cod_venda AND tipo LIKE @tipo";
+            sql = "SELECT * FROM caixa WHERE cod_empresa = @cod_empresa AND cliente LIKE @cliente or cod_venda LIKE @cod_venda AND tipo LIKE @tipo";
             cmd = new MySqlCommand(sql, con.con);
             cmd.Parameters.AddWithValue("@cliente", "%" + pesquisa + "%");
             cmd.Parameters.AddWithValue("@cod_venda", "%" + pesquisa + "%");
             cmd.Parameters.AddWithValue("@tipo", "%" + cbtransacao.Text + "%");
+            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = cmd;
             DataTable dt = new DataTable();

@@ -31,8 +31,9 @@ namespace Sistema_de_Vendas
                 con.AbrirConexao();
 
                 // Considere usar a função CURDATE() do MySQL para obter a data atual
-                sql = "SELECT COUNT(*) FROM cad_produtos WHERE STR_TO_DATE(validade, '%d/%m/%Y') <= (CURDATE() + INTERVAL 30 DAY)";
+                sql = "SELECT COUNT(*) FROM cad_produtos WHERE cod_empresa = @cod_empresa AND STR_TO_DATE(validade, '%d/%m/%Y') <= (CURDATE() + INTERVAL 30 DAY)";
                 cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
 
                 // ExecuteScalar retorna o resultado da consulta como um objeto
                 object result = cmd.ExecuteScalar();
@@ -65,8 +66,9 @@ namespace Sistema_de_Vendas
             {
                 con.AbrirConexao();
 
-                sql = "SELECT COUNT(*) FROM cad_produtos WHERE quantidade <= estoque_minimo";
+                sql = "SELECT COUNT(*) FROM cad_produtos WHERE cod_empresa = @cod_empresa AND quantidade <= estoque_minimo";
                 cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
 
                 object result = cmd.ExecuteScalar();
 
@@ -90,8 +92,9 @@ namespace Sistema_de_Vendas
         private void Listar()
         {
             con.AbrirConexao();
-            sql = "SELECT * FROM cad_produtos ORDER BY nome_produto ASC";
+            sql = "SELECT * FROM cad_produtos WHERE cod_empresa = @cod_empresa ORDER BY nome_produto ASC";
             cmd = new MySqlCommand(sql, con.con);
+            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = cmd;
             DataTable dt = new DataTable();
@@ -105,8 +108,9 @@ namespace Sistema_de_Vendas
             try
             {
                 con.AbrirConexao();
-                sql = "SELECT * FROM cad_produtos WHERE quantidade <= estoque_minimo ORDER BY nome_produto ASC";
+                sql = "SELECT * FROM cad_produtos WHERE cod_empresa = @cod_empresa AND quantidade <= estoque_minimo ORDER BY nome_produto ASC";
                 cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
                 MySqlDataAdapter da = new MySqlDataAdapter();
                 da.SelectCommand = cmd;
                 DataTable dt = new DataTable();
@@ -132,8 +136,9 @@ namespace Sistema_de_Vendas
                 DateTime dataAtual = DateTime.Now;
 
                 // Consulta SQL para selecionar produtos com validade próxima de vencer
-                sql = "SELECT * FROM cad_produtos WHERE STR_TO_DATE(validade, '%d/%m/%Y') BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 1 MONTH) ORDER BY nome_produto ASC";
+                sql = "SELECT * FROM cad_produtos WHERE cod_empresa = @cod_empresa AND STR_TO_DATE(validade, '%d/%m/%Y') BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 1 MONTH) ORDER BY nome_produto ASC";
                 cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
 
                 MySqlDataAdapter da = new MySqlDataAdapter();
                 da.SelectCommand = cmd;
@@ -185,11 +190,12 @@ namespace Sistema_de_Vendas
         {
             string pesquisa = txtpesquisa.Text;
             con.AbrirConexao();
-            sql = "SELECT * FROM cad_produtos WHERE nome_produto LIKE @nome or cod_produto LIKE @cod_produto or etiqueta LIKE @etiqueta";
+            sql = "SELECT * FROM cad_produtos WHERE cod_empresa = @cod_empresa AND nome_produto LIKE @nome or cod_produto LIKE @cod_produto or etiqueta LIKE @etiqueta";
             cmd = new MySqlCommand(sql, con.con);
             cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
             cmd.Parameters.AddWithValue("@cod_produto", "%" + pesquisa + "%");
             cmd.Parameters.AddWithValue("@etiqueta", "%" + pesquisa + "%");
+            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = cmd;
             DataTable dt = new DataTable();
