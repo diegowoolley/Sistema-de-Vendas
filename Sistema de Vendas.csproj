@@ -269,6 +269,13 @@
     <Compile Include="Relatorios\produtos\relprodutos.Designer.cs">
       <DependentUpon>relprodutos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Relatorios\Recibos\frmrecibodetalhado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Relatorios\Recibos\frmrecibodetalhado.Designer.cs">
+      <DependentUpon>frmrecibodetalhado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Relatorios\Recibos\recibodetalhado.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Transacoes\frmPDV.cs">
       <SubType>Form</SubType>
@@ -410,6 +417,10 @@
     <EmbeddedResource Include="Relatorios\produtos\relprodutos.resx">
       <DependentUpon>relprodutos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Relatorios\Recibos\frmrecibodetalhado.resx">
+      <DependentUpon>frmrecibodetalhado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Relatorios\Recibos\recibodetalhado.rdlc" />
     <EmbeddedResource Include="Transacoes\frmPDV.resx">
       <DependentUpon>frmPDV.cs</DependentUpon>
     </EmbeddedResource>
@@ -434,6 +445,7 @@
     </Compile>
     <None Include="Sistema_de_Vendas.Relatorios.Empresa.datasource" />
     <None Include="Sistema_de_Vendas.Relatorios.produtos.datasource" />
+    <None Include="Sistema_de_Vendas.Relatorios.Recibos.recibodetalhado.datasource" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

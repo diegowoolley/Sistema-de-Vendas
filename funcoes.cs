@@ -19,6 +19,8 @@ namespace Sistema_de_Vendas
     {
         public static string conectado ;// pega usuario conectado ao sistema
         public string numero { get; set; }
+
+        public static int cod_venda {  get; set; }
         public static int cod_empresa {  get; set; }// pega empresa conectada ao sistema
 
         private const string chaveCripto = "Nsx-sz21"; // chave de cryptografia Altere isso para uma chave segura e única        
