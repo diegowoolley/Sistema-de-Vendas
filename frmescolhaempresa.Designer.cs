@@ -88,6 +88,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Escolha da empresa";
             this.Load += new System.EventHandler(this.frmescolhaempresa_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmescolhaempresa_KeyPress);
             this.ResumeLayout(false);
             this.PerformLayout();
 

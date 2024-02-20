@@ -55,9 +55,9 @@ namespace Sistema_de_Vendas
                 cmdVerificar.Parameters.AddWithValue("@usuario", txtUsuario.Text);
                 cmdVerificar.Parameters.AddWithValue("@senha", txtSenha.Text);
                 reader = cmdVerificar.ExecuteReader();
-                if (reader.HasRows)
+                if (reader.HasRows && reader.Read())
                 {
-                    funcoes.conectado = txtUsuario.Text;
+                    funcoes.conectado = reader[1].ToString() +" | Permissão: "+ reader[3].ToString();
                     frmescolhaempresa frmescolha = new frmescolhaempresa();
                     frmescolha.ShowDialog();
                     con.FecharConexao();

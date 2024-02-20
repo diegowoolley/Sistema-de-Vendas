@@ -83,5 +83,12 @@ namespace Sistema_de_Vendas
         {
             Application.Exit();
         }
+
+        private void frmescolhaempresa_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                button1.Focus(); 
+        }
     }
 }

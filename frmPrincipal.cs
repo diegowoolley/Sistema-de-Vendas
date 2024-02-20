@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using Sistema_de_Vendas.Cadastros;
 using Sistema_de_Vendas.Configuracoes;
+using Sistema_de_Vendas.Financeiro;
 using Sistema_de_Vendas.Relatorios;
 using Sistema_de_Vendas.Transacoes;
 using System;
@@ -232,6 +233,12 @@ namespace Sistema_de_Vendas
         {
             relprodutos frm = new relprodutos();
             frm.ShowDialog();
+        }
+
+        private void gerenciamentoFinanceiroToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmgerfinanceiro frmgerfinanceiro = new frmgerfinanceiro();
+            frmgerfinanceiro.ShowDialog();
         }
     }
 }

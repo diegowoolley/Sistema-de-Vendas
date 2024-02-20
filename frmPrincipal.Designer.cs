@@ -80,6 +80,7 @@
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.lblempresa = new System.Windows.Forms.ToolStripLabel();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.gerenciamentoFinanceiroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnPrincipal.SuspendLayout();
             this.barrastatus.SuspendLayout();
             this.SuspendLayout();
@@ -222,6 +223,7 @@
             // financeiroToolStripMenuItem
             // 
             this.financeiroToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gerenciamentoFinanceiroToolStripMenuItem,
             this.contasToolStripMenuItem,
             this.contasÀReceberToolStripMenuItem});
             this.financeiroToolStripMenuItem.Name = "financeiroToolStripMenuItem";
@@ -231,13 +233,13 @@
             // contasToolStripMenuItem
             // 
             this.contasToolStripMenuItem.Name = "contasToolStripMenuItem";
-            this.contasToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.contasToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.contasToolStripMenuItem.Text = "Contas à Pagar";
             // 
             // contasÀReceberToolStripMenuItem
             // 
             this.contasÀReceberToolStripMenuItem.Name = "contasÀReceberToolStripMenuItem";
-            this.contasÀReceberToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.contasÀReceberToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.contasÀReceberToolStripMenuItem.Text = "Contas à Receber";
             // 
             // relatóriosToolStripMenuItem
@@ -469,6 +471,13 @@
             this.timer.Enabled = true;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
+            // gerenciamentoFinanceiroToolStripMenuItem
+            // 
+            this.gerenciamentoFinanceiroToolStripMenuItem.Name = "gerenciamentoFinanceiroToolStripMenuItem";
+            this.gerenciamentoFinanceiroToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.gerenciamentoFinanceiroToolStripMenuItem.Text = "Gerenciamento Financeiro";
+            this.gerenciamentoFinanceiroToolStripMenuItem.Click += new System.EventHandler(this.gerenciamentoFinanceiroToolStripMenuItem_Click);
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -547,6 +556,7 @@
         private System.Windows.Forms.ToolStripMenuItem relatórioDeProdutosToolStripMenuItem;
         private System.Windows.Forms.ToolStripLabel lblempresa;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripMenuItem gerenciamentoFinanceiroToolStripMenuItem;
     }
 }
 

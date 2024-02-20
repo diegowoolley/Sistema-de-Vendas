@@ -249,6 +249,12 @@
     <Compile Include="Cadastros\frmcadProdutos.Designer.cs">
       <DependentUpon>frmcadProdutos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Financeiro\frmgerfinanceiro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Financeiro\frmgerfinanceiro.Designer.cs">
+      <DependentUpon>frmgerfinanceiro.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmescolhaempresa.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -387,6 +393,9 @@
     <EmbeddedResource Include="Configuracoes\frmsobre.resx">
       <DependentUpon>frmsobre.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Financeiro\frmgerfinanceiro.resx">
+      <DependentUpon>frmgerfinanceiro.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmescolhaempresa.resx">
       <DependentUpon>frmescolhaempresa.cs</DependentUpon>
     </EmbeddedResource>
@@ -486,8 +495,6 @@
     <None Include="Resources\download %281%29.png" />
     <None Include="Resources\icons8_cancel_480px.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Financeiro\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
