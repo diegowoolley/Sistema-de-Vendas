@@ -119,7 +119,7 @@
             // txtentradas
             // 
             this.txtentradas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtentradas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.txtentradas.ForeColor = System.Drawing.Color.Green;
             this.txtentradas.Location = new System.Drawing.Point(7, 22);
             this.txtentradas.MaxLength = 20;
             this.txtentradas.Name = "txtentradas";
@@ -131,7 +131,7 @@
             // txtdinheiro
             // 
             this.txtdinheiro.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtdinheiro.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.txtdinheiro.ForeColor = System.Drawing.Color.Green;
             this.txtdinheiro.Location = new System.Drawing.Point(94, 22);
             this.txtdinheiro.MaxLength = 20;
             this.txtdinheiro.Name = "txtdinheiro";
@@ -143,7 +143,7 @@
             // txtpix
             // 
             this.txtpix.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtpix.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.txtpix.ForeColor = System.Drawing.Color.Green;
             this.txtpix.Location = new System.Drawing.Point(181, 22);
             this.txtpix.MaxLength = 20;
             this.txtpix.Name = "txtpix";
@@ -155,7 +155,7 @@
             // txtcartao
             // 
             this.txtcartao.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtcartao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.txtcartao.ForeColor = System.Drawing.Color.Green;
             this.txtcartao.Location = new System.Drawing.Point(269, 22);
             this.txtcartao.MaxLength = 20;
             this.txtcartao.Name = "txtcartao";
@@ -167,7 +167,7 @@
             // txtsaidas
             // 
             this.txtsaidas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtsaidas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtsaidas.ForeColor = System.Drawing.Color.Red;
             this.txtsaidas.Location = new System.Drawing.Point(7, 71);
             this.txtsaidas.MaxLength = 20;
             this.txtsaidas.Name = "txtsaidas";
@@ -179,7 +179,7 @@
             // txtdescontos
             // 
             this.txtdescontos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtdescontos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtdescontos.ForeColor = System.Drawing.Color.Red;
             this.txtdescontos.Location = new System.Drawing.Point(94, 71);
             this.txtdescontos.MaxLength = 20;
             this.txtdescontos.Name = "txtdescontos";
@@ -190,6 +190,7 @@
             // 
             // pnpesquisa
             // 
+            this.pnpesquisa.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnpesquisa.Controls.Add(this.txtcliente);
             this.pnpesquisa.Controls.Add(this.dtfinal);
             this.pnpesquisa.Controls.Add(this.dtinicial);
@@ -200,7 +201,7 @@
             this.pnpesquisa.Controls.Add(this.lbltipo);
             this.pnpesquisa.Controls.Add(this.txtnumeronota);
             this.pnpesquisa.Controls.Add(this.lblnumeronota);
-            this.pnpesquisa.Location = new System.Drawing.Point(2, 0);
+            this.pnpesquisa.Location = new System.Drawing.Point(3, 0);
             this.pnpesquisa.Name = "pnpesquisa";
             this.pnpesquisa.Size = new System.Drawing.Size(921, 42);
             this.pnpesquisa.TabIndex = 22;
@@ -306,6 +307,7 @@
             // 
             // pnmovimentacoes
             // 
+            this.pnmovimentacoes.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnmovimentacoes.Controls.Add(this.txtsaldo);
             this.pnmovimentacoes.Controls.Add(this.lblsaldo);
             this.pnmovimentacoes.Controls.Add(this.txtdinheiro);
@@ -320,7 +322,7 @@
             this.pnmovimentacoes.Controls.Add(this.lblcartao);
             this.pnmovimentacoes.Controls.Add(this.lbldescontos);
             this.pnmovimentacoes.Controls.Add(this.txtentradas);
-            this.pnmovimentacoes.Location = new System.Drawing.Point(2, 48);
+            this.pnmovimentacoes.Location = new System.Drawing.Point(3, 48);
             this.pnmovimentacoes.Name = "pnmovimentacoes";
             this.pnmovimentacoes.Size = new System.Drawing.Size(568, 100);
             this.pnmovimentacoes.TabIndex = 23;

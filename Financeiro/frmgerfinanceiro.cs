@@ -192,7 +192,8 @@ namespace Sistema_de_Vendas.Financeiro
             }
 
             decimal saldo = totalEntrada - totalSaida;
-            txtsaldo.Text = saldo.ToString("C");
+            txtsaldo.Text = saldo.ToString("C");            
+            txtsaldo.ForeColor = saldo >= 0 ? Color.Green : Color.Red;
 
             txtentradas.Text = totalEntrada.ToString("C");
             txtsaidas.Text = totalSaida.ToString("C");
