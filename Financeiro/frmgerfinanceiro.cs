@@ -232,6 +232,7 @@ namespace Sistema_de_Vendas.Financeiro
             }
             formatargrid();
             TotalizarEntradaSaida();
+            txtnumeronota.Focus();
 
         }
 

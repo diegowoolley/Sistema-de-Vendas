@@ -331,7 +331,7 @@
             // 
             this.txtsaldo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtsaldo.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.txtsaldo.Location = new System.Drawing.Point(435, 37);
+            this.txtsaldo.Location = new System.Drawing.Point(435, 42);
             this.txtsaldo.MaxLength = 20;
             this.txtsaldo.Name = "txtsaldo";
             this.txtsaldo.Size = new System.Drawing.Size(122, 20);
