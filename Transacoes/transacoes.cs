@@ -53,7 +53,7 @@ namespace Sistema_de_Vendas.Transacoes
             string pesquisa = txtpesquisa.Text;          
                       
             con.AbrirConexao();
-            sql = "SELECT * FROM caixa WHERE cod_empresa = @cod_empresa AND cliente LIKE @cliente or cod_venda LIKE @cod_venda AND tipo LIKE @tipo";
+            sql = "SELECT * FROM caixa WHERE cod_empresa = @cod_empresa AND cliente LIKE @cliente AND tipo LIKE @tipo or cod_venda LIKE @cod_venda AND tipo LIKE @tipo";
             cmd = new MySqlCommand(sql, con.con);
             cmd.Parameters.AddWithValue("@cliente", "%" + pesquisa + "%");
             cmd.Parameters.AddWithValue("@cod_venda", "%" + pesquisa + "%");
@@ -70,9 +70,6 @@ namespace Sistema_de_Vendas.Transacoes
                 MessageBox.Show("Transação inexistente!");
 
             }
-
-
-
 
         }
 
@@ -118,5 +115,7 @@ namespace Sistema_de_Vendas.Transacoes
         {
             Buscar();
         }
+
+      
     }
 }

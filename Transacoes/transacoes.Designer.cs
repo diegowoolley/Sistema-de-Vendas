@@ -82,7 +82,7 @@
             this.cbtransacao.Location = new System.Drawing.Point(109, 26);
             this.cbtransacao.Name = "cbtransacao";
             this.cbtransacao.Size = new System.Drawing.Size(121, 21);
-            this.cbtransacao.TabIndex = 1;
+            this.cbtransacao.TabIndex = 1;            
             // 
             // lbltipo
             // 

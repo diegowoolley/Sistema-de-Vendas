@@ -198,6 +198,7 @@ namespace Sistema_de_Vendas.Transacoes
                     {
                         cod_venda = 1;
                         lblcodigovenda.Text = "Número da venda: " + cod_venda;
+                        funcoes.cod_venda = cod_venda;
                     }
                     else
                     {
@@ -205,6 +206,8 @@ namespace Sistema_de_Vendas.Transacoes
                         cod_venda = int.Parse(dr[0].ToString());
                         cod_venda = cod_venda + 1;
                         lblcodigovenda.Text = "Número da venda: " + cod_venda.ToString();
+                        funcoes.cod_venda = cod_venda;
+
 
                     }
                 }
@@ -213,7 +216,8 @@ namespace Sistema_de_Vendas.Transacoes
             {
                 MessageBox.Show("Erro na conexão",ex.Message);
             }
-         }
+            
+        }
 
         private void frmvendas_compras_Load(object sender, EventArgs e)
         {
@@ -535,7 +539,7 @@ namespace Sistema_de_Vendas.Transacoes
               
         private void btnconcluir_Click(object sender, EventArgs e)
         {
-            funcoes.cod_venda = cod_venda;
+           
             if (dataGridView1.Rows.Count == 0)
             {
                 
@@ -796,16 +800,7 @@ namespace Sistema_de_Vendas.Transacoes
         {
             string percentual = txtdescontos.Text.Replace("%", "");
             txtdescontos.Text = percentual;
-        }
-
-        private void txttroco_TextChanged(object sender, EventArgs e)
-        {
-            if (decimal.TryParse(txtdescontos.Text, out decimal valor))
-            {
-
-                txtdescontos.Text = valor.ToString("C", CultureInfo.CurrentCulture);
-            }
-        }
+        }        
 
         private void btnfecharvenda_Click(object sender, EventArgs e)
         {
@@ -871,12 +866,12 @@ namespace Sistema_de_Vendas.Transacoes
             decimal pix = decimal.Parse(txtpix.Text.Trim().Replace("R$", ""));
             decimal cartao = decimal.Parse(txtcartao.Text.Trim().Replace("R$", ""));
 
-            // Somar os valores de dinheiro, pix e cartão
+            
             decimal somaFracionado = dinheiro + pix + cartao;
             valorfracionado = (decimal)somaFracionado;
            
 
-            if (cbformapagamento.Text == "FRACIONADO")
+            if (cbformapagamento.Text == "FRACIONADO" || cbformapagamento.Text == "DINHEIRO" || cbformapagamento.Text == "CRÉDITO CLIENTE" )
             {                
                 txtvalorpago.Text = somaFracionado.ToString();
             }

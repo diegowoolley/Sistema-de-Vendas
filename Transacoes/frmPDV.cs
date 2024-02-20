@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -170,6 +171,7 @@ namespace Sistema_de_Vendas.Transacoes
                         cod_venda = int.Parse(dr[0].ToString());
                         cod_venda = cod_venda + 1;
                         lblcodigovenda.Text = "Número da venda: " + cod_venda.ToString();
+                        funcoes.cod_venda = cod_venda;
 
                     }
                 }
@@ -429,73 +431,44 @@ namespace Sistema_de_Vendas.Transacoes
             funcoes.DecNumber(sender, e);
             if (e.KeyChar == 13)
                 txtcod_barras.Focus();
-        }
-
-        private void btncancelar_Click(object sender, EventArgs e)
-        {
-           DialogResult Result = MessageBox.Show("Deseja realmente cancelar a venda de número "+ cod_venda+" ?", "Cancelamento", MessageBoxButtons.YesNo);
-            if (Result == DialogResult.Yes)
-            {
-                txtcod_barras.Clear();
-                txtproduto.Clear();
-                txtquantidade.Text = "1";
-                txtitens.Clear();
-                txtdescricao.Clear();
-                txtquantidadeun.Clear();
-                txtvalorun.Clear();
-                txtsubtotal.Clear();
-                txttotalpagar.Clear();
-                dataGridView1.Rows.Clear();
-                txtcod_barras.Focus();
-                cbformapagamento.SelectedIndex = -1;
-                pnfracionado.Visible = false;
-                pnvendaprazo.Visible = false;
-                txtdinheiro.Clear();
-                txtpix.Clear();
-                txtcartao.Clear();
-                txttaxa.Clear();
-                txtdesconto.Clear();
-                txtClientes.Clear();                
-                lblCliente.Text = "...";
-                lblClienteBloqueado.Text = "...";
-                lblValoremAberto.Text = "0";
-                precototal = 0;
-                txttotalpagar.Clear();
-                
-                MessageBox.Show("Venda cancelada com sucesso!");
-            }
-            txtcod_barras.Focus();
-
-        }
+        }   
 
         private void cbformapagamento_SelectedIndexChanged(object sender, EventArgs e)
         {
 
             if (cbformapagamento.SelectedIndex == 1 || cbformapagamento.SelectedIndex == 2)
             {
-                pnfracionado.Visible = true;
+                pnfracionado.Enabled = true;
                 pnvendaprazo.Visible = false;
                 txtClientes.Clear();                
                 lblCliente.Text = "...";
                 lblClienteBloqueado.Text = "...";
                 lblValoremAberto.Text = "0";
                 lbltroco.Text = "Troco: ";
+                txtdinheiro.Text = "R$ 0.00"; ;
+                txtpix.Text = "R$ 0.00"; ;
+                txtcartao.Text = "R$ 0.00";
+                txttaxa.Text = "0.00";
+                txtdesconto.Text = "0.00";
+                txtdinheiro.Focus();
             }
             if(cbformapagamento.SelectedIndex == 3)
             {
                 pnvendaprazo.Visible=true;
-                pnfracionado.Visible=false;
-                txtdinheiro.Clear();
-                txtpix.Clear();
-                txtcartao.Clear();
-                txttaxa.Clear();
-                txtdesconto.Clear();
+                pnfracionado.Enabled=false;
+                txtdinheiro.Text = "R$ 0.00"; ;
+                txtpix.Text = "R$ 0.00";;
+                txtcartao.Text = "R$ 0.00";
+                txttaxa.Text = "0.00";
+                txtdesconto.Text = "0.00";
                 lbltroco.Text = "Troco: ";
+                txtClientes.Focus();
             }
             if (cbformapagamento.SelectedIndex == 0 || cbformapagamento.SelectedIndex == 4 || cbformapagamento.SelectedIndex == 5)
             {
+               
                 pnvendaprazo.Visible = false;
-                pnfracionado.Visible = false;
+                pnfracionado.Enabled = false;
                 txtdinheiro.Clear();
                 txtpix.Clear();
                 txtcartao.Clear();
@@ -506,7 +479,23 @@ namespace Sistema_de_Vendas.Transacoes
                 lblClienteBloqueado.Text = "...";
                 lblValoremAberto.Text = "0";
                 lbltroco.Text = "Troco: ";
-                
+                if (cbformapagamento.SelectedIndex == 0)
+                {
+                    txtpix.Text = precototal.ToString("C");
+                    txtdinheiro.Text = "R$ 0.00";
+                    txtcartao.Text = "R$ 0.00";
+                    txttaxa.Text = "0.00";
+                    txtdesconto.Text = "0.00";
+                }
+                else if (cbformapagamento.SelectedIndex == 4 || cbformapagamento.SelectedIndex == 5)
+                {
+                    txtpix.Text = "R$ 0.00";
+                    txtdinheiro.Text = "R$ 0.00";
+                    txttaxa.Text = "0.00";
+                    txtdesconto.Text = "0.00";
+                    txtcartao.Text = precototal.ToString("C");
+                }
+
             }
             txttotalpagar.Text = precototal.ToString("C");
 
@@ -516,6 +505,11 @@ namespace Sistema_de_Vendas.Transacoes
 
         private void txtClientes_Leave(object sender, EventArgs e)
         {
+            if(txtClientes.Text.Trim() == "")
+            {
+                dtVencimento.Focus();
+                return;
+            }
             Buscarclientes();
         }
 
@@ -685,6 +679,7 @@ namespace Sistema_de_Vendas.Transacoes
                 if (valorfracionado < (decimal)precototal)
                 {
                     MessageBox.Show("Valor fracionado não pode ser menor que o valor de venda!");
+                    cbformapagamento.Focus();
                     return;
                 }
 
@@ -705,7 +700,7 @@ namespace Sistema_de_Vendas.Transacoes
                 for (int i = 0; i < dataGridView1.Rows.Count; i++)
                 {
 
-                    sql = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, valor_unitario, dinheiro, pix, cartao, taxa, vendedor, descontos, forma_pagamento, valor_total, valor_pago, troco, data, hora, cod_empresa) VALUES (@cod_venda, @tipo, @cliente, @produto, @quantidade, @valor_unitario, @dinheiro, @pix, @cartao, @taxa, @vendedor, @descontos, @forma_pagamento, @valor_total, @valor_pago, @troco, @data, @hora, @cod_empresa)";
+                    sql = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, valor_unitario, dinheiro, pix, cartao, taxa, vendedor, descontos, forma_pagamento, valor_total, valor_pago, troco, data, hora, cod_empresa, vencimento) VALUES (@cod_venda, @tipo, @cliente, @produto, @quantidade, @valor_unitario, @dinheiro, @pix, @cartao, @taxa, @vendedor, @descontos, @forma_pagamento, @valor_total, @valor_pago, @troco, @data, @hora, @cod_empresa, @vencimento)";
                     cmd = new MySqlCommand(sql, con.con);
                     cmd.Parameters.AddWithValue("@cod_venda", cod_venda);
                     cmd.Parameters.AddWithValue("@tipo", "VENDA PDV");
@@ -716,6 +711,7 @@ namespace Sistema_de_Vendas.Transacoes
                     cmd.Parameters.AddWithValue("@dinheiro", txtdinheiro.Text.Replace("R$", "").Trim().Replace(",", "."));
                     cmd.Parameters.AddWithValue("@pix", txtpix.Text.Replace("R$", "").Trim().Replace(",", "."));
                     cmd.Parameters.AddWithValue("@cartao", txtcartao.Text.Replace("R$", "").Trim().Replace(",", "."));
+                    cmd.Parameters.AddWithValue("@vencimento", dtVencimento.Value.Date.ToString("yyyy-MM-dd"));
                     cmd.Parameters.AddWithValue("@taxa", txttaxa.Text.Replace("%", "").Trim());
                     cmd.Parameters.AddWithValue("@vendedor", funcoes.conectado);
                     cmd.Parameters.AddWithValue("@descontos", txtdesconto.Text.Replace("%", "").Trim());
@@ -746,7 +742,7 @@ namespace Sistema_de_Vendas.Transacoes
                 cmd1.Parameters.AddWithValue("@dinheiro", txtdinheiro.Text.Replace("R$", "").Trim().Replace(",", "."));
                 cmd1.Parameters.AddWithValue("@pix", txtpix.Text.Replace("R$", "").Trim().Replace(",", "."));
                 cmd1.Parameters.AddWithValue("@cartao", txtcartao.Text.Replace("R$", "").Trim().Replace(",", "."));
-                cmd1.Parameters.AddWithValue("@vencimento", "");
+                cmd1.Parameters.AddWithValue("@vencimento", dtVencimento.Value.Date.ToString("yyyy-MM-dd"));
                 cmd1.Parameters.AddWithValue("@taxa", txttaxa.Text.Replace("%", "").Trim());
                 cmd1.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
 
@@ -757,6 +753,7 @@ namespace Sistema_de_Vendas.Transacoes
                 MessageBox.Show("Venda salva com sucesso!");
 
                 AtualizarQuantidadeProdutosVendidos();
+                contarvendas();
                 dataGridView1.Rows.Clear();
                 txtcod_barras.Clear();
                 txtproduto.Clear();
@@ -786,18 +783,83 @@ namespace Sistema_de_Vendas.Transacoes
                 txtcod_barras.Focus();
                 pbFoto.Image = Properties.Resources.download;
                 panel2.Visible = true;
+                cbformapagamento.Enabled = false;
 
             }
             catch (Exception ex)
             {
 
                 MessageBox.Show(ex.Message);
-            }
-
-           
-           
+            }        
 
         }
+
+        private void frmPDV_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Deseja realmente sair?", "Confirmação", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.No)
+            {
+                e.Cancel = true; // Cancela o fechamento do formulário
+            }
+        }
+
+        private void btnfecharvenda_Click(object sender, EventArgs e)
+        {
+            if(dataGridView1.Rows.Count > 0)
+            {
+                panel1.Enabled = false;
+                btnremover.Enabled = false;
+                btnfecharvenda.Enabled = false;
+                cbformapagamento.Enabled = true;
+                cbformapagamento.Focus();
+            }
+            else
+            {
+                MessageBox.Show("Insira produtos para fechar uma venda!");
+                txtcod_barras.Focus();
+            }
+        }
+
+        private void btncancelar_Click(object sender, EventArgs e)
+        {
+            DialogResult Result = MessageBox.Show("Deseja realmente cancelar a venda de número " + cod_venda + " ?", "Cancelamento", MessageBoxButtons.YesNo);
+            if (Result == DialogResult.Yes)
+            {
+                txtcod_barras.Clear();
+                txtproduto.Clear();
+                txtquantidade.Text = "1";
+                txtitens.Clear();
+                txtdescricao.Clear();
+                txtquantidadeun.Clear();
+                txtvalorun.Clear();
+                txtsubtotal.Clear();
+                txttotalpagar.Clear();
+                dataGridView1.Rows.Clear();
+                txtcod_barras.Focus();
+                cbformapagamento.SelectedIndex = -1;
+                cbformapagamento.Enabled = false;
+                pnfracionado.Enabled = false;
+                pnvendaprazo.Visible = false;
+                panel1.Enabled = true;
+                txtdinheiro.Text = "R$ 0.00";
+                txtpix.Text = "R$ 0.00";
+                txtcartao.Text = "R$ 0.00";
+                txttaxa.Text = "0.00";
+                txtdesconto.Text = "0.00";
+                txtClientes.Clear();
+                lblCliente.Text = "...";
+                lblClienteBloqueado.Text = "...";
+                lblValoremAberto.Text = "0";
+                precototal = 0;
+                txttotalpagar.Clear();
+
+                MessageBox.Show("Venda cancelada com sucesso!");
+            }
+            txtcod_barras.Focus();
+        }
+
+        
     }
     
 }

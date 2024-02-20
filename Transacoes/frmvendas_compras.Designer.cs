@@ -313,8 +313,7 @@
             this.txttroco.MaxLength = 10;
             this.txttroco.Name = "txttroco";
             this.txttroco.Size = new System.Drawing.Size(78, 20);
-            this.txttroco.TabIndex = 13;
-            this.txttroco.TextChanged += new System.EventHandler(this.txttroco_TextChanged);
+            this.txttroco.TabIndex = 13;            
             // 
             // lbltroco
             // 
