@@ -22,7 +22,7 @@ namespace Sistema_de_Vendas.Relatorios.Recibos
         string sql;
         MySqlCommand cmd;
         private void frmrecibodetalhado_Load(object sender, EventArgs e)
-        {
+        {         
 
             try
             {
@@ -32,7 +32,7 @@ namespace Sistema_de_Vendas.Relatorios.Recibos
                 sql = "SELECT * FROM vendas WHERE cod_empresa = @cod_empresa AND cod_venda = @cod_venda";
                 cmd = new MySqlCommand(sql, con.con);
                 cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
-                cmd.Parameters.AddWithValue("@cod_venda", funcoes.cod_venda);
+                cmd.Parameters.AddWithValue("@cod_venda", funcoes.cod_venda - 1);
                 MySqlDataAdapter da = new MySqlDataAdapter();
                 da.SelectCommand = cmd;
 
@@ -70,6 +70,7 @@ namespace Sistema_de_Vendas.Relatorios.Recibos
             {
                 MessageBox.Show("Erro: " + ex.Message);
             }
+            this.reportViewer1.RefreshReport();
         }
     }
 }

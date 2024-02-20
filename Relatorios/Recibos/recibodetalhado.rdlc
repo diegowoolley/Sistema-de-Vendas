@@ -358,6 +358,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -994,7 +995,7 @@
           <Top>1.2972cm</Top>
           <Left>22.26825cm</Left>
           <Height>0.6cm</Height>
-          <Width>2.38506cm</Width>
+          <Width>2.44856cm</Width>
           <ZIndex>16</ZIndex>
           <Style>
             <Border>
@@ -1084,7 +1085,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=Sum(Fields!dinheiro.Value, "DataSet1")</Value>
+                  <Value>=First(Fields!dinheiro.Value, "DataSet1")</Value>
                   <Style />
                 </TextRun>
               </TextRuns>
@@ -1114,7 +1115,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=Sum(Fields!pix.Value, "DataSet1")</Value>
+                  <Value>=First(Fields!pix.Value, "DataSet1")</Value>
                   <Style />
                 </TextRun>
               </TextRuns>
@@ -1144,7 +1145,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=Sum(Fields!cartao.Value, "DataSet1")</Value>
+                  <Value>=First(Fields!cartao.Value, "DataSet1")</Value>
                   <Style />
                 </TextRun>
               </TextRuns>
@@ -1266,7 +1267,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=Sum(Fields!descontos.Value, "DataSet1")</Value>
+                  <Value>=First(Fields!descontos.Value, "DataSet1")</Value>
                   <Style />
                 </TextRun>
               </TextRuns>
@@ -1296,7 +1297,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=Sum(Fields!taxa.Value, "DataSet1")</Value>
+                  <Value>=First(Fields!taxa.Value, "DataSet1")</Value>
                   <Style />
                 </TextRun>
               </TextRuns>
@@ -1356,7 +1357,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=Sum(Fields!troco.Value, "DataSet1")</Value>
+                  <Value>=First(Fields!troco.Value, "DataSet1")</Value>
                   <Style />
                 </TextRun>
               </TextRuns>
@@ -1388,7 +1389,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=Sum(Fields!valor_total.Value, "DataSet1")</Value>
+                  <Value>=First(Fields!valor_total.Value, "DataSet1")</Value>
                   <Style />
                 </TextRun>
               </TextRuns>
