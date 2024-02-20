@@ -232,7 +232,7 @@ namespace Sistema_de_Vendas.Financeiro
             }
             formatargrid();
             TotalizarEntradaSaida();
-            txtnumeronota.Focus();
+            pnpesquisa.Focus();
 
         }
 
@@ -256,6 +256,8 @@ namespace Sistema_de_Vendas.Financeiro
         private void txtnumeronota_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                cbtransacao.Focus();
         }
 
         private void txtentradas_KeyPress(object sender, KeyPressEventArgs e)
@@ -291,6 +293,30 @@ namespace Sistema_de_Vendas.Financeiro
         private void txtdescontos_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
+        }
+
+        private void cbtransacao_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txtcliente.Focus();
+        }
+
+        private void txtcliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                dtinicial.Focus();
+        }
+
+        private void dtinicial_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                dtfinal.Focus();
+        }
+
+        private void dtfinal_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                button1.Focus();
         }
     }
 }

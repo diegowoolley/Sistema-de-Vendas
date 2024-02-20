@@ -213,6 +213,7 @@
             this.txtcliente.Name = "txtcliente";
             this.txtcliente.Size = new System.Drawing.Size(178, 21);
             this.txtcliente.TabIndex = 3;
+            this.txtcliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtcliente_KeyPress);
             this.txtcliente.Leave += new System.EventHandler(this.txtcliente_Leave);
             // 
             // dtfinal
@@ -222,6 +223,7 @@
             this.dtfinal.Name = "dtfinal";
             this.dtfinal.Size = new System.Drawing.Size(79, 20);
             this.dtfinal.TabIndex = 5;
+            this.dtfinal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dtfinal_KeyPress);
             // 
             // dtinicial
             // 
@@ -230,6 +232,7 @@
             this.dtinicial.Name = "dtinicial";
             this.dtinicial.Size = new System.Drawing.Size(79, 20);
             this.dtinicial.TabIndex = 4;
+            this.dtinicial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dtinicial_KeyPress);
             // 
             // cbtransacao
             // 
@@ -250,6 +253,7 @@
             this.cbtransacao.Name = "cbtransacao";
             this.cbtransacao.Size = new System.Drawing.Size(106, 21);
             this.cbtransacao.TabIndex = 2;
+            this.cbtransacao.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbtransacao_KeyPress);
             // 
             // lbldatafinal
             // 
@@ -358,7 +362,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(921, 296);
-            this.dataGridView1.TabIndex = 7;
+            this.dataGridView1.TabIndex = 70;
             // 
             // lblempresa
             // 
