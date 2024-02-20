@@ -88,11 +88,14 @@
             this.lbloperador = new System.Windows.Forms.Label();
             this.lbltroco = new System.Windows.Forms.Label();
             this.pbFoto = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.lblcaixalivre = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.pnfracionado.SuspendLayout();
             this.pnvendaprazo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label4
@@ -638,9 +641,9 @@
             this.label13.ForeColor = System.Drawing.Color.White;
             this.label13.Location = new System.Drawing.Point(480, 96);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(85, 16);
+            this.label13.Size = new System.Drawing.Size(84, 16);
             this.label13.TabIndex = 3105;
-            this.label13.Text = "Valor Aberto:";
+            this.label13.Text = "Valor aberto:";
             // 
             // dtVencimento
             // 
@@ -786,12 +789,32 @@
             this.pbFoto.TabIndex = 3109;
             this.pbFoto.TabStop = false;
             // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.SystemColors.Control;
+            this.panel2.Controls.Add(this.lblcaixalivre);
+            this.panel2.Location = new System.Drawing.Point(363, 252);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(695, 278);
+            this.panel2.TabIndex = 3111;
+            // 
+            // lblcaixalivre
+            // 
+            this.lblcaixalivre.AutoSize = true;
+            this.lblcaixalivre.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblcaixalivre.Location = new System.Drawing.Point(178, 113);
+            this.lblcaixalivre.Name = "lblcaixalivre";
+            this.lblcaixalivre.Size = new System.Drawing.Size(331, 55);
+            this.lblcaixalivre.TabIndex = 0;
+            this.lblcaixalivre.Text = "CAIXA LIVRE";
+            // 
             // frmPDV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1420, 782);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.pbFoto);
             this.Controls.Add(this.lbltroco);
             this.Controls.Add(this.lbloperador);
@@ -835,6 +858,8 @@
             this.pnvendaprazo.ResumeLayout(false);
             this.pnvendaprazo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -899,5 +924,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn valor_unitario;
         private System.Windows.Forms.DataGridViewTextBoxColumn sub_total;
         private System.Windows.Forms.PictureBox pbFoto;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label lblcaixalivre;
     }
 }

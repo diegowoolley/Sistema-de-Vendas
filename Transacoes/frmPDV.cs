@@ -308,6 +308,7 @@ namespace Sistema_de_Vendas.Transacoes
             {
                 Buscarprodutos();
             }
+            panel2.Visible =false;
             
         }
 
@@ -704,7 +705,7 @@ namespace Sistema_de_Vendas.Transacoes
                 for (int i = 0; i < dataGridView1.Rows.Count; i++)
                 {
 
-                    sql = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, valor_unitario, dinheiro, pix, cartao, taxa, vendedor, descontos, forma_pagamento, valor_total, valor_pago, troco, data, hora, cod_empresa ) VALUES (@cod_venda, @tipo, @cliente, @produto, @quantidade, @valor_unitario, @dinheiro, @pix, @cartao, @taxa, @vendedor, @descontos, @forma_pagamento, @valor_total, @valor_pago, @troco, @data, @hora, @cod_empresa)";
+                    sql = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, valor_unitario, dinheiro, pix, cartao, taxa, vendedor, descontos, forma_pagamento, valor_total, valor_pago, troco, data, hora, cod_empresa) VALUES (@cod_venda, @tipo, @cliente, @produto, @quantidade, @valor_unitario, @dinheiro, @pix, @cartao, @taxa, @vendedor, @descontos, @forma_pagamento, @valor_total, @valor_pago, @troco, @data, @hora, @cod_empresa)";
                     cmd = new MySqlCommand(sql, con.con);
                     cmd.Parameters.AddWithValue("@cod_venda", cod_venda);
                     cmd.Parameters.AddWithValue("@tipo", "VENDA PDV");
@@ -747,7 +748,7 @@ namespace Sistema_de_Vendas.Transacoes
                 cmd1.Parameters.AddWithValue("@cartao", txtcartao.Text.Replace("R$", "").Trim().Replace(",", "."));
                 cmd1.Parameters.AddWithValue("@vencimento", "");
                 cmd1.Parameters.AddWithValue("@taxa", txttaxa.Text.Replace("%", "").Trim());
-                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+                cmd1.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
 
                 cmd1.ExecuteNonQuery();
                 con.FecharConexao();
@@ -784,6 +785,7 @@ namespace Sistema_de_Vendas.Transacoes
                 txttotalpagar.Clear();
                 txtcod_barras.Focus();
                 pbFoto.Image = Properties.Resources.download;
+                panel2.Visible = true;
 
             }
             catch (Exception ex)
