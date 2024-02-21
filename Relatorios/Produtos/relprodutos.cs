@@ -28,8 +28,9 @@ namespace Sistema_de_Vendas.Relatorios
                 con.AbrirConexao();
 
                 // Consulta SQL para a tabela cad_produtos
-                sql = "SELECT * FROM cad_produtos";
+                sql = "SELECT * FROM cad_produtos WHERE cod_empresa = @cod_empresa";
                 cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
                 MySqlDataAdapter da = new MySqlDataAdapter();
                 da.SelectCommand = cmd;
 

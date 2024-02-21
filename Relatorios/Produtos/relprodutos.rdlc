@@ -18,6 +18,9 @@
               <Width>1.48797cm</Width>
             </TablixColumn>
             <TablixColumn>
+              <Width>1.5529cm</Width>
+            </TablixColumn>
+            <TablixColumn>
               <Width>3.73693cm</Width>
             </TablixColumn>
             <TablixColumn>
@@ -27,12 +30,12 @@
               <Width>2.28172cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>4.63651cm</Width>
+              <Width>3.53939cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>0.53227cm</Height>
+              <Height>0.61165cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -44,7 +47,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Código</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -76,7 +81,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Descrição</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -108,7 +115,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Categoria</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -139,8 +148,10 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Unidade  de medida</Value>
-                              <Style />
+                              <Value>Un</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -164,6 +175,40 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
+                    <Textbox Name="Textbox3">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Qtd</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox3</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
                     <Textbox Name="Textbox2">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
@@ -172,7 +217,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Fornecedor</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -203,8 +250,10 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Valor venda</Value>
-                              <Style />
+                              <Value>Valor </Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -236,7 +285,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Validade</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -268,7 +319,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Código de Barras</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -425,6 +478,38 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
+                    <Textbox Name="quantidade">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!quantidade.Value</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>quantidade</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
                     <Textbox Name="fornecedor">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
@@ -565,6 +650,7 @@
             <TablixMember />
             <TablixMember />
             <TablixMember />
+            <TablixMember />
           </TablixMembers>
         </TablixColumnHierarchy>
         <TablixRowHierarchy>
@@ -580,8 +666,8 @@
         <DataSetName>DataSet1</DataSetName>
         <Top>0.42332cm</Top>
         <Left>0.79498cm</Left>
-        <Height>1.06454cm</Height>
-        <Width>23.46605cm</Width>
+        <Height>1.14392cm</Height>
+        <Width>23.92183cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -594,7 +680,7 @@
     <Height>2in</Height>
     <Style />
   </Body>
-  <Width>9.73103in</Width>
+  <Width>9.76501in</Width>
   <Page>
     <PageHeader>
       <Height>4.67141cm</Height>
@@ -667,7 +753,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox20</rd:DefaultName>
           <Top>1.3656cm</Top>
-          <Left>5.94383cm</Left>
+          <Left>2.76883cm</Left>
           <Height>0.61058cm</Height>
           <Width>2.02375cm</Width>
           <ZIndex>1</ZIndex>
@@ -702,7 +788,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox22</rd:DefaultName>
           <Top>1.97266cm</Top>
-          <Left>5.94383cm</Left>
+          <Left>2.76883cm</Left>
           <Height>0.66675cm</Height>
           <Width>0.93896cm</Width>
           <ZIndex>2</ZIndex>
@@ -737,7 +823,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox24</rd:DefaultName>
           <Top>2.67116cm</Top>
-          <Left>5.94383cm</Left>
+          <Left>2.76883cm</Left>
           <Height>0.63147cm</Height>
           <Width>1.72002cm</Width>
           <ZIndex>3</ZIndex>
@@ -772,7 +858,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox25</rd:DefaultName>
           <Top>3.34877cm</Top>
-          <Left>5.94383cm</Left>
+          <Left>2.76883cm</Left>
           <Height>0.66322cm</Height>
           <Width>1.45093cm</Width>
           <ZIndex>4</ZIndex>
@@ -791,10 +877,10 @@
           <Value>=First(Fields!foto.Value, "DataSet2")</Value>
           <MIMEType>image/jpeg</MIMEType>
           <Sizing>FitProportional</Sizing>
-          <Top>1.00224cm</Top>
+          <Top>1.3656cm</Top>
           <Left>0.27253cm</Left>
-          <Height>3.00975cm</Height>
-          <Width>5.57605cm</Width>
+          <Height>2.64639cm</Height>
+          <Width>2.2423cm</Width>
           <ZIndex>5</ZIndex>
           <Style>
             <Border>
@@ -822,7 +908,7 @@
           </Paragraphs>
           <rd:DefaultName>nome</rd:DefaultName>
           <Top>1.3656cm</Top>
-          <Left>8.03813cm</Left>
+          <Left>4.86313cm</Left>
           <Height>0.59972cm</Height>
           <Width>6.04542cm</Width>
           <ZIndex>6</ZIndex>
@@ -856,7 +942,7 @@
           </Paragraphs>
           <rd:DefaultName>documento</rd:DefaultName>
           <Top>1.97591cm</Top>
-          <Left>6.95334cm</Left>
+          <Left>3.77834cm</Left>
           <Height>0.6635cm</Height>
           <Width>4.56375cm</Width>
           <ZIndex>7</ZIndex>
@@ -890,7 +976,7 @@
           </Paragraphs>
           <rd:DefaultName>endereco</rd:DefaultName>
           <Top>2.65705cm</Top>
-          <Left>7.73793cm</Left>
+          <Left>4.56293cm</Left>
           <Height>0.6635cm</Height>
           <Width>4.89041cm</Width>
           <ZIndex>8</ZIndex>
@@ -925,7 +1011,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox24</rd:DefaultName>
           <Top>2.67116cm</Top>
-          <Left>12.6989cm</Left>
+          <Left>9.5239cm</Left>
           <Height>0.63147cm</Height>
           <Width>1.40252cm</Width>
           <ZIndex>9</ZIndex>
@@ -960,7 +1046,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox24</rd:DefaultName>
           <Top>2.67116cm</Top>
-          <Left>15.21003cm</Left>
+          <Left>12.03503cm</Left>
           <Height>0.63147cm</Height>
           <Width>1.13794cm</Width>
           <ZIndex>10</ZIndex>
@@ -994,7 +1080,7 @@
           </Paragraphs>
           <rd:DefaultName>numero</rd:DefaultName>
           <Top>2.65705cm</Top>
-          <Left>14.16262cm</Left>
+          <Left>10.98762cm</Left>
           <Height>0.64558cm</Height>
           <Width>0.96196cm</Width>
           <ZIndex>11</ZIndex>
@@ -1028,7 +1114,7 @@
           </Paragraphs>
           <rd:DefaultName>bairro</rd:DefaultName>
           <Top>2.65705cm</Top>
-          <Left>16.42216cm</Left>
+          <Left>13.24716cm</Left>
           <Height>0.64558cm</Height>
           <Width>2.47354cm</Width>
           <ZIndex>12</ZIndex>
@@ -1063,7 +1149,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox24</rd:DefaultName>
           <Top>2.65705cm</Top>
-          <Left>18.97331cm</Left>
+          <Left>15.79831cm</Left>
           <Height>0.64558cm</Height>
           <Width>0.59819cm</Width>
           <ZIndex>13</ZIndex>
@@ -1097,7 +1183,7 @@
           </Paragraphs>
           <rd:DefaultName>estado</rd:DefaultName>
           <Top>2.65705cm</Top>
-          <Left>19.67381cm</Left>
+          <Left>16.49881cm</Left>
           <Height>0.64558cm</Height>
           <Width>0.67438cm</Width>
           <ZIndex>14</ZIndex>
@@ -1131,7 +1217,7 @@
           </Paragraphs>
           <rd:DefaultName>telefone</rd:DefaultName>
           <Top>3.34496cm</Top>
-          <Left>7.49001cm</Left>
+          <Left>4.31501cm</Left>
           <Height>0.6635cm</Height>
           <Width>2.5cm</Width>
           <ZIndex>15</ZIndex>
@@ -1165,7 +1251,7 @@
           </Paragraphs>
           <rd:DefaultName>email</rd:DefaultName>
           <Top>3.34496cm</Top>
-          <Left>10.09584cm</Left>
+          <Left>6.92084cm</Left>
           <Height>0.6635cm</Height>
           <Width>5.02874cm</Width>
           <ZIndex>16</ZIndex>
