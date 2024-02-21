@@ -144,6 +144,8 @@ namespace Sistema_de_Vendas.Financeiro
             dataGridView1.Columns[14].HeaderText = "Vencimento";
             dataGridView1.Columns[16].HeaderText = "Código da empresa";
             dataGridView1.Columns[16].Visible = false;
+            dataGridView1.Columns[17].HeaderText = "Status";
+
 
 
 
@@ -238,6 +240,12 @@ namespace Sistema_de_Vendas.Financeiro
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (dtinicial.Value > dtfinal.Value)
+            {
+                MessageBox.Show("A data inicial não pode ser maior que a data final!");                
+                dtinicial.Focus();
+                return;
+            }
             Buscar();
             TotalizarEntradaSaida();
         }
