@@ -19,7 +19,6 @@ namespace Sistema_de_Vendas
     {
         public static string conectado;// pega usuario conectado ao sistema
         public string numero { get; set; }
-
         public static int cod_venda { get; set; }// pega codigo da venda para relatorios
         public static int cod_empresa { get; set; }// pega empresa conectada ao sistema
 

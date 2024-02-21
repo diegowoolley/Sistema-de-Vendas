@@ -240,5 +240,27 @@ namespace Sistema_de_Vendas
             frmgerfinanceiro frmgerfinanceiro = new frmgerfinanceiro();
             frmgerfinanceiro.ShowDialog();
         }
+
+        private void contasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmcontaspagar frmcontaspagar = new frmcontaspagar();
+            frmcontaspagar.ShowDialog();
+        }
+
+        private void contasÀReceberToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmcontasreceber frmcontasreceber = new frmcontasreceber();
+            frmcontasreceber.ShowDialog();
+        }
+
+        private void frmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Deseja realmente sair?", "Confirmação", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.No)
+            {
+                e.Cancel = true; // Cancela o fechamento do formulário
+            }
+        }
     }
 }

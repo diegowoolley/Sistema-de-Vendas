@@ -1,5 +1,6 @@
 ﻿using FoxLearn.License;
 using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Asn1.Pkcs;
 using Sistema_de_Vendas.Configuracoes;
 using System;
 using System.Collections.Generic;
@@ -55,9 +56,9 @@ namespace Sistema_de_Vendas
                 cmdVerificar.Parameters.AddWithValue("@usuario", txtUsuario.Text);
                 cmdVerificar.Parameters.AddWithValue("@senha", txtSenha.Text);
                 reader = cmdVerificar.ExecuteReader();
-                if (reader.HasRows && reader.Read())
+                if (reader.HasRows)
                 {
-                    funcoes.conectado = reader[1].ToString() +" | Permissão: "+ reader[3].ToString();
+                    funcoes.conectado = txtUsuario.Text;
                     frmescolhaempresa frmescolha = new frmescolhaempresa();
                     frmescolha.ShowDialog();
                     con.FecharConexao();
@@ -94,7 +95,7 @@ namespace Sistema_de_Vendas
             string produto = ComputerInfo.GetComputerId();
             KeyManager km = new KeyManager(produto);
             LicenseInfo lic = new LicenseInfo();
-            int value = km.LoadSuretyFile(string.Format(@"{0}\Key.lic", Application.StartupPath), ref lic);
+            int value = km.LoadSuretyFile(string.Format(@"{0}\Key.pfx", Application.StartupPath), ref lic);
             string productKey = lic.ProductKey;
             if (km.ValidKey(ref productKey))
             {
@@ -158,6 +159,18 @@ namespace Sistema_de_Vendas
                 MessageBox.Show(ex.Message);
 
             }
+        }
+
+        private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+               if (e.KeyChar == 13)
+                txtSenha.Focus();
+        }
+
+        private void txtSenha_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                btnEntrar.Focus();
         }
     }
 

@@ -48,6 +48,7 @@
             this.financeiroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contasÀReceberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gerenciamentoFinanceiroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.relatóriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.relatórioDeProdutosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manutençãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,7 +81,6 @@
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.lblempresa = new System.Windows.Forms.ToolStripLabel();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.gerenciamentoFinanceiroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnPrincipal.SuspendLayout();
             this.barrastatus.SuspendLayout();
             this.SuspendLayout();
@@ -223,9 +223,9 @@
             // financeiroToolStripMenuItem
             // 
             this.financeiroToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.gerenciamentoFinanceiroToolStripMenuItem,
             this.contasToolStripMenuItem,
-            this.contasÀReceberToolStripMenuItem});
+            this.contasÀReceberToolStripMenuItem,
+            this.gerenciamentoFinanceiroToolStripMenuItem});
             this.financeiroToolStripMenuItem.Name = "financeiroToolStripMenuItem";
             this.financeiroToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
             this.financeiroToolStripMenuItem.Text = "Financeiro:";
@@ -235,12 +235,21 @@
             this.contasToolStripMenuItem.Name = "contasToolStripMenuItem";
             this.contasToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.contasToolStripMenuItem.Text = "Contas à Pagar";
+            this.contasToolStripMenuItem.Click += new System.EventHandler(this.contasToolStripMenuItem_Click);
             // 
             // contasÀReceberToolStripMenuItem
             // 
             this.contasÀReceberToolStripMenuItem.Name = "contasÀReceberToolStripMenuItem";
             this.contasÀReceberToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.contasÀReceberToolStripMenuItem.Text = "Contas à Receber";
+            this.contasÀReceberToolStripMenuItem.Click += new System.EventHandler(this.contasÀReceberToolStripMenuItem_Click);
+            // 
+            // gerenciamentoFinanceiroToolStripMenuItem
+            // 
+            this.gerenciamentoFinanceiroToolStripMenuItem.Name = "gerenciamentoFinanceiroToolStripMenuItem";
+            this.gerenciamentoFinanceiroToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.gerenciamentoFinanceiroToolStripMenuItem.Text = "Gerenciamento Financeiro";
+            this.gerenciamentoFinanceiroToolStripMenuItem.Click += new System.EventHandler(this.gerenciamentoFinanceiroToolStripMenuItem_Click);
             // 
             // relatóriosToolStripMenuItem
             // 
@@ -471,13 +480,6 @@
             this.timer.Enabled = true;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
-            // gerenciamentoFinanceiroToolStripMenuItem
-            // 
-            this.gerenciamentoFinanceiroToolStripMenuItem.Name = "gerenciamentoFinanceiroToolStripMenuItem";
-            this.gerenciamentoFinanceiroToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
-            this.gerenciamentoFinanceiroToolStripMenuItem.Text = "Gerenciamento Financeiro";
-            this.gerenciamentoFinanceiroToolStripMenuItem.Click += new System.EventHandler(this.gerenciamentoFinanceiroToolStripMenuItem_Click);
-            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -493,6 +495,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sistema de Vendas";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPrincipal_FormClosing);
             this.Load += new System.EventHandler(this.frmPrincipal_Load);
             this.mnPrincipal.ResumeLayout(false);
             this.mnPrincipal.PerformLayout();
