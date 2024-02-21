@@ -66,6 +66,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(1, 62);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.Size = new System.Drawing.Size(831, 379);
             this.dataGridView1.TabIndex = 3;
@@ -82,7 +83,7 @@
             this.cbtransacao.Location = new System.Drawing.Point(109, 26);
             this.cbtransacao.Name = "cbtransacao";
             this.cbtransacao.Size = new System.Drawing.Size(121, 21);
-            this.cbtransacao.TabIndex = 1;            
+            this.cbtransacao.TabIndex = 1;
             // 
             // lbltipo
             // 

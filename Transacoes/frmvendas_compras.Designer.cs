@@ -77,8 +77,12 @@
             this.lblcartao = new System.Windows.Forms.Label();
             this.txttaxa = new System.Windows.Forms.TextBox();
             this.lbltaxa = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.dtvencimento = new System.Windows.Forms.DateTimePicker();
+            this.lbllvencimento = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblcodigovenda
@@ -179,6 +183,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(8, 134);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.Size = new System.Drawing.Size(615, 150);
             this.dataGridView1.TabIndex = 20;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
@@ -313,7 +318,7 @@
             this.txttroco.MaxLength = 10;
             this.txttroco.Name = "txttroco";
             this.txttroco.Size = new System.Drawing.Size(78, 20);
-            this.txttroco.TabIndex = 13;            
+            this.txttroco.TabIndex = 13;
             // 
             // lbltroco
             // 
@@ -573,11 +578,41 @@
             this.lbltaxa.TabIndex = 41;
             this.lbltaxa.Text = "Taxa";
             // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel2.Controls.Add(this.dtvencimento);
+            this.panel2.Controls.Add(this.lbllvencimento);
+            this.panel2.Location = new System.Drawing.Point(84, 202);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(202, 84);
+            this.panel2.TabIndex = 35;
+            this.panel2.Visible = false;
+            this.panel2.Leave += new System.EventHandler(this.panel2_Leave);
+            // 
+            // dtvencimento
+            // 
+            this.dtvencimento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtvencimento.Location = new System.Drawing.Point(91, 31);
+            this.dtvencimento.Name = "dtvencimento";
+            this.dtvencimento.Size = new System.Drawing.Size(79, 20);
+            this.dtvencimento.TabIndex = 35;
+            // 
+            // lbllvencimento
+            // 
+            this.lbllvencimento.AutoSize = true;
+            this.lbllvencimento.Location = new System.Drawing.Point(10, 34);
+            this.lbllvencimento.Name = "lbllvencimento";
+            this.lbllvencimento.Size = new System.Drawing.Size(66, 13);
+            this.lbllvencimento.TabIndex = 0;
+            this.lbllvencimento.Text = "Vencimento:";
+            // 
             // frmvendas_compras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(628, 368);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.txttaxa);
             this.Controls.Add(this.lbltaxa);
             this.Controls.Add(this.txtcartao);
@@ -624,6 +659,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -680,5 +717,8 @@
         private System.Windows.Forms.Label lblcartao;
         private System.Windows.Forms.TextBox txttaxa;
         private System.Windows.Forms.Label lbltaxa;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label lbllvencimento;
+        private System.Windows.Forms.DateTimePicker dtvencimento;
     }
 }

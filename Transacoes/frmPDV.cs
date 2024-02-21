@@ -685,14 +685,23 @@ namespace Sistema_de_Vendas.Transacoes
 
             }
             string descricaoProduto = Convert.ToString(dataGridView1.Rows[0].Cells["descricao"].Value);
+                       
 
-            // Verificar se a descrição do produto não é nula ou vazia
             if (string.IsNullOrEmpty(descricaoProduto))
             {
                 MessageBox.Show("A descrição do produto não pode ser nula ou vazia." + descricaoProduto);
-                // Adicione outras ações necessárias ou retorne, dependendo do fluxo do seu código
+                
                 return;
             }
+
+            if (dtVencimento.Value < DateTime.Now.Date)
+            {
+                MessageBox.Show("A data de vencimento não pode ser menor que a data atual!");
+                dtVencimento.Focus();
+                return;
+            }
+
+
 
             try
             {
@@ -700,7 +709,7 @@ namespace Sistema_de_Vendas.Transacoes
                 for (int i = 0; i < dataGridView1.Rows.Count; i++)
                 {
 
-                    sql = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, valor_unitario, dinheiro, pix, cartao, taxa, vendedor, descontos, forma_pagamento, valor_total, valor_pago, troco, data, hora, cod_empresa, vencimento) VALUES (@cod_venda, @tipo, @cliente, @produto, @quantidade, @valor_unitario, @dinheiro, @pix, @cartao, @taxa, @vendedor, @descontos, @forma_pagamento, @valor_total, @valor_pago, @troco, @data, @hora, @cod_empresa, @vencimento)";
+                    sql = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, valor_unitario, dinheiro, pix, cartao, taxa, vendedor, descontos, forma_pagamento, valor_total, valor_pago, troco, data, hora, cod_empresa, vencimento, status) VALUES (@cod_venda, @tipo, @cliente, @produto, @quantidade, @valor_unitario, @dinheiro, @pix, @cartao, @taxa, @vendedor, @descontos, @forma_pagamento, @valor_total, @valor_pago, @troco, @data, @hora, @cod_empresa, @vencimento, @status)";
                     cmd = new MySqlCommand(sql, con.con);
                     cmd.Parameters.AddWithValue("@cod_venda", cod_venda);
                     cmd.Parameters.AddWithValue("@tipo", "VENDA PDV");
@@ -711,7 +720,7 @@ namespace Sistema_de_Vendas.Transacoes
                     cmd.Parameters.AddWithValue("@dinheiro", txtdinheiro.Text.Replace("R$", "").Trim().Replace(",", "."));
                     cmd.Parameters.AddWithValue("@pix", txtpix.Text.Replace("R$", "").Trim().Replace(",", "."));
                     cmd.Parameters.AddWithValue("@cartao", txtcartao.Text.Replace("R$", "").Trim().Replace(",", "."));
-                    cmd.Parameters.AddWithValue("@vencimento", dtVencimento.Value.Date.ToString("yyyy-MM-dd"));
+                    cmd.Parameters.AddWithValue("@vencimento", DateTime.Parse(dtVencimento.Value.Date.ToString("yyyy/MM/dd")));
                     cmd.Parameters.AddWithValue("@taxa", txttaxa.Text.Replace("%", "").Trim());
                     cmd.Parameters.AddWithValue("@vendedor", funcoes.conectado);
                     cmd.Parameters.AddWithValue("@descontos", txtdesconto.Text.Replace("%", "").Trim());
@@ -722,12 +731,13 @@ namespace Sistema_de_Vendas.Transacoes
                     cmd.Parameters.AddWithValue("@data", DateTime.Today);
                     cmd.Parameters.AddWithValue("@hora", DateTime.Now);
                     cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+                    cmd.Parameters.AddWithValue("@status", "FATURADA");
 
                     cmd.ExecuteNonQuery();
 
                 }
 
-                sql1 = "INSERT INTO caixa (cod_venda, tipo, cliente, vendedor, desconto, forma_pagamento, valor_total, valor_pago, data, hora, dinheiro, pix, cartao, vencimento, taxa, cod_empresa) VALUES (@cod_venda, @tipo, @cliente, @vendedor, @desconto, @forma_pagamento, @valor_total, @valor_pago, @data, @hora, @dinheiro, @pix, @cartao, @vencimento, @taxa, @cod_empresa)";
+                sql1 = "INSERT INTO caixa (cod_venda, tipo, cliente, vendedor, desconto, forma_pagamento, valor_total, valor_pago, data, hora, dinheiro, pix, cartao, vencimento, taxa, cod_empresa, status) VALUES (@cod_venda, @tipo, @cliente, @vendedor, @desconto, @forma_pagamento, @valor_total, @valor_pago, @data, @hora, @dinheiro, @pix, @cartao, @vencimento, @taxa, @cod_empresa, @status)";
                 cmd1 = new MySqlCommand(sql1, con.con);
                 cmd1.Parameters.AddWithValue("@cod_venda", cod_venda);
                 cmd1.Parameters.AddWithValue("@tipo", "VENDA PDV");
@@ -742,9 +752,10 @@ namespace Sistema_de_Vendas.Transacoes
                 cmd1.Parameters.AddWithValue("@dinheiro", txtdinheiro.Text.Replace("R$", "").Trim().Replace(",", "."));
                 cmd1.Parameters.AddWithValue("@pix", txtpix.Text.Replace("R$", "").Trim().Replace(",", "."));
                 cmd1.Parameters.AddWithValue("@cartao", txtcartao.Text.Replace("R$", "").Trim().Replace(",", "."));
-                cmd1.Parameters.AddWithValue("@vencimento", dtVencimento.Value.Date.ToString("yyyy-MM-dd"));
+                cmd1.Parameters.AddWithValue("@vencimento", DateTime.Parse(dtVencimento.Value.Date.ToString("yyyy/MM/dd")));
                 cmd1.Parameters.AddWithValue("@taxa", txttaxa.Text.Replace("%", "").Trim());
                 cmd1.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+                cmd1.Parameters.AddWithValue("@status", "FATURADA");
 
                 cmd1.ExecuteNonQuery();
                 con.FecharConexao();

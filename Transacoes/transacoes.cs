@@ -76,19 +76,26 @@ namespace Sistema_de_Vendas.Transacoes
         private void formatargrid()
         {
             dataGridView1.Columns[0].HeaderText = "Id";
-            dataGridView1.Columns[1].HeaderText = "Código venda";
-            dataGridView1.Columns[2].HeaderText = "Tipo da Transação";
-            dataGridView1.Columns[3].HeaderText = "Cliente";            
-            dataGridView1.Columns[4].HeaderText = "Vendedor";       
-            dataGridView1.Columns[5].HeaderText = "Descontos";
-            dataGridView1.Columns[6].HeaderText = "Valor pago";
-            dataGridView1.Columns[7].HeaderText = "Valor total";
-            dataGridView1.Columns[8].HeaderText = "Forma de pagamento";                     
+            dataGridView1.Columns[0].Visible = false;
+            dataGridView1.Columns[1].HeaderText = "Número nota";
+            dataGridView1.Columns[3].HeaderText = "Cliente";
+            dataGridView1.Columns[2].HeaderText = "Descrição";
+            dataGridView1.Columns[7].HeaderText = "Valor Total";
+            dataGridView1.Columns[8].HeaderText = "Forma de pagamento";
+            dataGridView1.Columns[5].HeaderText = "Desconto";
+            dataGridView1.Columns[15].HeaderText = "Taxa";
+            dataGridView1.Columns[11].HeaderText = "Dinheiro";
+            dataGridView1.Columns[12].HeaderText = "Pix";
+            dataGridView1.Columns[13].HeaderText = "Cartão";
+            dataGridView1.Columns[6].HeaderText = "Total pago";
+            dataGridView1.Columns[4].HeaderText = "´Vendedor";
             dataGridView1.Columns[9].HeaderText = "Data";
             dataGridView1.Columns[10].HeaderText = "Hora";
-
-            dataGridView1.Columns[0].Visible = false;
-      
+            dataGridView1.Columns[10].Visible = false;
+            dataGridView1.Columns[14].HeaderText = "Vencimento";
+            dataGridView1.Columns[16].HeaderText = "Código da empresa";
+            dataGridView1.Columns[16].Visible = false;
+            dataGridView1.Columns[17].HeaderText = "Status";
 
         }
 

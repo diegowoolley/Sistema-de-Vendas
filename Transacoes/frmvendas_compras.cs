@@ -533,7 +533,7 @@ namespace Sistema_de_Vendas.Transacoes
             btnconcluir.Enabled = false;
             lbltotalitens.Text = "Total de itens: ";
             lblvalortotal.Text = "Valor Total: ";           
-            cbtransacao.Focus();
+            cbtransacao.Focus();           
             contarvendas();
         }
               
@@ -569,7 +569,15 @@ namespace Sistema_de_Vendas.Transacoes
                         return;
                     }
 
-                }               
+                }   
+                
+                if(dtvencimento.Value < DateTime.Now.Date)
+                {
+                    MessageBox.Show("A data de vencimento não pode ser menor que a data atual!");
+                    dtvencimento.Focus();
+                    return;
+                }
+
 
                 try
                 {
@@ -577,7 +585,7 @@ namespace Sistema_de_Vendas.Transacoes
                     for (int i = 0; i < dataGridView1.Rows.Count; i++)
                     {
                         
-                        sql = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, categoria, cod_produto, valor_unitario, dinheiro, pix, cartao, vencimento, taxa, vendedor, descontos, forma_pagamento, valor_total, valor_pago, troco, data, hora, cod_empresa ) VALUES (@cod_venda, @tipo, @cliente, @produto, @quantidade, @categoria, @cod_produto, @valor_unitario, @dinheiro, @pix, @cartao, @vencimento, @taxa, @vendedor, @descontos, @forma_pagamento, @valor_total, @valor_pago, @troco, @data, @hora, @cod_empresa)";
+                        sql = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, categoria, cod_produto, valor_unitario, dinheiro, pix, cartao, vencimento, taxa, vendedor, descontos, forma_pagamento, valor_total, valor_pago, troco, data, hora, cod_empresa, status) VALUES (@cod_venda, @tipo, @cliente, @produto, @quantidade, @categoria, @cod_produto, @valor_unitario, @dinheiro, @pix, @cartao, @vencimento, @taxa, @vendedor, @descontos, @forma_pagamento, @valor_total, @valor_pago, @troco, @data, @hora, @cod_empresa, @status)";
                         cmd = new MySqlCommand(sql, con.con);
                         cmd.Parameters.AddWithValue("@cod_venda", cod_venda);
                         cmd.Parameters.AddWithValue("@tipo", cbtransacao.Text);
@@ -590,7 +598,7 @@ namespace Sistema_de_Vendas.Transacoes
                         cmd.Parameters.AddWithValue("@dinheiro", txtdinheiro.Text.Replace("R$", "").Trim().Replace(",", "."));
                         cmd.Parameters.AddWithValue("@pix", txtpix.Text.Replace("R$", "").Trim().Replace(",", "."));
                         cmd.Parameters.AddWithValue("@cartao", txtcartao.Text.Replace("R$", "").Trim().Replace(",", "."));
-                        cmd.Parameters.AddWithValue("@vencimento", "");
+                        cmd.Parameters.AddWithValue("@vencimento", DateTime.Parse(dtvencimento.Value.Date.ToString("yyyy/MM/dd")));
                         cmd.Parameters.AddWithValue("@taxa", txttaxa.Text.Replace("%", "").Trim());
                         cmd.Parameters.AddWithValue("@vendedor", dataGridView1.Rows[i].Cells[8].Value);                       
                         cmd.Parameters.AddWithValue("@descontos", txtdescontos.Text.Replace("%", "").Trim());
@@ -601,6 +609,15 @@ namespace Sistema_de_Vendas.Transacoes
                         cmd.Parameters.AddWithValue("@data", DateTime.Today);
                         cmd.Parameters.AddWithValue("@hora", DateTime.Now);
                         cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+                        if(cbtransacao.Text == "VENDA")
+                        {
+                            cmd.Parameters.AddWithValue("@status", "À RECEBER");
+                            
+                        }
+                        if(cbtransacao.Text == "COMPRA")
+                        {
+                            cmd.Parameters.AddWithValue("@status", "À PAGAR");
+                        }
 
                         cmd.ExecuteNonQuery();
                       
@@ -610,7 +627,7 @@ namespace Sistema_de_Vendas.Transacoes
                     }
 
                     
-                    sql1 = "INSERT INTO caixa (cod_venda, tipo, cliente, vendedor, desconto, forma_pagamento, valor_total, valor_pago, data, hora, dinheiro, pix, cartao, vencimento, taxa, cod_empresa) VALUES (@cod_venda, @tipo, @cliente, @vendedor, @desconto, @forma_pagamento, @valor_total, @valor_pago, @data, @hora, @dinheiro, @pix, @cartao, @vencimento, @taxa, @cod_empresa)";
+                    sql1 = "INSERT INTO caixa (cod_venda, tipo, cliente, vendedor, desconto, forma_pagamento, valor_total, valor_pago, data, hora, dinheiro, pix, cartao, vencimento, taxa, cod_empresa, status) VALUES (@cod_venda, @tipo, @cliente, @vendedor, @desconto, @forma_pagamento, @valor_total, @valor_pago, @data, @hora, @dinheiro, @pix, @cartao, @vencimento, @taxa, @cod_empresa, @status)";
                     cmd1 = new MySqlCommand(sql1, con.con);
                     cmd1.Parameters.AddWithValue("@cod_venda", cod_venda);
                     cmd1.Parameters.AddWithValue("@tipo", cbtransacao.Text);
@@ -625,9 +642,19 @@ namespace Sistema_de_Vendas.Transacoes
                     cmd1.Parameters.AddWithValue("@dinheiro", txtdinheiro.Text.Replace("R$", "").Trim().Replace(",", "."));
                     cmd1.Parameters.AddWithValue("@pix", txtpix.Text.Replace("R$", "").Trim().Replace(",", "."));
                     cmd1.Parameters.AddWithValue("@cartao", txtcartao.Text.Replace("R$", "").Trim().Replace(",", "."));
-                    cmd1.Parameters.AddWithValue("@vencimento", "");
+                    cmd1.Parameters.AddWithValue("@vencimento", DateTime.Parse(dtvencimento.Value.Date.ToString("yyyy/MM/dd")));
                     cmd1.Parameters.AddWithValue("@taxa", txttaxa.Text.Replace("%", "").Trim());
                     cmd1.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+                    if (cbtransacao.Text == "VENDA")
+                    {
+                        cmd1.Parameters.AddWithValue("@status", "À RECEBER");
+                        
+                    }
+                    if (cbtransacao.Text == "COMPRA")
+                    {
+                        cmd1.Parameters.AddWithValue("@status", "À PAGAR");
+                        
+                    }
 
                     cmd1.ExecuteNonQuery();
                     con.FecharConexao();
@@ -1069,6 +1096,14 @@ namespace Sistema_de_Vendas.Transacoes
         private void cbformapagamento_SelectedIndexChanged(object sender, EventArgs e)
         {
             
+            if(cbtransacao.Text == "COMPRA" || cbformapagamento.Text == "CRÉDITO CLIENTE")
+            {
+                panel2.Visible= true;               
+            }
+            else
+            {
+                panel2.Visible = false;
+            }
 
             if(cbformapagamento.SelectedIndex == -1)
             {
@@ -1223,6 +1258,11 @@ namespace Sistema_de_Vendas.Transacoes
         private void txttaxa_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender, e);
+        }
+
+        private void panel2_Leave(object sender, EventArgs e)
+        {
+            panel2.Visible = false;
         }
     }
 }
