@@ -61,6 +61,8 @@
             this.lbldocumento = new System.Windows.Forms.Label();
             this.lblendereco = new System.Windows.Forms.Label();
             this.lblnome = new System.Windows.Forms.Label();
+            this.lblinscricao = new System.Windows.Forms.Label();
+            this.txtinscricao = new System.Windows.Forms.TextBox();
             this.pnpesquisa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgCliente)).BeginInit();
@@ -116,7 +118,7 @@
             this.btncancelarpesquisa.Location = new System.Drawing.Point(61, 101);
             this.btncancelarpesquisa.Name = "btncancelarpesquisa";
             this.btncancelarpesquisa.Size = new System.Drawing.Size(75, 23);
-            this.btncancelarpesquisa.TabIndex = 18;
+            this.btncancelarpesquisa.TabIndex = 127;
             this.btncancelarpesquisa.Text = "fechar";
             this.btncancelarpesquisa.UseVisualStyleBackColor = true;
             this.btncancelarpesquisa.Click += new System.EventHandler(this.btncancelarpesquisa_Click);
@@ -129,7 +131,7 @@
             this.txtpesquisa.MaxLength = 80;
             this.txtpesquisa.Name = "txtpesquisa";
             this.txtpesquisa.Size = new System.Drawing.Size(195, 20);
-            this.txtpesquisa.TabIndex = 17;
+            this.txtpesquisa.TabIndex = 126;
             this.txtpesquisa.TextChanged += new System.EventHandler(this.txtpesquisa_TextChanged);
             // 
             // lblnomepesquisa
@@ -330,9 +332,10 @@
             this.dgCliente.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgCliente.Location = new System.Drawing.Point(10, 142);
             this.dgCliente.Name = "dgCliente";
+            this.dgCliente.RowHeadersVisible = false;
             this.dgCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgCliente.Size = new System.Drawing.Size(763, 150);
-            this.dgCliente.TabIndex = 122;
+            this.dgCliente.TabIndex = 150;
             this.dgCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgCliente_CellContentClick);
             // 
             // txtcelular
@@ -441,11 +444,33 @@
             this.lblnome.TabIndex = 99;
             this.lblnome.Text = "Razão Social:";
             // 
+            // lblinscricao
+            // 
+            this.lblinscricao.AutoSize = true;
+            this.lblinscricao.Location = new System.Drawing.Point(320, 32);
+            this.lblinscricao.Name = "lblinscricao";
+            this.lblinscricao.Size = new System.Drawing.Size(20, 13);
+            this.lblinscricao.TabIndex = 130;
+            this.lblinscricao.Text = "IE:";
+            // 
+            // txtinscricao
+            // 
+            this.txtinscricao.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.txtinscricao.Enabled = false;
+            this.txtinscricao.Location = new System.Drawing.Point(378, 28);
+            this.txtinscricao.MaxLength = 20;
+            this.txtinscricao.Name = "txtinscricao";
+            this.txtinscricao.Size = new System.Drawing.Size(195, 20);
+            this.txtinscricao.TabIndex = 105;
+            this.txtinscricao.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtinscricao_KeyPress);
+            // 
             // frmcadempresas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(795, 347);
+            this.Controls.Add(this.lblinscricao);
+            this.Controls.Add(this.txtinscricao);
             this.Controls.Add(this.lblemail);
             this.Controls.Add(this.txtemail);
             this.Controls.Add(this.lblpesquisa);
@@ -527,5 +552,7 @@
         private System.Windows.Forms.Label lbldocumento;
         private System.Windows.Forms.Label lblendereco;
         private System.Windows.Forms.Label lblnome;
+        private System.Windows.Forms.Label lblinscricao;
+        private System.Windows.Forms.TextBox txtinscricao;
     }
 }

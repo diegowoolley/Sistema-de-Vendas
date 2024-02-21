@@ -81,6 +81,8 @@ namespace Sistema_de_Vendas.Configuracoes
             txtdocumento.Clear();
             txtemail.Enabled = false;
             txtemail.Clear();
+            txtinscricao.Enabled = false;
+            txtinscricao.Clear();
             txtendereco.Enabled = false;
             txtendereco.Clear();
             txtbairro.Enabled = false;
@@ -111,6 +113,7 @@ namespace Sistema_de_Vendas.Configuracoes
             txtnome.Enabled = true;
             txtdocumento.Enabled = true;
             txtemail.Enabled = true;
+            txtinscricao.Enabled = true;
             txtendereco.Enabled = true;
             txtbairro.Enabled = true;
             txtnumero.Enabled = true;
@@ -187,11 +190,12 @@ namespace Sistema_de_Vendas.Configuracoes
 
                     //insere dados na tabela
                     con.AbrirConexao();
-                    sql = "INSERT INTO cad_empresas(nome, documento, endereco, bairro, numero, cidade, estado, telefone, celular, foto, email) VALUES (@nome_clientes, @documento_clientes, @endereco_clientes, @bairro_clientes, @numero_clientes, @cidade_clientes, @estado_clientes, @telefone_clientes, @celular_clientes, @foto, @email)";
+                    sql = "INSERT INTO cad_empresas(nome, documento, endereco, bairro, numero, cidade, estado, telefone, celular, foto, email, inscricao) VALUES (@nome_clientes, @documento_clientes, @endereco_clientes, @bairro_clientes, @numero_clientes, @cidade_clientes, @estado_clientes, @telefone_clientes, @celular_clientes, @foto, @email, @inscricao)";
                     cmd = new MySqlCommand(sql, con.con);
                     cmd.Parameters.AddWithValue("@nome_clientes", txtnome.Text);
                     cmd.Parameters.AddWithValue("@documento_clientes", txtdocumento.Text);
                     cmd.Parameters.AddWithValue("@email", txtemail.Text);
+                    cmd.Parameters.AddWithValue("@inscricao", txtinscricao.Text);
                     cmd.Parameters.AddWithValue("@endereco_clientes", txtendereco.Text);
                     cmd.Parameters.AddWithValue("@bairro_clientes", txtbairro.Text);
                     cmd.Parameters.AddWithValue("@numero_clientes", txtnumero.Text);
@@ -210,6 +214,8 @@ namespace Sistema_de_Vendas.Configuracoes
                     txtdocumento.Clear();
                     txtemail.Enabled = false;
                     txtemail.Clear();
+                    txtinscricao.Enabled = false;
+                    txtinscricao.Clear();
                     txtendereco.Enabled = false;
                     txtendereco.Clear();
                     txtbairro.Enabled = false;
@@ -409,11 +415,12 @@ namespace Sistema_de_Vendas.Configuracoes
             if (alterou_foto == "s")
             {
                 con.AbrirConexao();
-                sql = "UPDATE cad_empresas SET nome = @nome, documento = @documento, endereco = @endereco, bairro = @bairro, numero = @numero, cidade = @cidade, estado = @estado, telefone = @telefone, celular = @celular, foto = @foto, email = @email WHERE cod = @id";
+                sql = "UPDATE cad_empresas SET nome = @nome, documento = @documento, endereco = @endereco, bairro = @bairro, numero = @numero, cidade = @cidade, estado = @estado, telefone = @telefone, celular = @celular, foto = @foto, email = @email, inscricao = @inscricao WHERE cod = @id";
                 cmd = new MySqlCommand(sql, con.con);
                 cmd.Parameters.AddWithValue("@id", id);
                 cmd.Parameters.AddWithValue("@nome", txtnome.Text);
                 cmd.Parameters.AddWithValue("@documento", txtdocumento.Text);
+                cmd.Parameters.AddWithValue("@inscricao", txtinscricao.Text);
                 cmd.Parameters.AddWithValue("@email", txtemail.Text);
                 cmd.Parameters.AddWithValue("@endereco", txtendereco.Text);
                 cmd.Parameters.AddWithValue("@bairro", txtbairro.Text);
@@ -428,12 +435,13 @@ namespace Sistema_de_Vendas.Configuracoes
             else if (alterou_foto == "n")
             {
                 con.AbrirConexao();
-                sql = "UPDATE cad_empresas SET nome = @nome, documento = @documento, endereco = @endereco, bairro = @bairro, numero = @numero, cidade = @cidade, estado = @estado, telefone = @telefone, celular = @celular, email = @email WHERE cod = @id";
+                sql = "UPDATE cad_empresas SET nome = @nome, documento = @documento, endereco = @endereco, bairro = @bairro, numero = @numero, cidade = @cidade, estado = @estado, telefone = @telefone, celular = @celular, email = @email, inscricao = @inscricao WHERE cod = @id";
                 cmd = new MySqlCommand(sql, con.con);
                 cmd.Parameters.AddWithValue("@id", id);
                 cmd.Parameters.AddWithValue("@nome", txtnome.Text);
                 cmd.Parameters.AddWithValue("@documento", txtdocumento.Text);
                 cmd.Parameters.AddWithValue("@email", txtemail.Text);
+                cmd.Parameters.AddWithValue("@inscricao", txtinscricao.Text);
                 cmd.Parameters.AddWithValue("@endereco", txtendereco.Text);
                 cmd.Parameters.AddWithValue("@bairro", txtbairro.Text);
                 cmd.Parameters.AddWithValue("@numero", txtnumero.Text);
@@ -476,6 +484,8 @@ namespace Sistema_de_Vendas.Configuracoes
             txtdocumento.Clear();
             txtemail.Enabled = false;
             txtemail.Clear();
+            txtinscricao.Enabled = false;
+            txtinscricao.Clear();
             txtendereco.Enabled = false;
             txtendereco.Clear();
             txtbairro.Enabled = false;
@@ -521,6 +531,8 @@ namespace Sistema_de_Vendas.Configuracoes
                 txtdocumento.Clear();
                 txtemail.Enabled = false;
                 txtemail.Clear();
+                txtinscricao.Enabled = false;
+                txtinscricao.Clear();
                 txtendereco.Enabled = false;
                 txtendereco.Clear();
                 txtbairro.Enabled = false;
@@ -589,6 +601,7 @@ namespace Sistema_de_Vendas.Configuracoes
                 txttelefone.Text = dgCliente.CurrentRow.Cells[8].Value.ToString();
                 txtcelular.Text = dgCliente.CurrentRow.Cells[9].Value.ToString();
                 txtemail.Text = dgCliente.CurrentRow.Cells[11].Value.ToString();
+                txtinscricao.Text = dgCliente.CurrentRow.Cells[12].Value.ToString();
 
                 btnNovo.Enabled = false;
                 btnAdicionar.Enabled = false;
@@ -599,6 +612,7 @@ namespace Sistema_de_Vendas.Configuracoes
                 txtnome.Enabled = true;
                 txtdocumento.Enabled = true;
                 txtemail.Enabled = true;
+                txtinscricao.Enabled = true;
                 txtendereco.Enabled = true;
                 txtbairro.Enabled = true;
                 txtnumero.Enabled = true;
@@ -632,7 +646,7 @@ namespace Sistema_de_Vendas.Configuracoes
         private void txtemail_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 13)
-                txtendereco.Focus();
+                txtinscricao.Focus();
         }
 
         private void txtendereco_KeyPress(object sender, KeyPressEventArgs e)
@@ -663,6 +677,13 @@ namespace Sistema_de_Vendas.Configuracoes
         {
             if (e.KeyChar == 13)
                 txttelefone.Focus();
+        }
+
+        private void txtinscricao_KeyPress(object sender, KeyPressEventArgs e)
+        {           
+            funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                txtendereco.Focus();
         }
     }
 }

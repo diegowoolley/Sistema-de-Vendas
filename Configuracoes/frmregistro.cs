@@ -53,7 +53,7 @@ namespace Sistema_de_Vendas.Configuracoes
                         {
                             if (reader.HasRows)
                             {
-                                MessageBox.Show("Chave de ativação já utilizada!");
+                                MessageBox.Show("Essa é uma chave já usada anteriomente, o uso de chave anteriores pode implicar no travamento do sistema e perda de dados");
                                 txtchaveproduto.Clear();
                                 txtchaveproduto.Focus();
                                 return;
@@ -97,7 +97,7 @@ namespace Sistema_de_Vendas.Configuracoes
                         lic.Year = kv.Expiration.Year;
                     }
 
-                    km.SaveSuretyFile(String.Format(@"{0}\Key.lic", Application.StartupPath), lic);
+                    km.SaveSuretyFile(String.Format(@"{0}\Key.pfx", Application.StartupPath), lic);
 
                     con.AbrirConexao();
                     sql = "INSERT INTO licenca(id_produto, chave_produto) VALUES (@id_produto, @chave_produto)";
