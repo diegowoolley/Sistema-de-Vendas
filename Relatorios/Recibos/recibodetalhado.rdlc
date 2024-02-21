@@ -36,6 +36,7 @@
                             <TextRun>
                               <Value>Código</Value>
                               <Style>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -70,6 +71,7 @@
                             <TextRun>
                               <Value>Quantidade</Value>
                               <Style>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -104,6 +106,7 @@
                             <TextRun>
                               <Value>Descrição</Value>
                               <Style>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -138,6 +141,7 @@
                             <TextRun>
                               <Value>Valor unitario</Value>
                               <Style>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -172,6 +176,7 @@
                             <TextRun>
                               <Value>Valor total</Value>
                               <Style>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -210,7 +215,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!cod_produto.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -242,7 +249,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!quantidade.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -274,7 +283,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!produto.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -306,7 +317,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!valor_unitario.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -338,7 +351,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!valor_total.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -358,7 +373,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -403,7 +417,9 @@
             <TextRuns>
               <TextRun>
                 <Value>=First(Fields!cliente.Value, "DataSet1")</Value>
-                <Style />
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style />
@@ -443,7 +459,15 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Recibo de venda</Value>
+                  <Value>RECIBO DE </Value>
+                  <Style>
+                    <FontSize>12pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Label>transacao</Label>
+                  <Value>=First(Fields!tipo.Value, "DataSet1")</Value>
                   <Style>
                     <FontSize>12pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -502,7 +526,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox20</rd:DefaultName>
           <Top>1.61823cm</Top>
-          <Left>5.94383cm</Left>
+          <Left>2.76883cm</Left>
           <Height>0.61058cm</Height>
           <Width>2.02375cm</Width>
           <ZIndex>1</ZIndex>
@@ -537,7 +561,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox22</rd:DefaultName>
           <Top>2.22529cm</Top>
-          <Left>5.94383cm</Left>
+          <Left>2.76883cm</Left>
           <Height>0.66675cm</Height>
           <Width>0.93896cm</Width>
           <ZIndex>2</ZIndex>
@@ -572,7 +596,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox24</rd:DefaultName>
           <Top>2.92379cm</Top>
-          <Left>5.94383cm</Left>
+          <Left>2.76883cm</Left>
           <Height>0.63147cm</Height>
           <Width>1.72002cm</Width>
           <ZIndex>3</ZIndex>
@@ -607,7 +631,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox25</rd:DefaultName>
           <Top>3.6014cm</Top>
-          <Left>5.94383cm</Left>
+          <Left>2.76883cm</Left>
           <Height>0.66322cm</Height>
           <Width>1.45093cm</Width>
           <ZIndex>4</ZIndex>
@@ -626,10 +650,10 @@
           <Value>=First(Fields!foto.Value, "DataSet2")</Value>
           <MIMEType>image/jpeg</MIMEType>
           <Sizing>FitProportional</Sizing>
-          <Top>1.25487cm</Top>
+          <Top>1.6147cm</Top>
           <Left>0.27253cm</Left>
-          <Height>3.00975cm</Height>
-          <Width>5.57605cm</Width>
+          <Height>2.64639cm</Height>
+          <Width>2.2423cm</Width>
           <ZIndex>5</ZIndex>
           <Style>
             <Border>
@@ -644,6 +668,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
+                  <Label>empresa</Label>
                   <Value>=First(Fields!nome.Value, "DataSet2")</Value>
                   <Style>
                     <FontSize>8pt</FontSize>
@@ -657,7 +682,7 @@
           </Paragraphs>
           <rd:DefaultName>nome</rd:DefaultName>
           <Top>1.61823cm</Top>
-          <Left>8.03813cm</Left>
+          <Left>4.86313cm</Left>
           <Height>0.59972cm</Height>
           <Width>6.04542cm</Width>
           <ZIndex>6</ZIndex>
@@ -678,6 +703,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
+                  <Label>documento</Label>
                   <Value>=First(Fields!documento.Value, "DataSet2")</Value>
                   <Style>
                     <FontSize>8pt</FontSize>
@@ -691,7 +717,7 @@
           </Paragraphs>
           <rd:DefaultName>documento</rd:DefaultName>
           <Top>2.22854cm</Top>
-          <Left>6.95334cm</Left>
+          <Left>3.77834cm</Left>
           <Height>0.6635cm</Height>
           <Width>4.56375cm</Width>
           <ZIndex>7</ZIndex>
@@ -712,6 +738,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
+                  <Label>endereco</Label>
                   <Value>=First(Fields!endereco.Value, "DataSet2")</Value>
                   <Style>
                     <FontSize>8pt</FontSize>
@@ -725,7 +752,7 @@
           </Paragraphs>
           <rd:DefaultName>endereco</rd:DefaultName>
           <Top>2.90968cm</Top>
-          <Left>7.73793cm</Left>
+          <Left>4.56293cm</Left>
           <Height>0.6635cm</Height>
           <Width>4.89041cm</Width>
           <ZIndex>8</ZIndex>
@@ -760,7 +787,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox24</rd:DefaultName>
           <Top>2.92379cm</Top>
-          <Left>12.6989cm</Left>
+          <Left>9.5239cm</Left>
           <Height>0.63147cm</Height>
           <Width>1.40252cm</Width>
           <ZIndex>9</ZIndex>
@@ -795,7 +822,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox24</rd:DefaultName>
           <Top>2.92379cm</Top>
-          <Left>15.21003cm</Left>
+          <Left>12.03503cm</Left>
           <Height>0.63147cm</Height>
           <Width>1.13794cm</Width>
           <ZIndex>10</ZIndex>
@@ -816,6 +843,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
+                  <Label>numero</Label>
                   <Value>=First(Fields!numero.Value, "DataSet2")</Value>
                   <Style>
                     <FontSize>8pt</FontSize>
@@ -829,7 +857,7 @@
           </Paragraphs>
           <rd:DefaultName>numero</rd:DefaultName>
           <Top>2.90968cm</Top>
-          <Left>14.16262cm</Left>
+          <Left>10.98762cm</Left>
           <Height>0.64558cm</Height>
           <Width>0.96196cm</Width>
           <ZIndex>11</ZIndex>
@@ -850,6 +878,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
+                  <Label>bairro</Label>
                   <Value>=First(Fields!bairro.Value, "DataSet2")</Value>
                   <Style>
                     <FontSize>8pt</FontSize>
@@ -863,7 +892,7 @@
           </Paragraphs>
           <rd:DefaultName>bairro</rd:DefaultName>
           <Top>2.90968cm</Top>
-          <Left>16.42216cm</Left>
+          <Left>13.24716cm</Left>
           <Height>0.64558cm</Height>
           <Width>2.47354cm</Width>
           <ZIndex>12</ZIndex>
@@ -884,6 +913,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
+                  <Label>telefone</Label>
                   <Value>=First(Fields!telefone.Value, "DataSet2")</Value>
                   <Style>
                     <FontSize>8pt</FontSize>
@@ -897,7 +927,7 @@
           </Paragraphs>
           <rd:DefaultName>telefone</rd:DefaultName>
           <Top>3.59759cm</Top>
-          <Left>7.49001cm</Left>
+          <Left>4.31501cm</Left>
           <Height>0.6635cm</Height>
           <Width>2.5cm</Width>
           <ZIndex>13</ZIndex>
@@ -918,6 +948,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
+                  <Label>email</Label>
                   <Value>=First(Fields!email.Value, "DataSet2")</Value>
                   <Style>
                     <FontSize>8pt</FontSize>
@@ -931,7 +962,7 @@
           </Paragraphs>
           <rd:DefaultName>email</rd:DefaultName>
           <Top>3.59759cm</Top>
-          <Left>10.09584cm</Left>
+          <Left>6.92084cm</Left>
           <Height>0.6635cm</Height>
           <Width>5.02874cm</Width>
           <ZIndex>14</ZIndex>
@@ -953,7 +984,10 @@
               <TextRuns>
                 <TextRun>
                   <Value>Numero da venda:</Value>
-                  <Style />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style />
@@ -983,7 +1017,9 @@
               <TextRuns>
                 <TextRun>
                   <Value>=First(Fields!cod_venda.Value, "DataSet1")</Value>
-                  <Style />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style>
@@ -1055,8 +1091,11 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
+                  <Label>forma de pagamento</Label>
                   <Value>=First(Fields!forma_pagamento.Value, "DataSet1")</Value>
-                  <Style />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style />
@@ -1085,8 +1124,11 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
+                  <Label>dinheiro</Label>
                   <Value>=First(Fields!dinheiro.Value, "DataSet1")</Value>
-                  <Style />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style />
@@ -1115,8 +1157,11 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
+                  <Label>pix</Label>
                   <Value>=First(Fields!pix.Value, "DataSet1")</Value>
-                  <Style />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style />
@@ -1145,8 +1190,11 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
+                  <Label>cartao</Label>
                   <Value>=First(Fields!cartao.Value, "DataSet1")</Value>
-                  <Style />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style />
@@ -1176,7 +1224,10 @@
               <TextRuns>
                 <TextRun>
                   <Value>Forma de pagamento:</Value>
-                  <Style />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style>
@@ -1208,7 +1259,10 @@
               <TextRuns>
                 <TextRun>
                   <Value>Dinheiro \Pix \Cartão:</Value>
-                  <Style />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style />
@@ -1238,7 +1292,10 @@
               <TextRuns>
                 <TextRun>
                   <Value>Desconto \ Taxa:</Value>
-                  <Style />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style />
@@ -1267,8 +1324,11 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
+                  <Label>desconto</Label>
                   <Value>=First(Fields!descontos.Value, "DataSet1")</Value>
-                  <Style />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style />
@@ -1297,8 +1357,11 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
+                  <Label>taxa</Label>
                   <Value>=First(Fields!taxa.Value, "DataSet1")</Value>
-                  <Style />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style />
@@ -1328,7 +1391,10 @@
               <TextRuns>
                 <TextRun>
                   <Value>Troco:</Value>
-                  <Style />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style />
@@ -1357,8 +1423,11 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
+                  <Label>troco</Label>
                   <Value>=First(Fields!troco.Value, "DataSet1")</Value>
-                  <Style />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style>
@@ -1389,8 +1458,11 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
+                  <Label>valor total</Label>
                   <Value>=First(Fields!valor_total.Value, "DataSet1")</Value>
-                  <Style />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style>
@@ -1422,7 +1494,10 @@
               <TextRuns>
                 <TextRun>
                   <Value>Valor total:</Value>
-                  <Style />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style />
