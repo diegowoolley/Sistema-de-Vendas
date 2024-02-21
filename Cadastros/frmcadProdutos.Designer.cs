@@ -244,6 +244,7 @@
             this.dgCliente.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgCliente.Location = new System.Drawing.Point(17, 165);
             this.dgCliente.Name = "dgCliente";
+            this.dgCliente.RowHeadersVisible = false;
             this.dgCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgCliente.Size = new System.Drawing.Size(763, 162);
             this.dgCliente.TabIndex = 23;
