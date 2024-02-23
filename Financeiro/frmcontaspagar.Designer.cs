@@ -58,6 +58,7 @@
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.Size = new System.Drawing.Size(831, 379);
             this.dataGridView1.TabIndex = 4;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
             // lblfavorecido
@@ -95,6 +96,7 @@
             this.dtinicial.Name = "dtinicial";
             this.dtinicial.Size = new System.Drawing.Size(81, 20);
             this.dtinicial.TabIndex = 3;
+            this.dtinicial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dtinicial_KeyPress);
             // 
             // dtfinal
             // 
@@ -103,6 +105,7 @@
             this.dtfinal.Name = "dtfinal";
             this.dtfinal.Size = new System.Drawing.Size(81, 20);
             this.dtfinal.TabIndex = 4;
+            this.dtfinal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dtfinal_KeyPress);
             // 
             // lbldatafinal
             // 
@@ -138,6 +141,7 @@
             this.cbtipo.Name = "cbtipo";
             this.cbtipo.Size = new System.Drawing.Size(157, 21);
             this.cbtipo.TabIndex = 1;
+            this.cbtipo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbtipo_KeyPress);
             // 
             // lbltipo
             // 
@@ -156,6 +160,7 @@
             this.btnexcluir.TabIndex = 14;
             this.btnexcluir.Text = "Excluir";
             this.btnexcluir.UseVisualStyleBackColor = true;
+            this.btnexcluir.Click += new System.EventHandler(this.btnexcluir_Click);
             // 
             // btnpesquisar
             // 

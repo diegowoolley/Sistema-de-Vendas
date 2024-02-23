@@ -24,6 +24,7 @@ namespace Sistema_de_Vendas.Financeiro
         conn con = new conn();
         string sql;
         MySqlCommand cmd;
+        int cod_venda;
 
         private void Listar()
         {
@@ -371,6 +372,62 @@ namespace Sistema_de_Vendas.Financeiro
             frmdespesas.ShowDialog();
         }
 
-      
+        private void cbtipo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+               cbcliente.Focus();
+        }
+
+        private void dtinicial_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                dtfinal.Focus();
+        }
+
+        private void dtfinal_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                btnpesquisar.Focus();
+        }
+
+        private void btnexcluir_Click(object sender, EventArgs e)
+        {
+
+            var res = MessageBox.Show("Deseja realmente excluir esse registro?", "Excluir lançamento", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (res == DialogResult.Yes)
+            {
+                con.AbrirConexao();
+                sql = "DELETE FROM caixa WHERE id = @id";
+                cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@id", cod_venda);
+                cmd.ExecuteNonQuery();
+                con.FecharConexao();
+
+                Listar();
+                cbtipo.SelectedIndex = -1;
+                cbcliente.Text = "";
+                dtinicial.Value = DateTime.Now;
+                dtfinal.Value = DateTime.Now;
+                cbtipo.Focus();
+            }
+            else
+            {
+                Listar();
+            }
+
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(dataGridView1.Rows.Count > 0)
+            {
+                cod_venda = int.Parse(dataGridView1.CurrentRow.Cells[0].Value.ToString());               
+              
+            }
+          
+        }
     }
+
 }
+
