@@ -166,8 +166,7 @@ namespace Sistema_de_Vendas.Cadastros
                 {
                     MessageBox.Show("Erro ao Cadastrar!");
                 }
-        }
-        
+        }        
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
