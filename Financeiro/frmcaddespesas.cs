@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.SqlServer.Server;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -120,6 +121,44 @@ namespace Sistema_de_Vendas.Financeiro
        
         private void btnsalvar_Click(object sender, EventArgs e)
         {
+
+            if(cbtipo.Text == "")
+            {
+                MessageBox.Show("Informe um tipo antes de salvar o lançamento!");
+                cbtipo.Focus();
+                return;
+            }
+            if(txtdescricao.Text.Trim() == "")
+            {
+                MessageBox.Show("Selecione uma descrição antes de salvar o lançamento!");
+                txtdescricao.Focus();
+                return;
+            }
+            if(cbfavorecido.Text.Trim() == "")
+            {
+                MessageBox.Show("Informe um favorecido antes de salvar o lanlamento!");
+                cbfavorecido.Focus();
+                return;
+            }
+            if(txtvalor.Text == "0" || txtvalor.Text.Trim() == "")
+            {
+                MessageBox.Show("Informe um valor antes de salvar o lançamento!");
+                txtvalor.Focus();
+                return;
+            }
+            if(cbformapagamento.Text == "")
+            {
+                MessageBox.Show("Selecione uma forma de pagamento antes de salvar o lançamento!");
+                cbformapagamento.Focus();
+                return;
+            }
+            if(dtvencimento.Value < DateTime.Now.Date)
+            {
+                MessageBox.Show("O vencimento não pode ser menor que a data atual!");
+                dtvencimento.Focus();
+                return;
+            }
+
             try
             {
                 con.AbrirConexao();

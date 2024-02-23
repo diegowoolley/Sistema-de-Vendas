@@ -244,7 +244,7 @@ namespace Sistema_de_Vendas.Financeiro
 
         private void btnpesquisar_Click(object sender, EventArgs e)
         {
-            if (dtinicial.Value > dtfinal.Value)
+            if (dtinicial.Value.Date > dtfinal.Value.Date)
             {
                 MessageBox.Show("A data inicial não pode ser maior que a data final!");
                 dtinicial.Focus();
