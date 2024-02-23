@@ -92,7 +92,7 @@ namespace Sistema_de_Vendas
         private void Listar()
         {
             con.AbrirConexao();
-            sql = "SELECT * FROM cad_produtos WHERE cod_empresa = @cod_empresa ORDER BY nome_produto ASC";
+            sql = "SELECT * FROM cad_produtos WHERE cod_empresa = @cod_empresa ORDER BY cod_produto ASC";
             cmd = new MySqlCommand(sql, con.con);
             cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
             MySqlDataAdapter da = new MySqlDataAdapter();
@@ -100,7 +100,9 @@ namespace Sistema_de_Vendas
             DataTable dt = new DataTable();
             da.Fill(dt);
             dataGridView1.DataSource = dt;
-            con.FecharConexao();
+            con.FecharConexao();           
+            colorirvalidade();
+            colorirestoqueminimo();
         }
 
         private void listarminimo()
@@ -116,6 +118,7 @@ namespace Sistema_de_Vendas
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 dataGridView1.DataSource = dt;
+                colorirestoqueminimo();
             }
             catch (Exception ex)
             {
@@ -126,16 +129,43 @@ namespace Sistema_de_Vendas
                 con.FecharConexao();
             }
         }
+
+        private void colorirestoqueminimo()
+        {
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+
+                    decimal.TryParse(row.Cells["quantidade"].Value.ToString(), out decimal estoqueAtual);
+                
+                    decimal.TryParse(row.Cells["estoque_minimo"].Value.ToString(), out decimal estoqueMinimo);
+                    
+                        
+                        if (estoqueAtual < estoqueMinimo)
+                        {
+                            
+                            row.Cells["quantidade"].Style.BackColor = Color.Yellow;
+                        }
+
+
+                        if (estoqueAtual < 0)
+                        {
+
+                            row.Cells["quantidade"].Style.BackColor = Color.Red;
+                        }
+            }
+                 
+        }
+
         private void listarvalidade()
         {
             try
             {
                 con.AbrirConexao();
 
-                // Obter a data atual
+                
                 DateTime dataAtual = DateTime.Now;
 
-                // Consulta SQL para selecionar produtos com validade próxima de vencer
+                
                 sql = "SELECT * FROM cad_produtos WHERE cod_empresa = @cod_empresa AND STR_TO_DATE(validade, '%d/%m/%Y') BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 1 MONTH) ORDER BY nome_produto ASC";
                 cmd = new MySqlCommand(sql, con.con);
                 cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
@@ -145,6 +175,8 @@ namespace Sistema_de_Vendas
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 dataGridView1.DataSource = dt;
+                colorirvalidade();
+               
             }
             catch (Exception ex)
             {
@@ -153,6 +185,34 @@ namespace Sistema_de_Vendas
             finally
             {
                 con.FecharConexao();
+            }
+        }
+
+        private void colorirvalidade()
+        {
+
+            DateTime dataAtual = DateTime.Now;
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+
+                if (DateTime.TryParse(row.Cells["validade"].Value.ToString(), out DateTime dataValidade))
+                {
+
+                    int diasRestantes = (dataValidade - dataAtual).Days;
+
+
+                    if (diasRestantes <= 30 && diasRestantes >= 0)
+                    {
+
+                        row.Cells["validade"].Style.BackColor = Color.Yellow;
+                    }
+                    else if (diasRestantes < 0)
+                    {
+
+                        row.Cells["validade"].Style.BackColor = Color.Red;
+                    }
+                }
+
             }
         }
 
@@ -180,6 +240,8 @@ namespace Sistema_de_Vendas
             dataGridView1.Columns[19].HeaderText = "Etiqueta";
             dataGridView1.Columns[20].HeaderText = "Adicionado por";
             dataGridView1.Columns[21].HeaderText = "Data e hora da inclusão";
+            dataGridView1.Columns[22].HeaderText = "Código Empresa";
+            dataGridView1.Columns[22].Visible = false;
 
 
 
@@ -201,8 +263,9 @@ namespace Sistema_de_Vendas
             DataTable dt = new DataTable();
             da.Fill(dt);
             dataGridView1.DataSource = dt;
-            con.FecharConexao();                      
-
+            con.FecharConexao();
+            colorirestoqueminimo();
+            colorirvalidade();
         }
 
         private void inventario_Load(object sender, EventArgs e)
