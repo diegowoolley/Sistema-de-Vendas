@@ -150,6 +150,9 @@ namespace Sistema_de_Vendas.Financeiro
             dataGridView1.Columns[16].HeaderText = "Código da empresa";
             dataGridView1.Columns[16].Visible = false;
             dataGridView1.Columns[17].HeaderText = "Status";
+            dataGridView1.Columns[18].HeaderText = "Favorecido";
+            dataGridView1.Columns[19].HeaderText = "Documento";
+            dataGridView1.Columns[20].HeaderText = "Descrição";
 
 
 
