@@ -185,9 +185,9 @@
             // 
             this.vendasComprasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.vendasComprasDetalhadasToolStripMenuItem,
+            this.pDVToolStripMenuItem,
             this.inventárioToolStripMenuItem,
-            this.historicoDeTransaçõesToolStripMenuItem,
-            this.pDVToolStripMenuItem});
+            this.historicoDeTransaçõesToolStripMenuItem});
             this.vendasComprasToolStripMenuItem.Name = "vendasComprasToolStripMenuItem";
             this.vendasComprasToolStripMenuItem.Size = new System.Drawing.Size(107, 20);
             this.vendasComprasToolStripMenuItem.Text = "Movimentações:";
@@ -203,7 +203,7 @@
             // 
             this.inventárioToolStripMenuItem.Name = "inventárioToolStripMenuItem";
             this.inventárioToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
-            this.inventárioToolStripMenuItem.Text = "Inventário";
+            this.inventárioToolStripMenuItem.Text = "Controle de Estoque";
             this.inventárioToolStripMenuItem.Click += new System.EventHandler(this.inventárioToolStripMenuItem_Click);
             // 
             // historicoDeTransaçõesToolStripMenuItem
