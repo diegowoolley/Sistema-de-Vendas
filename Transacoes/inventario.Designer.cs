@@ -37,6 +37,7 @@
             this.btnlistarvalidade = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnadcicionarproduto = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,11 +47,11 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridView1.Location = new System.Drawing.Point(4, 69);
+            this.dataGridView1.Location = new System.Drawing.Point(4, 94);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(826, 401);
+            this.dataGridView1.Size = new System.Drawing.Size(826, 376);
             this.dataGridView1.TabIndex = 0;
             // 
             // lblpesquisar
@@ -133,11 +134,22 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "Número de produtos com estoque baixo:";
             // 
+            // btnadcicionarproduto
+            // 
+            this.btnadcicionarproduto.Location = new System.Drawing.Point(647, 65);
+            this.btnadcicionarproduto.Name = "btnadcicionarproduto";
+            this.btnadcicionarproduto.Size = new System.Drawing.Size(183, 23);
+            this.btnadcicionarproduto.TabIndex = 8;
+            this.btnadcicionarproduto.Text = "Adicionar\\ Alterar produtos";
+            this.btnadcicionarproduto.UseVisualStyleBackColor = true;
+            this.btnadcicionarproduto.Click += new System.EventHandler(this.btnadcicionarproduto_Click);
+            // 
             // inventario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(833, 507);
+            this.Controls.Add(this.btnadcicionarproduto);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnlistarvalidade);
@@ -152,7 +164,7 @@
             this.MinimizeBox = false;
             this.Name = "inventario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Inventário";
+            this.Text = "Controle de estoque";
             this.Load += new System.EventHandler(this.inventario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -171,5 +183,6 @@
         private System.Windows.Forms.Button btnlistarvalidade;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnadcicionarproduto;
     }
 }

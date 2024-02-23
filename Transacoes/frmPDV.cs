@@ -792,6 +792,7 @@ namespace Sistema_de_Vendas.Transacoes
                 precototal = 0;
                 txttotalpagar.Clear();
                 txtcod_barras.Focus();
+                dtVencimento.Value = DateTime.Now;
                 pbFoto.Image = Properties.Resources.download;
                 panel2.Visible = true;
                 cbformapagamento.Enabled = false;

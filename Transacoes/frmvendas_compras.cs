@@ -585,7 +585,7 @@ namespace Sistema_de_Vendas.Transacoes
                     for (int i = 0; i < dataGridView1.Rows.Count; i++)
                     {
                         
-                        sql = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, categoria, cod_produto, valor_unitario, dinheiro, pix, cartao, vencimento, taxa, vendedor, descontos, forma_pagamento, valor_total, valor_pago, troco, data, hora, cod_empresa, status) VALUES (@cod_venda, @tipo, @cliente, @produto, @quantidade, @categoria, @cod_produto, @valor_unitario, @dinheiro, @pix, @cartao, @vencimento, @taxa, @vendedor, @descontos, @forma_pagamento, @valor_total, @valor_pago, @troco, @data, @hora, @cod_empresa, @status)";
+                        sql = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, categoria, cod_produto, valor_unitario, dinheiro, pix, cartao, vencimento, taxa, vendedor, descontos, forma_pagamento, valor_total, valor_pago, troco, data, hora, cod_empresa) VALUES (@cod_venda, @tipo, @cliente, @produto, @quantidade, @categoria, @cod_produto, @valor_unitario, @dinheiro, @pix, @cartao, @vencimento, @taxa, @vendedor, @descontos, @forma_pagamento, @valor_total, @valor_pago, @troco, @data, @hora, @cod_empresa)";
                         cmd = new MySqlCommand(sql, con.con);
                         cmd.Parameters.AddWithValue("@cod_venda", cod_venda);
                         cmd.Parameters.AddWithValue("@tipo", cbtransacao.Text);
@@ -609,15 +609,7 @@ namespace Sistema_de_Vendas.Transacoes
                         cmd.Parameters.AddWithValue("@data", DateTime.Today);
                         cmd.Parameters.AddWithValue("@hora", DateTime.Now);
                         cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
-                        if(cbtransacao.Text == "VENDA")
-                        {
-                            cmd.Parameters.AddWithValue("@status", "À RECEBER");
-                            
-                        }
-                        if(cbtransacao.Text == "COMPRA")
-                        {
-                            cmd.Parameters.AddWithValue("@status", "À PAGAR");
-                        }
+                     
 
                         cmd.ExecuteNonQuery();
                       
@@ -627,33 +619,59 @@ namespace Sistema_de_Vendas.Transacoes
                     }
 
                     
-                    sql1 = "INSERT INTO caixa (cod_venda, tipo, cliente, vendedor, desconto, forma_pagamento, valor_total, valor_pago, data, hora, dinheiro, pix, cartao, vencimento, taxa, cod_empresa, status) VALUES (@cod_venda, @tipo, @cliente, @vendedor, @desconto, @forma_pagamento, @valor_total, @valor_pago, @data, @hora, @dinheiro, @pix, @cartao, @vencimento, @taxa, @cod_empresa, @status)";
+                    sql1 = "INSERT INTO caixa (cod_venda, tipo, cliente, vendedor, desconto, forma_pagamento, valor_total, valor_pago, data, hora, dinheiro, pix, cartao, vencimento, taxa, cod_empresa, status, favorecido, documento, descricao) VALUES (@cod_venda, @tipo, @cliente, @vendedor, @desconto, @forma_pagamento, @valor_total, @valor_pago, @data, @hora, @dinheiro, @pix, @cartao, @vencimento, @taxa, @cod_empresa, @status, @favorecido, @documento, @descricao)";
                     cmd1 = new MySqlCommand(sql1, con.con);
-                    cmd1.Parameters.AddWithValue("@cod_venda", cod_venda);
-                    cmd1.Parameters.AddWithValue("@tipo", cbtransacao.Text);
-                    cmd1.Parameters.AddWithValue("@cliente", cbclientes.Text);                  
-                    cmd1.Parameters.AddWithValue("@vendedor", cbvendedor.Text);
-                    cmd1.Parameters.AddWithValue("@desconto", txtdescontos.Text.Replace("%", "").Trim());
-                    cmd1.Parameters.AddWithValue("@forma_pagamento", cbformapagamento.Text);
-                    cmd1.Parameters.AddWithValue("@valor_total", precototal.ToString().Replace("R$", "").Trim().Replace(",", "."));
-                    cmd1.Parameters.AddWithValue("@valor_pago", txtvalorpago.Text.Replace("R$", "").Trim().Replace(",", "."));                    
-                    cmd1.Parameters.AddWithValue("@data", DateTime.Today);
-                    cmd1.Parameters.AddWithValue("@hora", DateTime.Now);
-                    cmd1.Parameters.AddWithValue("@dinheiro", txtdinheiro.Text.Replace("R$", "").Trim().Replace(",", "."));
-                    cmd1.Parameters.AddWithValue("@pix", txtpix.Text.Replace("R$", "").Trim().Replace(",", "."));
-                    cmd1.Parameters.AddWithValue("@cartao", txtcartao.Text.Replace("R$", "").Trim().Replace(",", "."));
-                    cmd1.Parameters.AddWithValue("@vencimento", DateTime.Parse(dtvencimento.Value.Date.ToString("yyyy/MM/dd")));
-                    cmd1.Parameters.AddWithValue("@taxa", txttaxa.Text.Replace("%", "").Trim());
-                    cmd1.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+                    
                     if (cbtransacao.Text == "VENDA")
                     {
+                        cmd1.Parameters.AddWithValue("@cod_venda", cod_venda);
+                        cmd1.Parameters.AddWithValue("@tipo", cbtransacao.Text);
+                        cmd1.Parameters.AddWithValue("@cliente", cbclientes.Text);
+                        cmd1.Parameters.AddWithValue("@vendedor", cbvendedor.Text);
+                        cmd1.Parameters.AddWithValue("@desconto", txtdescontos.Text.Replace("%", "").Trim());
+                        cmd1.Parameters.AddWithValue("@forma_pagamento", cbformapagamento.Text);
+                        cmd1.Parameters.AddWithValue("@valor_total", precototal.ToString().Replace("R$", "").Trim().Replace(",", "."));
+                        cmd1.Parameters.AddWithValue("@valor_pago", txtvalorpago.Text.Replace("R$", "").Trim().Replace(",", "."));
+                        cmd1.Parameters.AddWithValue("@data", DateTime.Today);
+                        cmd1.Parameters.AddWithValue("@hora", DateTime.Now);
+                        cmd1.Parameters.AddWithValue("@dinheiro", txtdinheiro.Text.Replace("R$", "").Trim().Replace(",", "."));
+                        cmd1.Parameters.AddWithValue("@pix", txtpix.Text.Replace("R$", "").Trim().Replace(",", "."));
+                        cmd1.Parameters.AddWithValue("@cartao", txtcartao.Text.Replace("R$", "").Trim().Replace(",", "."));
+                        cmd1.Parameters.AddWithValue("@vencimento", DateTime.Parse(dtvencimento.Value.Date.ToString("yyyy/MM/dd")));
+                        cmd1.Parameters.AddWithValue("@taxa", txttaxa.Text.Replace("%", "").Trim());
+                        cmd1.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
                         cmd1.Parameters.AddWithValue("@status", "À RECEBER");
-                        
+                        cmd1.Parameters.AddWithValue("@favorecido", "");
+                        cmd1.Parameters.AddWithValue("@documento", "");
+                        cmd1.Parameters.AddWithValue("@descricao", "");
+
+
                     }
                     if (cbtransacao.Text == "COMPRA")
                     {
+                        cmd1.Parameters.AddWithValue("@cod_venda", cod_venda);
+                        cmd1.Parameters.AddWithValue("@tipo", cbtransacao.Text);
+                        cmd1.Parameters.AddWithValue("@cliente", "");
+                        cmd1.Parameters.AddWithValue("@vendedor", "");
+                        cmd1.Parameters.AddWithValue("@desconto", "");
+                        cmd1.Parameters.AddWithValue("@forma_pagamento", cbformapagamento.Text);
+                        cmd1.Parameters.AddWithValue("@valor_total", precototal.ToString().Replace("R$", "").Trim().Replace(",", "."));
+                        cmd1.Parameters.AddWithValue("@valor_pago","");
+                        cmd1.Parameters.AddWithValue("@data", DateTime.Today);
+                        cmd1.Parameters.AddWithValue("@hora", DateTime.Now);
+                        cmd1.Parameters.AddWithValue("@dinheiro","");
+                        cmd1.Parameters.AddWithValue("@pix", "");
+                        cmd1.Parameters.AddWithValue("@cartao", "");
+                        cmd1.Parameters.AddWithValue("@vencimento", DateTime.Parse(dtvencimento.Value.Date.ToString("yyyy/MM/dd")));
+                        cmd1.Parameters.AddWithValue("@taxa", "");
+                        cmd1.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
                         cmd1.Parameters.AddWithValue("@status", "À PAGAR");
-                        
+                        cmd1.Parameters.AddWithValue("@favorecido", cbclientes.Text);                        
+                        cmd1.Parameters.AddWithValue("@documento", "");
+                        cmd1.Parameters.AddWithValue("@descricao", "COMPRA ESTOQUE");
+
+
+
                     }
 
                     cmd1.ExecuteNonQuery();
@@ -700,9 +718,9 @@ namespace Sistema_de_Vendas.Transacoes
                     txtcartao.Enabled = false;
                     txtcartao.Clear();
                     txttaxa.Enabled = false;
-                    txttaxa.Clear();
-                    
+                    txttaxa.Clear();                    
                     txttroco.Clear();
+                    dtvencimento.Value = DateTime.Now;
                     btnadicionar.Enabled = true;
                     btnremoveritens.Enabled = true;
                     btnconcluir.Enabled = false;                  

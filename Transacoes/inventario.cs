@@ -233,5 +233,11 @@ namespace Sistema_de_Vendas
         {
             listarvalidade();
         }
+
+        private void btnadcicionarproduto_Click(object sender, EventArgs e)
+        {
+            frmcadProdutos frmprodutos = new frmcadProdutos();
+            frmprodutos.ShowDialog();
+        }
     }
 }
