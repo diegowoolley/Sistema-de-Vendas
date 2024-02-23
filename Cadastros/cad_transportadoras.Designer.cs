@@ -316,6 +316,7 @@
             // 
             // dgCliente
             // 
+            this.dgCliente.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgCliente.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgCliente.Location = new System.Drawing.Point(15, 150);
