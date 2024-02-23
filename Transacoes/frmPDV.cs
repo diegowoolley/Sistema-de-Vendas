@@ -709,7 +709,7 @@ namespace Sistema_de_Vendas.Transacoes
                 for (int i = 0; i < dataGridView1.Rows.Count; i++)
                 {
 
-                    sql = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, valor_unitario, dinheiro, pix, cartao, taxa, vendedor, descontos, forma_pagamento, valor_total, valor_pago, troco, data, hora, cod_empresa, vencimento, status) VALUES (@cod_venda, @tipo, @cliente, @produto, @quantidade, @valor_unitario, @dinheiro, @pix, @cartao, @taxa, @vendedor, @descontos, @forma_pagamento, @valor_total, @valor_pago, @troco, @data, @hora, @cod_empresa, @vencimento, @status)";
+                    sql = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, valor_unitario, dinheiro, pix, cartao, taxa, vendedor, descontos, forma_pagamento, valor_total, valor_pago, troco, data, hora, cod_empresa, vencimento) VALUES (@cod_venda, @tipo, @cliente, @produto, @quantidade, @valor_unitario, @dinheiro, @pix, @cartao, @taxa, @vendedor, @descontos, @forma_pagamento, @valor_total, @valor_pago, @troco, @data, @hora, @cod_empresa, @vencimento)";
                     cmd = new MySqlCommand(sql, con.con);
                     cmd.Parameters.AddWithValue("@cod_venda", cod_venda);
                     cmd.Parameters.AddWithValue("@tipo", "VENDA PDV");
@@ -731,7 +731,7 @@ namespace Sistema_de_Vendas.Transacoes
                     cmd.Parameters.AddWithValue("@data", DateTime.Today);
                     cmd.Parameters.AddWithValue("@hora", DateTime.Now);
                     cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
-                    cmd.Parameters.AddWithValue("@status", "FATURADA");
+                    
 
                     cmd.ExecuteNonQuery();
 

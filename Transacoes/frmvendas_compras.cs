@@ -38,8 +38,9 @@ namespace Sistema_de_Vendas.Transacoes
             try
             {
                 con.AbrirConexao();
-                sql = "SELECT nome_funcionario FROM cad_funcionarios WHERE cargo_funcionario = 'VENDEDOR' ORDER BY nome_funcionario asc";
+                sql = "SELECT nome_funcionario FROM cad_funcionarios WHERE cod_empresa = @cod_empresa AND cargo_funcionario = 'VENDEDOR' ORDER BY nome_funcionario asc";
                 cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("cod_empresa", funcoes.cod_empresa);
                 MySqlDataAdapter da = new MySqlDataAdapter();
                 da.SelectCommand = cmd;
                 DataTable dt = new DataTable();
@@ -74,8 +75,9 @@ namespace Sistema_de_Vendas.Transacoes
             try
             {
                 con.AbrirConexao();
-                sql = "SELECT forma_pagamento FROM cad_pagamentos ORDER BY forma_pagamento desc";
+                sql = "SELECT forma_pagamento FROM cad_pagamentos WHERE cod_empresa = @cod_empresa ORDER BY forma_pagamento desc";
                 cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("cod_empresa", funcoes.cod_empresa);
                 MySqlDataAdapter da = new MySqlDataAdapter();
                 da.SelectCommand = cmd;
                 DataTable dt = new DataTable();
@@ -238,9 +240,10 @@ namespace Sistema_de_Vendas.Transacoes
             {
 
                 con.AbrirConexao();
-                sql = "SELECT * FROM vendas WHERE cod_venda = @cod_venda ORDER BY cod_venda ASC";
+                sql = "SELECT * FROM vendas WHERE cod_empresa = @cod_empresa AND cod_venda = @cod_venda ORDER BY cod_venda ASC";
                 MySqlCommand cmd = new MySqlCommand(sql, con.con);
                 cmd.Parameters.AddWithValue("@cod_venda", cod_venda);
+                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
 
                 MySqlDataAdapter da = new MySqlDataAdapter();
                 da.SelectCommand = cmd;
@@ -249,7 +252,7 @@ namespace Sistema_de_Vendas.Transacoes
                 con.FecharConexao();
                               
 
-                if (dt.Rows.Count > 0 && dt.Rows[0]["tipo"].ToString() != "DEVOLUÇÃO" && dt.Rows[0]["tipo"].ToString() != "TROCA" && dt.Rows[0]["tipo"].ToString() != "VENDA PDV")
+                if (dt.Rows.Count > 0 && dt.Rows[0]["tipo"].ToString() == "VENDA")
                 {
                     
                     dataGridView1.Rows.Clear();
