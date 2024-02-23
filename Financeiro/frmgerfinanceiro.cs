@@ -90,7 +90,7 @@ namespace Sistema_de_Vendas.Financeiro
             {
                 con.AbrirConexao();
 
-                sql = "SELECT * FROM caixa WHERE cod_empresa = @cod_empresa AND @cod_venda = '' OR cod_venda LIKE @cod_venda AND tipo LIKE @tipo AND cliente LIKE @cliente AND data BETWEEN @dataInicial AND @dataFinal ORDER BY data DESC";
+                sql = "SELECT * FROM caixa WHERE cod_empresa = @cod_empresa AND @cod_venda LIKE @cod_venda AND tipo LIKE @tipo AND cliente LIKE @cliente AND data BETWEEN @dataInicial AND @dataFinal ORDER BY data DESC";
                 cmd = new MySqlCommand(sql, con.con);
                 cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
                 cmd.Parameters.AddWithValue("@cod_venda", "%" + txtnumeronota.Text + "%");
@@ -110,6 +110,11 @@ namespace Sistema_de_Vendas.Financeiro
                 {
                     MessageBox.Show("Transação inexistente!");
                     Listar();
+                    txtnumeronota.Clear();
+                    cbtransacao.Text = "";
+                    txtcliente.Text = "";
+                    dtinicial.Value = DateTime.Now;
+                    dtfinal.Value = DateTime.Now;
                 }
 
             }
@@ -137,7 +142,7 @@ namespace Sistema_de_Vendas.Financeiro
             dataGridView1.Columns[12].HeaderText = "Pix";
             dataGridView1.Columns[13].HeaderText = "Cartão";
             dataGridView1.Columns[6].HeaderText = "Total pago";
-            dataGridView1.Columns[4].HeaderText = "´Vendedor";
+            dataGridView1.Columns[4].HeaderText = "Vendedor";
             dataGridView1.Columns[9].HeaderText = "Data";
             dataGridView1.Columns[10].HeaderText = "Hora";
             dataGridView1.Columns[10].Visible = false;

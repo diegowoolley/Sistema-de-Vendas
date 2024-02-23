@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmcontasreceber));
             this.dtfinal = new System.Windows.Forms.DateTimePicker();
             this.lbldatafinal = new System.Windows.Forms.Label();
             this.dtinicial = new System.Windows.Forms.DateTimePicker();
@@ -42,7 +43,7 @@
             // dtfinal
             // 
             this.dtfinal.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtfinal.Location = new System.Drawing.Point(719, 19);
+            this.dtfinal.Location = new System.Drawing.Point(697, 19);
             this.dtfinal.Name = "dtfinal";
             this.dtfinal.Size = new System.Drawing.Size(81, 20);
             this.dtfinal.TabIndex = 3;
@@ -51,7 +52,7 @@
             // lbldatafinal
             // 
             this.lbldatafinal.AutoSize = true;
-            this.lbldatafinal.Location = new System.Drawing.Point(651, 22);
+            this.lbldatafinal.Location = new System.Drawing.Point(629, 22);
             this.lbldatafinal.Name = "lbldatafinal";
             this.lbldatafinal.Size = new System.Drawing.Size(55, 13);
             this.lbldatafinal.TabIndex = 16;
@@ -98,6 +99,7 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView1.Location = new System.Drawing.Point(1, 74);
@@ -111,11 +113,12 @@
             // 
             // btnpesquisar
             // 
-            this.btnpesquisar.Location = new System.Drawing.Point(709, 45);
+            this.btnpesquisar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnpesquisar.BackgroundImage")));
+            this.btnpesquisar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnpesquisar.Location = new System.Drawing.Point(784, 12);
             this.btnpesquisar.Name = "btnpesquisar";
-            this.btnpesquisar.Size = new System.Drawing.Size(101, 23);
+            this.btnpesquisar.Size = new System.Drawing.Size(32, 32);
             this.btnpesquisar.TabIndex = 17;
-            this.btnpesquisar.Text = "Pesquisar";
             this.btnpesquisar.UseVisualStyleBackColor = true;
             this.btnpesquisar.Click += new System.EventHandler(this.btnpesquisar_Click);
             // 

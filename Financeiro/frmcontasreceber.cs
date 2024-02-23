@@ -216,7 +216,7 @@ namespace Sistema_de_Vendas.Financeiro
             dataGridView1.Columns[12].HeaderText = "Pix";
             dataGridView1.Columns[13].HeaderText = "Cartão";
             dataGridView1.Columns[6].HeaderText = "Total pago";
-            dataGridView1.Columns[4].HeaderText = "´Vendedor";
+            dataGridView1.Columns[4].HeaderText = "Funcionário";
             dataGridView1.Columns[9].HeaderText = "Data";
             dataGridView1.Columns[10].HeaderText = "Hora";
             dataGridView1.Columns[10].Visible = false;
@@ -224,6 +224,12 @@ namespace Sistema_de_Vendas.Financeiro
             dataGridView1.Columns[16].HeaderText = "Código da empresa";
             dataGridView1.Columns[16].Visible = false;
             dataGridView1.Columns[17].HeaderText = "Status";
+            dataGridView1.Columns[18].HeaderText = "Favorecido";
+            dataGridView1.Columns[18].Visible = false;
+            dataGridView1.Columns[19].HeaderText = "Documento";
+            dataGridView1.Columns[19].Visible = false;
+            dataGridView1.Columns[20].HeaderText = "Descrição";
+            dataGridView1.Columns[20].Visible = false;
 
 
 

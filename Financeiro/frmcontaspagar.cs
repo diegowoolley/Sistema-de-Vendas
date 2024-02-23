@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI.Common;
+using MySqlX.XDevAPI.Relational;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,8 +29,10 @@ namespace Sistema_de_Vendas.Financeiro
         {
             try
             {
+
+
                 con.AbrirConexao();
-                sql = "SELECT * FROM caixa WHERE cod_empresa = @cod_empresa AND tipo = 'COMPRA' AND DATE(data) = CURDATE() ORDER BY cod_venda ASC";
+                sql = "SELECT * FROM caixa WHERE cod_empresa = @cod_empresa AND tipo = 'COMPRA' or tipo = 'DESPESA FUNCIONÁRIOS' or tipo ='DESPESA PATRIMONIAL' or tipo = 'TERCEIRIZAÇÃO' or tipo = 'IMPOSTOS' or tipo = 'DESPESA ESTOQUE' AND DATE(data) = CURDATE() ORDER BY cod_venda ASC";
                 cmd = new MySqlCommand(sql, con.con);
                 cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
                 MySqlDataAdapter da = new MySqlDataAdapter();
@@ -84,12 +87,13 @@ namespace Sistema_de_Vendas.Financeiro
                 {
                     column.SortMode = DataGridViewColumnSortMode.NotSortable;
                 }
+                formatargridestoque();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
+              
         }
 
         private void Buscar()
@@ -99,21 +103,22 @@ namespace Sistema_de_Vendas.Financeiro
                 string pesquisa = cbcliente.Text;
 
                 con.AbrirConexao();
-                sql = "SELECT * FROM caixa WHERE cod_empresa = @cod_empresa AND cliente LIKE @cliente AND tipo = 'COMPRA' AND data BETWEEN @datainicial AND @datafinal ORDER BY cod_venda ASC";
+                sql = "SELECT * FROM caixa WHERE cod_empresa = @cod_empresa AND tipo LIKE @tipo AND cliente LIKE @cliente AND data BETWEEN @datainicial AND @datafinal ORDER BY cod_venda ASC";
                 cmd = new MySqlCommand(sql, con.con);
                 cmd.Parameters.AddWithValue("@cliente", "%" + pesquisa + "%");
+                cmd.Parameters.AddWithValue("@tipo", cbtipo.Text);
                 cmd.Parameters.AddWithValue("@datainicial", Convert.ToDateTime(dtinicial.Text));
                 cmd.Parameters.AddWithValue("@datafinal", Convert.ToDateTime(dtfinal.Text));
                 cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
                 MySqlDataAdapter da = new MySqlDataAdapter();
                 da.SelectCommand = cmd;
                 DataTable dt = new DataTable();
-                da.Fill(dt);
+                da.Fill(dt);                
                 dataGridView1.DataSource = dt;
                 con.FecharConexao();
                 if (dataGridView1.Rows.Count < 1)
                 {
-                    MessageBox.Show("Transação inexistente!");
+                    MessageBox.Show("Transação inexistente!");                   
 
                 }
                 foreach (DataGridViewRow row in dataGridView1.Rows)
@@ -156,13 +161,23 @@ namespace Sistema_de_Vendas.Financeiro
                 {
                     column.SortMode = DataGridViewColumnSortMode.NotSortable;
                 }
+               
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 
             }
-            
+            if(cbtipo.Text == "DESPESA ESTOQUE" || cbtipo.Text == "COMPRA")
+            {                                
+                formatargridestoque();
+            }
+            else
+            {                              
+                formatargrid();
+               
+            }
+
         }
 
         private void buscarcliente()
@@ -195,34 +210,93 @@ namespace Sistema_de_Vendas.Financeiro
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro na Conexão", ex.Message);
+                MessageBox.Show(ex.Message);
             }
+
+        }
+
+        private void formatargridestoque()
+        {
+
+            dataGridView1.Columns[0].HeaderText = "Id";
+            dataGridView1.Columns[0].Visible = false;
+            dataGridView1.Columns[1].HeaderText = "Número nota";
+            dataGridView1.Columns[2].HeaderText = "Tipo";
+            dataGridView1.Columns[3].HeaderText = "Cliente";
+            dataGridView1.Columns[4].HeaderText = "Vendedor";
+            dataGridView1.Columns[5].HeaderText = "Desconto";
+            dataGridView1.Columns[6].HeaderText = "Total pago";
+            dataGridView1.Columns[7].HeaderText = "Valor Total";
+            dataGridView1.Columns[8].HeaderText = "Forma de pagamento";
+            dataGridView1.Columns[9].HeaderText = "Data";
+            dataGridView1.Columns[10].HeaderText = "Hora";
+            dataGridView1.Columns[10].Visible = false;           
+            dataGridView1.Columns[11].HeaderText = "Dinheiro";
+            dataGridView1.Columns[12].HeaderText = "Pix";
+            dataGridView1.Columns[13].HeaderText = "Cartão";       
+            dataGridView1.Columns[14].HeaderText = "Vencimento";
+            dataGridView1.Columns[15].HeaderText = "Taxa";
+            dataGridView1.Columns[16].HeaderText = "Código da empresa";
+            dataGridView1.Columns[16].Visible = false;
+            dataGridView1.Columns[17].HeaderText = "Status";
+            dataGridView1.Columns[18].HeaderText = "Favorecido";
+            dataGridView1.Columns[18].Visible = false;
+            dataGridView1.Columns[19].HeaderText = "Documento";
+            dataGridView1.Columns[19].Visible = false;
+            dataGridView1.Columns[20].HeaderText = "Descrição";
+            dataGridView1.Columns[20].Visible = false;
+
+
+
 
         }
 
         private void formatargrid()
         {
+
             dataGridView1.Columns[0].HeaderText = "Id";
             dataGridView1.Columns[0].Visible = false;
-            dataGridView1.Columns[1].HeaderText = "Número nota";            
+            dataGridView1.Columns[1].HeaderText = "Número nota";
+            dataGridView1.Columns[1].DisplayIndex = 0;
+            dataGridView1.Columns[2].HeaderText = "Tipo";
+            dataGridView1.Columns[2].DisplayIndex = 1;
             dataGridView1.Columns[3].HeaderText = "Cliente";
-            dataGridView1.Columns[2].HeaderText = "Descrição";
-            dataGridView1.Columns[7].HeaderText = "Valor Total";
-            dataGridView1.Columns[8].HeaderText = "Forma de pagamento";
+            dataGridView1.Columns[3].Visible = false;
+            dataGridView1.Columns[4].HeaderText = "Vendedor";
+            dataGridView1.Columns[4].Visible = false;
             dataGridView1.Columns[5].HeaderText = "Desconto";
-            dataGridView1.Columns[15].HeaderText = "Taxa";
-            dataGridView1.Columns[11].HeaderText = "Dinheiro";
-            dataGridView1.Columns[12].HeaderText = "Pix";
-            dataGridView1.Columns[13].HeaderText = "Cartão";
+            dataGridView1.Columns[5].Visible = false;
             dataGridView1.Columns[6].HeaderText = "Total pago";
-            dataGridView1.Columns[4].HeaderText = "´Vendedor";
+            dataGridView1.Columns[6].Visible = false;
+            dataGridView1.Columns[7].HeaderText = "Valor Total";
+            dataGridView1.Columns[7].DisplayIndex = 5;
+            dataGridView1.Columns[8].HeaderText = "Forma de pagamento";
+            dataGridView1.Columns[8].DisplayIndex = 6;
             dataGridView1.Columns[9].HeaderText = "Data";
+            dataGridView1.Columns[9].DisplayIndex = 9;
             dataGridView1.Columns[10].HeaderText = "Hora";
             dataGridView1.Columns[10].Visible = false;
+            dataGridView1.Columns[11].HeaderText = "Dinheiro";
+            dataGridView1.Columns[11].Visible = false;
+            dataGridView1.Columns[12].HeaderText = "Pix";
+            dataGridView1.Columns[12].Visible = false;
+            dataGridView1.Columns[13].HeaderText = "Cartão";
+            dataGridView1.Columns[13].Visible = false;
             dataGridView1.Columns[14].HeaderText = "Vencimento";
+            dataGridView1.Columns[14].DisplayIndex = 7;
+            dataGridView1.Columns[15].HeaderText = "Taxa";
+            dataGridView1.Columns[15].Visible = false;
             dataGridView1.Columns[16].HeaderText = "Código da empresa";
             dataGridView1.Columns[16].Visible = false;
             dataGridView1.Columns[17].HeaderText = "Status";
+            dataGridView1.Columns[17].DisplayIndex = 8;
+            dataGridView1.Columns[18].HeaderText = "Favorecido";
+            dataGridView1.Columns[18].DisplayIndex = 4;
+            dataGridView1.Columns[19].HeaderText = "Documento";
+            dataGridView1.Columns[19].DisplayIndex = 2;
+            dataGridView1.Columns[20].HeaderText = "Descrição";
+            dataGridView1.Columns[20].DisplayIndex = 3;
+
 
 
 
@@ -231,7 +305,7 @@ namespace Sistema_de_Vendas.Financeiro
         private void frmcontaspagar_Load(object sender, EventArgs e)
         {
             Listar();
-            formatargrid();
+            formatargridestoque();
         }
 
         private void btnpesquisar_Click(object sender, EventArgs e)
@@ -242,6 +316,7 @@ namespace Sistema_de_Vendas.Financeiro
                 dtinicial.Focus();
                 return;
             }
+            dataGridView1.Columns.Clear();
             Buscar();
         }
 
@@ -259,19 +334,7 @@ namespace Sistema_de_Vendas.Financeiro
         {
             if (e.KeyChar == 13)
                 dtinicial.Focus();
-        }
-
-        private void dtinicial_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13)
-                dtfinal.Focus();
-        }
-
-        private void dtfinal_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13)
-                btnpesquisar.Focus();
-        }
+        }       
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -302,6 +365,12 @@ namespace Sistema_de_Vendas.Financeiro
             }
         }
 
-       
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmcaddespesas frmdespesas = new frmcaddespesas();
+            frmdespesas.ShowDialog();
+        }
+
+      
     }
 }
