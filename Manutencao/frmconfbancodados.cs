@@ -66,32 +66,24 @@ namespace Sistema_de_Vendas
 
         private void btnteste_Click(object sender, EventArgs e)
         {
+            
             try
-            {
-                conn.servidor = txtservidor.Text;
-                conn.banco = txtbancodados.Text;
-                conn.usuario = txtusuario.Text;
-                conn.senha = txtsenha.Text;
-                conn.porta = txtporta.Text;
-                conn con = new conn();
-                con.AbrirConexao();
-                con.FecharConexao();
-                MessageBox.Show("Conexão efetuada com sucesso!");
-
-                StreamReader aqruivo = new StreamReader("ConfigBD.txt");
-                conn.servidor = aqruivo.ReadLine();
-                conn.banco = aqruivo.ReadLine();
-                conn.usuario= aqruivo.ReadLine();
-                conn.senha= aqruivo.ReadLine();
-                conn.porta = aqruivo.ReadLine();
-                aqruivo.Close();
+            {  
+                    conn.servidor = txtservidor.Text;
+                    conn.banco = txtbancodados.Text;
+                    conn.usuario = txtusuario.Text;
+                    conn.senha = txtsenha.Text;
+                    conn.porta = txtporta.Text;
+                    conn con = new conn();
+                    con.AbrirConexao();
+                    con.FecharConexao();
+                    MessageBox.Show("Conexão efetuada com sucesso!");                    
 
             }
-            catch (MySqlException exb)
+            catch (Exception)
             {
-
-                MessageBox.Show("Erro nos parâmentros de conexão, favor entrar com os dados corretos e tente conectar novamente!", exb.Message);
-                return; 
+                MessageBox.Show("Erro nos parâmentros de conexão, favor entrar com os dados corretos e tente conectar novamente!");
+              
             }
            
         }
