@@ -183,20 +183,20 @@ namespace Sistema_de_Vendas.Financeiro
                     decimal cartao = Convert.ToDecimal(row.Cells["cartao"].Value);
                     decimal desconto = Convert.ToDecimal(row.Cells["desconto"].Value);
 
-
-                    if (tipo.Contains("COMPRA"))
-                    {
-                        totalSaida += valorTotal;
-                       
-                    }
-                    
-                    else if (tipo.Contains("VENDA"))
+                    if (tipo.Contains("VENDA"))
                     {
                         totalEntrada += valorTotal;
                         totalDinheiro += dinheiro;
                         totalPix += pix;
                         totalCartao += cartao;
                     }
+                    else 
+                    {
+                        totalSaida += valorTotal;
+                       
+                    }
+                    
+                 
                     totalDescontos += desconto;
                 }
             }
