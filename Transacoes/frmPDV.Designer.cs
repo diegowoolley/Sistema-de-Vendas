@@ -860,8 +860,7 @@
             this.MinimizeBox = false;
             this.Name = "frmPDV";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "PDV";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPDV_FormClosing);
+            this.Text = "PDV";            
             this.Load += new System.EventHandler(this.frmPDV_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);

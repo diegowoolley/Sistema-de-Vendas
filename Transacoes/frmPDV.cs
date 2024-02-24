@@ -436,7 +436,7 @@ namespace Sistema_de_Vendas.Transacoes
         private void cbformapagamento_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            if (cbformapagamento.SelectedIndex == 1 || cbformapagamento.SelectedIndex == 2)
+            if (cbformapagamento.Text == "FRACIONADO" || cbformapagamento.Text == "DINHEIRO")
             {
                 pnfracionado.Enabled = true;
                 pnvendaprazo.Visible = false;
@@ -452,7 +452,7 @@ namespace Sistema_de_Vendas.Transacoes
                 txtdesconto.Text = "0.00";
                 txtdinheiro.Focus();
             }
-            if(cbformapagamento.SelectedIndex == 3)
+            if(cbformapagamento.Text == "CRÉDITO CLIENTE")
             {
                 pnvendaprazo.Visible=true;
                 pnfracionado.Enabled=false;
@@ -464,7 +464,9 @@ namespace Sistema_de_Vendas.Transacoes
                 lbltroco.Text = "Troco: ";
                 txtClientes.Focus();
             }
-            if (cbformapagamento.SelectedIndex == 0 || cbformapagamento.SelectedIndex == 4 || cbformapagamento.SelectedIndex == 5)
+
+
+            if (cbformapagamento.Text == "PIX" || cbformapagamento.Text == "CARTÃO DE CRÉDITO" || cbformapagamento.Text == "CARTÃO DE DÉBITO")
             {
                
                 pnvendaprazo.Visible = false;
@@ -479,7 +481,9 @@ namespace Sistema_de_Vendas.Transacoes
                 lblClienteBloqueado.Text = "...";
                 lblValoremAberto.Text = "0";
                 lbltroco.Text = "Troco: ";
-                if (cbformapagamento.SelectedIndex == 0)
+
+
+                if (cbformapagamento.Text == "PIX")
                 {
                     txtpix.Text = precototal.ToString("C");
                     txtdinheiro.Text = "R$ 0.00";
@@ -487,7 +491,7 @@ namespace Sistema_de_Vendas.Transacoes
                     txttaxa.Text = "0.00";
                     txtdesconto.Text = "0.00";
                 }
-                else if (cbformapagamento.SelectedIndex == 4 || cbformapagamento.SelectedIndex == 5)
+                else if (cbformapagamento.Text == "CARTÃO DE CRÉDITO" || cbformapagamento.Text == "CARTÃO DE DÉBITO")
                 {
                     txtpix.Text = "R$ 0.00";
                     txtdinheiro.Text = "R$ 0.00";
@@ -790,12 +794,13 @@ namespace Sistema_de_Vendas.Transacoes
                 lblClienteBloqueado.Text = "...";
                 lblValoremAberto.Text = "0";
                 precototal = 0;
-                txttotalpagar.Clear();
-                txtcod_barras.Focus();
+                txttotalpagar.Clear();                
                 dtVencimento.Value = DateTime.Now;
                 pbFoto.Image = Properties.Resources.download;
+                panel1.Enabled = true;
                 panel2.Visible = true;
                 cbformapagamento.Enabled = false;
+                txtcod_barras.Focus();
 
             }
             catch (Exception ex)
@@ -805,17 +810,7 @@ namespace Sistema_de_Vendas.Transacoes
             }        
 
         }
-
-        private void frmPDV_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Deseja realmente sair?", "Confirmação", MessageBoxButtons.YesNo);
-
-            if (result == DialogResult.No)
-            {
-                e.Cancel = true; // Cancela o fechamento do formulário
-            }
-        }
-
+       
         private void btnfecharvenda_Click(object sender, EventArgs e)
         {
             if(dataGridView1.Rows.Count > 0)

@@ -1130,7 +1130,7 @@ namespace Sistema_de_Vendas.Transacoes
             {
                 txtvalorpago.Enabled=false;
             }
-            if(cbformapagamento.SelectedIndex == 1 || cbformapagamento.SelectedIndex == 2 || cbformapagamento.SelectedIndex == 3)
+            if(cbformapagamento.Text == "FRACIONADO" || cbformapagamento.Text == "DINHEIRO" || cbformapagamento.Text == "CRÉDITO CLIENTE")
             {
                 txtvalorpago.Enabled = false;
                 txtvalorpago.Text = "R$ 0,00";
@@ -1145,7 +1145,7 @@ namespace Sistema_de_Vendas.Transacoes
                 txtcartao.Text = "0,00";
                 txttroco.Clear();
             }
-            if(cbformapagamento.SelectedIndex == 0 )
+            if(cbformapagamento.Text == "PIX" )
             {
                 txtvalorpago.Enabled = false;               
                 txtvalorpago.Text = precototal.ToString("C");
@@ -1161,7 +1161,7 @@ namespace Sistema_de_Vendas.Transacoes
                 txtdescontos.Focus();
             }
 
-            if (cbformapagamento.SelectedIndex == 4 || cbformapagamento.SelectedIndex == 5)
+            if (cbformapagamento.Text == "CARTÃO DE CRÉDITO" || cbformapagamento.Text == "CARTÃO DE DÉBITO")
             {
                 txtvalorpago.Enabled = false;                
                 txtvalorpago.Text = precototal.ToString("C");

@@ -234,6 +234,7 @@ namespace Sistema_de_Vendas
             dataGridView1.Columns[13].HeaderText = "Aliquota IPI";
             dataGridView1.Columns[14].HeaderText = "Código IPI";
             dataGridView1.Columns[15].HeaderText = "Foto";
+            dataGridView1.Columns[15].Visible = false;
             dataGridView1.Columns[16].HeaderText = "Estoque Mínimo";
             dataGridView1.Columns[17].HeaderText = "Estoque Máximo";
             dataGridView1.Columns[18].HeaderText = "Validade";
