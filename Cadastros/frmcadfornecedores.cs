@@ -271,6 +271,7 @@ namespace Sistema_de_Vendas
             Listar();
             formatargrid();
         }
+
         private void Listar()
         {
             con.AbrirConexao();
@@ -298,6 +299,7 @@ namespace Sistema_de_Vendas
             dgCliente.Columns[8].HeaderText = "Telefone";
             dgCliente.Columns[9].HeaderText = "Celular";
             dgCliente.Columns[10].HeaderText = "Foto";
+            dgCliente.Columns[10].Visible = false;
             dgCliente.Columns[11].HeaderText = "E-mail";
 
 

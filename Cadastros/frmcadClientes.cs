@@ -280,6 +280,7 @@ namespace Sistema_de_Vendas
             Listar();
             formatargrid();
         }
+
         private void Listar()
         {
             con.AbrirConexao();
@@ -311,6 +312,7 @@ namespace Sistema_de_Vendas
             dgCliente.Columns[12].HeaderText = "Inadimplente";
             dgCliente.Columns[13].HeaderText = "Status";
             dgCliente.Columns[14].HeaderText = "Foto";
+            dgCliente.Columns[14].Visible = false;
 
 
             dgCliente.Columns[0].Visible = false;

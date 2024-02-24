@@ -113,6 +113,7 @@ namespace Sistema_de_Vendas
             dgCliente.Columns[13].HeaderText = "Aliquota IPI";
             dgCliente.Columns[14].HeaderText = "Código IPI";
             dgCliente.Columns[15].HeaderText = "Foto";
+            dgCliente.Columns[15].Visible = false;
             dgCliente.Columns[16].HeaderText = "Estoque Mínimo";
             dgCliente.Columns[17].HeaderText = "Estoque Máximo";
             dgCliente.Columns[18].HeaderText = "Validade";

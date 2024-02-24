@@ -91,12 +91,12 @@ namespace Sistema_de_Vendas
             dgCliente.Columns[9].HeaderText = "Celular";
             dgCliente.Columns[10].HeaderText = "Cargo";
             dgCliente.Columns[11].HeaderText = "Foto";
+            dgCliente.Columns[11].Visible = false;
 
 
             dgCliente.Columns[0].Visible = false;
 
         }
-
 
         private void btnNovo_Click(object sender, EventArgs e)
         {
