@@ -21,7 +21,9 @@ namespace Sistema_de_Vendas.Financeiro
         }
         conn con = new conn();
         string sql;
+        string sql1;
         MySqlCommand cmd;
+        MySqlCommand cmd1;
         int cod_venda;
 
         private void buscarfavorecido()
@@ -65,6 +67,7 @@ namespace Sistema_de_Vendas.Financeiro
 
         private void contarvendas()
         {
+            cod_venda = 0;
             try
             {
                 con.AbrirConexao();
@@ -187,26 +190,54 @@ namespace Sistema_de_Vendas.Financeiro
                 
 
 
+                
+            
+                sql1 = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, valor_unitario, dinheiro, pix, cartao, taxa, vendedor, descontos, forma_pagamento, valor_total, valor_pago, troco, data, hora, cod_empresa, vencimento) VALUES (@cod_venda, @tipo, @cliente, @produto, @quantidade, @valor_unitario, @dinheiro, @pix, @cartao, @taxa, @vendedor, @descontos, @forma_pagamento, @valor_total, @valor_pago, @troco, @data, @hora, @cod_empresa, @vencimento)";
+                cmd1 = new MySqlCommand(sql1, con.con);
+                cmd1.Parameters.AddWithValue("@cod_venda", cod_venda);
+                cmd1.Parameters.AddWithValue("@tipo", cbtipo.Text);
+                cmd1.Parameters.AddWithValue("@cliente","");
+                cmd1.Parameters.AddWithValue("@produto","");
+                cmd1.Parameters.AddWithValue("@quantidade", "");
+                cmd1.Parameters.AddWithValue("@valor_unitario", "");
+                cmd1.Parameters.AddWithValue("@dinheiro", "");
+                cmd1.Parameters.AddWithValue("@pix", "");
+                cmd1.Parameters.AddWithValue("@cartao","");
+                cmd1.Parameters.AddWithValue("@vencimento", dtvencimento.Value.Date);
+                cmd1.Parameters.AddWithValue("@taxa", "");
+                cmd1.Parameters.AddWithValue("@vendedor", "");
+                cmd1.Parameters.AddWithValue("@descontos","");
+                cmd1.Parameters.AddWithValue("@forma_pagamento", cbformapagamento.Text);
+                cmd1.Parameters.AddWithValue("@valor_total", txtvalor.Text);
+                cmd1.Parameters.AddWithValue("@valor_pago", "");
+                cmd1.Parameters.AddWithValue("@troco", "");
+                cmd1.Parameters.AddWithValue("@data", DateTime.Today);
+                cmd1.Parameters.AddWithValue("@hora", DateTime.Now);
+                cmd1.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);                
+               
+
+
                 cmd.ExecuteNonQuery();
+                cmd1.ExecuteNonQuery();
                 con.FecharConexao();
 
-
                 MessageBox.Show("Despesa lançada com sucesso!");
+                contarvendas();
+                cbtipo.SelectedIndex = -1;
+                txtdocumento.Clear();
+                txtdescricao.Clear();
+                cbfavorecido.Text = "";
+                txtvalor.Text = "0";
+                cbformapagamento.SelectedIndex = -1;
+                dtvencimento.Value = DateTime.Now;
+                cbtipo.Focus();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                
             }
-            contarvendas();
-            cbtipo.SelectedIndex = -1;
-            txtdocumento.Clear();
-            txtdescricao.Clear();
-            cbfavorecido.Text = "";
-            txtvalor.Text = "0";
-            cbformapagamento.SelectedIndex = -1;
-            dtvencimento.Value = DateTime.Now;
-            cbtipo.Focus();
+          
         }
        
         private void frmcaddespesas_Load(object sender, EventArgs e)

@@ -283,7 +283,7 @@ namespace Sistema_de_Vendas.Financeiro
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            int cod_venda = int.Parse(dataGridView1.CurrentRow.Cells[0].Value.ToString());
+            int cod_venda = int.Parse(dataGridView1.CurrentRow.Cells["cod_venda"].Value.ToString());
 
             if (dataGridView1.CurrentRow.Cells["Status"].Value.ToString() != "FATURADA")
             {
