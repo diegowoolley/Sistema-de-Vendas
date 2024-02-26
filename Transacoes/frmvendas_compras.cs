@@ -27,7 +27,7 @@ namespace Sistema_de_Vendas.Transacoes
         string sql1;
         MySqlCommand cmd;
         MySqlCommand cmd1;
-        double precototal;
+        decimal precototal;
         decimal valorfracionado;
         int cod_venda;       
         string indiceselecionado;
@@ -62,7 +62,7 @@ namespace Sistema_de_Vendas.Transacoes
             {
                 if (dataGridView1.Rows[i].Cells[9].Value != null)
                 {
-                    precototal += Convert.ToDouble(dataGridView1.Rows[i].Cells[9].Value);
+                    precototal += Convert.ToDecimal(dataGridView1.Rows[i].Cells[9].Value);
                 }
             }
 
@@ -285,7 +285,7 @@ namespace Sistema_de_Vendas.Transacoes
                     btnremoveritens.Enabled = false;
                     lblcodigovenda.Text = "Código da transação: " + cod_venda;
                     lblvalortotal.Text = "Valor Total: " + dt.Rows[0]["valor_total"];
-                    DialogResult result = MessageBox.Show("Realmente deseja fazer essa " + cbtransacao.Text + " ?", "Confirmação", MessageBoxButtons.YesNo);
+                    DialogResult result = MessageBox.Show("Realmente deseja fazer essa " + cbtransacao.Text + " ?" + "  " + "Código:" + dt.Rows[0]["cod_venda"] , "Confirmação", MessageBoxButtons.YesNo);
                     if (result == DialogResult.Yes)
                     {
                         if(cbtransacao.Text == "DEVOLUÇÃO")
@@ -503,6 +503,7 @@ namespace Sistema_de_Vendas.Transacoes
 
         private void btncancelar_Click(object sender, EventArgs e)
         {
+           
             cbtransacao.Enabled = true;
             cbtransacao.SelectedIndex = -1;
             cbclientes.Enabled = true;
@@ -770,7 +771,7 @@ namespace Sistema_de_Vendas.Transacoes
         private void cbvendedor_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 13)
-                cbformapagamento.Focus();
+                btnadicionar.Focus();
         }
 
         private void cbformapagamento_KeyPress(object sender, KeyPressEventArgs e)
@@ -806,7 +807,7 @@ namespace Sistema_de_Vendas.Transacoes
                 txtvalorpago.Text = "0";
             }
             
-            double valorpago = double.Parse(txtvalorpago.Text);
+            decimal valorpago = decimal.Parse(txtvalorpago.Text);
             if(valorpago < precototal)
             {
                 MessageBox.Show("Valor pago não pode ser menor que o valor total da venda!");
@@ -817,7 +818,7 @@ namespace Sistema_de_Vendas.Transacoes
 
             if (decimal.TryParse(txtvalorpago.Text, out decimal valor))
             {
-                double troco = valorpago - precototal;
+                decimal troco = valorpago - precototal;
                 txtvalorpago.Text = valor.ToString("C", CultureInfo.CurrentCulture);
                 txttroco.Text = troco.ToString("C");
 
@@ -861,7 +862,7 @@ namespace Sistema_de_Vendas.Transacoes
             else
             {
                 cbformapagamento.Enabled = true;
-                txtvalorpago.Enabled = true;
+                //txtvalorpago.Enabled = true;
                 txtdescontos.Enabled = true;
                 txttaxa.Enabled = true;
                 btnconcluir.Enabled = true;
@@ -907,28 +908,18 @@ namespace Sistema_de_Vendas.Transacoes
             if (txtvalorpago.Text.Trim() == "")
             {
                 txtvalorpago.Text = "0";
-            }           
+            }
 
 
             decimal dinheiro = decimal.Parse(txtdinheiro.Text.Trim().Replace("R$", ""));
             decimal pix = decimal.Parse(txtpix.Text.Trim().Replace("R$", ""));
             decimal cartao = decimal.Parse(txtcartao.Text.Trim().Replace("R$", ""));
 
-            
+
+
             decimal somaFracionado = dinheiro + pix + cartao;
             valorfracionado = (decimal)somaFracionado;
-           
-
-            if (cbformapagamento.Text == "FRACIONADO" || cbformapagamento.Text == "DINHEIRO" || cbformapagamento.Text == "CRÉDITO CLIENTE" )
-            {                
-                txtvalorpago.Text = somaFracionado.ToString();
-            }
-            else
-            {
-                somaFracionado = decimal.Parse(txtvalorpago.Text.Trim().Replace("R$", ""));
-            }
             
-
             // Calcular descontos
             decimal descontos = decimal.Parse(txtdescontos.Text.Replace("%", ""));
             decimal valorDescontos = (decimal)precototal * (descontos / 100);
@@ -943,8 +934,17 @@ namespace Sistema_de_Vendas.Transacoes
             // Calcular troco com descontos e taxas
             decimal troco = somaFracionado - resultadoFracionado;
 
-            // Atualizar o TextBox do troco
-            txttroco.Text = troco.ToString("C", CultureInfo.CurrentCulture);
+            if(resultadoFracionado > precototal)
+            {
+                txttroco.Text = "R$ 0,00";
+            }
+            else
+            {
+                // Atualizar o TextBox do troco
+                txttroco.Text = troco.ToString("C", CultureInfo.CurrentCulture);
+            }
+          
+            txtvalorpago.Text = resultadoFracionado.ToString("C");
         }   
 
         private void AtualizarQuantidadeProdutosVendidos()
