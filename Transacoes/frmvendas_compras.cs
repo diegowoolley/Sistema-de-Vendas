@@ -517,8 +517,7 @@ namespace Sistema_de_Vendas.Transacoes
             cbformapagamento.SelectedIndex = -1;           
             dataGridView1.Rows.Clear();
             cbformapagamento.Enabled = false;
-            cbformapagamento.SelectedIndex = -1;
-            txtvalorpago.Enabled = false;
+            cbformapagamento.SelectedIndex = -1;            
             txtvalorpago.Clear();
             txtdescontos.Enabled = false;
             txtdescontos.Clear();
@@ -710,8 +709,7 @@ namespace Sistema_de_Vendas.Transacoes
                     cbvendedor.Enabled = true;
                     cbvendedor.SelectedIndex = -1;
                     cbformapagamento.Enabled = false;
-                    cbformapagamento.SelectedIndex = -1;
-                    txtvalorpago.Enabled = false;
+                    cbformapagamento.SelectedIndex = -1;                    
                     txtvalorpago.Clear();
                     txtdescontos.Enabled = false;
                     txtdescontos.Clear();
@@ -779,52 +777,14 @@ namespace Sistema_de_Vendas.Transacoes
             if (e.KeyChar == 13)
                 txtvalorpago.Focus();
         }
-
-        private void txtvalorpago_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            funcoes.DecNumber(sender, e);
-            if (e.KeyChar == 13)
-                txtdescontos.Focus();
-        }
-
+       
         private void txtdescontos_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender, e);
             if (e.KeyChar == 13)
                 cbtransacao.Focus();
-        }
-
-        private void txtvalorpago_Enter(object sender, EventArgs e)
-        {
-            string valor = txtvalorpago.Text.Replace("R$ ", "");
-            txtvalorpago.Text = valor;
-        }
-
-        private void txtvalorpago_Leave(object sender, EventArgs e)
-        {
-            if(txtvalorpago.Text.Trim() == "")
-            {
-                txtvalorpago.Text = "0";
-            }
-            
-            decimal valorpago = decimal.Parse(txtvalorpago.Text);
-            if(valorpago < precototal)
-            {
-                MessageBox.Show("Valor pago não pode ser menor que o valor total da venda!");
-                txtvalorpago.Clear();
-                txtvalorpago.Focus();
-                return;
-            }
-
-            if (decimal.TryParse(txtvalorpago.Text, out decimal valor))
-            {
-                decimal troco = valorpago - precototal;
-                txtvalorpago.Text = valor.ToString("C", CultureInfo.CurrentCulture);
-                txttroco.Text = troco.ToString("C");
-
-            }
-        }
-
+        }      
+    
         private void txtdescontos_Leave(object sender, EventArgs e)
         {
             if(txtdescontos.Text == "")
@@ -861,8 +821,7 @@ namespace Sistema_de_Vendas.Transacoes
             }
             else
             {
-                cbformapagamento.Enabled = true;
-                //txtvalorpago.Enabled = true;
+                cbformapagamento.Enabled = true;                
                 txtdescontos.Enabled = true;
                 txttaxa.Enabled = true;
                 btnconcluir.Enabled = true;
@@ -934,7 +893,7 @@ namespace Sistema_de_Vendas.Transacoes
             // Calcular troco com descontos e taxas
             decimal troco = somaFracionado - resultadoFracionado;
 
-            if(resultadoFracionado > precototal)
+            if(resultadoFracionado > precototal || cbformapagamento.Text == "PIX" || cbformapagamento.Text == "CARTÃO DE CRÉDITO" || cbformapagamento.Text == "CARTÃO DE DÉBITO")
             {
                 txttroco.Text = "R$ 0,00";
             }
@@ -1040,8 +999,7 @@ namespace Sistema_de_Vendas.Transacoes
                 cbformapagamento.SelectedIndex = -1;
                 dataGridView1.Rows.Clear();
                 cbformapagamento.Enabled = false;
-                cbformapagamento.SelectedIndex = -1;
-                txtvalorpago.Enabled = false;
+                cbformapagamento.SelectedIndex = -1;                
                 txtvalorpago.Clear();
                 txtdescontos.Enabled = false;
                 txtdescontos.Clear();
@@ -1126,13 +1084,11 @@ namespace Sistema_de_Vendas.Transacoes
                 panel2.Visible = false;
             }
 
-            if(cbformapagamento.SelectedIndex == -1)
+          
+           
+            if(cbformapagamento.Text == "FRACIONADO" || cbformapagamento.Text == "CRÉDITO CLIENTE")
             {
-                txtvalorpago.Enabled=false;
-            }
-            if(cbformapagamento.Text == "FRACIONADO" || cbformapagamento.Text == "DINHEIRO" || cbformapagamento.Text == "CRÉDITO CLIENTE")
-            {
-                txtvalorpago.Enabled = false;
+               
                 txtvalorpago.Text = "R$ 0,00";
                 txtdescontos.Text = "0%";
                 txttaxa.Text = "0%";
@@ -1145,9 +1101,26 @@ namespace Sistema_de_Vendas.Transacoes
                 txtcartao.Text = "0,00";
                 txttroco.Clear();
             }
-            if(cbformapagamento.Text == "PIX" )
+
+            if (cbformapagamento.Text == "DINHEIRO")
             {
-                txtvalorpago.Enabled = false;               
+                
+                txtvalorpago.Text = precototal.ToString("C");
+                txtdinheiro.Enabled = false;
+                txtpix.Enabled = false;
+                txtcartao.Enabled = false;
+                txtdinheiro.Text = precototal.ToString("C");
+                txtpix.Text = "0,00";
+                txtcartao.Text = "0,00";
+                txttaxa.Text = "0%";
+                txtdescontos.Text = "0%";
+                txttroco.Clear();
+                txtdescontos.Focus();
+            }
+
+            if (cbformapagamento.Text == "PIX" )
+            {
+                               
                 txtvalorpago.Text = precototal.ToString("C");
                 txtdinheiro.Enabled = false;
                 txtpix.Enabled = false;
@@ -1163,7 +1136,7 @@ namespace Sistema_de_Vendas.Transacoes
 
             if (cbformapagamento.Text == "CARTÃO DE CRÉDITO" || cbformapagamento.Text == "CARTÃO DE DÉBITO")
             {
-                txtvalorpago.Enabled = false;                
+                                
                 txtvalorpago.Text = precototal.ToString("C");
                 txtdinheiro.Enabled = false;
                 txtpix.Enabled = false;

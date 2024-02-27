@@ -297,11 +297,8 @@
             this.txtvalorpago.MaxLength = 10;
             this.txtvalorpago.Name = "txtvalorpago";
             this.txtvalorpago.Size = new System.Drawing.Size(74, 20);
-            this.txtvalorpago.TabIndex = 11;
-            this.txtvalorpago.Enter += new System.EventHandler(this.txtvalorpago_Enter);
-            this.txtvalorpago.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtvalorpago_KeyPress);
-            this.txtvalorpago.Leave += new System.EventHandler(this.txtvalorpago_Leave);
-            // 
+            this.txtvalorpago.TabIndex = 11;         
+             // 
             // lblvalorpago
             // 
             this.lblvalorpago.AutoSize = true;

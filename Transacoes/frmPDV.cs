@@ -26,7 +26,7 @@ namespace Sistema_de_Vendas.Transacoes
         string sql1;
         MySqlCommand cmd;
         MySqlCommand cmd1;
-        double precototal;
+        decimal precototal;
         int cod_venda;
         decimal valorfracionado;
         
@@ -140,7 +140,7 @@ namespace Sistema_de_Vendas.Transacoes
             {
                 if (dataGridView1.Rows[i].Cells[4].Value != null)
                 {
-                    precototal += Convert.ToDouble(dataGridView1.Rows[i].Cells[4].Value);
+                    precototal += Convert.ToDecimal(dataGridView1.Rows[i].Cells[4].Value);
                 }
             }
 
@@ -256,8 +256,17 @@ namespace Sistema_de_Vendas.Transacoes
             // Calcular troco com descontos e taxas
             decimal troco = somaFracionado - resultadoFracionado;
 
-            // Atualizar o TextBox do troco
-            lbltroco.Text = "Troco: " + troco.ToString("C", CultureInfo.CurrentCulture);
+            if (resultadoFracionado > precototal || cbformapagamento.Text == "PIX" || cbformapagamento.Text == "CARTÃO DE CRÉDITO" || cbformapagamento.Text == "CARTÃO DE DÉBITO")
+            {
+                lbltroco.Text = "Troco: R$ 0,00";
+            }
+            else
+            {
+                // Atualizar o TextBox do troco
+                lbltroco.Text = "Troco: " + troco.ToString("C", CultureInfo.CurrentCulture);
+            }
+
+            txttotalpagar.Text = resultadoFracionado.ToString("C");
         }
 
         private void AtualizarQuantidadeProdutosVendidos()
@@ -296,6 +305,7 @@ namespace Sistema_de_Vendas.Transacoes
             contarvendas();
             listarformapagamento();
             cbformapagamento.SelectedIndex = -1;
+            pnfracionado.Enabled = false;
             lbloperador.Text = "Operador: " + funcoes.conectado;
 
         }
@@ -436,7 +446,7 @@ namespace Sistema_de_Vendas.Transacoes
         private void cbformapagamento_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            if (cbformapagamento.Text == "FRACIONADO" || cbformapagamento.Text == "DINHEIRO")
+            if (cbformapagamento.Text == "FRACIONADO")
             {
                 pnfracionado.Enabled = true;
                 pnvendaprazo.Visible = false;
@@ -445,14 +455,42 @@ namespace Sistema_de_Vendas.Transacoes
                 lblClienteBloqueado.Text = "...";
                 lblValoremAberto.Text = "0";
                 lbltroco.Text = "Troco: ";
-                txtdinheiro.Text = "R$ 0.00"; ;
-                txtpix.Text = "R$ 0.00"; ;
+                txtdinheiro.Text = "R$ 0.00";
+                txtdinheiro.Enabled = true;
+                txtpix.Text = "R$ 0.00"; 
+                txtpix.Enabled = true;
                 txtcartao.Text = "R$ 0.00";
+                txtcartao.Enabled = true;
                 txttaxa.Text = "0.00";
+                txttaxa.Enabled = true;
                 txtdesconto.Text = "0.00";
+                txtdesconto.Enabled = true;
                 txtdinheiro.Focus();
             }
-            if(cbformapagamento.Text == "CRÉDITO CLIENTE")
+
+            if (cbformapagamento.Text == "DINHEIRO")
+            {
+                pnfracionado.Enabled = true;
+                pnvendaprazo.Visible = false;
+                txtClientes.Clear();
+                lblCliente.Text = "...";
+                lblClienteBloqueado.Text = "...";
+                lblValoremAberto.Text = "0";
+                lbltroco.Text = "Troco: ";
+                txtdinheiro.Text = precototal.ToString("C");
+                txtdinheiro.Enabled = false;
+                txtpix.Text = "R$ 0.00";
+                txtpix.Enabled = false;
+                txtcartao.Text = "R$ 0.00";
+                txtcartao.Enabled = false;
+                txttaxa.Text = "0.00";
+                txttaxa.Enabled = true;
+                txtdesconto.Text = "0.00";
+                txtdesconto.Enabled = true;
+                txtdesconto.Focus();
+            }
+
+            if (cbformapagamento.Text == "CRÉDITO CLIENTE")
             {
                 pnvendaprazo.Visible=true;
                 pnfracionado.Enabled=false;
@@ -468,19 +506,25 @@ namespace Sistema_de_Vendas.Transacoes
 
             if (cbformapagamento.Text == "PIX" || cbformapagamento.Text == "CARTÃO DE CRÉDITO" || cbformapagamento.Text == "CARTÃO DE DÉBITO")
             {
-               
+
+                pnfracionado.Enabled = true;
                 pnvendaprazo.Visible = false;
-                pnfracionado.Enabled = false;
-                txtdinheiro.Clear();
-                txtpix.Clear();
-                txtcartao.Clear();
-                txttaxa.Clear();
-                txtdesconto.Clear();
                 txtClientes.Clear();
                 lblCliente.Text = "...";
                 lblClienteBloqueado.Text = "...";
                 lblValoremAberto.Text = "0";
                 lbltroco.Text = "Troco: ";
+                txtdinheiro.Text = "0.00";
+                txtdinheiro.Enabled = false;
+                txtpix.Text = "0.00";
+                txtpix.Enabled = false;
+                txtcartao.Text = "R$ 0.00";
+                txtcartao.Enabled = false;
+                txttaxa.Text = "0.00";
+                txttaxa.Enabled = true;
+                txtdesconto.Text = "0.00";
+                txtdesconto.Enabled = true;
+                txtdesconto.Focus();
 
 
                 if (cbformapagamento.Text == "PIX")
@@ -858,7 +902,7 @@ namespace Sistema_de_Vendas.Transacoes
                 lblCliente.Text = "...";
                 lblClienteBloqueado.Text = "...";
                 lblValoremAberto.Text = "0";
-                precototal = 0;
+                precototal = 0;               
                 txttotalpagar.Clear();
 
                 MessageBox.Show("Venda cancelada com sucesso!");
