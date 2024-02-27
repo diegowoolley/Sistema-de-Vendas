@@ -454,7 +454,7 @@ namespace Sistema_de_Vendas.Transacoes
                 lblCliente.Text = "...";
                 lblClienteBloqueado.Text = "...";
                 lblValoremAberto.Text = "0";
-                lbltroco.Text = "Troco: ";
+                lbltroco.Text = "Troco: R$ 0.00";
                 txtdinheiro.Text = "R$ 0.00";
                 txtdinheiro.Enabled = true;
                 txtpix.Text = "R$ 0.00"; 
@@ -476,7 +476,7 @@ namespace Sistema_de_Vendas.Transacoes
                 lblCliente.Text = "...";
                 lblClienteBloqueado.Text = "...";
                 lblValoremAberto.Text = "0";
-                lbltroco.Text = "Troco: ";
+                lbltroco.Text = "Troco: R$ 0.00";
                 txtdinheiro.Text = precototal.ToString("C");
                 txtdinheiro.Enabled = false;
                 txtpix.Text = "R$ 0.00";
@@ -499,7 +499,7 @@ namespace Sistema_de_Vendas.Transacoes
                 txtcartao.Text = "R$ 0.00";
                 txttaxa.Text = "0.00";
                 txtdesconto.Text = "0.00";
-                lbltroco.Text = "Troco: ";
+                lbltroco.Text = "Troco: R$ 0.00";
                 txtClientes.Focus();
             }
 
@@ -513,7 +513,7 @@ namespace Sistema_de_Vendas.Transacoes
                 lblCliente.Text = "...";
                 lblClienteBloqueado.Text = "...";
                 lblValoremAberto.Text = "0";
-                lbltroco.Text = "Troco: ";
+                lbltroco.Text = "Troco: R$ 0.00";
                 txtdinheiro.Text = "0.00";
                 txtdinheiro.Enabled = false;
                 txtpix.Text = "0.00";
