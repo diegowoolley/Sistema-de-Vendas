@@ -86,28 +86,30 @@ namespace Sistema_de_Vendas.Configuracoes
                 KeyValuesClass kv = new KeyValuesClass();
                 if (km.DisassembleKey(productKey, ref kv))
                 {
-                    LicenseInfo lic = new LicenseInfo();
-                    lic.ProductKey = productKey;
-                    lic.FullName = "DW SISTEMAS";
+                    
+                        LicenseInfo lic = new LicenseInfo();
+                        lic.ProductKey = productKey;
+                        lic.FullName = "DW SISTEMAS";
 
-                    if (kv.Type == LicenseType.TRIAL)
-                    {
-                        lic.Day = kv.Expiration.Day;
-                        lic.Month = kv.Expiration.Month;
-                        lic.Year = kv.Expiration.Year;
-                    }
+                        if (kv.Type == LicenseType.TRIAL)
+                        {
+                            lic.Day = kv.Expiration.Day;
+                            lic.Month = kv.Expiration.Month;
+                            lic.Year = kv.Expiration.Year;
+                        }
 
-                    km.SaveSuretyFile(String.Format(@"{0}\Key.pfx", Application.StartupPath), lic);
+                        km.SaveSuretyFile(String.Format(@"{0}\Key.pfx", Application.StartupPath), lic);
 
-                    con.AbrirConexao();
-                    sql = "INSERT INTO licenca(id_produto, chave_produto) VALUES (@id_produto, @chave_produto)";
-                    cmd = new MySqlCommand(sql, con.con);
-                    cmd.Parameters.AddWithValue("@id_produto", txtidproduto.Text);
-                    cmd.Parameters.AddWithValue("@chave_produto", txtchaveproduto.Text);
-                    cmd.ExecuteNonQuery();
-                    con.FecharConexao();
+                        con.AbrirConexao();
+                        sql = "INSERT INTO licenca(id_produto, chave_produto) VALUES (@id_produto, @chave_produto)";
+                        cmd = new MySqlCommand(sql, con.con);
+                        cmd.Parameters.AddWithValue("@id_produto", txtidproduto.Text);
+                        cmd.Parameters.AddWithValue("@chave_produto", txtchaveproduto.Text);
+                        cmd.ExecuteNonQuery();
+                        con.FecharConexao();
 
-                    return true;
+                        return true;
+                  
                 }
             }
 
