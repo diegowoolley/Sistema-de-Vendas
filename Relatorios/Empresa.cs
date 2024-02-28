@@ -10,6 +10,7 @@ namespace Sistema_de_Vendas.Relatorios
     {
         public string nome { get; set; }
         public string documento { get; set; }
+        public string inscricao {  get; set; }
         public string endereco { get; set; }
         public string bairro { get; set; }
         public string numero { get; set; }
