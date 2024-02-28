@@ -102,6 +102,7 @@ namespace Sistema_de_Vendas
             frmLogin login = new frmLogin();
             login.ShowDialog();
             
+            
         }
 
         private void funcionáriosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -259,8 +260,14 @@ namespace Sistema_de_Vendas
 
             if (result == DialogResult.No)
             {
-                e.Cancel = true; // Cancela o fechamento do formulário
+                e.Cancel = true; 
             }
+        }
+
+        private void limparTabelasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmlimpartabelas frmlimpartabelas = new frmlimpartabelas();
+            frmlimpartabelas.ShowDialog();
         }
     }
 }

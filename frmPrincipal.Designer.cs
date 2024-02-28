@@ -42,9 +42,9 @@
             this.veiculosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vendasComprasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vendasComprasDetalhadasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pDVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inventárioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.historicoDeTransaçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pDVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.financeiroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contasÀReceberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,6 +53,7 @@
             this.relatórioDeProdutosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manutençãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backupDoBancoDeDadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.limparTabelasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.calculadoraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.explorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.blocoDeNotasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -199,6 +200,13 @@
             this.vendasComprasDetalhadasToolStripMenuItem.Text = "Vendas \\ Compras Detalhadas";
             this.vendasComprasDetalhadasToolStripMenuItem.Click += new System.EventHandler(this.vendasComprasDetalhadasToolStripMenuItem_Click);
             // 
+            // pDVToolStripMenuItem
+            // 
+            this.pDVToolStripMenuItem.Name = "pDVToolStripMenuItem";
+            this.pDVToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.pDVToolStripMenuItem.Text = "PDV";
+            this.pDVToolStripMenuItem.Click += new System.EventHandler(this.pDVToolStripMenuItem_Click);
+            // 
             // inventárioToolStripMenuItem
             // 
             this.inventárioToolStripMenuItem.Name = "inventárioToolStripMenuItem";
@@ -212,13 +220,6 @@
             this.historicoDeTransaçõesToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
             this.historicoDeTransaçõesToolStripMenuItem.Text = "Historico de transações";
             this.historicoDeTransaçõesToolStripMenuItem.Click += new System.EventHandler(this.historicoDeTransaçõesToolStripMenuItem_Click);
-            // 
-            // pDVToolStripMenuItem
-            // 
-            this.pDVToolStripMenuItem.Name = "pDVToolStripMenuItem";
-            this.pDVToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
-            this.pDVToolStripMenuItem.Text = "PDV";
-            this.pDVToolStripMenuItem.Click += new System.EventHandler(this.pDVToolStripMenuItem_Click);
             // 
             // financeiroToolStripMenuItem
             // 
@@ -270,6 +271,7 @@
             // 
             this.manutençãoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.backupDoBancoDeDadosToolStripMenuItem,
+            this.limparTabelasToolStripMenuItem,
             this.calculadoraToolStripMenuItem,
             this.explorerToolStripMenuItem,
             this.blocoDeNotasToolStripMenuItem,
@@ -284,6 +286,13 @@
             this.backupDoBancoDeDadosToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
             this.backupDoBancoDeDadosToolStripMenuItem.Text = "Backup do Banco de Dados";
             this.backupDoBancoDeDadosToolStripMenuItem.Click += new System.EventHandler(this.backupDoBancoDeDadosToolStripMenuItem_Click);
+            // 
+            // limparTabelasToolStripMenuItem
+            // 
+            this.limparTabelasToolStripMenuItem.Name = "limparTabelasToolStripMenuItem";
+            this.limparTabelasToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.limparTabelasToolStripMenuItem.Text = "Limpar Tabelas";
+            this.limparTabelasToolStripMenuItem.Click += new System.EventHandler(this.limparTabelasToolStripMenuItem_Click);
             // 
             // calculadoraToolStripMenuItem
             // 
@@ -560,6 +569,7 @@
         private System.Windows.Forms.ToolStripLabel lblempresa;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripMenuItem gerenciamentoFinanceiroToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem limparTabelasToolStripMenuItem;
     }
 }
 

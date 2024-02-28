@@ -58,11 +58,13 @@ namespace Sistema_de_Vendas
                 reader = cmdVerificar.ExecuteReader();
                 if (reader.HasRows)
                 {
+                    con.FecharConexao();
                     funcoes.conectado = txtUsuario.Text;
                     frmescolhaempresa frmescolha = new frmescolhaempresa();
                     frmescolha.ShowDialog();
-                    con.FecharConexao();
                     this.Close();
+                    
+                   
 
                 }
                 else
@@ -95,7 +97,7 @@ namespace Sistema_de_Vendas
             string produto = ComputerInfo.GetComputerId();
             KeyManager km = new KeyManager(produto);
             LicenseInfo lic = new LicenseInfo();
-            int value = km.LoadSuretyFile(string.Format(@"{0}\Key.pfx", Application.StartupPath), ref lic);
+            int value = km.LoadSuretyFile(string.Format(@"{0}\Key.lic", Application.StartupPath), ref lic);
             string productKey = lic.ProductKey;
             if (km.ValidKey(ref productKey))
             {
@@ -138,7 +140,7 @@ namespace Sistema_de_Vendas
         {
             try
             {
-                StreamReader arquivo = new StreamReader("ConfigBD.txt");
+                StreamReader arquivo = new StreamReader("ConfigBD.pfx");
                 conn.servidor = arquivo.ReadLine();
                 conn.banco = arquivo.ReadLine();
                 conn.usuario = arquivo.ReadLine();
@@ -171,6 +173,11 @@ namespace Sistema_de_Vendas
         {
             if (e.KeyChar == 13)
                 btnEntrar.Focus();
+        }
+
+        internal void Showdialog()
+        {
+            throw new NotImplementedException();
         }
     }
 
