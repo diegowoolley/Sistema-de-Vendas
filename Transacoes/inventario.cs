@@ -91,18 +91,26 @@ namespace Sistema_de_Vendas
 
         private void Listar()
         {
-            con.AbrirConexao();
-            sql = "SELECT * FROM cad_produtos WHERE cod_empresa = @cod_empresa ORDER BY cod_produto ASC";
-            cmd = new MySqlCommand(sql, con.con);
-            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
-            MySqlDataAdapter da = new MySqlDataAdapter();
-            da.SelectCommand = cmd;
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            dataGridView1.DataSource = dt;
-            con.FecharConexao();           
-            colorirvalidade();
-            colorirestoqueminimo();
+            try
+            {
+                con.AbrirConexao();
+                sql = "SELECT * FROM cad_produtos WHERE cod_empresa = @cod_empresa ORDER BY cod_produto ASC";
+                cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dataGridView1.DataSource = dt;
+                con.FecharConexao();
+                colorirvalidade();
+                colorirestoqueminimo();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+    
         }
 
         private void listarminimo()
@@ -251,22 +259,30 @@ namespace Sistema_de_Vendas
 
         private void Buscar()
         {
-            string pesquisa = txtpesquisa.Text;
-            con.AbrirConexao();
-            sql = "SELECT * FROM cad_produtos WHERE cod_empresa = @cod_empresa AND nome_produto LIKE @nome or cod_produto LIKE @cod_produto or etiqueta LIKE @etiqueta";
-            cmd = new MySqlCommand(sql, con.con);
-            cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
-            cmd.Parameters.AddWithValue("@cod_produto", "%" + pesquisa + "%");
-            cmd.Parameters.AddWithValue("@etiqueta", "%" + pesquisa + "%");
-            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
-            MySqlDataAdapter da = new MySqlDataAdapter();
-            da.SelectCommand = cmd;
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            dataGridView1.DataSource = dt;
-            con.FecharConexao();
-            colorirestoqueminimo();
-            colorirvalidade();
+            try
+            {
+                string pesquisa = txtpesquisa.Text;
+                con.AbrirConexao();
+                sql = "SELECT * FROM cad_produtos WHERE cod_empresa = @cod_empresa AND nome_produto LIKE @nome or cod_produto LIKE @cod_produto or etiqueta LIKE @etiqueta";
+                cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
+                cmd.Parameters.AddWithValue("@cod_produto", "%" + pesquisa + "%");
+                cmd.Parameters.AddWithValue("@etiqueta", "%" + pesquisa + "%");
+                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dataGridView1.DataSource = dt;
+                con.FecharConexao();
+                colorirestoqueminimo();
+                colorirvalidade();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+          
         }
 
         private void inventario_Load(object sender, EventArgs e)

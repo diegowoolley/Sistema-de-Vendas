@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Sistema_de_Vendas.Relatorios.Recibos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -454,16 +455,16 @@ namespace Sistema_de_Vendas.Transacoes
                 lblCliente.Text = "...";
                 lblClienteBloqueado.Text = "...";
                 lblValoremAberto.Text = "0";
-                lbltroco.Text = "Troco: R$ 0.00";
-                txtdinheiro.Text = "R$ 0.00";
+                lbltroco.Text = "Troco: R$ 0,00";
+                txtdinheiro.Text = "R$ 0,00";
                 txtdinheiro.Enabled = true;
-                txtpix.Text = "R$ 0.00"; 
+                txtpix.Text = "R$ 0,00"; 
                 txtpix.Enabled = true;
-                txtcartao.Text = "R$ 0.00";
+                txtcartao.Text = "R$ 0,00";
                 txtcartao.Enabled = true;
-                txttaxa.Text = "0.00";
+                txttaxa.Text = "0,00";
                 txttaxa.Enabled = true;
-                txtdesconto.Text = "0.00";
+                txtdesconto.Text = "0,00";
                 txtdesconto.Enabled = true;
                 txtdinheiro.Focus();
             }
@@ -476,16 +477,16 @@ namespace Sistema_de_Vendas.Transacoes
                 lblCliente.Text = "...";
                 lblClienteBloqueado.Text = "...";
                 lblValoremAberto.Text = "0";
-                lbltroco.Text = "Troco: R$ 0.00";
+                lbltroco.Text = "Troco: R$ 0,00";
                 txtdinheiro.Text = precototal.ToString("C");
                 txtdinheiro.Enabled = false;
-                txtpix.Text = "R$ 0.00";
+                txtpix.Text = "R$ 0,00";
                 txtpix.Enabled = false;
-                txtcartao.Text = "R$ 0.00";
+                txtcartao.Text = "R$ 0,00";
                 txtcartao.Enabled = false;
-                txttaxa.Text = "0.00";
+                txttaxa.Text = "0,00";
                 txttaxa.Enabled = true;
-                txtdesconto.Text = "0.00";
+                txtdesconto.Text = "0,00";
                 txtdesconto.Enabled = true;
                 txtdesconto.Focus();
             }
@@ -494,12 +495,12 @@ namespace Sistema_de_Vendas.Transacoes
             {
                 pnvendaprazo.Visible=true;
                 pnfracionado.Enabled=false;
-                txtdinheiro.Text = "R$ 0.00"; ;
-                txtpix.Text = "R$ 0.00";;
-                txtcartao.Text = "R$ 0.00";
-                txttaxa.Text = "0.00";
-                txtdesconto.Text = "0.00";
-                lbltroco.Text = "Troco: R$ 0.00";
+                txtdinheiro.Text = "R$ 0,00"; ;
+                txtpix.Text = "R$ 0,00";;
+                txtcartao.Text = "R$ 0,00";
+                txttaxa.Text = "0,00";
+                txtdesconto.Text = "0,00";
+                lbltroco.Text = "Troco: R$ 0,00";
                 txtClientes.Focus();
             }
 
@@ -513,16 +514,16 @@ namespace Sistema_de_Vendas.Transacoes
                 lblCliente.Text = "...";
                 lblClienteBloqueado.Text = "...";
                 lblValoremAberto.Text = "0";
-                lbltroco.Text = "Troco: R$ 0.00";
-                txtdinheiro.Text = "0.00";
+                lbltroco.Text = "Troco: R$ 0,00";
+                txtdinheiro.Text = "0,00";
                 txtdinheiro.Enabled = false;
-                txtpix.Text = "0.00";
+                txtpix.Text = "0,00";
                 txtpix.Enabled = false;
-                txtcartao.Text = "R$ 0.00";
+                txtcartao.Text = "R$ 0,00";
                 txtcartao.Enabled = false;
-                txttaxa.Text = "0.00";
+                txttaxa.Text = "0,00";
                 txttaxa.Enabled = true;
-                txtdesconto.Text = "0.00";
+                txtdesconto.Text = "0,00";
                 txtdesconto.Enabled = true;
                 txtdesconto.Focus();
 
@@ -530,17 +531,17 @@ namespace Sistema_de_Vendas.Transacoes
                 if (cbformapagamento.Text == "PIX")
                 {
                     txtpix.Text = precototal.ToString("C");
-                    txtdinheiro.Text = "R$ 0.00";
-                    txtcartao.Text = "R$ 0.00";
-                    txttaxa.Text = "0.00";
-                    txtdesconto.Text = "0.00";
+                    txtdinheiro.Text = "R$ 0,00";
+                    txtcartao.Text = "R$ 0,00";
+                    txttaxa.Text = "0,00";
+                    txtdesconto.Text = "0,00";
                 }
                 else if (cbformapagamento.Text == "CARTÃO DE CRÉDITO" || cbformapagamento.Text == "CARTÃO DE DÉBITO")
                 {
-                    txtpix.Text = "R$ 0.00";
-                    txtdinheiro.Text = "R$ 0.00";
-                    txttaxa.Text = "0.00";
-                    txtdesconto.Text = "0.00";
+                    txtpix.Text = "R$ 0,00";
+                    txtdinheiro.Text = "R$ 0,00";
+                    txttaxa.Text = "0,00";
+                    txtdesconto.Text = "0,00";
                     txtcartao.Text = precototal.ToString("C");
                 }
 
@@ -844,6 +845,9 @@ namespace Sistema_de_Vendas.Transacoes
                 panel1.Enabled = true;
                 panel2.Visible = true;
                 cbformapagamento.Enabled = false;
+                btnfecharvenda.Enabled = true;
+                btnremover.Enabled = true;
+                pbFoto.Image = Properties.Resources.download1;
                 txtcod_barras.Focus();
 
             }
@@ -851,7 +855,14 @@ namespace Sistema_de_Vendas.Transacoes
             {
 
                 MessageBox.Show(ex.Message);
-            }        
+            }
+
+            DialogResult Result = MessageBox.Show("Deseja imprimir o recibo da venda?", "Confirmação", MessageBoxButtons.YesNo);
+            if (Result == DialogResult.Yes)
+            {
+                frmrecibodetalhado frmrecibo = new frmrecibodetalhado();
+                frmrecibo.ShowDialog();
+            }
 
         }
        
@@ -902,7 +913,10 @@ namespace Sistema_de_Vendas.Transacoes
                 lblCliente.Text = "...";
                 lblClienteBloqueado.Text = "...";
                 lblValoremAberto.Text = "0";
-                precototal = 0;               
+                precototal = 0;
+                btnfecharvenda.Enabled = true;
+                btnremover.Enabled = true;
+                pbFoto.Image = Properties.Resources.download1;
                 txttotalpagar.Clear();
 
                 MessageBox.Show("Venda cancelada com sucesso!");

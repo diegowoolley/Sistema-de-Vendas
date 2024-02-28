@@ -86,17 +86,17 @@
             this.btnconcluir = new System.Windows.Forms.Button();
             this.lbloperador = new System.Windows.Forms.Label();
             this.lbltroco = new System.Windows.Forms.Label();
-            this.pbFoto = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblcaixalivre = new System.Windows.Forms.Label();
             this.btnfecharvenda = new System.Windows.Forms.Button();
             this.btncancelar = new System.Windows.Forms.Button();
+            this.pbFoto = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.pnfracionado.SuspendLayout();
             this.pnvendaprazo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).BeginInit();
             this.SuspendLayout();
             // 
             // label4
@@ -767,17 +767,6 @@
             this.lbltroco.TabIndex = 3108;
             this.lbltroco.Text = "Troco:";
             // 
-            // pbFoto
-            // 
-            this.pbFoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pbFoto.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pbFoto.Location = new System.Drawing.Point(644, 138);
-            this.pbFoto.Name = "pbFoto";
-            this.pbFoto.Size = new System.Drawing.Size(100, 92);
-            this.pbFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbFoto.TabIndex = 3109;
-            this.pbFoto.TabStop = false;
-            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.Control;
@@ -818,6 +807,18 @@
             this.btncancelar.Text = "Cancelar venda";
             this.btncancelar.UseVisualStyleBackColor = true;
             this.btncancelar.Click += new System.EventHandler(this.btncancelar_Click);
+            // 
+            // pbFoto
+            // 
+            this.pbFoto.BackgroundImage = global::Sistema_de_Vendas.Properties.Resources.download1;
+            this.pbFoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbFoto.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pbFoto.Location = new System.Drawing.Point(644, 138);
+            this.pbFoto.Name = "pbFoto";
+            this.pbFoto.Size = new System.Drawing.Size(100, 92);
+            this.pbFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbFoto.TabIndex = 3109;
+            this.pbFoto.TabStop = false;
             // 
             // frmPDV
             // 
@@ -869,9 +870,9 @@
             this.pnfracionado.PerformLayout();
             this.pnvendaprazo.ResumeLayout(false);
             this.pnvendaprazo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

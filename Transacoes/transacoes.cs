@@ -47,29 +47,36 @@ namespace Sistema_de_Vendas.Transacoes
             
         }
 
-
         private void Buscar()
         {
-            string pesquisa = txtpesquisa.Text;          
-                      
-            con.AbrirConexao();
-            sql = "SELECT * FROM caixa WHERE cod_empresa = @cod_empresa AND cliente LIKE @cliente AND tipo LIKE @tipo or cod_venda LIKE @cod_venda AND tipo LIKE @tipo";
-            cmd = new MySqlCommand(sql, con.con);
-            cmd.Parameters.AddWithValue("@cliente", "%" + pesquisa + "%");
-            cmd.Parameters.AddWithValue("@cod_venda", "%" + pesquisa + "%");
-            cmd.Parameters.AddWithValue("@tipo", "%" + cbtransacao.Text + "%");
-            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
-            MySqlDataAdapter da = new MySqlDataAdapter();
-            da.SelectCommand = cmd;
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            dataGridView1.DataSource = dt;
-            con.FecharConexao();
-            if(dataGridView1.Rows.Count < 1)
+            try
             {
-                MessageBox.Show("Transação inexistente!");
+                string pesquisa = txtpesquisa.Text;
 
+                con.AbrirConexao();
+                sql = "SELECT * FROM caixa WHERE cod_empresa = @cod_empresa AND cliente LIKE @cliente AND tipo LIKE @tipo or cod_venda LIKE @cod_venda AND tipo LIKE @tipo";
+                cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@cliente", "%" + pesquisa + "%");
+                cmd.Parameters.AddWithValue("@cod_venda", "%" + pesquisa + "%");
+                cmd.Parameters.AddWithValue("@tipo", "%" + cbtransacao.Text + "%");
+                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dataGridView1.DataSource = dt;
+                con.FecharConexao();
+                if (dataGridView1.Rows.Count < 1)
+                {
+                    MessageBox.Show("Transação inexistente!");
+
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+     
 
         }
 

@@ -681,7 +681,7 @@ namespace Sistema_de_Vendas.Transacoes
                     con.FecharConexao();
 
 
-                    MessageBox.Show("Venda salva com sucesso!");
+                    MessageBox.Show("Transação salva com sucesso!");
 
                 if (cbtransacao.Text == "VENDA")
                 {
@@ -739,7 +739,7 @@ namespace Sistema_de_Vendas.Transacoes
 
 
             }
-            DialogResult Result = MessageBox.Show("Deseja imprimir o recibo da venda?", "Confirmação", MessageBoxButtons.YesNo);
+            DialogResult Result = MessageBox.Show("Deseja imprimir o recibo da Transação?", "Confirmação", MessageBoxButtons.YesNo);
             if (Result == DialogResult.Yes)
             {
                 frmrecibodetalhado frmrecibo = new frmrecibodetalhado();
