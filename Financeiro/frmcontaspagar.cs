@@ -33,7 +33,7 @@ namespace Sistema_de_Vendas.Financeiro
 
 
                 con.AbrirConexao();
-                sql = "SELECT * FROM caixa WHERE cod_empresa = @cod_empresa AND tipo = 'COMPRA' or tipo = 'DESPESA FUNCIONÁRIOS' or tipo ='DESPESA PATRIMONIAL' or tipo = 'TERCEIRIZAÇÃO' or tipo = 'IMPOSTOS' or tipo = 'DESPESA ESTOQUE' AND DATE(data) = CURDATE() ORDER BY cod_venda ASC";
+                sql = "SELECT * FROM caixa WHERE cod_empresa = @cod_empresa AND (tipo = 'COMPRA' or tipo = 'DESPESA FUNCIONÁRIOS' or tipo ='DESPESA PATRIMONIAL' or tipo = 'TERCEIRIZAÇÃO' or tipo = 'IMPOSTOS' or tipo = 'DESPESA ESTOQUE') AND DATE(data) = CURDATE() ORDER BY cod_venda ASC";
                 cmd = new MySqlCommand(sql, con.con);
                 cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
                 MySqlDataAdapter da = new MySqlDataAdapter();
@@ -347,7 +347,7 @@ namespace Sistema_de_Vendas.Financeiro
                 if (result == DialogResult.Yes)
                 {
                     con.AbrirConexao();
-                    sql = "UPDATE caixa SET status = 'PAGA' WHERE cod_venda = @id";
+                    sql = "UPDATE caixa SET status = 'PAGA', valor_pago = valor_total WHERE cod_venda = @id";
                     cmd = new MySqlCommand(sql, con.con);
                     cmd.Parameters.AddWithValue("@id", cod_venda);
 

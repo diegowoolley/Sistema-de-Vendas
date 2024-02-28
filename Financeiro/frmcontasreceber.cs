@@ -291,7 +291,7 @@ namespace Sistema_de_Vendas.Financeiro
                 if (result == DialogResult.Yes)
                 {
                     con.AbrirConexao();
-                    sql = "UPDATE caixa SET status = 'FATURADA' WHERE cod_venda = @id";
+                    sql = "UPDATE caixa SET status = 'FATURADA', valor_pago = valor_total WHERE cod_venda = @id";
                     cmd = new MySqlCommand(sql, con.con);
                     cmd.Parameters.AddWithValue("@id", cod_venda);
 

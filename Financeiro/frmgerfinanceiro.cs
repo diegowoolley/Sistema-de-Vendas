@@ -133,7 +133,7 @@ namespace Sistema_de_Vendas.Financeiro
             dataGridView1.Columns[1].HeaderText = "Número nota";
             dataGridView1.Columns[0].Visible = false;
             dataGridView1.Columns[3].HeaderText = "Cliente";
-            dataGridView1.Columns[2].HeaderText = "Descrição";
+            dataGridView1.Columns[2].HeaderText = "Transação";
             dataGridView1.Columns[7].HeaderText = "Valor Total";
             dataGridView1.Columns[8].HeaderText = "Forma de pagamento";
             dataGridView1.Columns[5].HeaderText = "Desconto";
@@ -333,6 +333,12 @@ namespace Sistema_de_Vendas.Financeiro
         {
             if (e.KeyChar == 13)
                 button1.Focus();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Listar();
+            TotalizarEntradaSaida();
         }
     }
 }
