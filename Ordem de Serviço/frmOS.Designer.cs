@@ -1,0 +1,621 @@
+﻿namespace Sistema_de_Vendas.Ordem_de_Serviço
+{
+    partial class frmOS
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.lblcliente = new System.Windows.Forms.Label();
+            this.cbclientes = new System.Windows.Forms.ComboBox();
+            this.cbtecnico = new System.Windows.Forms.ComboBox();
+            this.lbltecnico = new System.Windows.Forms.Label();
+            this.cbstatus = new System.Windows.Forms.ComboBox();
+            this.lblstatus = new System.Windows.Forms.Label();
+            this.dtinicial = new System.Windows.Forms.DateTimePicker();
+            this.lbldatainicial = new System.Windows.Forms.Label();
+            this.lbldatafinal = new System.Windows.Forms.Label();
+            this.dtfinal = new System.Windows.Forms.DateTimePicker();
+            this.txtgarantia = new System.Windows.Forms.TextBox();
+            this.lblgarantia = new System.Windows.Forms.Label();
+            this.lbltermo = new System.Windows.Forms.Label();
+            this.txttermo = new System.Windows.Forms.TextBox();
+            this.lbldescricaoprodserv = new System.Windows.Forms.Label();
+            this.lbldefeito = new System.Windows.Forms.Label();
+            this.lblobservacoes = new System.Windows.Forms.Label();
+            this.lbllaudo = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnnovo = new System.Windows.Forms.Button();
+            this.btnadicionar = new System.Windows.Forms.Button();
+            this.btnalterar = new System.Windows.Forms.Button();
+            this.btnexcluir = new System.Windows.Forms.Button();
+            this.btncancelar = new System.Windows.Forms.Button();
+            this.lblnumeroos = new System.Windows.Forms.Label();
+            this.btnadicionarp = new System.Windows.Forms.Button();
+            this.btnadicionars = new System.Windows.Forms.Button();
+            this.lblquantidadep = new System.Windows.Forms.Label();
+            this.txtquantidadep = new System.Windows.Forms.TextBox();
+            this.cbproduto = new System.Windows.Forms.ComboBox();
+            this.lblproduto = new System.Windows.Forms.Label();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.lblquantidades = new System.Windows.Forms.Label();
+            this.txtquantidades = new System.Windows.Forms.TextBox();
+            this.cbservico = new System.Windows.Forms.ComboBox();
+            this.lblservico = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.txtdescricao = new System.Windows.Forms.RichTextBox();
+            this.txtdefeito = new System.Windows.Forms.RichTextBox();
+            this.txtobservacao = new System.Windows.Forms.RichTextBox();
+            this.txtlaudo = new System.Windows.Forms.RichTextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.valor_unitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.valor_total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // lblcliente
+            // 
+            this.lblcliente.AutoSize = true;
+            this.lblcliente.Location = new System.Drawing.Point(12, 9);
+            this.lblcliente.Name = "lblcliente";
+            this.lblcliente.Size = new System.Drawing.Size(42, 13);
+            this.lblcliente.TabIndex = 0;
+            this.lblcliente.Text = "Cliente:";
+            // 
+            // cbclientes
+            // 
+            this.cbclientes.FormattingEnabled = true;
+            this.cbclientes.Location = new System.Drawing.Point(62, 6);
+            this.cbclientes.MaxLength = 80;
+            this.cbclientes.Name = "cbclientes";
+            this.cbclientes.Size = new System.Drawing.Size(241, 21);
+            this.cbclientes.TabIndex = 1;
+            // 
+            // cbtecnico
+            // 
+            this.cbtecnico.FormattingEnabled = true;
+            this.cbtecnico.Location = new System.Drawing.Point(445, 6);
+            this.cbtecnico.MaxLength = 80;
+            this.cbtecnico.Name = "cbtecnico";
+            this.cbtecnico.Size = new System.Drawing.Size(241, 21);
+            this.cbtecnico.TabIndex = 2;
+            // 
+            // lbltecnico
+            // 
+            this.lbltecnico.AutoSize = true;
+            this.lbltecnico.Location = new System.Drawing.Point(317, 9);
+            this.lbltecnico.Name = "lbltecnico";
+            this.lbltecnico.Size = new System.Drawing.Size(122, 13);
+            this.lbltecnico.TabIndex = 2;
+            this.lbltecnico.Text = "Técnico \\ Responsável:";
+            // 
+            // cbstatus
+            // 
+            this.cbstatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbstatus.FormattingEnabled = true;
+            this.cbstatus.Items.AddRange(new object[] {
+            "ABERTO",
+            "EM ANDAMENTO",
+            "ORÇAMENTO",
+            "FINALIZADO",
+            "CANCELADO",
+            "AGUARDANDO PEÇAS",
+            "APROVADO"});
+            this.cbstatus.Location = new System.Drawing.Point(60, 45);
+            this.cbstatus.MaxLength = 80;
+            this.cbstatus.Name = "cbstatus";
+            this.cbstatus.Size = new System.Drawing.Size(172, 21);
+            this.cbstatus.TabIndex = 3;
+            // 
+            // lblstatus
+            // 
+            this.lblstatus.AutoSize = true;
+            this.lblstatus.Location = new System.Drawing.Point(12, 48);
+            this.lblstatus.Name = "lblstatus";
+            this.lblstatus.Size = new System.Drawing.Size(40, 13);
+            this.lblstatus.TabIndex = 4;
+            this.lblstatus.Text = "Status:";
+            // 
+            // dtinicial
+            // 
+            this.dtinicial.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtinicial.Location = new System.Drawing.Point(385, 45);
+            this.dtinicial.Name = "dtinicial";
+            this.dtinicial.Size = new System.Drawing.Size(98, 20);
+            this.dtinicial.TabIndex = 4;
+            // 
+            // lbldatainicial
+            // 
+            this.lbldatainicial.AutoSize = true;
+            this.lbldatainicial.Location = new System.Drawing.Point(317, 48);
+            this.lbldatainicial.Name = "lbldatainicial";
+            this.lbldatainicial.Size = new System.Drawing.Size(62, 13);
+            this.lbldatainicial.TabIndex = 7;
+            this.lbldatainicial.Text = "Data inicial:";
+            // 
+            // lbldatafinal
+            // 
+            this.lbldatafinal.AutoSize = true;
+            this.lbldatafinal.Location = new System.Drawing.Point(520, 49);
+            this.lbldatafinal.Name = "lbldatafinal";
+            this.lbldatafinal.Size = new System.Drawing.Size(55, 13);
+            this.lbldatafinal.TabIndex = 9;
+            this.lbldatafinal.Text = "Data final:";
+            // 
+            // dtfinal
+            // 
+            this.dtfinal.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtfinal.Location = new System.Drawing.Point(588, 46);
+            this.dtfinal.Name = "dtfinal";
+            this.dtfinal.Size = new System.Drawing.Size(98, 20);
+            this.dtfinal.TabIndex = 5;
+            // 
+            // txtgarantia
+            // 
+            this.txtgarantia.Location = new System.Drawing.Point(62, 84);
+            this.txtgarantia.MaxLength = 11;
+            this.txtgarantia.Name = "txtgarantia";
+            this.txtgarantia.Size = new System.Drawing.Size(63, 20);
+            this.txtgarantia.TabIndex = 6;
+            // 
+            // lblgarantia
+            // 
+            this.lblgarantia.AutoSize = true;
+            this.lblgarantia.Location = new System.Drawing.Point(12, 87);
+            this.lblgarantia.Name = "lblgarantia";
+            this.lblgarantia.Size = new System.Drawing.Size(50, 13);
+            this.lblgarantia.TabIndex = 11;
+            this.lblgarantia.Text = "Garantia:";
+            // 
+            // lbltermo
+            // 
+            this.lbltermo.AutoSize = true;
+            this.lbltermo.Location = new System.Drawing.Point(136, 91);
+            this.lbltermo.Name = "lbltermo";
+            this.lbltermo.Size = new System.Drawing.Size(96, 13);
+            this.lbltermo.TabIndex = 13;
+            this.lbltermo.Text = "Termo de garantia:";
+            // 
+            // txttermo
+            // 
+            this.txttermo.Location = new System.Drawing.Point(232, 88);
+            this.txttermo.MaxLength = 255;
+            this.txttermo.Name = "txttermo";
+            this.txttermo.Size = new System.Drawing.Size(454, 20);
+            this.txttermo.TabIndex = 7;
+            // 
+            // lbldescricaoprodserv
+            // 
+            this.lbldescricaoprodserv.AutoSize = true;
+            this.lbldescricaoprodserv.Location = new System.Drawing.Point(59, 119);
+            this.lbldescricaoprodserv.Name = "lbldescricaoprodserv";
+            this.lbldescricaoprodserv.Size = new System.Drawing.Size(137, 13);
+            this.lbldescricaoprodserv.TabIndex = 15;
+            this.lbldescricaoprodserv.Text = "Descrição do equipamento:";
+            // 
+            // lbldefeito
+            // 
+            this.lbldefeito.AutoSize = true;
+            this.lbldefeito.Location = new System.Drawing.Point(533, 119);
+            this.lbldefeito.Name = "lbldefeito";
+            this.lbldefeito.Size = new System.Drawing.Size(44, 13);
+            this.lbldefeito.TabIndex = 17;
+            this.lbldefeito.Text = "Defeito:";
+            // 
+            // lblobservacoes
+            // 
+            this.lblobservacoes.AutoSize = true;
+            this.lblobservacoes.Location = new System.Drawing.Point(89, 324);
+            this.lblobservacoes.Name = "lblobservacoes";
+            this.lblobservacoes.Size = new System.Drawing.Size(73, 13);
+            this.lblobservacoes.TabIndex = 19;
+            this.lblobservacoes.Text = "Observações:";
+            // 
+            // lbllaudo
+            // 
+            this.lbllaudo.AutoSize = true;
+            this.lbllaudo.Location = new System.Drawing.Point(520, 324);
+            this.lbllaudo.Name = "lbllaudo";
+            this.lbllaudo.Size = new System.Drawing.Size(78, 13);
+            this.lbllaudo.TabIndex = 21;
+            this.lbllaudo.Text = "Láudo técnico:";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(692, 79);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.Size = new System.Drawing.Size(526, 494);
+            this.dataGridView1.TabIndex = 25;
+            // 
+            // btnnovo
+            // 
+            this.btnnovo.Location = new System.Drawing.Point(746, 732);
+            this.btnnovo.Name = "btnnovo";
+            this.btnnovo.Size = new System.Drawing.Size(75, 23);
+            this.btnnovo.TabIndex = 19;
+            this.btnnovo.Text = "Novo";
+            this.btnnovo.UseVisualStyleBackColor = true;
+            // 
+            // btnadicionar
+            // 
+            this.btnadicionar.Location = new System.Drawing.Point(836, 732);
+            this.btnadicionar.Name = "btnadicionar";
+            this.btnadicionar.Size = new System.Drawing.Size(75, 23);
+            this.btnadicionar.TabIndex = 20;
+            this.btnadicionar.Text = "Adicionar";
+            this.btnadicionar.UseVisualStyleBackColor = true;
+            // 
+            // btnalterar
+            // 
+            this.btnalterar.Location = new System.Drawing.Point(928, 732);
+            this.btnalterar.Name = "btnalterar";
+            this.btnalterar.Size = new System.Drawing.Size(75, 23);
+            this.btnalterar.TabIndex = 21;
+            this.btnalterar.Text = "Alterar";
+            this.btnalterar.UseVisualStyleBackColor = true;
+            // 
+            // btnexcluir
+            // 
+            this.btnexcluir.Location = new System.Drawing.Point(1021, 732);
+            this.btnexcluir.Name = "btnexcluir";
+            this.btnexcluir.Size = new System.Drawing.Size(75, 23);
+            this.btnexcluir.TabIndex = 22;
+            this.btnexcluir.Text = "Excluir";
+            this.btnexcluir.UseVisualStyleBackColor = true;
+            // 
+            // btncancelar
+            // 
+            this.btncancelar.Location = new System.Drawing.Point(1112, 732);
+            this.btncancelar.Name = "btncancelar";
+            this.btncancelar.Size = new System.Drawing.Size(75, 23);
+            this.btncancelar.TabIndex = 23;
+            this.btncancelar.Text = "Cancelar";
+            this.btncancelar.UseVisualStyleBackColor = true;
+            // 
+            // lblnumeroos
+            // 
+            this.lblnumeroos.AutoSize = true;
+            this.lblnumeroos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblnumeroos.ForeColor = System.Drawing.Color.Red;
+            this.lblnumeroos.Location = new System.Drawing.Point(1098, 11);
+            this.lblnumeroos.Name = "lblnumeroos";
+            this.lblnumeroos.Size = new System.Drawing.Size(32, 16);
+            this.lblnumeroos.TabIndex = 22;
+            this.lblnumeroos.Text = "OS:";
+            // 
+            // btnadicionarp
+            // 
+            this.btnadicionarp.Location = new System.Drawing.Point(458, 550);
+            this.btnadicionarp.Name = "btnadicionarp";
+            this.btnadicionarp.Size = new System.Drawing.Size(75, 23);
+            this.btnadicionarp.TabIndex = 17;
+            this.btnadicionarp.Text = "Adicionar";
+            this.btnadicionarp.UseVisualStyleBackColor = true;
+            // 
+            // btnadicionars
+            // 
+            this.btnadicionars.Location = new System.Drawing.Point(458, 505);
+            this.btnadicionars.Name = "btnadicionars";
+            this.btnadicionars.Size = new System.Drawing.Size(75, 23);
+            this.btnadicionars.TabIndex = 14;
+            this.btnadicionars.Text = "Adicionar";
+            this.btnadicionars.UseVisualStyleBackColor = true;
+            // 
+            // lblquantidadep
+            // 
+            this.lblquantidadep.AutoSize = true;
+            this.lblquantidadep.Location = new System.Drawing.Point(313, 559);
+            this.lblquantidadep.Name = "lblquantidadep";
+            this.lblquantidadep.Size = new System.Drawing.Size(65, 13);
+            this.lblquantidadep.TabIndex = 42;
+            this.lblquantidadep.Text = "Quantidade:";
+            // 
+            // txtquantidadep
+            // 
+            this.txtquantidadep.Location = new System.Drawing.Point(384, 552);
+            this.txtquantidadep.MaxLength = 11;
+            this.txtquantidadep.Name = "txtquantidadep";
+            this.txtquantidadep.Size = new System.Drawing.Size(63, 20);
+            this.txtquantidadep.TabIndex = 16;
+            // 
+            // cbproduto
+            // 
+            this.cbproduto.FormattingEnabled = true;
+            this.cbproduto.Location = new System.Drawing.Point(60, 551);
+            this.cbproduto.MaxLength = 80;
+            this.cbproduto.Name = "cbproduto";
+            this.cbproduto.Size = new System.Drawing.Size(241, 21);
+            this.cbproduto.TabIndex = 15;
+            // 
+            // lblproduto
+            // 
+            this.lblproduto.AutoSize = true;
+            this.lblproduto.Location = new System.Drawing.Point(10, 554);
+            this.lblproduto.Name = "lblproduto";
+            this.lblproduto.Size = new System.Drawing.Size(47, 13);
+            this.lblproduto.TabIndex = 39;
+            this.lblproduto.Text = "Produto:";
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.codigo,
+            this.descricao,
+            this.quantidade,
+            this.valor_unitario,
+            this.valor_total});
+            this.dataGridView2.Location = new System.Drawing.Point(12, 575);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
+            this.dataGridView2.RowHeadersVisible = false;
+            this.dataGridView2.Size = new System.Drawing.Size(672, 183);
+            this.dataGridView2.TabIndex = 38;
+            // 
+            // lblquantidades
+            // 
+            this.lblquantidades.AutoSize = true;
+            this.lblquantidades.Location = new System.Drawing.Point(313, 514);
+            this.lblquantidades.Name = "lblquantidades";
+            this.lblquantidades.Size = new System.Drawing.Size(65, 13);
+            this.lblquantidades.TabIndex = 37;
+            this.lblquantidades.Text = "Quantidade:";
+            // 
+            // txtquantidades
+            // 
+            this.txtquantidades.Location = new System.Drawing.Point(384, 507);
+            this.txtquantidades.MaxLength = 11;
+            this.txtquantidades.Name = "txtquantidades";
+            this.txtquantidades.Size = new System.Drawing.Size(63, 20);
+            this.txtquantidades.TabIndex = 13;
+            // 
+            // cbservico
+            // 
+            this.cbservico.FormattingEnabled = true;
+            this.cbservico.Location = new System.Drawing.Point(60, 506);
+            this.cbservico.MaxLength = 80;
+            this.cbservico.Name = "cbservico";
+            this.cbservico.Size = new System.Drawing.Size(241, 21);
+            this.cbservico.TabIndex = 12;
+            // 
+            // lblservico
+            // 
+            this.lblservico.AutoSize = true;
+            this.lblservico.Location = new System.Drawing.Point(10, 509);
+            this.lblservico.Name = "lblservico";
+            this.lblservico.Size = new System.Drawing.Size(46, 13);
+            this.lblservico.TabIndex = 34;
+            this.lblservico.Text = "Serviço:";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1108, 589);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(110, 23);
+            this.button1.TabIndex = 24;
+            this.button1.Text = "Gerar pagamento";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // txtdescricao
+            // 
+            this.txtdescricao.Location = new System.Drawing.Point(12, 135);
+            this.txtdescricao.Name = "txtdescricao";
+            this.txtdescricao.Size = new System.Drawing.Size(241, 154);
+            this.txtdescricao.TabIndex = 8;
+            this.txtdescricao.Text = "";
+            // 
+            // txtdefeito
+            // 
+            this.txtdefeito.Location = new System.Drawing.Point(426, 135);
+            this.txtdefeito.Name = "txtdefeito";
+            this.txtdefeito.Size = new System.Drawing.Size(241, 154);
+            this.txtdefeito.TabIndex = 9;
+            this.txtdefeito.Text = "";
+            // 
+            // txtobservacao
+            // 
+            this.txtobservacao.Location = new System.Drawing.Point(12, 340);
+            this.txtobservacao.Name = "txtobservacao";
+            this.txtobservacao.Size = new System.Drawing.Size(241, 154);
+            this.txtobservacao.TabIndex = 10;
+            this.txtobservacao.Text = "";
+            // 
+            // txtlaudo
+            // 
+            this.txtlaudo.Location = new System.Drawing.Point(426, 340);
+            this.txtlaudo.Name = "txtlaudo";
+            this.txtlaudo.Size = new System.Drawing.Size(241, 154);
+            this.txtlaudo.TabIndex = 11;
+            this.txtlaudo.Text = "";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(588, 549);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(96, 23);
+            this.button2.TabIndex = 18;
+            this.button2.Text = "Excluir da lista";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // codigo
+            // 
+            this.codigo.HeaderText = "Código";
+            this.codigo.Name = "codigo";
+            this.codigo.ReadOnly = true;
+            this.codigo.Width = 65;
+            // 
+            // descricao
+            // 
+            this.descricao.HeaderText = "Descrição";
+            this.descricao.Name = "descricao";
+            this.descricao.ReadOnly = true;
+            this.descricao.Width = 80;
+            // 
+            // quantidade
+            // 
+            this.quantidade.HeaderText = "Quantidade";
+            this.quantidade.Name = "quantidade";
+            this.quantidade.ReadOnly = true;
+            this.quantidade.Width = 87;
+            // 
+            // valor_unitario
+            // 
+            this.valor_unitario.HeaderText = "Valor unitário";
+            this.valor_unitario.Name = "valor_unitario";
+            this.valor_unitario.ReadOnly = true;
+            this.valor_unitario.Width = 93;
+            // 
+            // valor_total
+            // 
+            this.valor_total.HeaderText = "Valor total";
+            this.valor_total.Name = "valor_total";
+            this.valor_total.ReadOnly = true;
+            this.valor_total.Width = 79;
+            // 
+            // frmOS
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1223, 767);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.txtlaudo);
+            this.Controls.Add(this.txtobservacao);
+            this.Controls.Add(this.txtdefeito);
+            this.Controls.Add(this.txtdescricao);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnadicionarp);
+            this.Controls.Add(this.btnadicionars);
+            this.Controls.Add(this.lblquantidadep);
+            this.Controls.Add(this.txtquantidadep);
+            this.Controls.Add(this.cbproduto);
+            this.Controls.Add(this.lblproduto);
+            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.lblquantidades);
+            this.Controls.Add(this.txtquantidades);
+            this.Controls.Add(this.cbservico);
+            this.Controls.Add(this.lblservico);
+            this.Controls.Add(this.lblnumeroos);
+            this.Controls.Add(this.btncancelar);
+            this.Controls.Add(this.btnexcluir);
+            this.Controls.Add(this.btnalterar);
+            this.Controls.Add(this.btnadicionar);
+            this.Controls.Add(this.btnnovo);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.lbllaudo);
+            this.Controls.Add(this.lblobservacoes);
+            this.Controls.Add(this.lbldefeito);
+            this.Controls.Add(this.lbldescricaoprodserv);
+            this.Controls.Add(this.lbltermo);
+            this.Controls.Add(this.txttermo);
+            this.Controls.Add(this.lblgarantia);
+            this.Controls.Add(this.txtgarantia);
+            this.Controls.Add(this.lbldatafinal);
+            this.Controls.Add(this.dtfinal);
+            this.Controls.Add(this.lbldatainicial);
+            this.Controls.Add(this.dtinicial);
+            this.Controls.Add(this.cbstatus);
+            this.Controls.Add(this.lblstatus);
+            this.Controls.Add(this.cbtecnico);
+            this.Controls.Add(this.lbltecnico);
+            this.Controls.Add(this.cbclientes);
+            this.Controls.Add(this.lblcliente);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "frmOS";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Cadastro de OS";
+            this.Load += new System.EventHandler(this.frmOS_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Label lblcliente;
+        private System.Windows.Forms.ComboBox cbclientes;
+        private System.Windows.Forms.ComboBox cbtecnico;
+        private System.Windows.Forms.Label lbltecnico;
+        private System.Windows.Forms.ComboBox cbstatus;
+        private System.Windows.Forms.Label lblstatus;
+        private System.Windows.Forms.DateTimePicker dtinicial;
+        private System.Windows.Forms.Label lbldatainicial;
+        private System.Windows.Forms.Label lbldatafinal;
+        private System.Windows.Forms.DateTimePicker dtfinal;
+        private System.Windows.Forms.TextBox txtgarantia;
+        private System.Windows.Forms.Label lblgarantia;
+        private System.Windows.Forms.Label lbltermo;
+        private System.Windows.Forms.TextBox txttermo;
+        private System.Windows.Forms.Label lbldescricaoprodserv;
+        private System.Windows.Forms.Label lbldefeito;
+        private System.Windows.Forms.Label lblobservacoes;
+        private System.Windows.Forms.Label lbllaudo;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button btnnovo;
+        private System.Windows.Forms.Button btnadicionar;
+        private System.Windows.Forms.Button btnalterar;
+        private System.Windows.Forms.Button btnexcluir;
+        private System.Windows.Forms.Button btncancelar;
+        private System.Windows.Forms.Label lblnumeroos;
+        private System.Windows.Forms.Button btnadicionarp;
+        private System.Windows.Forms.Button btnadicionars;
+        private System.Windows.Forms.Label lblquantidadep;
+        private System.Windows.Forms.TextBox txtquantidadep;
+        private System.Windows.Forms.ComboBox cbproduto;
+        private System.Windows.Forms.Label lblproduto;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Label lblquantidades;
+        private System.Windows.Forms.TextBox txtquantidades;
+        private System.Windows.Forms.ComboBox cbservico;
+        private System.Windows.Forms.Label lblservico;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.RichTextBox txtdescricao;
+        private System.Windows.Forms.RichTextBox txtdefeito;
+        private System.Windows.Forms.RichTextBox txtobservacao;
+        private System.Windows.Forms.RichTextBox txtlaudo;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codigo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descricao;
+        private System.Windows.Forms.DataGridViewTextBoxColumn quantidade;
+        private System.Windows.Forms.DataGridViewTextBoxColumn valor_unitario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn valor_total;
+    }
+}
