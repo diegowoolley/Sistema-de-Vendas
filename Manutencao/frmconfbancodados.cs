@@ -23,7 +23,7 @@ namespace Sistema_de_Vendas
         {
             try
             {
-                StreamWriter arquivo = new StreamWriter("ConfigBD.txt", false);
+                StreamWriter arquivo = new StreamWriter("ConfigBD.pfx", false);
                 arquivo.WriteLine(txtservidor.Text);
                 arquivo.WriteLine(txtbancodados.Text);
                 arquivo.WriteLine(txtusuario.Text);
@@ -45,7 +45,7 @@ namespace Sistema_de_Vendas
         {
             try
             {
-                StreamReader arquivo = new StreamReader("ConfigBD.txt");
+                StreamReader arquivo = new StreamReader("ConfigBD.pfx");
                 txtservidor.Text = arquivo.ReadLine();
                 txtbancodados.Text = arquivo.ReadLine();
                 txtusuario.Text = arquivo.ReadLine();
