@@ -459,7 +459,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>RECIBO DE </Value>
+                  <Value xml:space="preserve"> </Value>
                   <Style>
                     <FontSize>12pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -1033,6 +1033,44 @@
           <Height>0.6cm</Height>
           <Width>2.44856cm</Width>
           <ZIndex>16</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox2">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>IE:  </Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value>=First(Fields!inscricao.Value, "DataSet2")</Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox2</rd:DefaultName>
+          <Top>2.22854cm</Top>
+          <Left>8.34209cm</Left>
+          <Height>0.62469cm</Height>
+          <Width>4.83088cm</Width>
+          <ZIndex>17</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1683,6 +1721,10 @@
         <Field Name="foto">
           <DataField>foto</DataField>
           <rd:TypeName>System.Byte[]</rd:TypeName>
+        </Field>
+        <Field Name="inscricao">
+          <DataField>inscricao</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="nome">
           <DataField>nome</DataField>
