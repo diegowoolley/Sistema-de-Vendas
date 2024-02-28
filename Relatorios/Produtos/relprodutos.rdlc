@@ -48,6 +48,7 @@
                             <TextRun>
                               <Value>Código</Value>
                               <Style>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -82,6 +83,7 @@
                             <TextRun>
                               <Value>Descrição</Value>
                               <Style>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -116,6 +118,7 @@
                             <TextRun>
                               <Value>Categoria</Value>
                               <Style>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -150,6 +153,7 @@
                             <TextRun>
                               <Value>Un</Value>
                               <Style>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -184,6 +188,7 @@
                             <TextRun>
                               <Value>Qtd</Value>
                               <Style>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -218,6 +223,7 @@
                             <TextRun>
                               <Value>Fornecedor</Value>
                               <Style>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -252,6 +258,7 @@
                             <TextRun>
                               <Value>Valor </Value>
                               <Style>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -286,6 +293,7 @@
                             <TextRun>
                               <Value>Validade</Value>
                               <Style>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -320,6 +328,7 @@
                             <TextRun>
                               <Value>Código de Barras</Value>
                               <Style>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -358,7 +367,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!cod_produto.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -390,7 +401,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!nome_produto.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -422,7 +435,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!categoria_produto.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -454,7 +469,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!unidade_medida.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -486,7 +503,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!quantidade.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -518,7 +537,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!fornecedor.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -550,7 +571,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!valor_venda.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -582,7 +605,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!validade.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -614,7 +639,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!etiqueta.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -1265,6 +1292,45 @@
             <PaddingBottom>2pt</PaddingBottom>
           </Style>
         </Textbox>
+        <Textbox Name="Textbox5">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>IE:  </Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value>=First(Fields!inscricao.Value, "DataSet2")</Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox5</rd:DefaultName>
+          <Top>2.0006cm</Top>
+          <Left>8.41617cm</Left>
+          <Height>0.6cm</Height>
+          <Width>4.7568cm</Width>
+          <ZIndex>17</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
       </ReportItems>
       <Style>
         <Border>
@@ -1467,6 +1533,10 @@
         <Field Name="foto">
           <DataField>foto</DataField>
           <rd:TypeName>System.Byte[]</rd:TypeName>
+        </Field>
+        <Field Name="inscricao">
+          <DataField>inscricao</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="nome">
           <DataField>nome</DataField>
