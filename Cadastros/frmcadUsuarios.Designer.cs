@@ -96,7 +96,6 @@
             this.cbPermissoes.Items.AddRange(new object[] {
             "Administrador",
             "Usuário",
-            "Gerente",
             "Support"});
             this.cbPermissoes.Location = new System.Drawing.Point(81, 80);
             this.cbPermissoes.Name = "cbPermissoes";
@@ -155,7 +154,7 @@
             this.MinimizeBox = false;
             this.Name = "frmcadUsuarios";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Cadastro de Usuários";            
+            this.Text = "Cadastro de Usuários";
             this.ResumeLayout(false);
             this.PerformLayout();
 

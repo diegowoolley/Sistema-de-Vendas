@@ -48,28 +48,37 @@ namespace Sistema_de_Vendas
 
         private void Buscar()
         {
-            string fornecedor = txtpesquisa.Text;
-            con.AbrirConexao();
-            sql = "SELECT * FROM cad_fornecedores WHERE cod_empresa = @cod_empresa AND nome_fornecedor LIKE @nome or documento_fornecedor LIKE @documento";
-            cmd = new MySqlCommand(sql, con.con);
-            cmd.Parameters.AddWithValue("@nome", "%" + fornecedor + "%");
-            cmd.Parameters.AddWithValue("@documento", "%" + fornecedor + "%");
-            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
-            MySqlDataAdapter da = new MySqlDataAdapter();
-            da.SelectCommand = cmd;
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            dgCliente.DataSource = dt;
-            con.FecharConexao();
+            try
+            {
+                string fornecedor = txtpesquisa.Text;
+                con.AbrirConexao();
+                sql = "SELECT * FROM cad_fornecedores WHERE cod_empresa = @cod_empresa AND nome_fornecedor LIKE @nome or documento_fornecedor LIKE @documento";
+                cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@nome", "%" + fornecedor + "%");
+                cmd.Parameters.AddWithValue("@documento", "%" + fornecedor + "%");
+                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dgCliente.DataSource = dt;
+                con.FecharConexao();
 
-            formatargrid();
+                formatargrid();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            
 
         }
      
         private void Limparfoto()
         {
-            pbFoto.Image = Properties.Resources.download;
-            foto = "download.png";
+            pbFoto.Image = Properties.Resources.download1;
+            foto = "download1.png";
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -274,16 +283,25 @@ namespace Sistema_de_Vendas
 
         private void Listar()
         {
-            con.AbrirConexao();
-            sql = "SELECT * FROM cad_fornecedores WHERE cod_empresa = @cod_empresa ORDER BY nome_fornecedor ASC";
-            cmd = new MySqlCommand(sql, con.con);
-            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
-            MySqlDataAdapter da = new MySqlDataAdapter();
-            da.SelectCommand = cmd;
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            dgCliente.DataSource = dt;
-            con.FecharConexao();
+            try
+            {
+                con.AbrirConexao();
+                sql = "SELECT * FROM cad_fornecedores WHERE cod_empresa = @cod_empresa ORDER BY nome_fornecedor ASC";
+                cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dgCliente.DataSource = dt;
+                con.FecharConexao();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            
         }
 
         private void formatargrid()
@@ -301,6 +319,8 @@ namespace Sistema_de_Vendas
             dgCliente.Columns[10].HeaderText = "Foto";
             dgCliente.Columns[10].Visible = false;
             dgCliente.Columns[11].HeaderText = "E-mail";
+            dgCliente.Columns[12].HeaderText = "Código da empresa";
+            dgCliente.Columns[12].Visible = false;
 
 
             dgCliente.Columns[0].Visible = false;
@@ -410,36 +430,38 @@ namespace Sistema_de_Vendas
         private void btnAlterar_Click(object sender, EventArgs e)
         {
 
-            if (txtnome.Text.ToString().Trim() == "")
+            try
             {
-                MessageBox.Show("Digite um nome para o fornecedor!");
-                txtnome.Clear();
-                txtnome.Focus();
-                return;
-            }
-            if (txtdocumento.Text.ToString().Trim() == "")
-            {
-                MessageBox.Show("Digite um documento para o fornecedor!");
-                txtdocumento.Clear();
-                txtdocumento.Focus();
-                return;
+                if (txtnome.Text.ToString().Trim() == "")
+                {
+                    MessageBox.Show("Digite um nome para o fornecedor!");
+                    txtnome.Clear();
+                    txtnome.Focus();
+                    return;
+                }
+                if (txtdocumento.Text.ToString().Trim() == "")
+                {
+                    MessageBox.Show("Digite um documento para o fornecedor!");
+                    txtdocumento.Clear();
+                    txtdocumento.Focus();
+                    return;
 
-            }
+                }
 
 
 
-            if (txtemail.Text.Contains("@"))
-            {
-                txtemail.Focus();
-            }
-            else
-            {
-                MessageBox.Show("E-mail inválido!");
-                txtemail.Clear();
-                txtemail.Focus();
-                return;
-            }                               
-            
+                if (txtemail.Text.Contains("@"))
+                {
+                    txtemail.Focus();
+                }
+                else
+                {
+                    MessageBox.Show("E-mail inválido!");
+                    txtemail.Clear();
+                    txtemail.Focus();
+                    return;
+                }
+
 
 
                 if (alterou_foto == "s")
@@ -533,54 +555,67 @@ namespace Sistema_de_Vendas
                 Limparfoto();
                 btnNovo.Focus();
                 alterou_foto = "n";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            var res = MessageBox.Show("Deseja realmente excluir esse registro?", "Excluir Fornecedor", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            try
+            {
+                var res = MessageBox.Show("Deseja realmente excluir esse registro?", "Excluir Fornecedor", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (res == DialogResult.Yes)
-            {
-                con.AbrirConexao();
-                sql = "DELETE FROM cad_fornecedores WHERE cod_fornecedor = @id";
-                cmd = new MySqlCommand(sql, con.con);
-                cmd.Parameters.AddWithValue("@id", id);
-                cmd.ExecuteNonQuery();
-                con.FecharConexao();
-                Limparfoto();
-                Listar();
-                txtnome.Enabled = false;
-                txtnome.Clear();
-                txtdocumento.Enabled = false;
-                txtdocumento.Clear();
-                txtemail.Enabled = false;   
-                txtemail.Clear();
-                txtendereco.Enabled = false;
-                txtendereco.Clear();
-                txtbairro.Enabled = false;
-                txtbairro.Clear();
-                txtnumero.Enabled = false;
-                txtnumero.Clear();
-                txtcidade.Enabled = false;
-                txtcidade.Clear();
-                cbestados.Enabled = false;
-                cbestados.SelectedIndex = -1;
-                txttelefone.Enabled = false;
-                txttelefone.Clear();
-                txtcelular.Enabled = false;
-                txtcelular.Clear();
-                btnAdicionar.Enabled = false;
-                btnAlterar.Enabled = false;
-                btnExcluir.Enabled = false;
-                btnfoto.Enabled = false;
-                btnNovo.Enabled = true;
-                btnNovo.Focus();
+                if (res == DialogResult.Yes)
+                {
+                    con.AbrirConexao();
+                    sql = "DELETE FROM cad_fornecedores WHERE cod_fornecedor = @id";
+                    cmd = new MySqlCommand(sql, con.con);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.ExecuteNonQuery();
+                    con.FecharConexao();
+                    Limparfoto();
+                    Listar();
+                    txtnome.Enabled = false;
+                    txtnome.Clear();
+                    txtdocumento.Enabled = false;
+                    txtdocumento.Clear();
+                    txtemail.Enabled = false;
+                    txtemail.Clear();
+                    txtendereco.Enabled = false;
+                    txtendereco.Clear();
+                    txtbairro.Enabled = false;
+                    txtbairro.Clear();
+                    txtnumero.Enabled = false;
+                    txtnumero.Clear();
+                    txtcidade.Enabled = false;
+                    txtcidade.Clear();
+                    cbestados.Enabled = false;
+                    cbestados.SelectedIndex = -1;
+                    txttelefone.Enabled = false;
+                    txttelefone.Clear();
+                    txtcelular.Enabled = false;
+                    txtcelular.Clear();
+                    btnAdicionar.Enabled = false;
+                    btnAlterar.Enabled = false;
+                    btnExcluir.Enabled = false;
+                    btnfoto.Enabled = false;
+                    btnNovo.Enabled = true;
+                    btnNovo.Focus();
+                }
+                else
+                {
+                    Listar();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Listar();
+                MessageBox.Show(ex.Message);
             }
+           
         }      
        
 
@@ -602,7 +637,6 @@ namespace Sistema_de_Vendas
         {
             Buscar();
         }                
-
        
         private void btncancelarpesquisa_Click(object sender, EventArgs e)
         {

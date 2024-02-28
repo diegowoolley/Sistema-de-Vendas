@@ -283,16 +283,25 @@ namespace Sistema_de_Vendas
 
         private void Listar()
         {
-            con.AbrirConexao();
-            sql = "SELECT * FROM cad_clientes WHERE cod_empresa = @cod_empresa ORDER BY nome_clientes ASC";
-            cmd = new MySqlCommand(sql, con.con);
-            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
-            MySqlDataAdapter da = new MySqlDataAdapter();
-            da.SelectCommand = cmd;
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            dgCliente.DataSource = dt;
-            con.FecharConexao();
+            try
+            {
+                con.AbrirConexao();
+                sql = "SELECT * FROM cad_clientes WHERE cod_empresa = @cod_empresa ORDER BY nome_clientes ASC";
+                cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dgCliente.DataSource = dt;
+                con.FecharConexao();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+          
         }
 
         private void formatargrid()
@@ -313,6 +322,8 @@ namespace Sistema_de_Vendas
             dgCliente.Columns[13].HeaderText = "Status";
             dgCliente.Columns[14].HeaderText = "Foto";
             dgCliente.Columns[14].Visible = false;
+            dgCliente.Columns[15].HeaderText = "Código da empresa";
+            dgCliente.Columns[15].Visible = false;
 
 
             dgCliente.Columns[0].Visible = false;
@@ -418,48 +429,50 @@ namespace Sistema_de_Vendas
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            string status;
-
-            if (rbbloqueado.Checked == true)
+            try
             {
-                status = "BLOQUEADO";
-            }
-            else
-            {
-                status = "DESBLOQUEADO";
-            }
+                string status;
+
+                if (rbbloqueado.Checked == true)
+                {
+                    status = "BLOQUEADO";
+                }
+                else
+                {
+                    status = "DESBLOQUEADO";
+                }
 
 
-            if (txtnome.Text.ToString().Trim() == "")
-            {
-                MessageBox.Show("Digite um nome para o usuário!");
-                txtnome.Clear();
-                txtnome.Focus();
-                return;
-            }
-            if (txtdocumento.Text.ToString().Trim() == "")
-            {
-                MessageBox.Show("Digite um documento para o usuário!");
-                txtdocumento.Clear();
-                txtdocumento.Focus();
-                return;
+                if (txtnome.Text.ToString().Trim() == "")
+                {
+                    MessageBox.Show("Digite um nome para o usuário!");
+                    txtnome.Clear();
+                    txtnome.Focus();
+                    return;
+                }
+                if (txtdocumento.Text.ToString().Trim() == "")
+                {
+                    MessageBox.Show("Digite um documento para o usuário!");
+                    txtdocumento.Clear();
+                    txtdocumento.Focus();
+                    return;
 
-            }
+                }
 
 
-            if (txtemail.Text.Contains("@"))
-            {
-                txtemail.Focus();
-            }
-            else
-            {
-                MessageBox.Show("E-mail inválido!");
-                txtemail.Clear();
-                txtemail.Focus();
-                return;
-            }
+                if (txtemail.Text.Contains("@"))
+                {
+                    txtemail.Focus();
+                }
+                else
+                {
+                    MessageBox.Show("E-mail inválido!");
+                    txtemail.Clear();
+                    txtemail.Focus();
+                    return;
+                }
 
-           
+
 
                 if (alterou_foto == "s")
                 {
@@ -476,7 +489,7 @@ namespace Sistema_de_Vendas
                     cmd.Parameters.AddWithValue("@cidade", txtcidade.Text);
                     cmd.Parameters.AddWithValue("@estado", cbestados.Text);
                     cmd.Parameters.AddWithValue("@telefone", txttelefone.Text);
-                    cmd.Parameters.AddWithValue("@celular", txtcelular.Text);                    
+                    cmd.Parameters.AddWithValue("@celular", txtcelular.Text);
                     cmd.Parameters.AddWithValue("@valoraberto", txtvaloraberto.Text);
                     cmd.Parameters.AddWithValue("@inadimplente", cbinadimplente.Text);
                     cmd.Parameters.AddWithValue("@status", status);
@@ -566,80 +579,103 @@ namespace Sistema_de_Vendas
                 Limparfoto();
                 btnNovo.Focus();
                 alterou_foto = "n";
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
             
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            var res = MessageBox.Show("Deseja realmente excluir esse registro?", "Excluir Cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (res == DialogResult.Yes)
+            try
             {
-                con.AbrirConexao();
-                sql = "DELETE FROM cad_clientes WHERE cod_clientes = @id";
-                cmd = new MySqlCommand(sql, con.con);
-                cmd.Parameters.AddWithValue("@id", id);
-                cmd.ExecuteNonQuery();
-                con.FecharConexao();
-                Limparfoto();
-                Listar();
-                txtnome.Enabled = false;
-                txtnome.Clear();
-                txtdocumento.Enabled = false;
-                txtdocumento.Clear();
-                txtemail.Enabled = false;
-                txtemail.Clear();
-                txtendereco.Enabled = false;
-                txtendereco.Clear();
-                txtbairro.Enabled = false;
-                txtbairro.Clear();
-                txtnumero.Enabled = false;
-                txtnumero.Clear();
-                txtcidade.Enabled = false;
-                txtcidade.Clear();
-                cbestados.Enabled = false;
-                cbestados.SelectedIndex = -1;
-                txttelefone.Enabled = false;
-                txttelefone.Clear();
-                txtcelular.Enabled = false;
-                txtcelular.Clear();
-                txtvaloraberto.Enabled = false;
-                txtvaloraberto.Clear();
-                cbinadimplente.Enabled = false;
-                cbinadimplente.SelectedIndex = -1;
-                rbbloqueado.Enabled = false;
-                rbdesbloqueado.Enabled = false;
+                var res = MessageBox.Show("Deseja realmente excluir esse registro?", "Excluir Cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                btnAdicionar.Enabled = false;
-                btnAlterar.Enabled = false;
-                btnExcluir.Enabled = false;
-                btnfoto.Enabled = false;
-                btnNovo.Enabled = true;
-                btnNovo.Focus();
+                if (res == DialogResult.Yes)
+                {
+                    con.AbrirConexao();
+                    sql = "DELETE FROM cad_clientes WHERE cod_clientes = @id";
+                    cmd = new MySqlCommand(sql, con.con);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.ExecuteNonQuery();
+                    con.FecharConexao();
+                    Limparfoto();
+                    Listar();
+                    txtnome.Enabled = false;
+                    txtnome.Clear();
+                    txtdocumento.Enabled = false;
+                    txtdocumento.Clear();
+                    txtemail.Enabled = false;
+                    txtemail.Clear();
+                    txtendereco.Enabled = false;
+                    txtendereco.Clear();
+                    txtbairro.Enabled = false;
+                    txtbairro.Clear();
+                    txtnumero.Enabled = false;
+                    txtnumero.Clear();
+                    txtcidade.Enabled = false;
+                    txtcidade.Clear();
+                    cbestados.Enabled = false;
+                    cbestados.SelectedIndex = -1;
+                    txttelefone.Enabled = false;
+                    txttelefone.Clear();
+                    txtcelular.Enabled = false;
+                    txtcelular.Clear();
+                    txtvaloraberto.Enabled = false;
+                    txtvaloraberto.Clear();
+                    cbinadimplente.Enabled = false;
+                    cbinadimplente.SelectedIndex = -1;
+                    rbbloqueado.Enabled = false;
+                    rbdesbloqueado.Enabled = false;
+
+                    btnAdicionar.Enabled = false;
+                    btnAlterar.Enabled = false;
+                    btnExcluir.Enabled = false;
+                    btnfoto.Enabled = false;
+                    btnNovo.Enabled = true;
+                    btnNovo.Focus();
+                }
+                else
+                {
+                    Listar();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Listar();
+                MessageBox.Show(ex.Message);
             }
+           
         }
 
         private void Buscar()
         {
-            string pesquisa = txtpesquisa.Text;
-            con.AbrirConexao();
-            sql = "SELECT * FROM cad_clientes WHERE cod_empresa = @cod_empresa AND nome_clientes LIKE @nome or documento_clientes LIKE @documento";
-            cmd = new MySqlCommand(sql, con.con);
-            cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
-            cmd.Parameters.AddWithValue("@documento", "%" + pesquisa + "%");
-            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
-            MySqlDataAdapter da = new MySqlDataAdapter();
-            da.SelectCommand = cmd;
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            dgCliente.DataSource = dt;
-            con.FecharConexao();
+            try
+            {
+                string pesquisa = txtpesquisa.Text;
+                con.AbrirConexao();
+                sql = "SELECT * FROM cad_clientes WHERE cod_empresa = @cod_empresa AND nome_clientes LIKE @nome or documento_clientes LIKE @documento";
+                cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
+                cmd.Parameters.AddWithValue("@documento", "%" + pesquisa + "%");
+                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dgCliente.DataSource = dt;
+                con.FecharConexao();
 
-            formatargrid();
+                formatargrid();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+             
+            }
+            
             
 
         }                 

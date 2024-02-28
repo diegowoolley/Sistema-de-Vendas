@@ -30,18 +30,25 @@ namespace Sistema_de_Vendas.Cadastros
 
         private void Listar()
         {
-            con.AbrirConexao();
-            sql = "SELECT * FROM cad_servicos WHERE cod_empresa = @cod_empresa ORDER BY descricao ASC";
-            cmd = new MySqlCommand(sql, con.con);
-            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
-            MySqlDataAdapter da = new MySqlDataAdapter();
-            da.SelectCommand = cmd;
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            dgCliente.DataSource = dt;
-            con.FecharConexao();
+            try
+            {
+                con.AbrirConexao();
+                sql = "SELECT * FROM cad_servicos WHERE cod_empresa = @cod_empresa ORDER BY descricao ASC";
+                cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dgCliente.DataSource = dt;
+                con.FecharConexao();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+         
         }
-
 
         private void formatargrid()
         {
@@ -49,6 +56,8 @@ namespace Sistema_de_Vendas.Cadastros
             dgCliente.Columns[1].HeaderText = "Descrição";
             dgCliente.Columns[2].HeaderText = "Valor";
             dgCliente.Columns[0].Visible = false;
+            dgCliente.Columns[3].HeaderText = "Código da empresa";
+            dgCliente.Columns[3].Visible = false;
 
         }
 
@@ -200,32 +209,39 @@ namespace Sistema_de_Vendas.Cadastros
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            var res = MessageBox.Show("Deseja realmente excluir esse registro?", "Excluir serviço", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (res == DialogResult.Yes)
+            try
             {
-                con.AbrirConexao();
-                sql = "DELETE FROM cad_servicos WHERE cod_servico = @id";
-                cmd = new MySqlCommand(sql, con.con);
-                cmd.Parameters.AddWithValue("@id", id);
-                cmd.ExecuteNonQuery();
-                con.FecharConexao();
+                var res = MessageBox.Show("Deseja realmente excluir esse registro?", "Excluir serviço", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                Listar();
+                if (res == DialogResult.Yes)
+                {
+                    con.AbrirConexao();
+                    sql = "DELETE FROM cad_servicos WHERE cod_servico = @id";
+                    cmd = new MySqlCommand(sql, con.con);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.ExecuteNonQuery();
+                    con.FecharConexao();
 
-                txtnome.Enabled = false;
-                txtnome.Clear();
-                txtvalor.Enabled = false;
-                txtvalor.Clear();
-                btnAdicionar.Enabled = false;
-                btnAlterar.Enabled = false;
-                btnExcluir.Enabled = false;
-                btnNovo.Enabled = true;
-                btnNovo.Focus();
+                    Listar();
+
+                    txtnome.Enabled = false;
+                    txtnome.Clear();
+                    txtvalor.Enabled = false;
+                    txtvalor.Clear();
+                    btnAdicionar.Enabled = false;
+                    btnAlterar.Enabled = false;
+                    btnExcluir.Enabled = false;
+                    btnNovo.Enabled = true;
+                    btnNovo.Focus();
+                }
+                else
+                {
+                    Listar();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Listar();
+                MessageBox.Show(ex.Message);
             }
         }
 

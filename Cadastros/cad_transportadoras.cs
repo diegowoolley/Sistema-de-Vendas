@@ -51,28 +51,36 @@ namespace Sistema_de_Vendas.Cadastros
 
         private void Buscar()
         {
-            string fornecedor = txtpesquisa.Text;
-            con.AbrirConexao();
-            sql = "SELECT * FROM cad_transportadoras WHERE cod_empresa = @cod_empresa AND nome_transportadora LIKE @nome or documento_transportadora LIKE @documento";
-            cmd = new MySqlCommand(sql, con.con);
-            cmd.Parameters.AddWithValue("@nome", "%" + fornecedor + "%");
-            cmd.Parameters.AddWithValue("@documento", "%" + fornecedor + "%");
-            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
-            MySqlDataAdapter da = new MySqlDataAdapter();
-            da.SelectCommand = cmd;
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            dgCliente.DataSource = dt;
-            con.FecharConexao();
+            try
+            {
+                string fornecedor = txtpesquisa.Text;
+                con.AbrirConexao();
+                sql = "SELECT * FROM cad_transportadoras WHERE cod_empresa = @cod_empresa AND nome_transportadora LIKE @nome or documento_transportadora LIKE @documento";
+                cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@nome", "%" + fornecedor + "%");
+                cmd.Parameters.AddWithValue("@documento", "%" + fornecedor + "%");
+                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dgCliente.DataSource = dt;
+                con.FecharConexao();
 
-            formatargrid();
+                formatargrid();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);                
+            }
+           
 
         }
 
         private void Limparfoto()
         {
-            pbFoto.Image = Properties.Resources.download;
-            foto = "download.png";
+            pbFoto.Image = Properties.Resources.download1;
+            foto = "download1.png";
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -265,16 +273,25 @@ namespace Sistema_de_Vendas.Cadastros
 
         private void Listar()
         {
-            con.AbrirConexao();
-            sql = "SELECT * FROM cad_transportadoras WHERE cod_empresa = @cod_empresa ORDER BY nome_transportadora ASC";
-            cmd = new MySqlCommand(sql, con.con);
-            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
-            MySqlDataAdapter da = new MySqlDataAdapter();
-            da.SelectCommand = cmd;
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            dgCliente.DataSource = dt;
-            con.FecharConexao();
+            try
+            {
+                con.AbrirConexao();
+                sql = "SELECT * FROM cad_transportadoras WHERE cod_empresa = @cod_empresa ORDER BY nome_transportadora ASC";
+                cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dgCliente.DataSource = dt;
+                con.FecharConexao();
+            }
+            catch (Exception ex)
+            {
+
+               
+            }
+            
         }
 
         private void formatargrid()
@@ -292,6 +309,8 @@ namespace Sistema_de_Vendas.Cadastros
             dgCliente.Columns[10].HeaderText = "Foto";
             dgCliente.Columns[10].Visible = false;
             dgCliente.Columns[11].HeaderText = "E-mail";
+            dgCliente.Columns[12].HeaderText = "Código da empresa";
+            dgCliente.Columns[12].Visible = false;
 
 
             dgCliente.Columns[0].Visible = false;
@@ -382,145 +401,102 @@ namespace Sistema_de_Vendas.Cadastros
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            if (txtnome.Text.ToString().Trim() == "")
+            try
             {
-                MessageBox.Show("Digite um nome para a transportadora!");
-                txtnome.Clear();
-                txtnome.Focus();
-                return;
-            }
-            if (txtdocumento.Text.ToString().Trim() == "")
-            {
-                MessageBox.Show("Digite um documento para a transportadora!");
-                txtdocumento.Clear();
-                txtdocumento.Focus();
-                return;
-
-            }
-
-
-
-            if (txtemail.Text.Contains("@"))
-            {
-                txtemail.Focus();
-            }
-            else
-            {
-                MessageBox.Show("E-mail inválido!");
-                txtemail.Clear();
-                txtemail.Focus();
-                return;
-            }
-
-
-
-            if (alterou_foto == "s")
-            {
-                con.AbrirConexao();
-                sql = "UPDATE cad_transportadoras SET nome_transportadora = @nome, documento_transportadora = @documento, endereco_transportadora = @endereco, bairro_transportadora = @bairro, numero_transportadora = @numero, cidade_transportadora = @cidade, estado_transportadora = @estado, telefone_transportadora = @telefone, celular_transportadora = @celular, foto_transportadora = @foto, email_transportadora = @email WHERE cod_transportadora = @id";
-                cmd = new MySqlCommand(sql, con.con);
-                cmd.Parameters.AddWithValue("@id", id);
-                cmd.Parameters.AddWithValue("@nome", txtnome.Text);
-                cmd.Parameters.AddWithValue("@documento", txtdocumento.Text);
-                cmd.Parameters.AddWithValue("@email", txtemail.Text);
-                cmd.Parameters.AddWithValue("@endereco", txtendereco.Text);
-                cmd.Parameters.AddWithValue("@bairro", txtbairro.Text);
-                cmd.Parameters.AddWithValue("@numero", txtnumero.Text);
-                cmd.Parameters.AddWithValue("@cidade", txtcidade.Text);
-                cmd.Parameters.AddWithValue("@estado", cbestados.Text);
-                cmd.Parameters.AddWithValue("@telefone", txttelefone.Text);
-                cmd.Parameters.AddWithValue("@celular", txtcelular.Text);
-                cmd.Parameters.AddWithValue("@foto", img());
-
-            }
-            else if (alterou_foto == "n")
-            {
-                con.AbrirConexao();
-                sql = "UPDATE cad_transportadoras SET nome_transportadora = @nome, documento_transportadora = @documento, endereco_transportadora = @endereco, bairro_transportadora = @bairro, numero_transportadora = @numero, cidade_transportadora = @cidade, estado_transportadora = @estado, telefone_transportadora = @telefone, celular_transportadora = @celular, email_transportadora = @email WHERE cod_transportadora = @id";
-                cmd = new MySqlCommand(sql, con.con);
-                cmd.Parameters.AddWithValue("@id", id);
-                cmd.Parameters.AddWithValue("@nome", txtnome.Text);
-                cmd.Parameters.AddWithValue("@documento", txtdocumento.Text);
-                cmd.Parameters.AddWithValue("@email", txtemail.Text);
-                cmd.Parameters.AddWithValue("@endereco", txtendereco.Text);
-                cmd.Parameters.AddWithValue("@bairro", txtbairro.Text);
-                cmd.Parameters.AddWithValue("@numero", txtnumero.Text);
-                cmd.Parameters.AddWithValue("@cidade", txtcidade.Text);
-                cmd.Parameters.AddWithValue("@estado", cbestados.Text);
-                cmd.Parameters.AddWithValue("@telefone", txttelefone.Text);
-                cmd.Parameters.AddWithValue("@celular", txtcelular.Text);
-
-            }
-            if (txtdocumento.Text != documentoantigo)
-            {
-                MySqlCommand cmdverificar;
-                cmdverificar = new MySqlCommand("SELECT * FROM cad_transportadoras WHERE documento_transportadora = @documento", con.con);
-                MySqlDataAdapter da = new MySqlDataAdapter();
-                da.SelectCommand = cmdverificar;
-                cmdverificar.Parameters.AddWithValue("@documento", txtdocumento.Text);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                if (dt.Rows.Count > 0)
+                if (txtnome.Text.ToString().Trim() == "")
                 {
-                    MessageBox.Show("Documento já Cadastrado!");
+                    MessageBox.Show("Digite um nome para a transportadora!");
+                    txtnome.Clear();
+                    txtnome.Focus();
+                    return;
+                }
+                if (txtdocumento.Text.ToString().Trim() == "")
+                {
+                    MessageBox.Show("Digite um documento para a transportadora!");
                     txtdocumento.Clear();
                     txtdocumento.Focus();
                     return;
 
                 }
 
-            }
-            cmd.ExecuteNonQuery();
-            con.FecharConexao();
-            Listar();
 
 
-            MessageBox.Show("Registro Alterado com Sucesso!!");
-            txtnome.Enabled = false;
-            txtnome.Clear();
-            txtdocumento.Enabled = false;
-            txtdocumento.Clear();
-            txtemail.Enabled = false;
-            txtemail.Clear();
-            txtendereco.Enabled = false;
-            txtendereco.Clear();
-            txtbairro.Enabled = false;
-            txtbairro.Clear();
-            txtnumero.Enabled = false;
-            txtnumero.Clear();
-            txtcidade.Enabled = false;
-            txtcidade.Clear();
-            cbestados.Enabled = false;
-            cbestados.SelectedIndex = -1;
-            txttelefone.Enabled = false;
-            txttelefone.Clear();
-            txtcelular.Enabled = false;
-            txtcelular.Clear();
-            btnAdicionar.Enabled = false;
-            btnAlterar.Enabled = false;
-            btnExcluir.Enabled = false;
+                if (txtemail.Text.Contains("@"))
+                {
+                    txtemail.Focus();
+                }
+                else
+                {
+                    MessageBox.Show("E-mail inválido!");
+                    txtemail.Clear();
+                    txtemail.Focus();
+                    return;
+                }
 
-            btnfoto.Enabled = false;
-            btnNovo.Enabled = true;
-            Limparfoto();
-            btnNovo.Focus();
-            alterou_foto = "n";
-        }
 
-        private void btnExcluir_Click(object sender, EventArgs e)
-        {
-            var res = MessageBox.Show("Deseja realmente excluir esse registro?", "Excluir Transportadora", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (res == DialogResult.Yes)
-            {
-                con.AbrirConexao();
-                sql = "DELETE FROM cad_transportadoras WHERE cod_transportadora = @id";
-                cmd = new MySqlCommand(sql, con.con);
-                cmd.Parameters.AddWithValue("@id", id);
+                if (alterou_foto == "s")
+                {
+                    con.AbrirConexao();
+                    sql = "UPDATE cad_transportadoras SET nome_transportadora = @nome, documento_transportadora = @documento, endereco_transportadora = @endereco, bairro_transportadora = @bairro, numero_transportadora = @numero, cidade_transportadora = @cidade, estado_transportadora = @estado, telefone_transportadora = @telefone, celular_transportadora = @celular, foto_transportadora = @foto, email_transportadora = @email WHERE cod_transportadora = @id";
+                    cmd = new MySqlCommand(sql, con.con);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@nome", txtnome.Text);
+                    cmd.Parameters.AddWithValue("@documento", txtdocumento.Text);
+                    cmd.Parameters.AddWithValue("@email", txtemail.Text);
+                    cmd.Parameters.AddWithValue("@endereco", txtendereco.Text);
+                    cmd.Parameters.AddWithValue("@bairro", txtbairro.Text);
+                    cmd.Parameters.AddWithValue("@numero", txtnumero.Text);
+                    cmd.Parameters.AddWithValue("@cidade", txtcidade.Text);
+                    cmd.Parameters.AddWithValue("@estado", cbestados.Text);
+                    cmd.Parameters.AddWithValue("@telefone", txttelefone.Text);
+                    cmd.Parameters.AddWithValue("@celular", txtcelular.Text);
+                    cmd.Parameters.AddWithValue("@foto", img());
+
+                }
+                else if (alterou_foto == "n")
+                {
+                    con.AbrirConexao();
+                    sql = "UPDATE cad_transportadoras SET nome_transportadora = @nome, documento_transportadora = @documento, endereco_transportadora = @endereco, bairro_transportadora = @bairro, numero_transportadora = @numero, cidade_transportadora = @cidade, estado_transportadora = @estado, telefone_transportadora = @telefone, celular_transportadora = @celular, email_transportadora = @email WHERE cod_transportadora = @id";
+                    cmd = new MySqlCommand(sql, con.con);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@nome", txtnome.Text);
+                    cmd.Parameters.AddWithValue("@documento", txtdocumento.Text);
+                    cmd.Parameters.AddWithValue("@email", txtemail.Text);
+                    cmd.Parameters.AddWithValue("@endereco", txtendereco.Text);
+                    cmd.Parameters.AddWithValue("@bairro", txtbairro.Text);
+                    cmd.Parameters.AddWithValue("@numero", txtnumero.Text);
+                    cmd.Parameters.AddWithValue("@cidade", txtcidade.Text);
+                    cmd.Parameters.AddWithValue("@estado", cbestados.Text);
+                    cmd.Parameters.AddWithValue("@telefone", txttelefone.Text);
+                    cmd.Parameters.AddWithValue("@celular", txtcelular.Text);
+
+                }
+                if (txtdocumento.Text != documentoantigo)
+                {
+                    MySqlCommand cmdverificar;
+                    cmdverificar = new MySqlCommand("SELECT * FROM cad_transportadoras WHERE documento_transportadora = @documento", con.con);
+                    MySqlDataAdapter da = new MySqlDataAdapter();
+                    da.SelectCommand = cmdverificar;
+                    cmdverificar.Parameters.AddWithValue("@documento", txtdocumento.Text);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    if (dt.Rows.Count > 0)
+                    {
+                        MessageBox.Show("Documento já Cadastrado!");
+                        txtdocumento.Clear();
+                        txtdocumento.Focus();
+                        return;
+
+                    }
+
+                }
                 cmd.ExecuteNonQuery();
                 con.FecharConexao();
-                Limparfoto();
                 Listar();
+
+
+                MessageBox.Show("Registro Alterado com Sucesso!!");
                 txtnome.Enabled = false;
                 txtnome.Clear();
                 txtdocumento.Enabled = false;
@@ -544,14 +520,73 @@ namespace Sistema_de_Vendas.Cadastros
                 btnAdicionar.Enabled = false;
                 btnAlterar.Enabled = false;
                 btnExcluir.Enabled = false;
+
                 btnfoto.Enabled = false;
                 btnNovo.Enabled = true;
+                Limparfoto();
                 btnNovo.Focus();
+                alterou_foto = "n";
             }
-            else
+            catch (Exception ex)
             {
-                Listar();
+
+                MessageBox.Show(ex.Message);
             }
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var res = MessageBox.Show("Deseja realmente excluir esse registro?", "Excluir Transportadora", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (res == DialogResult.Yes)
+                {
+                    con.AbrirConexao();
+                    sql = "DELETE FROM cad_transportadoras WHERE cod_transportadora = @id";
+                    cmd = new MySqlCommand(sql, con.con);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.ExecuteNonQuery();
+                    con.FecharConexao();
+                    Limparfoto();
+                    Listar();
+                    txtnome.Enabled = false;
+                    txtnome.Clear();
+                    txtdocumento.Enabled = false;
+                    txtdocumento.Clear();
+                    txtemail.Enabled = false;
+                    txtemail.Clear();
+                    txtendereco.Enabled = false;
+                    txtendereco.Clear();
+                    txtbairro.Enabled = false;
+                    txtbairro.Clear();
+                    txtnumero.Enabled = false;
+                    txtnumero.Clear();
+                    txtcidade.Enabled = false;
+                    txtcidade.Clear();
+                    cbestados.Enabled = false;
+                    cbestados.SelectedIndex = -1;
+                    txttelefone.Enabled = false;
+                    txttelefone.Clear();
+                    txtcelular.Enabled = false;
+                    txtcelular.Clear();
+                    btnAdicionar.Enabled = false;
+                    btnAlterar.Enabled = false;
+                    btnExcluir.Enabled = false;
+                    btnfoto.Enabled = false;
+                    btnNovo.Enabled = true;
+                    btnNovo.Focus();
+                }
+                else
+                {
+                    Listar();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+           
         }
 
         private void lblpesquisa_DoubleClick(object sender, EventArgs e)

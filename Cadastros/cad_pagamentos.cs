@@ -31,24 +31,34 @@ namespace Sistema_de_Vendas.Cadastros
 
         private void Listar()
         {
-            con.AbrirConexao();
-            sql = "SELECT * FROM cad_pagamentos WHERE cod_empresa = @cod_empresa ORDER BY forma_pagamento ASC";
-            cmd = new MySqlCommand(sql, con.con);
-            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
-            MySqlDataAdapter da = new MySqlDataAdapter();
-            da.SelectCommand = cmd;
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            dgCliente.DataSource = dt;
-            con.FecharConexao();
-        }
+            try
+            {
+                con.AbrirConexao();
+                sql = "SELECT * FROM cad_pagamentos WHERE cod_empresa = @cod_empresa ORDER BY forma_pagamento ASC";
+                cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dgCliente.DataSource = dt;
+                con.FecharConexao();
+            }
+            catch (Exception ex)
+            {
 
+               
+            }
+           
+        }
 
         private void formatargrid()
         {
             dgCliente.Columns[0].HeaderText = "ID";
             dgCliente.Columns[1].HeaderText = "Forma de Pagamento";
             dgCliente.Columns[0].Visible = false;
+            dgCliente.Columns[2].HeaderText = "Código da empresa";
+            dgCliente.Columns[2].Visible = false;
 
         }
 
@@ -177,32 +187,41 @@ namespace Sistema_de_Vendas.Cadastros
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
+            try
+            {
+                var res = MessageBox.Show("Deseja realmente excluir esse registro?", "Excluir Forma de Pagamento", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (res == DialogResult.Yes)
+                {
+                    con.AbrirConexao();
+                    sql = "DELETE FROM cad_pagamentos WHERE cod_pagamento = @id";
+                    cmd = new MySqlCommand(sql, con.con);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.ExecuteNonQuery();
+                    con.FecharConexao();
+
+                    Listar();
+
+                    txtpagamento.Enabled = false;
+                    txtpagamento.Clear();
+                    btnAdicionar.Enabled = false;
+                    btnAlterar.Enabled = false;
+                    btnExcluir.Enabled = false;
+                    btnNovo.Enabled = true;
+                    btnNovo.Focus();
+                }
+                else
+                {
+                    Listar();
+                }
+            }
+            catch (Exception)
+            {
+
+               
+            }
                       
-            var res = MessageBox.Show("Deseja realmente excluir esse registro?", "Excluir Forma de Pagamento", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (res == DialogResult.Yes)
-            {
-                con.AbrirConexao();
-                sql = "DELETE FROM cad_pagamentos WHERE cod_pagamento = @id";
-                cmd = new MySqlCommand(sql, con.con);
-                cmd.Parameters.AddWithValue("@id", id);
-                cmd.ExecuteNonQuery();
-                con.FecharConexao();
-
-                Listar();
-
-                txtpagamento.Enabled = false;
-                txtpagamento.Clear();
-                btnAdicionar.Enabled = false;
-                btnAlterar.Enabled = false;
-                btnExcluir.Enabled = false;
-                btnNovo.Enabled = true;
-                btnNovo.Focus();
-            }
-            else
-            {
-                Listar();
-            }
+           
         }
 
         private void dgCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)

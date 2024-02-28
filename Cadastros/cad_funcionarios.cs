@@ -29,18 +29,27 @@ namespace Sistema_de_Vendas
 
         private void ListarCargos()
         {
-            con.AbrirConexao();
-            sql = "SELECT * FROM cad_cargos WHERE cod_empresa = @cod_empresa ORDER BY nome_cargo asc";
-            cmd = new MySqlCommand(sql, con.con);
-            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
-            MySqlDataAdapter da = new MySqlDataAdapter();
-            da.SelectCommand = cmd;
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            cbcargo.DataSource = dt;
-            cbcargo.DisplayMember = "nome_cargo";
-            con.FecharConexao();
+            try
+            {
+                con.AbrirConexao();
+                sql = "SELECT * FROM cad_cargos WHERE cod_empresa = @cod_empresa ORDER BY nome_cargo asc";
+                cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                cbcargo.DataSource = dt;
+                cbcargo.DisplayMember = "nome_cargo";
+                con.FecharConexao();
 
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+          
         }
 
         private byte[] img()
@@ -62,18 +71,27 @@ namespace Sistema_de_Vendas
             pbFoto.Image = Properties.Resources.download;
             foto = "download.png";
         }
+
         private void Listar()
         {
-            con.AbrirConexao();
-            sql = "SELECT * FROM cad_funcionarios WHERE cod_empresa = @cod_empresa ORDER BY nome_funcionario ASC";
-            cmd = new MySqlCommand(sql, con.con);
-            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
-            MySqlDataAdapter da = new MySqlDataAdapter();
-            da.SelectCommand = cmd;
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            dgCliente.DataSource = dt;
-            con.FecharConexao();
+            try
+            {
+                con.AbrirConexao();
+                sql = "SELECT * FROM cad_funcionarios WHERE cod_empresa = @cod_empresa ORDER BY nome_funcionario ASC";
+                cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dgCliente.DataSource = dt;
+                con.FecharConexao();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);                
+            }
+         
         }
 
         private void formatargrid()
@@ -92,6 +110,8 @@ namespace Sistema_de_Vendas
             dgCliente.Columns[10].HeaderText = "Cargo";
             dgCliente.Columns[11].HeaderText = "Foto";
             dgCliente.Columns[11].Visible = false;
+            dgCliente.Columns[13].HeaderText = "Código da empresa";
+            dgCliente.Columns[13].Visible = false;
 
 
             dgCliente.Columns[0].Visible = false;
@@ -248,40 +268,40 @@ namespace Sistema_de_Vendas
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-
-
-            if (txtnome.Text.ToString().Trim() == "")
+            try
             {
-                MessageBox.Show("Digite um nome para o Funcionário!");
-                txtnome.Clear();
-                txtnome.Focus();
-                return;
-            }
-            if (txtdocumento.Text.ToString().Trim() == "")
-            {
-                MessageBox.Show("Digite um documento para o Funcionário!");
-                txtdocumento.Clear();
-                txtdocumento.Focus();
-                return;
+                if (txtnome.Text.ToString().Trim() == "")
+                {
+                    MessageBox.Show("Digite um nome para o Funcionário!");
+                    txtnome.Clear();
+                    txtnome.Focus();
+                    return;
+                }
+                if (txtdocumento.Text.ToString().Trim() == "")
+                {
+                    MessageBox.Show("Digite um documento para o Funcionário!");
+                    txtdocumento.Clear();
+                    txtdocumento.Focus();
+                    return;
 
-            }
-
-
-
-            if (txtemail.Text.Contains("@"))
-            {
-                txtemail.Focus();
-            }
-            else
-            {
-                MessageBox.Show("E-mail inválido!");
-                txtemail.Clear();
-                txtemail.Focus();
-                return;
-            }
+                }
 
 
-            
+
+                if (txtemail.Text.Contains("@"))
+                {
+                    txtemail.Focus();
+                }
+                else
+                {
+                    MessageBox.Show("E-mail inválido!");
+                    txtemail.Clear();
+                    txtemail.Focus();
+                    return;
+                }
+
+
+
 
 
                 if (alterou_foto == "s")
@@ -370,7 +390,7 @@ namespace Sistema_de_Vendas
                 txtcelular.Enabled = false;
                 txtcelular.Clear();
                 cbcargo.Enabled = false;
-                cbcargo.SelectedIndex = -1; 
+                cbcargo.SelectedIndex = -1;
                 btnAdicionar.Enabled = false;
                 btnAlterar.Enabled = false;
                 btnExcluir.Enabled = false;
@@ -380,55 +400,70 @@ namespace Sistema_de_Vendas
                 Limparfoto();
                 btnNovo.Focus();
                 alterou_foto = "n";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);               
+            }
+
+           
             
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            var res = MessageBox.Show("Deseja realmente excluir esse registro?", "Excluir Funcionário", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            try
+            {
+                var res = MessageBox.Show("Deseja realmente excluir esse registro?", "Excluir Funcionário", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (res == DialogResult.Yes)
-            {
-                con.AbrirConexao();
-                sql = "DELETE FROM cad_funcionarios WHERE cod_funcionario = @id";
-                cmd = new MySqlCommand(sql, con.con);
-                cmd.Parameters.AddWithValue("@id", id);
-                cmd.ExecuteNonQuery();
-                con.FecharConexao();
-                Limparfoto();
-                Listar();
-                txtnome.Enabled = false;
-                txtnome.Clear();
-                txtdocumento.Enabled = false;
-                txtdocumento.Clear();
-                txtemail.Enabled = false;
-                txtemail.Clear();
-                txtendereco.Enabled = false;
-                txtendereco.Clear();
-                txtbairro.Enabled = false;
-                txtbairro.Clear();
-                txtnumero.Enabled = false;
-                txtnumero.Clear();
-                txtcidade.Enabled = false;
-                txtcidade.Clear();
-                cbestados.Enabled = false;
-                cbestados.SelectedIndex = -1;
-                txttelefone.Enabled = false;
-                txttelefone.Clear();
-                txtcelular.Enabled = false;
-                txtcelular.Clear();
-                cbcargo.Enabled = false; 
-                cbcargo.SelectedIndex = -1;
-                btnAdicionar.Enabled = false;
-                btnAlterar.Enabled = false;
-                btnExcluir.Enabled = false;
-                btnfoto.Enabled = false;
-                btnNovo.Enabled = true;
-                btnNovo.Focus();
+                if (res == DialogResult.Yes)
+                {
+                    con.AbrirConexao();
+                    sql = "DELETE FROM cad_funcionarios WHERE cod_funcionario = @id";
+                    cmd = new MySqlCommand(sql, con.con);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.ExecuteNonQuery();
+                    con.FecharConexao();
+                    Limparfoto();
+                    Listar();
+                    txtnome.Enabled = false;
+                    txtnome.Clear();
+                    txtdocumento.Enabled = false;
+                    txtdocumento.Clear();
+                    txtemail.Enabled = false;
+                    txtemail.Clear();
+                    txtendereco.Enabled = false;
+                    txtendereco.Clear();
+                    txtbairro.Enabled = false;
+                    txtbairro.Clear();
+                    txtnumero.Enabled = false;
+                    txtnumero.Clear();
+                    txtcidade.Enabled = false;
+                    txtcidade.Clear();
+                    cbestados.Enabled = false;
+                    cbestados.SelectedIndex = -1;
+                    txttelefone.Enabled = false;
+                    txttelefone.Clear();
+                    txtcelular.Enabled = false;
+                    txtcelular.Clear();
+                    cbcargo.Enabled = false;
+                    cbcargo.SelectedIndex = -1;
+                    btnAdicionar.Enabled = false;
+                    btnAlterar.Enabled = false;
+                    btnExcluir.Enabled = false;
+                    btnfoto.Enabled = false;
+                    btnNovo.Enabled = true;
+                    btnNovo.Focus();
+                }
+                else
+                {
+                    Listar();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Listar();
+                MessageBox.Show(ex.Message);
+               
             }
         }
 
@@ -589,25 +624,31 @@ namespace Sistema_de_Vendas
 
         private void Buscar()
         {
-            string funcionario = txtpesquisa.Text;
-            con.AbrirConexao();
-            sql = "SELECT * FROM cad_funcionarios WHERE cod_empresa = @cod_empresa AND nome_funcionario LIKE @nome or documento_funcionario LIKE @documento";
-            cmd = new MySqlCommand(sql, con.con);
-            cmd.Parameters.AddWithValue("@nome", "%" + funcionario + "%");
-            cmd.Parameters.AddWithValue("@documento", "%" + funcionario + "%");
-            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
-            MySqlDataAdapter da = new MySqlDataAdapter();
-            da.SelectCommand = cmd;
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            dgCliente.DataSource = dt;
-            con.FecharConexao();
+            try
+            {
+                string funcionario = txtpesquisa.Text;
+                con.AbrirConexao();
+                sql = "SELECT * FROM cad_funcionarios WHERE cod_empresa = @cod_empresa AND nome_funcionario LIKE @nome or documento_funcionario LIKE @documento";
+                cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@nome", "%" + funcionario + "%");
+                cmd.Parameters.AddWithValue("@documento", "%" + funcionario + "%");
+                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dgCliente.DataSource = dt;
+                con.FecharConexao();
 
-            formatargrid();
+                formatargrid();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+         
 
-        }
-
-        
+        }        
 
         private void cbcargo_Enter(object sender, EventArgs e)
         {

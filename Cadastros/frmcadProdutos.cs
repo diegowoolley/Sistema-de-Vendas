@@ -47,52 +47,76 @@ namespace Sistema_de_Vendas
 
         private void Listarcategoria()
         {
-            con.AbrirConexao();
-            sql = "SELECT * FROM cad_categorias WHERE cod_empresa = @cod_empresa ORDER BY nome_categoria asc";
-            cmd = new MySqlCommand(sql, con.con);
-            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
-            MySqlDataAdapter da = new MySqlDataAdapter();
-            da.SelectCommand = cmd;
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            cbcategoria.DataSource = dt;
-            cbcategoria.DisplayMember = "nome_categoria";
-            con.FecharConexao();
+            try
+            {
+                con.AbrirConexao();
+                sql = "SELECT * FROM cad_categorias WHERE cod_empresa = @cod_empresa ORDER BY nome_categoria asc";
+                cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                cbcategoria.DataSource = dt;
+                cbcategoria.DisplayMember = "nome_categoria";
+                con.FecharConexao();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        
         }
 
         private void listarfornecedor()
         {
-            con.AbrirConexao();
-            sql = "SELECT * FROM cad_fornecedores WHERE cod_empresa = @cod_empresa ORDER BY nome_fornecedor asc";
-            cmd = new MySqlCommand(sql, con.con);
-            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
-            MySqlDataAdapter da = new MySqlDataAdapter();
-            da.SelectCommand = cmd;
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            cbfornecedor.DataSource = dt;
-            cbfornecedor.DisplayMember = "nome_fornecedor";
-            con.FecharConexao();
+            try
+            {
+                con.AbrirConexao();
+                sql = "SELECT * FROM cad_fornecedores WHERE cod_empresa = @cod_empresa ORDER BY nome_fornecedor asc";
+                cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                cbfornecedor.DataSource = dt;
+                cbfornecedor.DisplayMember = "nome_fornecedor";
+                con.FecharConexao();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);               
+            }
+           
         }
 
         private void Limparfoto()
         {
-            pbFoto.Image = Properties.Resources.download;
-            foto = "download.png";
+            pbFoto.Image = Properties.Resources.download1;
+            foto = "download1.png";
         }
 
         private void Listar()
         {
-            con.AbrirConexao();
-            sql = "SELECT * FROM cad_produtos WHERE cod_empresa = @cod_empresa ORDER BY nome_produto ASC";
-            cmd = new MySqlCommand(sql, con.con);
-            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
-            MySqlDataAdapter da = new MySqlDataAdapter();
-            da.SelectCommand = cmd;
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            dgCliente.DataSource = dt;
-            con.FecharConexao();
+            try
+            {
+                con.AbrirConexao();
+                sql = "SELECT * FROM cad_produtos WHERE cod_empresa = @cod_empresa ORDER BY nome_produto ASC";
+                cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dgCliente.DataSource = dt;
+                con.FecharConexao();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+          
         }
 
         private void formatargrid()
@@ -120,6 +144,8 @@ namespace Sistema_de_Vendas
             dgCliente.Columns[19].HeaderText = "Etiqueta";
             dgCliente.Columns[20].HeaderText = "Adicionado por";
             dgCliente.Columns[21].HeaderText = "Data e hora da inclusão";
+            dgCliente.Columns[22].HeaderText = "Código da empresa";
+            dgCliente.Columns[22].Visible = false;
 
 
 
@@ -127,26 +153,33 @@ namespace Sistema_de_Vendas
 
         private void Buscar()
         {
-            string pesquisa = txtpesquisa.Text;
-            con.AbrirConexao();
-            sql = "SELECT * FROM cad_produtos WHERE cod_empresa = @cod_empresa AND nome_produto LIKE @nome or cod_produto LIKE @cod_produto or etiqueta LIKE @etiqueta";
-            cmd = new MySqlCommand(sql, con.con);
-            cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
-            cmd.Parameters.AddWithValue("@cod_produto", "%" + pesquisa + "%");
-            cmd.Parameters.AddWithValue("@etiqueta", "%" + pesquisa + "%");
-            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
-            MySqlDataAdapter da = new MySqlDataAdapter();
-            da.SelectCommand = cmd;
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            dgCliente.DataSource = dt;
-            con.FecharConexao();
+            try
+            {
+                string pesquisa = txtpesquisa.Text;
+                con.AbrirConexao();
+                sql = "SELECT * FROM cad_produtos WHERE cod_empresa = @cod_empresa AND nome_produto LIKE @nome or cod_produto LIKE @cod_produto or etiqueta LIKE @etiqueta";
+                cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
+                cmd.Parameters.AddWithValue("@cod_produto", "%" + pesquisa + "%");
+                cmd.Parameters.AddWithValue("@etiqueta", "%" + pesquisa + "%");
+                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dgCliente.DataSource = dt;
+                con.FecharConexao();
 
-            formatargrid();
+                formatargrid();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+           
 
 
         }
-
 
         private void lbladicionarcategorias_DoubleClick(object sender, EventArgs e)
         {
@@ -501,180 +534,126 @@ namespace Sistema_de_Vendas
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            if (txtdescricao.Text.ToString().Trim() == "")
+            try
             {
-                MessageBox.Show("Digite um nome para o produto!");
-                txtdescricao.Clear();
-                txtdescricao.Focus();
-                return;
-            }
+                if (txtdescricao.Text.ToString().Trim() == "")
+                {
+                    MessageBox.Show("Digite um nome para o produto!");
+                    txtdescricao.Clear();
+                    txtdescricao.Focus();
+                    return;
+                }
 
-            if (cbcategoria.Text == "")
-            {
-                MessageBox.Show("Digite uma categoria para o Produto!");
-                cbcategoria.SelectedIndex = -1;
-                cbcategoria.Focus();
-                return;
-            }
+                if (cbcategoria.Text == "")
+                {
+                    MessageBox.Show("Digite uma categoria para o Produto!");
+                    cbcategoria.SelectedIndex = -1;
+                    cbcategoria.Focus();
+                    return;
+                }
 
-            if (cbunidade.Text == "")
-            {
-                MessageBox.Show("Digite uma unidade para o Produto!");
-                cbunidade.SelectedIndex = -1;
-                cbunidade.Focus();
-                return;
-            }
+                if (cbunidade.Text == "")
+                {
+                    MessageBox.Show("Digite uma unidade para o Produto!");
+                    cbunidade.SelectedIndex = -1;
+                    cbunidade.Focus();
+                    return;
+                }
 
-            if (txtquantidade.Text.ToString().Trim() == "")
-            {
-                MessageBox.Show("Digite uma quantidade para o Produto!");
-                txtquantidade.Clear();
-                txtquantidade.Focus();
-                return;
-            }
+                if (txtquantidade.Text.ToString().Trim() == "")
+                {
+                    MessageBox.Show("Digite uma quantidade para o Produto!");
+                    txtquantidade.Clear();
+                    txtquantidade.Focus();
+                    return;
+                }
 
-            if (txtvalorcompra.Text.ToString().Trim() == "")
-            {
-                MessageBox.Show("Digite um valor de compra para o Produto!");
-                txtvalorcompra.Clear();
-                txtvalorcompra.Focus();
-                return;
-            }
+                if (txtvalorcompra.Text.ToString().Trim() == "")
+                {
+                    MessageBox.Show("Digite um valor de compra para o Produto!");
+                    txtvalorcompra.Clear();
+                    txtvalorcompra.Focus();
+                    return;
+                }
 
-            if (txtvalorvenda.Text.ToString().Trim() == "")
-            {
-                MessageBox.Show("Digite um valor de venda para o Produto!");
-                txtvalorvenda.Clear();
-                txtvalorvenda.Focus();
-                return;
-            }
-
-
-
-
-
-            if (alterou_foto == "s")
-            {
-
-                con.AbrirConexao();
-                sql = "UPDATE cad_produtos SET nome_produto = @nome, categoria_produto = @categoria, unidade_medida = @unidade_medida, quantidade = @quantidade, fornecedor = @fornecedor, peso_medio = @peso_medio, peso_bruto = @peso_bruto, fabricante = @fabricante, valor_compra = @valor_compra, valor_venda = @valor_venda, margem_lucro = @margem_lucro, situacao_tributaria = @situacao_tributaria, aliquota_ipi = @aliquota_ipi, cod_ipi = @cod_ipi, foto = @foto, estoque_minimo = @estoque_minimo, estoque_maximo = @estoque_maximo, validade = @validade, etiqueta = @etiqueta, usuario = @usuario, datahora = @datahora WHERE cod_produto = @id";
-                cmd = new MySqlCommand(sql, con.con);
-                cmd.Parameters.AddWithValue("@id", id);
-                cmd.Parameters.AddWithValue("@nome", txtdescricao.Text);
-                cmd.Parameters.AddWithValue("@categoria", cbcategoria.Text);
-                cmd.Parameters.AddWithValue("@unidade_medida", cbunidade.Text);
-                cmd.Parameters.AddWithValue("quantidade", txtquantidade.Text);
-                cmd.Parameters.AddWithValue("@fornecedor", cbfornecedor.Text);
-                cmd.Parameters.AddWithValue("@peso_medio", txtpesomedio.Text);
-                cmd.Parameters.AddWithValue("@peso_bruto", txtpesobruto.Text);
-                cmd.Parameters.AddWithValue("@fabricante", txtfabricante.Text);
-                cmd.Parameters.AddWithValue("@valor_compra", txtvalorcompra.Text.Replace("R$", "").Trim());
-                cmd.Parameters.AddWithValue("@valor_venda", txtvalorvenda.Text.Replace("R$", "").Trim());
-                cmd.Parameters.AddWithValue("@margem_lucro", txtmargemlucro.Text);
-                cmd.Parameters.AddWithValue("@situacao_tributaria", txtsituacaotributaria.Text);
-                cmd.Parameters.AddWithValue("@aliquota_ipi", txtaliquota.Text);
-                cmd.Parameters.AddWithValue("@cod_ipi", txtcodipi.Text);
-                cmd.Parameters.AddWithValue("@foto", img());
-                cmd.Parameters.AddWithValue("@estoque_minimo", txtestoqueminimo.Text);
-                cmd.Parameters.AddWithValue("@estoque_maximo", txtestoquemaximo.Text);
-                cmd.Parameters.AddWithValue("@validade", txtvalidade.Text);
-                cmd.Parameters.AddWithValue("@etiqueta", txtetiqueta.Text);
-                cmd.Parameters.AddWithValue("@usuario", funcoes.conectado);
-                cmd.Parameters.AddWithValue("@datahora", DateTime.Now);
-
-            }
-            else if (alterou_foto == "n")
-            {
-                con.AbrirConexao();
-                sql = "UPDATE cad_produtos SET nome_produto = @nome, categoria_produto = @categoria, unidade_medida = @unidade_medida, quantidade = @quantidade, fornecedor = @fornecedor, peso_medio = @peso_medio, peso_bruto = @peso_bruto, fabricante = @fabricante, valor_compra = @valor_compra, valor_venda = @valor_venda, margem_lucro = @margem_lucro, situacao_tributaria = @situacao_tributaria, aliquota_ipi = @aliquota_ipi, cod_ipi = @cod_ipi, estoque_minimo = @estoque_minimo, estoque_maximo = @estoque_maximo, validade = @validade, etiqueta = @etiqueta, usuario = @usuario, datahora = @datahora WHERE cod_produto = @id";
-                cmd = new MySqlCommand(sql, con.con);
-                cmd.Parameters.AddWithValue("@id", id);
-                cmd.Parameters.AddWithValue("@nome", txtdescricao.Text);
-                cmd.Parameters.AddWithValue("@categoria", cbcategoria.Text);
-                cmd.Parameters.AddWithValue("@unidade_medida", cbunidade.Text);
-                cmd.Parameters.AddWithValue("@quantidade", txtquantidade.Text);
-                cmd.Parameters.AddWithValue("@fornecedor", cbfornecedor.Text);
-                cmd.Parameters.AddWithValue("@peso_medio", txtpesomedio.Text);
-                cmd.Parameters.AddWithValue("@peso_bruto", txtpesobruto.Text);
-                cmd.Parameters.AddWithValue("@fabricante", txtfabricante.Text);
-                cmd.Parameters.AddWithValue("@valor_compra", txtvalorcompra.Text.Replace("R$", "").Trim());
-                cmd.Parameters.AddWithValue("@valor_venda", txtvalorvenda.Text.Replace("R$", "").Trim());
-                cmd.Parameters.AddWithValue("@margem_lucro", txtmargemlucro.Text);
-                cmd.Parameters.AddWithValue("@situacao_tributaria", txtsituacaotributaria.Text);
-                cmd.Parameters.AddWithValue("@aliquota_ipi", txtaliquota.Text);
-                cmd.Parameters.AddWithValue("@cod_ipi", txtcodipi.Text);
-                cmd.Parameters.AddWithValue("@estoque_minimo", txtestoqueminimo.Text);
-                cmd.Parameters.AddWithValue("@estoque_maximo", txtestoquemaximo.Text);
-                cmd.Parameters.AddWithValue("@validade", txtvalidade.Text);
-                cmd.Parameters.AddWithValue("@etiqueta", txtetiqueta.Text);
-                cmd.Parameters.AddWithValue("@usuario", funcoes.conectado);
-                cmd.Parameters.AddWithValue("@datahora", DateTime.Now);
+                if (txtvalorvenda.Text.ToString().Trim() == "")
+                {
+                    MessageBox.Show("Digite um valor de venda para o Produto!");
+                    txtvalorvenda.Clear();
+                    txtvalorvenda.Focus();
+                    return;
+                }
 
 
-            }
-
-            cmd.ExecuteNonQuery();
-            con.FecharConexao();
-            Listar();
 
 
-            MessageBox.Show("Registro Alterado com Sucesso!!");
-            txtetiqueta.Enabled = false;
-            txtetiqueta.Clear();
-            txtdescricao.Enabled = false;
-            txtdescricao.Clear();
-            cbcategoria.Enabled = false;
-            cbcategoria.SelectedIndex = -1;
-            cbunidade.Enabled = false;
-            cbunidade.SelectedIndex = -1;
-            txtquantidade.Enabled = false;
-            txtquantidade.Clear();
-            cbfornecedor.Enabled = false;
-            cbfornecedor.SelectedIndex = -1;
-            txtpesomedio.Enabled = false;
-            txtpesomedio.Clear();
-            txtpesobruto.Enabled = false;
-            txtpesobruto.Clear();
-            txtfabricante.Enabled = false;
-            txtfabricante.Clear();
-            txtvalorcompra.Enabled = false;
-            txtvalorcompra.Clear();
-            txtvalorvenda.Enabled = false;
-            txtvalorvenda.Clear();
-            txtmargemlucro.Enabled = false;
-            txtmargemlucro.Clear();
-            txtestoqueminimo.Enabled = false;
-            txtestoqueminimo.Clear();
-            txtestoquemaximo.Enabled = false;
-            txtestoquemaximo.Clear();
-            txtvalidade.Enabled = false;
-            txtvalidade.Clear();
 
-            btnAdicionar.Enabled = false;
-            btnAlterar.Enabled = false;
-            btnExcluir.Enabled = false;
+                if (alterou_foto == "s")
+                {
 
-            btnfoto.Enabled = false;
-            btnNovo.Enabled = true;
-            Limparfoto();
-            btnNovo.Focus();
-            Listar();
-            alterou_foto = "n";
+                    con.AbrirConexao();
+                    sql = "UPDATE cad_produtos SET nome_produto = @nome, categoria_produto = @categoria, unidade_medida = @unidade_medida, quantidade = @quantidade, fornecedor = @fornecedor, peso_medio = @peso_medio, peso_bruto = @peso_bruto, fabricante = @fabricante, valor_compra = @valor_compra, valor_venda = @valor_venda, margem_lucro = @margem_lucro, situacao_tributaria = @situacao_tributaria, aliquota_ipi = @aliquota_ipi, cod_ipi = @cod_ipi, foto = @foto, estoque_minimo = @estoque_minimo, estoque_maximo = @estoque_maximo, validade = @validade, etiqueta = @etiqueta, usuario = @usuario, datahora = @datahora WHERE cod_produto = @id";
+                    cmd = new MySqlCommand(sql, con.con);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@nome", txtdescricao.Text);
+                    cmd.Parameters.AddWithValue("@categoria", cbcategoria.Text);
+                    cmd.Parameters.AddWithValue("@unidade_medida", cbunidade.Text);
+                    cmd.Parameters.AddWithValue("quantidade", txtquantidade.Text);
+                    cmd.Parameters.AddWithValue("@fornecedor", cbfornecedor.Text);
+                    cmd.Parameters.AddWithValue("@peso_medio", txtpesomedio.Text);
+                    cmd.Parameters.AddWithValue("@peso_bruto", txtpesobruto.Text);
+                    cmd.Parameters.AddWithValue("@fabricante", txtfabricante.Text);
+                    cmd.Parameters.AddWithValue("@valor_compra", txtvalorcompra.Text.Replace("R$", "").Trim());
+                    cmd.Parameters.AddWithValue("@valor_venda", txtvalorvenda.Text.Replace("R$", "").Trim());
+                    cmd.Parameters.AddWithValue("@margem_lucro", txtmargemlucro.Text);
+                    cmd.Parameters.AddWithValue("@situacao_tributaria", txtsituacaotributaria.Text);
+                    cmd.Parameters.AddWithValue("@aliquota_ipi", txtaliquota.Text);
+                    cmd.Parameters.AddWithValue("@cod_ipi", txtcodipi.Text);
+                    cmd.Parameters.AddWithValue("@foto", img());
+                    cmd.Parameters.AddWithValue("@estoque_minimo", txtestoqueminimo.Text);
+                    cmd.Parameters.AddWithValue("@estoque_maximo", txtestoquemaximo.Text);
+                    cmd.Parameters.AddWithValue("@validade", txtvalidade.Text);
+                    cmd.Parameters.AddWithValue("@etiqueta", txtetiqueta.Text);
+                    cmd.Parameters.AddWithValue("@usuario", funcoes.conectado);
+                    cmd.Parameters.AddWithValue("@datahora", DateTime.Now);
 
-        }
+                }
+                else if (alterou_foto == "n")
+                {
+                    con.AbrirConexao();
+                    sql = "UPDATE cad_produtos SET nome_produto = @nome, categoria_produto = @categoria, unidade_medida = @unidade_medida, quantidade = @quantidade, fornecedor = @fornecedor, peso_medio = @peso_medio, peso_bruto = @peso_bruto, fabricante = @fabricante, valor_compra = @valor_compra, valor_venda = @valor_venda, margem_lucro = @margem_lucro, situacao_tributaria = @situacao_tributaria, aliquota_ipi = @aliquota_ipi, cod_ipi = @cod_ipi, estoque_minimo = @estoque_minimo, estoque_maximo = @estoque_maximo, validade = @validade, etiqueta = @etiqueta, usuario = @usuario, datahora = @datahora WHERE cod_produto = @id";
+                    cmd = new MySqlCommand(sql, con.con);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@nome", txtdescricao.Text);
+                    cmd.Parameters.AddWithValue("@categoria", cbcategoria.Text);
+                    cmd.Parameters.AddWithValue("@unidade_medida", cbunidade.Text);
+                    cmd.Parameters.AddWithValue("@quantidade", txtquantidade.Text);
+                    cmd.Parameters.AddWithValue("@fornecedor", cbfornecedor.Text);
+                    cmd.Parameters.AddWithValue("@peso_medio", txtpesomedio.Text);
+                    cmd.Parameters.AddWithValue("@peso_bruto", txtpesobruto.Text);
+                    cmd.Parameters.AddWithValue("@fabricante", txtfabricante.Text);
+                    cmd.Parameters.AddWithValue("@valor_compra", txtvalorcompra.Text.Replace("R$", "").Trim());
+                    cmd.Parameters.AddWithValue("@valor_venda", txtvalorvenda.Text.Replace("R$", "").Trim());
+                    cmd.Parameters.AddWithValue("@margem_lucro", txtmargemlucro.Text);
+                    cmd.Parameters.AddWithValue("@situacao_tributaria", txtsituacaotributaria.Text);
+                    cmd.Parameters.AddWithValue("@aliquota_ipi", txtaliquota.Text);
+                    cmd.Parameters.AddWithValue("@cod_ipi", txtcodipi.Text);
+                    cmd.Parameters.AddWithValue("@estoque_minimo", txtestoqueminimo.Text);
+                    cmd.Parameters.AddWithValue("@estoque_maximo", txtestoquemaximo.Text);
+                    cmd.Parameters.AddWithValue("@validade", txtvalidade.Text);
+                    cmd.Parameters.AddWithValue("@etiqueta", txtetiqueta.Text);
+                    cmd.Parameters.AddWithValue("@usuario", funcoes.conectado);
+                    cmd.Parameters.AddWithValue("@datahora", DateTime.Now);
 
-        private void btnExcluir_Click(object sender, EventArgs e)
-        {
-            var res = MessageBox.Show("Deseja realmente excluir esse registro?", "Excluir Produto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (res == DialogResult.Yes)
-            {
-                con.AbrirConexao();
-                sql = "DELETE FROM cad_produtos WHERE cod_produto = @id";
-                cmd = new MySqlCommand(sql, con.con);
-                cmd.Parameters.AddWithValue("@id", id);
+                }
+
                 cmd.ExecuteNonQuery();
                 con.FecharConexao();
+                Listar();
+
+
+                MessageBox.Show("Registro Alterado com Sucesso!!");
                 txtetiqueta.Enabled = false;
                 txtetiqueta.Clear();
                 txtdescricao.Enabled = false;
@@ -715,11 +694,79 @@ namespace Sistema_de_Vendas
                 Limparfoto();
                 btnNovo.Focus();
                 Listar();
-
+                alterou_foto = "n";
             }
-            else
+            catch (Exception ex)
             {
-                Listar();
+                MessageBox.Show(ex.Message);    
+            }
+
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var res = MessageBox.Show("Deseja realmente excluir esse registro?", "Excluir Produto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (res == DialogResult.Yes)
+                {
+                    con.AbrirConexao();
+                    sql = "DELETE FROM cad_produtos WHERE cod_produto = @id";
+                    cmd = new MySqlCommand(sql, con.con);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.ExecuteNonQuery();
+                    con.FecharConexao();
+                    txtetiqueta.Enabled = false;
+                    txtetiqueta.Clear();
+                    txtdescricao.Enabled = false;
+                    txtdescricao.Clear();
+                    cbcategoria.Enabled = false;
+                    cbcategoria.SelectedIndex = -1;
+                    cbunidade.Enabled = false;
+                    cbunidade.SelectedIndex = -1;
+                    txtquantidade.Enabled = false;
+                    txtquantidade.Clear();
+                    cbfornecedor.Enabled = false;
+                    cbfornecedor.SelectedIndex = -1;
+                    txtpesomedio.Enabled = false;
+                    txtpesomedio.Clear();
+                    txtpesobruto.Enabled = false;
+                    txtpesobruto.Clear();
+                    txtfabricante.Enabled = false;
+                    txtfabricante.Clear();
+                    txtvalorcompra.Enabled = false;
+                    txtvalorcompra.Clear();
+                    txtvalorvenda.Enabled = false;
+                    txtvalorvenda.Clear();
+                    txtmargemlucro.Enabled = false;
+                    txtmargemlucro.Clear();
+                    txtestoqueminimo.Enabled = false;
+                    txtestoqueminimo.Clear();
+                    txtestoquemaximo.Enabled = false;
+                    txtestoquemaximo.Clear();
+                    txtvalidade.Enabled = false;
+                    txtvalidade.Clear();
+
+                    btnAdicionar.Enabled = false;
+                    btnAlterar.Enabled = false;
+                    btnExcluir.Enabled = false;
+
+                    btnfoto.Enabled = false;
+                    btnNovo.Enabled = true;
+                    Limparfoto();
+                    btnNovo.Focus();
+                    Listar();
+
+                }
+                else
+                {
+                    Listar();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 

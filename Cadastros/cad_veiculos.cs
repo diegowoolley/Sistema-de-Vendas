@@ -31,16 +31,25 @@ namespace Sistema_de_Vendas.Cadastros
 
         private void Listar()
         {
-            con.AbrirConexao();
-            sql = "SELECT * FROM cad_veiculos WHERE cod_empresa = @cod_empresa ORDER BY placa ASC";
-            cmd = new MySqlCommand(sql, con.con);
-            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
-            MySqlDataAdapter da = new MySqlDataAdapter();
-            da.SelectCommand = cmd;
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            dgCliente.DataSource = dt;
-            con.FecharConexao();
+            try
+            {
+                con.AbrirConexao();
+                sql = "SELECT * FROM cad_veiculos WHERE cod_empresa = @cod_empresa ORDER BY placa ASC";
+                cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dgCliente.DataSource = dt;
+                con.FecharConexao();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            
         }
 
         private void formatargrid()
@@ -51,6 +60,8 @@ namespace Sistema_de_Vendas.Cadastros
             dgCliente.Columns[3].HeaderText = "Placa";
             dgCliente.Columns[4].HeaderText = "Km";
             dgCliente.Columns[0].Visible = false;
+            dgCliente.Columns[5].HeaderText = "Código da empresa";
+            dgCliente.Columns[5].Visible = false;
 
         }
 
@@ -198,37 +209,45 @@ namespace Sistema_de_Vendas.Cadastros
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            var res = MessageBox.Show("Deseja realmente excluir esse registro?", "Excluir Veículo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (res == DialogResult.Yes)
+            try
             {
-                con.AbrirConexao();
-                sql = "DELETE FROM cad_veiculos WHERE cod_veiculo = @id";
-                cmd = new MySqlCommand(sql, con.con);
-                cmd.Parameters.AddWithValue("@id", id);
-                cmd.ExecuteNonQuery();
-                con.FecharConexao();
+                var res = MessageBox.Show("Deseja realmente excluir esse registro?", "Excluir Veículo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                Listar();
+                if (res == DialogResult.Yes)
+                {
+                    con.AbrirConexao();
+                    sql = "DELETE FROM cad_veiculos WHERE cod_veiculo = @id";
+                    cmd = new MySqlCommand(sql, con.con);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.ExecuteNonQuery();
+                    con.FecharConexao();
 
-                txtmarca.Enabled = false;
-                txtmarca.Clear();
-                txtmodelo.Enabled = false;  
-                txtmodelo.Clear();
-                txtplaca.Enabled=false;
-                txtplaca.Clear();
-                txtkm.Enabled=false;
-                txtkm.Clear();
-                btnAdicionar.Enabled = false;
-                btnAlterar.Enabled = false;
-                btnExcluir.Enabled = false;
-                btnNovo.Enabled = true;
-                btnNovo.Focus();
+                    Listar();
+
+                    txtmarca.Enabled = false;
+                    txtmarca.Clear();
+                    txtmodelo.Enabled = false;
+                    txtmodelo.Clear();
+                    txtplaca.Enabled = false;
+                    txtplaca.Clear();
+                    txtkm.Enabled = false;
+                    txtkm.Clear();
+                    btnAdicionar.Enabled = false;
+                    btnAlterar.Enabled = false;
+                    btnExcluir.Enabled = false;
+                    btnNovo.Enabled = true;
+                    btnNovo.Focus();
+                }
+                else
+                {
+                    Listar();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Listar();
+                MessageBox.Show(ex.Message);
             }
+           
         }
 
         private void dgCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)

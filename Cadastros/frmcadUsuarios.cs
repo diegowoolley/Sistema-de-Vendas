@@ -34,7 +34,7 @@ namespace Sistema_de_Vendas.Cadastros
             cbPermissoes.Text = "Administrador";
             txtNome.Focus();
         }
-        //verificar se campos estão vazios
+        
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
             if (txtNome.Text.ToString().Trim() == "")
@@ -111,8 +111,7 @@ namespace Sistema_de_Vendas.Cadastros
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Close();
-        }
-     
+        }     
 
         private void txtNome_KeyPress(object sender, KeyPressEventArgs e)
         {
