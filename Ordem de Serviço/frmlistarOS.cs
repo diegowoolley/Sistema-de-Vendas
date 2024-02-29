@@ -17,17 +17,17 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
         {
             InitializeComponent();
         }
-
-        private void btnadicionaros_Click(object sender, EventArgs e)
-        {
-            frmOS FrmOS = new frmOS();
-            FrmOS.ShowDialog();
-        }
         conn con = new conn();
-        string sql;        
+        string sql;
         MySqlCommand cmd;
 
 
+        private void frmlistarOS_Load(object sender, EventArgs e)
+        {
+            listar();
+        }
+
+        #region MÉTODOS
         private void listar()
         {
             try
@@ -165,10 +165,27 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
 
         }
 
-        private void frmlistarOS_Load(object sender, EventArgs e)
+        #endregion
+
+        #region BOTÕES
+
+
+        private void btnpesquisar_Click(object sender, EventArgs e)
         {
-            listar();
+            Pesquisar();
         }
+
+        private void btnadicionaros_Click(object sender, EventArgs e)
+        {
+            frmOS FrmOS = new frmOS();
+            FrmOS.ShowDialog();
+        }
+
+
+
+        #endregion
+
+        #region LEAVE
 
         private void cbclientes_Leave(object sender, EventArgs e)
         {
@@ -181,9 +198,8 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
             Buscarclientes();
         }
 
-        private void btnpesquisar_Click(object sender, EventArgs e)
-        {
-            Pesquisar();
-        }
+        #endregion
+
+
     }
 }
