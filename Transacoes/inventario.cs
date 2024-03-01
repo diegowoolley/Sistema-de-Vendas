@@ -22,6 +22,15 @@ namespace Sistema_de_Vendas
         string sql;
         MySqlCommand cmd;
 
+        private void inventario_Load(object sender, EventArgs e)
+        {
+            Listar();
+            formatargrid();
+            ContarProdutosAVencer();
+            ContarProdutosBaixoEstoque();
+        }
+
+        #region MÉTODOS
         private int ContarProdutosAVencer()
         {
             int contador = 0;
@@ -285,19 +294,9 @@ namespace Sistema_de_Vendas
           
         }
 
-        private void inventario_Load(object sender, EventArgs e)
-        {
-            Listar();
-            formatargrid();
-            ContarProdutosAVencer();
-            ContarProdutosBaixoEstoque();
-        }
+        #endregion
 
-        private void txtpesquisa_TextChanged(object sender, EventArgs e)
-        {
-            Buscar();
-            
-        }
+        #region BOTÕES
 
         private void btnestoqueminimo_Click(object sender, EventArgs e)
         {
@@ -319,5 +318,18 @@ namespace Sistema_de_Vendas
             frmcadProdutos frmprodutos = new frmcadProdutos();
             frmprodutos.ShowDialog();
         }
+
+
+        #endregion
+
+        #region TEXTCHANGED
+
+        private void txtpesquisa_TextChanged(object sender, EventArgs e)
+        {
+            Buscar();
+            
+        }
+
+        #endregion
     }
 }

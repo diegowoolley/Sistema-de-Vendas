@@ -24,7 +24,14 @@ namespace Sistema_de_Vendas.Transacoes
         string sql;
         MySqlCommand cmd;
 
+        private void transacoes_Load(object sender, EventArgs e)
+        {
+            Listar();
+            formatargrid();
 
+        }
+
+        #region MÉTODOS
         private void Listar()
         {
             try
@@ -109,13 +116,9 @@ namespace Sistema_de_Vendas.Transacoes
 
         }
 
-        private void transacoes_Load(object sender, EventArgs e)
-        {
-            Listar();
-            formatargrid();
-            
-        }
+        #endregion
 
+        #region BOTÕES
         private void btnpesquisar_Click(object sender, EventArgs e)
         {
             Buscar();
@@ -128,11 +131,16 @@ namespace Sistema_de_Vendas.Transacoes
             
         }
 
+        #endregion
+
+        #region TEXT CHANGED
+
         private void txtpesquisa_TextChanged(object sender, EventArgs e)
         {
             Buscar();
         }
 
-      
+        #endregion
+
     }
 }

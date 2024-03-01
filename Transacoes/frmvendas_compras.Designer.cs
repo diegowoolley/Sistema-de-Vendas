@@ -218,10 +218,10 @@
             // 
             // PRODUTO
             // 
-            this.PRODUTO.HeaderText = "Produto";
+            this.PRODUTO.HeaderText = "produto";
             this.PRODUTO.Name = "PRODUTO";
             this.PRODUTO.ReadOnly = true;
-            this.PRODUTO.Width = 69;
+            this.PRODUTO.Width = 68;
             // 
             // QUANTIDADE
             // 
@@ -297,8 +297,8 @@
             this.txtvalorpago.MaxLength = 10;
             this.txtvalorpago.Name = "txtvalorpago";
             this.txtvalorpago.Size = new System.Drawing.Size(74, 20);
-            this.txtvalorpago.TabIndex = 11;         
-             // 
+            this.txtvalorpago.TabIndex = 11;
+            // 
             // lblvalorpago
             // 
             this.lblvalorpago.AutoSize = true;
@@ -692,16 +692,6 @@
         private System.Windows.Forms.ComboBox cbproduto;
         private System.Windows.Forms.Button btnremoveritens;
         private System.Windows.Forms.Button btnfecharvenda;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn COD_PRODUTO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TIPO_TRANSACAO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CLIENTE;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PRODUTO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn QUANTIDADE;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CATEGORIA;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PRECO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn VENDEDOR;
-        private System.Windows.Forms.DataGridViewTextBoxColumn VALOR_TOTAL;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox txtretornagrid;
         private System.Windows.Forms.Label label1;
@@ -717,5 +707,15 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lbllvencimento;
         private System.Windows.Forms.DateTimePicker dtvencimento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn COD_PRODUTO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TIPO_TRANSACAO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CLIENTE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PRODUTO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QUANTIDADE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CATEGORIA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PRECO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn VENDEDOR;
+        private System.Windows.Forms.DataGridViewTextBoxColumn VALOR_TOTAL;
     }
 }
