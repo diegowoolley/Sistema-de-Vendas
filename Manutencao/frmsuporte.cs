@@ -19,6 +19,7 @@ namespace Sistema_de_Vendas
             InitializeComponent();
         }
 
+        #region MÉTODOS
         private void Enviar()
         {
             //fonte: https://www.youtube.com/watch?v=k-z_q38zdgw
@@ -60,6 +61,9 @@ namespace Sistema_de_Vendas
             //}
         }
 
+        #endregion
+
+        #region BOTÕES
         private void btnenviar_Click(object sender, EventArgs e)
         {
             if (txtTitulo.Text.Trim() == "")
@@ -77,6 +81,17 @@ namespace Sistema_de_Vendas
             Enviar();
         }
 
+        private void btnlimpar_Click(object sender, EventArgs e)
+        {
+            txtNome.Text = "NOME";
+            txtEmail.Text = "EMAIL";
+            txtTitulo.Text = "TÍTULO DA MENSAGEM";
+            txtMessagem.Text = "MENSAGEM";
+        }
+
+        #endregion
+
+        #region ENTER \ LEAVE
         private void txtEmail_Enter(object sender, EventArgs e)
         {
             if (txtEmail.Text == "EMAIL")
@@ -153,12 +168,7 @@ namespace Sistema_de_Vendas
             }
         }
 
-        private void btnlimpar_Click(object sender, EventArgs e)
-        {
-            txtNome.Text = "NOME";
-            txtEmail.Text = "EMAIL";
-            txtTitulo.Text = "TÍTULO DA MENSAGEM";
-            txtMessagem.Text = "MENSAGEM";
-        }
+        #endregion
+
     }
 }

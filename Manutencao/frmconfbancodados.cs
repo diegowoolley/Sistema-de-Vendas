@@ -19,6 +19,31 @@ namespace Sistema_de_Vendas
             InitializeComponent();
         }
 
+        private void frmconfbancodados_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                StreamReader arquivo = new StreamReader("ConfigBD.pfx");
+                txtservidor.Text = arquivo.ReadLine();
+                txtbancodados.Text = arquivo.ReadLine();
+                txtusuario.Text = arquivo.ReadLine();
+                txtsenha.Text = arquivo.ReadLine();
+                txtporta.Text = arquivo.ReadLine();
+                arquivo.Close();
+
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+
+
+        }
+
+        #region BOTÕES
+
         private void btnsalvar_Click(object sender, EventArgs e)
         {
             try
@@ -39,30 +64,7 @@ namespace Sistema_de_Vendas
                 MessageBox.Show(ex.Message);
             }
           
-        }
-
-        private void frmconfbancodados_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                StreamReader arquivo = new StreamReader("ConfigBD.pfx");
-                txtservidor.Text = arquivo.ReadLine();
-                txtbancodados.Text = arquivo.ReadLine();
-                txtusuario.Text = arquivo.ReadLine();
-                txtsenha.Text = arquivo.ReadLine();
-                txtporta.Text = arquivo.ReadLine();
-                arquivo.Close();                
-               
-
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message);
-            }
-
-
-        }
+        }    
 
         private void btnteste_Click(object sender, EventArgs e)
         {
@@ -87,5 +89,7 @@ namespace Sistema_de_Vendas
             }
            
         }
+
+        #endregion
     }
 }

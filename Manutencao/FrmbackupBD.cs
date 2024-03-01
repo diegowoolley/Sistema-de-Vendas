@@ -22,6 +22,7 @@ namespace Sistema_de_Vendas
             InitializeComponent();
         }
 
+        #region BOTÕES
         private void btnbackup_Click(object sender, EventArgs e)
         {
 
@@ -118,5 +119,7 @@ namespace Sistema_de_Vendas
             
 
         }
+
+        #endregion
     }
 }
