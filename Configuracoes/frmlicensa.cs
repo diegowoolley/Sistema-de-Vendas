@@ -25,7 +25,8 @@ namespace Sistema_de_Vendas.Configuracoes
             cbtipo.SelectedIndex = 0;
             txtidproduto.Text = ComputerInfo.GetComputerId();
         }
-        
+
+        #region BOTÕES
         private void btngerar_Click(object sender, EventArgs e)
         {
             KeyManager km = new KeyManager(txtidproduto.Text);
@@ -66,5 +67,7 @@ namespace Sistema_de_Vendas.Configuracoes
             txtchaveproduto.Text = productKey;
             
         }
+
+        #endregion
     }
 }

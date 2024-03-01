@@ -34,6 +34,8 @@ namespace Sistema_de_Vendas.Configuracoes
             formatargrid();
         }
 
+        #region MÉTODOS
+
         private byte[] img()
         {
             byte[] image_byte = null;
@@ -80,6 +82,55 @@ namespace Sistema_de_Vendas.Configuracoes
             pbFoto.Image = Properties.Resources.download;
             foto = "download.png";
         }
+
+        private void Listar()
+        {
+            try
+            {
+                con.AbrirConexao();
+                sql = "SELECT * FROM cad_empresas ORDER BY nome ASC";
+                cmd = new MySqlCommand(sql, con.con);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dgCliente.DataSource = dt;
+                con.FecharConexao();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void formatargrid()
+        {
+            dgCliente.Columns[0].HeaderText = "ID";
+            dgCliente.Columns[1].HeaderText = "Nome";
+            dgCliente.Columns[2].HeaderText = "Documento";
+            dgCliente.Columns[3].HeaderText = "Endereço";
+            dgCliente.Columns[4].HeaderText = "Bairro";
+            dgCliente.Columns[5].HeaderText = "Número";
+            dgCliente.Columns[6].HeaderText = "Cidade";
+            dgCliente.Columns[7].HeaderText = "Estado";
+            dgCliente.Columns[8].HeaderText = "Telefone";
+            dgCliente.Columns[9].HeaderText = "Celular";
+            dgCliente.Columns[10].HeaderText = "Foto";
+            dgCliente.Columns[10].Visible = false;
+            dgCliente.Columns[11].HeaderText = "E-mail";
+            dgCliente.Columns[12].HeaderText = "Inscrição Estadual";
+
+
+            dgCliente.Columns[0].Visible = false;
+
+        }
+
+
+
+        #endregion
+
+        #region BOTÕES
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
@@ -271,131 +322,6 @@ namespace Sistema_de_Vendas.Configuracoes
                 alterou_foto = "s";
 
             }
-        }
-
-        private void Listar()
-        {
-            try
-            {
-                con.AbrirConexao();
-                sql = "SELECT * FROM cad_empresas ORDER BY nome ASC";
-                cmd = new MySqlCommand(sql, con.con);
-                MySqlDataAdapter da = new MySqlDataAdapter();
-                da.SelectCommand = cmd;
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                dgCliente.DataSource = dt;
-                con.FecharConexao();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-          
-        }
-
-        private void formatargrid()
-        {
-            dgCliente.Columns[0].HeaderText = "ID";
-            dgCliente.Columns[1].HeaderText = "Nome";
-            dgCliente.Columns[2].HeaderText = "Documento";
-            dgCliente.Columns[3].HeaderText = "Endereço";
-            dgCliente.Columns[4].HeaderText = "Bairro";
-            dgCliente.Columns[5].HeaderText = "Número";
-            dgCliente.Columns[6].HeaderText = "Cidade";
-            dgCliente.Columns[7].HeaderText = "Estado";
-            dgCliente.Columns[8].HeaderText = "Telefone";
-            dgCliente.Columns[9].HeaderText = "Celular";
-            dgCliente.Columns[10].HeaderText = "Foto";
-            dgCliente.Columns[10].Visible = false;
-            dgCliente.Columns[11].HeaderText = "E-mail";
-            dgCliente.Columns[12].HeaderText = "Inscrição Estadual";
-
-
-            dgCliente.Columns[0].Visible = false;
-
-        }
-
-        private void txtdocumento_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            funcoes.DecNumber(sender, e);
-            if (e.KeyChar == 13)
-                txtemail.Focus();
-        }
-
-        private void txttelefone_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            funcoes.DecNumber(sender, e);
-            if (e.KeyChar == 13)
-                txtcelular.Focus();
-        }
-
-        private void txtcelular_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            funcoes.DecNumber(sender, e);
-            if (e.KeyChar == 13)
-                txtnome.Focus();
-        }
-
-        private void txtdocumento_Leave(object sender, EventArgs e)
-        {
-            string documento = txtdocumento.Text;
-            if (txtdocumento.Text == "")
-            {
-                txtemail.Focus();
-            }
-            else
-            {
-
-                txtdocumento.Text = Convert.ToInt64(documento).ToString(@"00\.000\.000/0000-00");
-
-
-            }
-        }
-
-        private void txtcelular_Leave(object sender, EventArgs e)
-        {
-            if (txtcelular.Text == "")
-            {
-                txtnome.Focus();
-            }
-            else
-            {
-
-                string celular = txtcelular.Text;
-                txtcelular.Text = Convert.ToUInt64(celular).ToString(@"\(00)00000-0000");
-            }
-        }
-
-        private void txttelefone_Leave(object sender, EventArgs e)
-        {
-            if (txttelefone.Text == "")
-            {
-                txtcelular.Focus();
-            }
-            else
-            {
-                string telefone = txttelefone.Text;
-                txttelefone.Text = Convert.ToUInt64(telefone).ToString(@"\(00)00000-0000");
-            }
-        }
-
-        private void txtdocumento_Enter(object sender, EventArgs e)
-        {
-            var documento = txtdocumento.Text.Replace(".", "").Replace("/", "").Replace("-", "");
-            txtdocumento.Text = documento;
-        }
-
-        private void txttelefone_Enter(object sender, EventArgs e)
-        {
-            string telefone = txttelefone.Text.Replace("(", "").Replace(")", "").Replace("-", "");
-            txttelefone.Text = telefone;
-        }
-
-        private void txtcelular_Enter(object sender, EventArgs e)
-        {
-            var celular = txtcelular.Text.Replace("(", "").Replace(")", "").Replace("-", "");
-            txtcelular.Text = celular;
         }
 
         private void btnAlterar_Click(object sender, EventArgs e)
@@ -592,6 +518,158 @@ namespace Sistema_de_Vendas.Configuracoes
             }
         }
 
+        private void btncancelarpesquisa_Click(object sender, EventArgs e)
+        {
+            pnpesquisa.Visible = false;
+        }
+
+
+        #endregion
+
+        #region ENTER \ LEAVE \ KEYPRESS \ TEXT CHANGED
+
+        private void txtdocumento_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                txtemail.Focus();
+        }
+
+        private void txttelefone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                txtcelular.Focus();
+        }
+
+        private void txtcelular_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                txtnome.Focus();
+        }
+
+        private void txtdocumento_Leave(object sender, EventArgs e)
+        {
+            string documento = txtdocumento.Text;
+            if (txtdocumento.Text == "")
+            {
+                txtemail.Focus();
+            }
+            else
+            {
+
+                txtdocumento.Text = Convert.ToInt64(documento).ToString(@"00\.000\.000/0000-00");
+
+
+            }
+        }
+
+        private void txtcelular_Leave(object sender, EventArgs e)
+        {
+            if (txtcelular.Text == "")
+            {
+                txtnome.Focus();
+            }
+            else
+            {
+
+                string celular = txtcelular.Text;
+                txtcelular.Text = Convert.ToUInt64(celular).ToString(@"\(00)00000-0000");
+            }
+        }
+
+        private void txttelefone_Leave(object sender, EventArgs e)
+        {
+            if (txttelefone.Text == "")
+            {
+                txtcelular.Focus();
+            }
+            else
+            {
+                string telefone = txttelefone.Text;
+                txttelefone.Text = Convert.ToUInt64(telefone).ToString(@"\(00)00000-0000");
+            }
+        }
+
+        private void txtdocumento_Enter(object sender, EventArgs e)
+        {
+            var documento = txtdocumento.Text.Replace(".", "").Replace("/", "").Replace("-", "");
+            txtdocumento.Text = documento;
+        }
+
+        private void txttelefone_Enter(object sender, EventArgs e)
+        {
+            string telefone = txttelefone.Text.Replace("(", "").Replace(")", "").Replace("-", "");
+            txttelefone.Text = telefone;
+        }
+
+        private void txtcelular_Enter(object sender, EventArgs e)
+        {
+            var celular = txtcelular.Text.Replace("(", "").Replace(")", "").Replace("-", "");
+            txtcelular.Text = celular;
+        }
+
+        private void txtpesquisa_TextChanged(object sender, EventArgs e)
+        {
+            Buscar();
+        }
+
+        private void txtnome_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txtdocumento.Focus();
+        }
+
+        private void txtemail_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txtinscricao.Focus();
+        }
+
+        private void txtendereco_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txtbairro.Focus();
+        }
+
+        private void txtbairro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txtnumero.Focus();
+        }
+
+        private void txtnumero_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txtcidade.Focus();
+        }
+
+        private void txtcidade_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                cbestados.Focus();
+        }
+
+        private void cbestados_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txttelefone.Focus();
+        }
+
+        private void txtinscricao_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                txtendereco.Focus();
+        }
+
+
+
+        #endregion
+
+        #region LABELS
+
         private void lblpesquisa_DoubleClick(object sender, EventArgs e)
         {
             pnpesquisa.Visible = true;
@@ -601,20 +679,19 @@ namespace Sistema_de_Vendas.Configuracoes
             txtpesquisa.Focus();
         }
 
+        #endregion
+
+        #region PANEL
+
         private void pnpesquisa_Leave(object sender, EventArgs e)
         {
             pnpesquisa.Visible = false;
         }
 
-        private void txtpesquisa_TextChanged(object sender, EventArgs e)
-        {
-            Buscar();
-        }
 
-        private void btncancelarpesquisa_Click(object sender, EventArgs e)
-        {
-            pnpesquisa.Visible = false;
-        }
+        #endregion
+
+        #region DATAGRID
 
         private void dgCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -669,54 +746,13 @@ namespace Sistema_de_Vendas.Configuracoes
             }
         }
 
-        private void txtnome_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13)
-                txtdocumento.Focus();
-        }
 
-        private void txtemail_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13)
-                txtinscricao.Focus();
-        }
+        #endregion
 
-        private void txtendereco_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13)
-                txtbairro.Focus();
-        }
 
-        private void txtbairro_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13)
-                txtnumero.Focus();
-        }
 
-        private void txtnumero_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13)
-                txtcidade.Focus();
-        }
 
-        private void txtcidade_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13)
-                cbestados.Focus();
-        }
 
-        private void cbestados_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13)
-                txttelefone.Focus();
-        }
-
-        private void txtinscricao_KeyPress(object sender, KeyPressEventArgs e)
-        {           
-            funcoes.DecNumber(sender, e);
-            if (e.KeyChar == 13)
-                txtendereco.Focus();
-        }
     }
 }
 

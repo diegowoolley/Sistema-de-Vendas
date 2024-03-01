@@ -19,12 +19,6 @@ namespace Sistema_de_Vendas.Configuracoes
         }
         const int ProductCode = 1;
 
-
-        private void btnok_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
         private void frmsobre_Load(object sender, EventArgs e)
         {
             lblidproduto.Text = ComputerInfo.GetComputerId();
@@ -32,7 +26,7 @@ namespace Sistema_de_Vendas.Configuracoes
             LicenseInfo lic = new LicenseInfo();
             int value = km.LoadSuretyFile(string.Format(@"{0}\Key.lic", Application.StartupPath), ref lic);
             string productKey = lic.ProductKey;
-            if(km.ValidKey(ref productKey))
+            if (km.ValidKey(ref productKey))
             {
                 KeyValuesClass kv = new KeyValuesClass();
                 if (km.DisassembleKey(productKey, ref kv))
@@ -41,14 +35,24 @@ namespace Sistema_de_Vendas.Configuracoes
                     lblchaveproduto.Text = productKey;
                     if (kv.Type == LicenseType.TRIAL)
                         lbltipolicenca.Text = string.Format("{0} Dias", (kv.Expiration - DateTime.Now.Date).Days);
-                   
+
                     else
                         lbltipolicenca.Text = "Full";
-                   
+
                 }
-               
+
             }
-           
+
         }
+
+        #region BOTÕES
+        private void btnok_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        #endregion
+
+       
     }
 }

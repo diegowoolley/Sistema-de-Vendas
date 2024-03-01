@@ -28,6 +28,7 @@ namespace Sistema_de_Vendas.Configuracoes
             txtidproduto.Text = ComputerInfo.GetComputerId();
         }
 
+        #region BOTÕES
         private void btnok_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtchaveproduto.Text))
@@ -76,6 +77,9 @@ namespace Sistema_de_Vendas.Configuracoes
 
         }
 
+        #endregion
+
+        #region MÉTODOS
         private bool VerificarESalvarChave()
         {
             KeyManager km = new KeyManager(txtidproduto.Text);
@@ -116,6 +120,8 @@ namespace Sistema_de_Vendas.Configuracoes
             MessageBox.Show("Chave do Produto é Inválida!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return false;
         }
+
+        #endregion
 
     }
 }

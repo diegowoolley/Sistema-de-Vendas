@@ -21,6 +21,7 @@ namespace Sistema_de_Vendas.Configuracoes
         string sql;
         MySqlCommand cmd;
 
+        #region BOTÕES
         private void btnlimparvendas_Click(object sender, EventArgs e)
         {
             try
@@ -54,5 +55,7 @@ namespace Sistema_de_Vendas.Configuracoes
                 MessageBox.Show(ex.Message);
             }
         }
+
+        #endregion
     }
 }

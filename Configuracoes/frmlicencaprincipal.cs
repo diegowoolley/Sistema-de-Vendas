@@ -17,6 +17,8 @@ namespace Sistema_de_Vendas.Configuracoes
             InitializeComponent();
         }
 
+
+        #region BOTÕES
         private void btngerar_Click(object sender, EventArgs e)
         {
             frmlicensa frm = new frmlicensa();
@@ -34,5 +36,7 @@ namespace Sistema_de_Vendas.Configuracoes
             frmsobre frmsobre = new frmsobre();
             frmsobre.ShowDialog();
         }
+
+        #endregion
     }
 }
