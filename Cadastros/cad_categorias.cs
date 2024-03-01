@@ -22,6 +22,13 @@ namespace Sistema_de_Vendas.Cadastros
         MySqlCommand cmd;
         string id;
 
+        private void frmcad_categorias_Load(object sender, EventArgs e)
+        {
+            Listar();
+            formatargrid();
+        }
+
+        #region MÉTODOS
         private void Listar()
         {
             try
@@ -53,13 +60,9 @@ namespace Sistema_de_Vendas.Cadastros
             dgCliente.Columns[2].Visible = false;
 
         }
-
-        private void frmcad_categorias_Load(object sender, EventArgs e)
-        {
-            Listar();
-            formatargrid();
-        }
-
+        #endregion
+        
+        #region BOTÕES
         private void btnNovo_Click(object sender, EventArgs e)
         {
             txtnome.Enabled = true;
@@ -230,7 +233,9 @@ namespace Sistema_de_Vendas.Cadastros
             btnNovo.Focus();
             Listar();
         }
+        #endregion
 
+        #region GRID
         private void dgCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex > -1)
@@ -249,5 +254,6 @@ namespace Sistema_de_Vendas.Cadastros
                 txtnome.Focus();
             }
         }
+        #endregion
     }
 }

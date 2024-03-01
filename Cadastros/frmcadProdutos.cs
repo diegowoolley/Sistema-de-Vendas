@@ -31,6 +31,19 @@ namespace Sistema_de_Vendas
         string id;
         string alterou_foto = "n";
 
+
+        private void frmcadProdutos_Load(object sender, EventArgs e)
+        {
+            Limparfoto();
+            Listar();
+            Listarcategoria();
+            cbcategoria.SelectedIndex = -1;
+            listarfornecedor();
+            cbfornecedor.SelectedIndex = -1;
+            formatargrid();
+        }
+
+        #region MÉTODOS
         private byte[] img()
         {
             byte[] image_byte = null;
@@ -181,76 +194,28 @@ namespace Sistema_de_Vendas
 
         }
 
-        private void lbladicionarcategorias_DoubleClick(object sender, EventArgs e)
+        private void CalcularValorVenda()
         {
-            frmcad_categorias frmcad_Categorias = new frmcad_categorias();
-            frmcad_Categorias.ShowDialog();
+            if (decimal.TryParse(txtvalorcompra.Text.Trim().Replace("R$ ", ""), out decimal valorCompra) &&
+                decimal.TryParse(txtmargemlucro.Text.Replace("%", ""), out decimal margemLucro))
+            {
+                decimal valorVenda = valorCompra * (1 + (margemLucro / 100));
+
+
+                txtvalorvenda.Text = valorVenda.ToString("N2");
+            }
+            else
+            {
+
+                MessageBox.Show("Por favor, insira valores válidos para a compra e a margem de lucro.");
+            }
+
         }
 
-        private void frmcadProdutos_Load(object sender, EventArgs e)
-        {
-            Limparfoto();
-            Listar();
-            Listarcategoria();
-            cbcategoria.SelectedIndex = -1;
-            listarfornecedor();
-            cbfornecedor.SelectedIndex = -1;
-            formatargrid();
-        }
 
-        private void lblpesquisa_DoubleClick(object sender, EventArgs e)
-        {
-            pnpesquisa.Visible = true;
-            txtpesquisa.Enabled = true;
-            txtpesquisa.Clear();
-            btncancelarpesquisa.Enabled = true;
-            txtpesquisa.Focus();
-        }
+        #endregion
 
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            txtetiqueta.Enabled = false;
-            txtetiqueta.Clear();
-            txtdescricao.Enabled = false;
-            txtdescricao.Clear();
-            cbcategoria.Enabled = false;
-            cbcategoria.SelectedIndex = -1;
-            cbunidade.Enabled = false;
-            cbunidade.SelectedIndex = -1;
-            txtquantidade.Enabled = false;
-            txtquantidade.Clear();
-            cbfornecedor.Enabled = false;
-            cbfornecedor.SelectedIndex = -1;
-            txtpesomedio.Enabled = false;
-            txtpesomedio.Clear();
-            txtpesobruto.Enabled = false;
-            txtpesobruto.Clear();
-            txtfabricante.Enabled = false;
-            txtfabricante.Clear();
-            txtvalorcompra.Enabled = false;
-            txtvalorcompra.Clear();
-            txtvalorvenda.Enabled = false;
-            txtvalorvenda.Clear();
-            txtmargemlucro.Enabled = false;
-            txtmargemlucro.Clear();
-            txtestoqueminimo.Enabled = false;
-            txtestoqueminimo.Clear();
-            txtestoquemaximo.Enabled = false;
-            txtestoquemaximo.Clear();
-            txtvalidade.Enabled = false;
-            txtvalidade.Clear();
-
-
-            btnAdicionar.Enabled = false;
-            btnAlterar.Enabled = false;
-            btnExcluir.Enabled = false;
-
-            btnfoto.Enabled = false;
-            btnNovo.Enabled = true;
-            Limparfoto();
-            btnNovo.Focus();
-            Listar();
-        }
+        #region BOTÕES
 
         private void btnNovo_Click(object sender, EventArgs e)
         {
@@ -475,62 +440,50 @@ namespace Sistema_de_Vendas
             }
         }
 
-        private void txtquantidade_KeyPress(object sender, KeyPressEventArgs e)
+        private void btnCancelar_Click(object sender, EventArgs e)
         {
-            funcoes.DecNumber(sender, e);
-            if (e.KeyChar == 13)
-                cbfornecedor.Focus();
-        }
+            txtetiqueta.Enabled = false;
+            txtetiqueta.Clear();
+            txtdescricao.Enabled = false;
+            txtdescricao.Clear();
+            cbcategoria.Enabled = false;
+            cbcategoria.SelectedIndex = -1;
+            cbunidade.Enabled = false;
+            cbunidade.SelectedIndex = -1;
+            txtquantidade.Enabled = false;
+            txtquantidade.Clear();
+            cbfornecedor.Enabled = false;
+            cbfornecedor.SelectedIndex = -1;
+            txtpesomedio.Enabled = false;
+            txtpesomedio.Clear();
+            txtpesobruto.Enabled = false;
+            txtpesobruto.Clear();
+            txtfabricante.Enabled = false;
+            txtfabricante.Clear();
+            txtvalorcompra.Enabled = false;
+            txtvalorcompra.Clear();
+            txtvalorvenda.Enabled = false;
+            txtvalorvenda.Clear();
+            txtmargemlucro.Enabled = false;
+            txtmargemlucro.Clear();
+            txtestoqueminimo.Enabled = false;
+            txtestoqueminimo.Clear();
+            txtestoquemaximo.Enabled = false;
+            txtestoquemaximo.Clear();
+            txtvalidade.Enabled = false;
+            txtvalidade.Clear();
 
-        private void txtpesomedio_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            funcoes.DecNumber(sender, e);
-            if (e.KeyChar == 13)
-                txtpesobruto.Focus();
-        }
 
-        private void txtpesobruto_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            funcoes.DecNumber(sender, e);
-            if (e.KeyChar == 13)
-                txtfabricante.Focus();
-        }
+            btnAdicionar.Enabled = false;
+            btnAlterar.Enabled = false;
+            btnExcluir.Enabled = false;
 
-        private void txtvalorcompra_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            funcoes.DecNumber(sender, e);
-            if (e.KeyChar == 13)
-                txtvalorvenda.Focus();
+            btnfoto.Enabled = false;
+            btnNovo.Enabled = true;
+            Limparfoto();
+            btnNovo.Focus();
+            Listar();
         }
-
-        private void txtvalorvenda_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            funcoes.DecNumber(sender, e);
-            if (e.KeyChar == 13)
-                txtmargemlucro.Focus();
-        }
-
-        private void txtmargemlucro_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            funcoes.DecNumber(sender, e);
-            if (e.KeyChar == 13)
-                txtestoqueminimo.Focus();
-        }
-
-        private void txtsituacaotributaria_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            funcoes.DecNumber(sender, e);
-            if (e.KeyChar == 13)
-                txtaliquota.Focus();
-        }
-
-        private void txtcodipi_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            funcoes.DecNumber(sender, e);
-            if (e.KeyChar == 13)
-                txtetiqueta.Focus();
-        }
-
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
@@ -698,7 +651,7 @@ namespace Sistema_de_Vendas
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);    
+                MessageBox.Show(ex.Message);
             }
 
         }
@@ -775,9 +728,65 @@ namespace Sistema_de_Vendas
             pnpesquisa.Visible = false;
         }
 
-        private void pnpesquisa_Leave(object sender, EventArgs e)
+
+        #endregion
+
+        #region ENTER \ LEAVE \ KEYPRESS \ TEXT CHANGED
+
+        private void txtquantidade_KeyPress(object sender, KeyPressEventArgs e)
         {
-            pnpesquisa.Visible = false;
+            funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                cbfornecedor.Focus();
+        }
+
+        private void txtpesomedio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                txtpesobruto.Focus();
+        }
+
+        private void txtpesobruto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                txtfabricante.Focus();
+        }
+
+        private void txtvalorcompra_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                txtvalorvenda.Focus();
+        }
+
+        private void txtvalorvenda_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                txtmargemlucro.Focus();
+        }
+
+        private void txtmargemlucro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                txtestoqueminimo.Focus();
+        }
+
+        private void txtsituacaotributaria_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                txtaliquota.Focus();
+        }
+
+        private void txtcodipi_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                txtetiqueta.Focus();
         }
 
         private void txtpesquisa_TextChanged(object sender, EventArgs e)
@@ -800,77 +809,6 @@ namespace Sistema_de_Vendas
         private void cbfornecedor_Enter(object sender, EventArgs e)
         {
             listarfornecedor();
-        }
-
-        private void dgCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex > -1)
-            {
-
-                id = dgCliente.CurrentRow.Cells[0].Value.ToString();
-
-                txtdescricao.Text = dgCliente.CurrentRow.Cells[1].Value.ToString();
-                cbcategoria.Text = dgCliente.CurrentRow.Cells[2].Value.ToString();
-                cbunidade.Text = dgCliente.CurrentRow.Cells[3].Value.ToString();
-                txtquantidade.Text = dgCliente.CurrentRow.Cells[4].Value.ToString();
-                cbfornecedor.Text = dgCliente.CurrentRow.Cells[5].Value.ToString();
-                txtpesomedio.Text = dgCliente.CurrentRow.Cells[6].Value.ToString();
-                txtpesobruto.Text = dgCliente.CurrentRow.Cells[7].Value.ToString();
-                txtfabricante.Text = dgCliente.CurrentRow.Cells[8].Value.ToString();
-                txtvalorcompra.Text = "R$ " + dgCliente.CurrentRow.Cells[9].Value.ToString();
-                txtvalorvenda.Text = "R$ " + dgCliente.CurrentRow.Cells[10].Value.ToString();
-                txtmargemlucro.Text = dgCliente.CurrentRow.Cells[11].Value.ToString() + "%";
-                txtsituacaotributaria.Text = dgCliente.CurrentRow.Cells[12].Value.ToString();
-                txtaliquota.Text = dgCliente.CurrentRow.Cells[13].Value.ToString();
-                txtcodipi.Text = dgCliente.CurrentRow.Cells[14].Value.ToString();
-                txtestoqueminimo.Text = dgCliente.CurrentRow.Cells[16].Value.ToString();
-                txtestoquemaximo.Text = dgCliente.CurrentRow.Cells[17].Value.ToString();
-                txtvalidade.Text = dgCliente.CurrentRow.Cells[18].Value.ToString();
-                txtetiqueta.Text = dgCliente.CurrentRow.Cells[19].Value.ToString();
-
-                btnNovo.Enabled = false;
-                btnAdicionar.Enabled = false;
-                btnAlterar.Enabled = true;
-                btnCancelar.Enabled = true;
-                btnExcluir.Enabled = true;
-                btnfoto.Enabled = true;
-                txtetiqueta.Enabled = true;
-                txtdescricao.Enabled = true;
-                cbcategoria.Enabled = true;
-                cbunidade.Enabled = true;
-                txtquantidade.Enabled = true;
-                cbfornecedor.Enabled = true;
-                txtpesomedio.Enabled = true;
-                txtpesobruto.Enabled = true;
-                txtfabricante.Enabled = true;
-                txtvalorcompra.Enabled = true;
-                txtvalorvenda.Enabled = true;
-                txtmargemlucro.Enabled = true;
-                txtestoqueminimo.Enabled = true;
-                txtestoquemaximo.Enabled = true;
-                txtvalidade.Enabled = true;
-
-
-
-
-                if (dgCliente.CurrentRow.Cells[15].Value != DBNull.Value)
-                {
-                    byte[] image = (byte[])dgCliente.Rows[e.RowIndex].Cells[15].Value;
-                    MemoryStream es = new MemoryStream(image);
-                    pbFoto.Image = Image.FromStream(es);
-
-                }
-                else
-                {
-                    pbFoto.Image = Properties.Resources.download;
-                }
-
-
-
-
-
-            }
-
         }
 
         private void txtdescricao_KeyPress(object sender, KeyPressEventArgs e)
@@ -952,23 +890,6 @@ namespace Sistema_de_Vendas
                 txtvalidade.Focus();
         }
 
-        private void lbltributos_DoubleClick(object sender, EventArgs e)
-        {
-            pntributos.Visible = true;
-            txtsituacaotributaria.Enabled = true;
-            txtsituacaotributaria.Clear();
-            txtaliquota.Enabled = true;
-            txtaliquota.Clear();
-            txtcodipi.Enabled = true;
-            txtcodipi.Clear();
-            txtsituacaotributaria.Focus();
-        }
-
-        private void pntributos_Leave(object sender, EventArgs e)
-        {
-            pntributos.Visible = false;
-        }
-
         private void txtvalidade_Leave(object sender, EventArgs e)
         {
             if (txtvalidade.Text == "")
@@ -1020,24 +941,6 @@ namespace Sistema_de_Vendas
                 txtdescricao.Focus();
         }
 
-        private void CalcularValorVenda()
-        {
-            if (decimal.TryParse(txtvalorcompra.Text.Trim().Replace("R$ ", ""), out decimal valorCompra) &&
-                decimal.TryParse(txtmargemlucro.Text.Replace("%", ""), out decimal margemLucro))
-            {
-                decimal valorVenda = valorCompra * (1 + (margemLucro / 100));
-
-               
-                txtvalorvenda.Text = valorVenda.ToString("N2");
-            }
-            else
-            {
-               
-                MessageBox.Show("Por favor, insira valores válidos para a compra e a margem de lucro.");
-            }
-
-        }
-
         private void txtetiqueta_Leave(object sender, EventArgs e)
         {
             string pesquisa = txtetiqueta.Text;
@@ -1054,7 +957,135 @@ namespace Sistema_de_Vendas
 
             formatargrid();
         }
+
+
+        #endregion
+
+        #region LABELS
+        private void lbladicionarcategorias_DoubleClick(object sender, EventArgs e)
+        {
+            frmcad_categorias frmcad_Categorias = new frmcad_categorias();
+            frmcad_Categorias.ShowDialog();
+        }        
+
+        private void lblpesquisa_DoubleClick(object sender, EventArgs e)
+        {
+            pnpesquisa.Visible = true;
+            txtpesquisa.Enabled = true;
+            txtpesquisa.Clear();
+            btncancelarpesquisa.Enabled = true;
+            txtpesquisa.Focus();
+        }
+
+        private void lbltributos_DoubleClick(object sender, EventArgs e)
+        {
+            pntributos.Visible = true;
+            txtsituacaotributaria.Enabled = true;
+            txtsituacaotributaria.Clear();
+            txtaliquota.Enabled = true;
+            txtaliquota.Clear();
+            txtcodipi.Enabled = true;
+            txtcodipi.Clear();
+            txtsituacaotributaria.Focus();
+        }
+
+        #endregion
+
+        #region PANEL
+
+        private void pnpesquisa_Leave(object sender, EventArgs e)
+        {
+            pnpesquisa.Visible = false;
+        }
+
+        private void pntributos_Leave(object sender, EventArgs e)
+        {
+            pntributos.Visible = false;
+        }
+
+        #endregion
+
+        #region DATAGRID
+
+        private void dgCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+
+                id = dgCliente.CurrentRow.Cells[0].Value.ToString();
+
+                txtdescricao.Text = dgCliente.CurrentRow.Cells[1].Value.ToString();
+                cbcategoria.Text = dgCliente.CurrentRow.Cells[2].Value.ToString();
+                cbunidade.Text = dgCliente.CurrentRow.Cells[3].Value.ToString();
+                txtquantidade.Text = dgCliente.CurrentRow.Cells[4].Value.ToString();
+                cbfornecedor.Text = dgCliente.CurrentRow.Cells[5].Value.ToString();
+                txtpesomedio.Text = dgCliente.CurrentRow.Cells[6].Value.ToString();
+                txtpesobruto.Text = dgCliente.CurrentRow.Cells[7].Value.ToString();
+                txtfabricante.Text = dgCliente.CurrentRow.Cells[8].Value.ToString();
+                txtvalorcompra.Text = "R$ " + dgCliente.CurrentRow.Cells[9].Value.ToString();
+                txtvalorvenda.Text = "R$ " + dgCliente.CurrentRow.Cells[10].Value.ToString();
+                txtmargemlucro.Text = dgCliente.CurrentRow.Cells[11].Value.ToString() + "%";
+                txtsituacaotributaria.Text = dgCliente.CurrentRow.Cells[12].Value.ToString();
+                txtaliquota.Text = dgCliente.CurrentRow.Cells[13].Value.ToString();
+                txtcodipi.Text = dgCliente.CurrentRow.Cells[14].Value.ToString();
+                txtestoqueminimo.Text = dgCliente.CurrentRow.Cells[16].Value.ToString();
+                txtestoquemaximo.Text = dgCliente.CurrentRow.Cells[17].Value.ToString();
+                txtvalidade.Text = dgCliente.CurrentRow.Cells[18].Value.ToString();
+                txtetiqueta.Text = dgCliente.CurrentRow.Cells[19].Value.ToString();
+
+                btnNovo.Enabled = false;
+                btnAdicionar.Enabled = false;
+                btnAlterar.Enabled = true;
+                btnCancelar.Enabled = true;
+                btnExcluir.Enabled = true;
+                btnfoto.Enabled = true;
+                txtetiqueta.Enabled = true;
+                txtdescricao.Enabled = true;
+                cbcategoria.Enabled = true;
+                cbunidade.Enabled = true;
+                txtquantidade.Enabled = true;
+                cbfornecedor.Enabled = true;
+                txtpesomedio.Enabled = true;
+                txtpesobruto.Enabled = true;
+                txtfabricante.Enabled = true;
+                txtvalorcompra.Enabled = true;
+                txtvalorvenda.Enabled = true;
+                txtmargemlucro.Enabled = true;
+                txtestoqueminimo.Enabled = true;
+                txtestoquemaximo.Enabled = true;
+                txtvalidade.Enabled = true;
+
+
+
+
+                if (dgCliente.CurrentRow.Cells[15].Value != DBNull.Value)
+                {
+                    byte[] image = (byte[])dgCliente.Rows[e.RowIndex].Cells[15].Value;
+                    MemoryStream es = new MemoryStream(image);
+                    pbFoto.Image = Image.FromStream(es);
+
+                }
+                else
+                {
+                    pbFoto.Image = Properties.Resources.download;
+                }
+
+
+
+
+
+            }
+
+        }
+
+        #endregion
+
+
+
+
+
+
     }
 
-      
+
 }

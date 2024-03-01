@@ -29,6 +29,8 @@ namespace Sistema_de_Vendas.Cadastros
             formatargrid();
         }
 
+        #region MÉTODOS
+
         private void Listar()
         {
             try
@@ -65,6 +67,10 @@ namespace Sistema_de_Vendas.Cadastros
 
         }
 
+
+        #endregion
+
+        #region BOTÕES
         private void btnNovo_Click(object sender, EventArgs e)
         {
             txtmarca.Enabled = true;
@@ -250,6 +256,25 @@ namespace Sistema_de_Vendas.Cadastros
            
         }
 
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            txtmarca.Enabled = false;
+            txtmarca.Clear();
+            txtmodelo.Enabled = false;
+            txtmodelo.Clear();
+            txtplaca.Enabled = false;
+            txtplaca.Clear();
+            txtkm.Enabled = false;
+            txtkm.Clear();
+            btnNovo.Enabled = true;
+            btnAdicionar.Enabled = false;
+            btnAlterar.Enabled = false;
+            btnExcluir.Enabled = false;
+        }
+
+        #endregion
+
+        #region DATAGRID
         private void dgCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex > -1)
@@ -275,22 +300,9 @@ namespace Sistema_de_Vendas.Cadastros
             }
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            txtmarca.Enabled = false;
-            txtmarca.Clear();
-            txtmodelo.Enabled = false;
-            txtmodelo.Clear();
-            txtplaca.Enabled = false;
-            txtplaca.Clear();
-            txtkm.Enabled = false;
-            txtkm.Clear();
-            btnNovo.Enabled = true;
-            btnAdicionar.Enabled = false;
-            btnAlterar.Enabled = false;
-            btnExcluir.Enabled = false;
-        }
+        #endregion
 
+        #region KEYPRESS
         private void txtkm_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender, e);
@@ -315,5 +327,6 @@ namespace Sistema_de_Vendas.Cadastros
             if (e.KeyChar == 13)
                 txtplaca.Focus();
         }
+        #endregion
     }
 }

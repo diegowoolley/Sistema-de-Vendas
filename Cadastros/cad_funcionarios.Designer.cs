@@ -449,8 +449,7 @@
             this.txtpesquisa.MaxLength = 80;
             this.txtpesquisa.Name = "txtpesquisa";
             this.txtpesquisa.Size = new System.Drawing.Size(195, 20);
-            this.txtpesquisa.TabIndex = 18;
-            this.txtpesquisa.TextChanged += new System.EventHandler(this.txtpesquisa_TextChanged_1);
+            this.txtpesquisa.TabIndex = 18;            
             // 
             // lblnomepesquisa
             // 

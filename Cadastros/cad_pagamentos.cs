@@ -29,6 +29,7 @@ namespace Sistema_de_Vendas.Cadastros
             formatargrid();
         }
 
+        #region MÉTODOS
         private void Listar()
         {
             try
@@ -46,12 +47,11 @@ namespace Sistema_de_Vendas.Cadastros
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show(ex.Message);
                
             }
            
         }
-
         private void formatargrid()
         {
             dgCliente.Columns[0].HeaderText = "ID";
@@ -62,6 +62,9 @@ namespace Sistema_de_Vendas.Cadastros
 
         }
 
+        #endregion
+
+        #region BOTÕES
         private void btnNovo_Click(object sender, EventArgs e)
         {
             txtpagamento.Enabled = true;
@@ -224,6 +227,18 @@ namespace Sistema_de_Vendas.Cadastros
            
         }
 
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            txtpagamento.Enabled = false;
+            txtpagamento.Clear();
+            btnNovo.Enabled = true;
+            btnAdicionar.Enabled = false;
+            btnAlterar.Enabled = false;
+            btnExcluir.Enabled = false;
+        }
+        #endregion
+
+        #region DATAGRID
         private void dgCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             
@@ -254,15 +269,7 @@ namespace Sistema_de_Vendas.Cadastros
                 }
             }
         }
+        #endregion
 
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            txtpagamento.Enabled = false;
-            txtpagamento.Clear();
-            btnNovo.Enabled = true;
-            btnAdicionar.Enabled = false;
-            btnAlterar.Enabled = false;
-            btnExcluir.Enabled = false;
-        }
     }
 }

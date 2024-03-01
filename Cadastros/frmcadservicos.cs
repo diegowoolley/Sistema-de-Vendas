@@ -28,6 +28,8 @@ namespace Sistema_de_Vendas.Cadastros
             formatargrid();
         }
 
+        #region MÉTODOS
+
         private void Listar()
         {
             try
@@ -61,6 +63,10 @@ namespace Sistema_de_Vendas.Cadastros
 
         }
 
+
+        #endregion
+
+        #region BOTÕES
         private void btnNovo_Click(object sender, EventArgs e)
         {
             txtnome.Enabled = true;
@@ -264,28 +270,9 @@ namespace Sistema_de_Vendas.Cadastros
             Listar();
         }
 
-        private void dgCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex > -1)
-            {
+        #endregion       
 
-                id = dgCliente.CurrentRow.Cells[0].Value.ToString();
-
-
-                txtnome.Text = dgCliente.CurrentRow.Cells[1].Value.ToString();
-                txtvalor.Text = "R$ " + dgCliente.CurrentRow.Cells[2].Value.ToString();
-                btnNovo.Enabled = false;
-                btnAdicionar.Enabled = false;
-                btnAlterar.Enabled = true;
-                btnCancelar.Enabled = true;
-                btnExcluir.Enabled = true;
-                txtnome.Enabled = true;
-                txtnome.Focus();
-                txtvalor.Enabled=true;
-                
-            }
-        }
-
+        #region ENTER \ LEAVE \ KEYPRESS 
         private void txtvalor_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender , e);
@@ -313,5 +300,32 @@ namespace Sistema_de_Vendas.Cadastros
                 txtvalor.Text = valor.ToString("C", CultureInfo.CurrentCulture);
             }
         }
+
+        #endregion
+
+        #region DATAGRID
+        private void dgCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+
+                id = dgCliente.CurrentRow.Cells[0].Value.ToString();
+
+
+                txtnome.Text = dgCliente.CurrentRow.Cells[1].Value.ToString();
+                txtvalor.Text = "R$ " + dgCliente.CurrentRow.Cells[2].Value.ToString();
+                btnNovo.Enabled = false;
+                btnAdicionar.Enabled = false;
+                btnAlterar.Enabled = true;
+                btnCancelar.Enabled = true;
+                btnExcluir.Enabled = true;
+                txtnome.Enabled = true;
+                txtnome.Focus();
+                txtvalor.Enabled = true;
+
+            }
+        }
+
+        #endregion
     }
 }

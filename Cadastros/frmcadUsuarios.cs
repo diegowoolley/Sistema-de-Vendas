@@ -13,15 +13,17 @@ namespace Sistema_de_Vendas.Cadastros
 {
     public partial class frmcadUsuarios : Form
     {
-        conn con = new conn();
-        string sql;
-        MySqlCommand cmd;
+       
 
         public frmcadUsuarios()
         {
             InitializeComponent();
         }
-       
+        conn con = new conn();
+        string sql;
+        MySqlCommand cmd;
+
+        #region BOTÕES
         private void btnNovo_Click(object sender, EventArgs e)
         {
          //habilitar botões e campos
@@ -111,8 +113,11 @@ namespace Sistema_de_Vendas.Cadastros
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Close();
-        }     
+        }
 
+        #endregion
+
+        #region KEYPRESS
         private void txtNome_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 13)
@@ -130,5 +135,7 @@ namespace Sistema_de_Vendas.Cadastros
             if (e.KeyChar == 13)
                 txtNome.Focus();
         }
+
+        #endregion
     }
 }
