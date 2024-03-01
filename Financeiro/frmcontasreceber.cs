@@ -24,6 +24,14 @@ namespace Sistema_de_Vendas.Financeiro
         MySqlCommand cmd;
         int cod_venda;
 
+
+        private void frmcontasreceber_Load(object sender, EventArgs e)
+        {
+            Listar();
+            formatargrid();
+        }
+
+        #region MÉTODOS
         private void Listar()
         {
             try
@@ -236,11 +244,9 @@ namespace Sistema_de_Vendas.Financeiro
 
         }
 
-        private void frmcontasreceber_Load(object sender, EventArgs e)
-        {
-            Listar();
-            formatargrid();
-        }
+        #endregion
+
+        #region BOTÕES
 
         private void btnpesquisar_Click(object sender, EventArgs e)
         {
@@ -252,6 +258,36 @@ namespace Sistema_de_Vendas.Financeiro
             }
             Buscar();
         }
+
+        private void btnexcluir_Click(object sender, EventArgs e)
+        {
+            var res = MessageBox.Show("Deseja realmente excluir esse registro?", "Excluir lançamento", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (res == DialogResult.Yes)
+            {
+                con.AbrirConexao();
+                sql = "DELETE FROM caixa WHERE id = @id";
+                cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@id", cod_venda);
+                cmd.ExecuteNonQuery();
+                con.FecharConexao();
+
+                Listar();
+
+                cbcliente.Text = "";
+                dtinicial.Value = DateTime.Now;
+                dtfinal.Value = DateTime.Now;
+                cbcliente.Focus();
+            }
+            else
+            {
+                Listar();
+            }
+        }
+
+        #endregion
+
+        #region KEYPRESS \ LEAVE
 
         private void cbcliente_Leave(object sender, EventArgs e)
         {
@@ -269,17 +305,9 @@ namespace Sistema_de_Vendas.Financeiro
                 dtinicial.Focus();
         }
 
-        private void dtinicial_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13)
-                dtfinal.Focus();
-        }
+        #endregion
 
-        private void dtfinal_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13)
-               btnpesquisar.Focus();
-        }
+        #region DATAGRID
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -308,33 +336,7 @@ namespace Sistema_de_Vendas.Financeiro
             {
                 MessageBox.Show("Este documento já foi faturado!");
             }
-        }
-
-        private void btnexcluir_Click(object sender, EventArgs e)
-        {
-            var res = MessageBox.Show("Deseja realmente excluir esse registro?", "Excluir lançamento", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (res == DialogResult.Yes)
-            {
-                con.AbrirConexao();
-                sql = "DELETE FROM caixa WHERE id = @id";
-                cmd = new MySqlCommand(sql, con.con);
-                cmd.Parameters.AddWithValue("@id", cod_venda);
-                cmd.ExecuteNonQuery();
-                con.FecharConexao();
-
-                Listar();
-               
-                cbcliente.Text = "";
-                dtinicial.Value = DateTime.Now;
-                dtfinal.Value = DateTime.Now;
-                cbcliente.Focus();
-            }
-            else
-            {
-                Listar();
-            }
-        }
+        }        
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -344,5 +346,7 @@ namespace Sistema_de_Vendas.Financeiro
                 
             }
         }
+
+        #endregion
     }
 }

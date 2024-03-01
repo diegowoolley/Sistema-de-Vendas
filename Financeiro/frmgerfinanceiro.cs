@@ -24,7 +24,40 @@ namespace Sistema_de_Vendas.Financeiro
         string sql;
         MySqlCommand cmd;
 
+        private void frmgerfinanceiro_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                con.AbrirConexao();
 
+                sql = "SELECT * FROM cad_empresas WHERE cod = @cod_empresa";
+                cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.HasRows && reader.Read())
+                    {
+                        lblempresa.Text = "Empresa: " + reader["nome"].ToString();
+                        Listar();
+
+                    }
+                }
+
+                con.FecharConexao();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro na Conexão: " + ex.Message);
+            }
+            formatargrid();
+            TotalizarEntradaSaida();
+            pnpesquisa.Focus();
+
+        }
+
+        #region MÉTODOS
         private void Listar()
         {
             try
@@ -211,52 +244,33 @@ namespace Sistema_de_Vendas.Financeiro
             txtpix.Text = totalPix.ToString("C");
             txtcartao.Text = totalCartao.ToString("C");
             txtdescontos.Text = totalDescontos.ToString("C");
-        }    
-
-        private void frmgerfinanceiro_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                con.AbrirConexao();
-
-                sql = "SELECT * FROM cad_empresas WHERE cod = @cod_empresa";
-                cmd = new MySqlCommand(sql, con.con);
-                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
-
-                
-                using (MySqlDataReader reader = cmd.ExecuteReader())
-                {
-                    if (reader.HasRows && reader.Read())
-                    {
-                        lblempresa.Text = "Empresa: " + reader["nome"].ToString();
-                        Listar();
-                      
-                    }
-                }
-
-                con.FecharConexao();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro na Conexão: " + ex.Message);
-            }
-            formatargrid();
-            TotalizarEntradaSaida();
-            pnpesquisa.Focus();
-
         }
+
+        #endregion
+
+        #region BOTÕES
 
         private void button1_Click(object sender, EventArgs e)
         {
             if (dtinicial.Value.Date > dtfinal.Value.Date)
             {
-                MessageBox.Show("A data inicial não pode ser maior que a data final!");                
+                MessageBox.Show("A data inicial não pode ser maior que a data final!");
                 dtinicial.Focus();
                 return;
             }
             Buscar();
             TotalizarEntradaSaida();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Listar();
+            TotalizarEntradaSaida();
+        }
+
+        #endregion
+
+        #region KEYPRESS \ LEAVE
 
         private void txtcliente_Leave(object sender, EventArgs e)
         {
@@ -265,7 +279,7 @@ namespace Sistema_de_Vendas.Financeiro
                 dtinicial.Focus();
                 return;
             }
-                
+
             buscarcliente();
         }
 
@@ -323,22 +337,15 @@ namespace Sistema_de_Vendas.Financeiro
                 dtinicial.Focus();
         }
 
-        private void dtinicial_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13)
-                dtfinal.Focus();
-        }
 
-        private void dtfinal_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13)
-                button1.Focus();
-        }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Listar();
-            TotalizarEntradaSaida();
-        }
+        #endregion
+
+
+
+
+
+
+
     }
 }

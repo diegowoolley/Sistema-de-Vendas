@@ -26,6 +26,12 @@ namespace Sistema_de_Vendas.Financeiro
         MySqlCommand cmd1;
         int cod_venda;
 
+        private void frmcaddespesas_Load(object sender, EventArgs e)
+        {
+            contarvendas();
+        }
+
+        #region MÉTODOS
         private void buscarfavorecido()
         {
             if (cbfavorecido.Text.Trim() == "")
@@ -101,6 +107,9 @@ namespace Sistema_de_Vendas.Financeiro
             }
         }
 
+        #endregion
+
+        #region BOTÕES
         private void btncancelar_Click(object sender, EventArgs e)
         {
             cbtipo.SelectedIndex = -1;
@@ -112,50 +121,40 @@ namespace Sistema_de_Vendas.Financeiro
             dtvencimento.Value = DateTime.Now;
         }
 
-        private void txtdocumento_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            funcoes.DecNumber(sender, e);
-        }
-
-        private void txtvalor_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            funcoes.DecNumber(sender, e);
-        }
-       
         private void btnsalvar_Click(object sender, EventArgs e)
         {
 
-            if(cbtipo.Text == "")
+            if (cbtipo.Text == "")
             {
                 MessageBox.Show("Informe um tipo antes de salvar o lançamento!");
                 cbtipo.Focus();
                 return;
             }
-            if(txtdescricao.Text.Trim() == "")
+            if (txtdescricao.Text.Trim() == "")
             {
                 MessageBox.Show("Selecione uma descrição antes de salvar o lançamento!");
                 txtdescricao.Focus();
                 return;
             }
-            if(cbfavorecido.Text.Trim() == "")
+            if (cbfavorecido.Text.Trim() == "")
             {
                 MessageBox.Show("Informe um favorecido antes de salvar o lanlamento!");
                 cbfavorecido.Focus();
                 return;
             }
-            if(txtvalor.Text == "0" || txtvalor.Text.Trim() == "")
+            if (txtvalor.Text == "0" || txtvalor.Text.Trim() == "")
             {
                 MessageBox.Show("Informe um valor antes de salvar o lançamento!");
                 txtvalor.Focus();
                 return;
             }
-            if(cbformapagamento.Text == "")
+            if (cbformapagamento.Text == "")
             {
                 MessageBox.Show("Selecione uma forma de pagamento antes de salvar o lançamento!");
                 cbformapagamento.Focus();
                 return;
             }
-            if(dtvencimento.Value < DateTime.Now.Date)
+            if (dtvencimento.Value < DateTime.Now.Date)
             {
                 MessageBox.Show("O vencimento não pode ser menor que a data atual!");
                 dtvencimento.Focus();
@@ -178,43 +177,43 @@ namespace Sistema_de_Vendas.Financeiro
                 cmd.Parameters.AddWithValue("@data", DateTime.Today);
                 cmd.Parameters.AddWithValue("@hora", DateTime.Now);
                 cmd.Parameters.AddWithValue("@dinheiro", "");
-                cmd.Parameters.AddWithValue("@pix","");
+                cmd.Parameters.AddWithValue("@pix", "");
                 cmd.Parameters.AddWithValue("@cartao", "");
                 cmd.Parameters.AddWithValue("@vencimento", DateTime.Parse(dtvencimento.Value.Date.ToString("yyyy/MM/dd")));
-                cmd.Parameters.AddWithValue("@taxa","");
+                cmd.Parameters.AddWithValue("@taxa", "");
                 cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
                 cmd.Parameters.AddWithValue("@status", "À PAGAR");
                 cmd.Parameters.AddWithValue("@descricao", txtdescricao.Text);
                 cmd.Parameters.AddWithValue("@favorecido", cbfavorecido.Text);
                 cmd.Parameters.AddWithValue("@documento", txtdocumento.Text);
-                
 
 
-                
-            
+
+
+
                 sql1 = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, valor_unitario, dinheiro, pix, cartao, taxa, vendedor, descontos, forma_pagamento, valor_total, valor_pago, troco, data, hora, cod_empresa, vencimento) VALUES (@cod_venda, @tipo, @cliente, @produto, @quantidade, @valor_unitario, @dinheiro, @pix, @cartao, @taxa, @vendedor, @descontos, @forma_pagamento, @valor_total, @valor_pago, @troco, @data, @hora, @cod_empresa, @vencimento)";
                 cmd1 = new MySqlCommand(sql1, con.con);
                 cmd1.Parameters.AddWithValue("@cod_venda", cod_venda);
                 cmd1.Parameters.AddWithValue("@tipo", cbtipo.Text);
-                cmd1.Parameters.AddWithValue("@cliente","");
-                cmd1.Parameters.AddWithValue("@produto","");
+                cmd1.Parameters.AddWithValue("@cliente", "");
+                cmd1.Parameters.AddWithValue("@produto", "");
                 cmd1.Parameters.AddWithValue("@quantidade", "");
                 cmd1.Parameters.AddWithValue("@valor_unitario", "");
                 cmd1.Parameters.AddWithValue("@dinheiro", "");
                 cmd1.Parameters.AddWithValue("@pix", "");
-                cmd1.Parameters.AddWithValue("@cartao","");
+                cmd1.Parameters.AddWithValue("@cartao", "");
                 cmd1.Parameters.AddWithValue("@vencimento", dtvencimento.Value.Date);
                 cmd1.Parameters.AddWithValue("@taxa", "");
                 cmd1.Parameters.AddWithValue("@vendedor", "");
-                cmd1.Parameters.AddWithValue("@descontos","");
+                cmd1.Parameters.AddWithValue("@descontos", "");
                 cmd1.Parameters.AddWithValue("@forma_pagamento", cbformapagamento.Text);
                 cmd1.Parameters.AddWithValue("@valor_total", txtvalor.Text);
                 cmd1.Parameters.AddWithValue("@valor_pago", "");
                 cmd1.Parameters.AddWithValue("@troco", "");
                 cmd1.Parameters.AddWithValue("@data", DateTime.Today);
                 cmd1.Parameters.AddWithValue("@hora", DateTime.Now);
-                cmd1.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);                
-               
+                cmd1.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+
 
 
                 cmd.ExecuteNonQuery();
@@ -235,14 +234,22 @@ namespace Sistema_de_Vendas.Financeiro
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-               
+
             }
-          
+
         }
-       
-        private void frmcaddespesas_Load(object sender, EventArgs e)
+
+        #endregion
+
+        #region KEYPRESS \ LEAVE
+        private void txtdocumento_KeyPress(object sender, KeyPressEventArgs e)
         {
-            contarvendas();            
+            funcoes.DecNumber(sender, e);
+        }
+
+        private void txtvalor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            funcoes.DecNumber(sender, e);
         }
 
         private void cbfavorecido_Leave(object sender, EventArgs e)
@@ -251,5 +258,11 @@ namespace Sistema_de_Vendas.Financeiro
             cbfavorecido.Text = favorecido.ToUpper();
             buscarfavorecido();
         }
+
+        #endregion
+
+        
+
+        
     }
 }

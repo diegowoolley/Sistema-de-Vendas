@@ -47,8 +47,7 @@
             this.dtfinal.Location = new System.Drawing.Point(697, 19);
             this.dtfinal.Name = "dtfinal";
             this.dtfinal.Size = new System.Drawing.Size(81, 20);
-            this.dtfinal.TabIndex = 3;
-            this.dtfinal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dtfinal_KeyPress);
+            this.dtfinal.TabIndex = 3;            
             // 
             // lbldatafinal
             // 
@@ -65,8 +64,7 @@
             this.dtinicial.Location = new System.Drawing.Point(544, 19);
             this.dtinicial.Name = "dtinicial";
             this.dtinicial.Size = new System.Drawing.Size(81, 20);
-            this.dtinicial.TabIndex = 2;
-            this.dtinicial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dtinicial_KeyPress);
+            this.dtinicial.TabIndex = 2;            
             // 
             // lbldatainicial
             // 

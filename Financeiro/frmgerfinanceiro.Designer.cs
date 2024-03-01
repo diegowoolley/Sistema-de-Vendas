@@ -223,8 +223,7 @@
             this.dtfinal.Location = new System.Drawing.Point(822, 8);
             this.dtfinal.Name = "dtfinal";
             this.dtfinal.Size = new System.Drawing.Size(79, 20);
-            this.dtfinal.TabIndex = 5;
-            this.dtfinal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dtfinal_KeyPress);
+            this.dtfinal.TabIndex = 5;            
             // 
             // dtinicial
             // 
@@ -232,8 +231,7 @@
             this.dtinicial.Location = new System.Drawing.Point(661, 7);
             this.dtinicial.Name = "dtinicial";
             this.dtinicial.Size = new System.Drawing.Size(79, 20);
-            this.dtinicial.TabIndex = 4;
-            this.dtinicial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dtinicial_KeyPress);
+            this.dtinicial.TabIndex = 4;            
             // 
             // cbtransacao
             // 

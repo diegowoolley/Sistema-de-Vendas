@@ -26,6 +26,14 @@ namespace Sistema_de_Vendas.Financeiro
         MySqlCommand cmd;
         int cod_venda;
 
+
+        private void frmcontaspagar_Load(object sender, EventArgs e)
+        {
+            Listar();
+            formatargridestoque();
+        }
+
+        #region MÉTODOS
         private void Listar()
         {
             try
@@ -303,17 +311,16 @@ namespace Sistema_de_Vendas.Financeiro
 
         }
 
-        private void frmcontaspagar_Load(object sender, EventArgs e)
-        {
-            Listar();
-            formatargridestoque();
-        }
+
+        #endregion
+
+        #region BOTÕES
 
         private void btnpesquisar_Click(object sender, EventArgs e)
         {
-            if(dtinicial.Value.Date > dtfinal.Value.Date)
+            if (dtinicial.Value.Date > dtfinal.Value.Date)
             {
-                MessageBox.Show("A data inicial não pode ser maior que a data final!");                
+                MessageBox.Show("A data inicial não pode ser maior que a data final!");
                 dtinicial.Focus();
                 return;
             }
@@ -321,73 +328,10 @@ namespace Sistema_de_Vendas.Financeiro
             Buscar();
         }
 
-        private void cbcliente_Leave(object sender, EventArgs e)
-        {
-            if (cbcliente.Text.Trim() == "")
-            {
-                dtinicial.Focus();
-                return;
-            }
-            buscarcliente();
-        }
-
-        private void cbcliente_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13)
-                dtinicial.Focus();
-        }       
-
-        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            int cod_venda = int.Parse(dataGridView1.CurrentRow.Cells[0].Value.ToString());
-
-            if (dataGridView1.CurrentRow.Cells["Status"].Value.ToString() != "PAGA")
-            {
-                DialogResult result = MessageBox.Show("Deseja informar pagamento de número:" + cod_venda +"?", "Confirmação", MessageBoxButtons.YesNo);
-                if (result == DialogResult.Yes)
-                {
-                    con.AbrirConexao();
-                    sql = "UPDATE caixa SET status = 'PAGA', valor_pago = valor_total WHERE cod_venda = @id";
-                    cmd = new MySqlCommand(sql, con.con);
-                    cmd.Parameters.AddWithValue("@id", cod_venda);
-
-
-                    cmd.ExecuteNonQuery();
-                    con.FecharConexao();
-                    Listar();
-
-                    MessageBox.Show("Registro Alterado com Sucesso!!");
-                    return;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Este documento já foi pago!");
-            }
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             frmcaddespesas frmdespesas = new frmcaddespesas();
             frmdespesas.ShowDialog();
-        }
-
-        private void cbtipo_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13)
-               cbcliente.Focus();
-        }
-
-        private void dtinicial_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13)
-                dtfinal.Focus();
-        }
-
-        private void dtfinal_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13)
-                btnpesquisar.Focus();
         }
 
         private void btnexcluir_Click(object sender, EventArgs e)
@@ -418,6 +362,37 @@ namespace Sistema_de_Vendas.Financeiro
 
         }
 
+
+        #endregion
+
+        #region KEYPRESS \ LEAVE
+
+        private void cbcliente_Leave(object sender, EventArgs e)
+        {
+            if (cbcliente.Text.Trim() == "")
+            {
+                dtinicial.Focus();
+                return;
+            }
+            buscarcliente();
+        }
+
+        private void cbcliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                dtinicial.Focus();
+        }               
+
+        private void cbtipo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+               cbcliente.Focus();
+        }
+
+        #endregion
+
+        #region DATAGRID
+
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if(dataGridView1.Rows.Count > 0)
@@ -427,6 +402,37 @@ namespace Sistema_de_Vendas.Financeiro
             }
           
         }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int cod_venda = int.Parse(dataGridView1.CurrentRow.Cells[0].Value.ToString());
+
+            if (dataGridView1.CurrentRow.Cells["Status"].Value.ToString() != "PAGA")
+            {
+                DialogResult result = MessageBox.Show("Deseja informar pagamento de número:" + cod_venda + "?", "Confirmação", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    con.AbrirConexao();
+                    sql = "UPDATE caixa SET status = 'PAGA', valor_pago = valor_total WHERE cod_venda = @id";
+                    cmd = new MySqlCommand(sql, con.con);
+                    cmd.Parameters.AddWithValue("@id", cod_venda);
+
+
+                    cmd.ExecuteNonQuery();
+                    con.FecharConexao();
+                    Listar();
+
+                    MessageBox.Show("Registro Alterado com Sucesso!!");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Este documento já foi pago!");
+            }
+        }
+
+        #endregion
     }
 
 }
