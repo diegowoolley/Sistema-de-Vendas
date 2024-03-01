@@ -300,6 +300,7 @@
             this.btnalterar.TabIndex = 21;
             this.btnalterar.Text = "Alterar";
             this.btnalterar.UseVisualStyleBackColor = true;
+            this.btnalterar.Click += new System.EventHandler(this.btnalterar_Click);
             // 
             // btnexcluir
             // 
@@ -543,6 +544,7 @@
             this.btnexcluirlista.TabIndex = 18;
             this.btnexcluirlista.Text = "Excluir da lista";
             this.btnexcluirlista.UseVisualStyleBackColor = true;
+            this.btnexcluirlista.Click += new System.EventHandler(this.btnexcluirlista_Click);
             // 
             // frmOS
             // 

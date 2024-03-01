@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Mysqlx.Crud;
 using Mysqlx.Resultset;
 using System;
 using System.Collections.Generic;
@@ -20,9 +21,12 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
         }
         conn con = new conn();
         string sql;
+        string sql1;
         MySqlCommand cmd;
+        MySqlCommand cmd1;
         int cod_venda;
-        int cod_os = 0;
+     
+       
 
         private void frmOS_Load(object sender, EventArgs e)
         {
@@ -161,6 +165,9 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 else
                 {
                     MessageBox.Show("Serviço não cadastrado!");
+                    cbservico.Text = "";
+                    txtquantidades.Clear();
+                    cbservico.Focus();
                   
                 }
 
@@ -170,7 +177,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro na Conexão", ex.Message);
+                MessageBox.Show(ex.Message);
             }
 
         }
@@ -206,7 +213,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                     cbproduto.Text = "";
                     txtquantidadep.Clear();
                     cbproduto.Focus();
-                    return;
+                    
                 }
 
             }
@@ -315,33 +322,11 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
             dataGridView2.Columns[5].HeaderText = "Preço Unitário";
             dataGridView2.Columns[6].HeaderText = "Valor total";
 
+
+
         }
 
-        private void retornargrid()
-        {
-            try
-            {
-                con.AbrirConexao();
-                sql = "SELECT * FROM detalhes_os WHERE cod_empresa = @cod_empresa AND cod_os = @cod_os ORDER BY cod_os ASC";
-                MySqlCommand cmd = new MySqlCommand(sql, con.con);
-                cmd.Parameters.AddWithValue("@cod_os", cod_os);
-                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
-
-                MySqlDataAdapter da = new MySqlDataAdapter();
-                da.SelectCommand = cmd;
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                con.FecharConexao();
-                dataGridView2.DataSource = dt;
-               
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            formatargriddetalhes();
-        }
+      
         #endregion
 
         #region KEYPRESS \ LEAVE
@@ -495,6 +480,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
             btngerarpagamento.Enabled = false;
             dataGridView2.Rows.Clear();
             btnnovo.Focus();
+            contarOS();
         }
 
         private void btnadicionar_Click(object sender, EventArgs e)
@@ -568,6 +554,20 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 cmd.Parameters.AddWithValue("@laudo", txtlaudo.Text);
                 cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
 
+
+                for (int i = 0; i < dataGridView2.RowCount; i++)
+                {
+                    sql1 = "INSERT INTO detalhes_os (cod_os, descricao, quantidade, cod_empresa, preco_unitario, preco_total) VALUES (@cod_os, @descricao, @quantidade, @cod_empresa, @preco_unitario, @preco_total)";
+                    cmd1 = new MySqlCommand(sql1, con.con);
+                    cmd1.Parameters.AddWithValue("@cod_os", cod_venda);
+                    cmd1.Parameters.AddWithValue("@descricao", dataGridView2.Rows[i].Cells["descricao"].Value);
+                    cmd1.Parameters.AddWithValue("@quantidade", dataGridView2.Rows[i].Cells["quantidade"].Value);
+                    cmd1.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+                    cmd1.Parameters.AddWithValue("@preco_unitario", dataGridView2.Rows[i].Cells["valor_unitario"].Value);
+                    cmd1.Parameters.AddWithValue("@preco_total", dataGridView2.Rows[i].Cells["valor_total"].Value);
+                    cmd1.ExecuteNonQuery();
+                }
+
                 cmd.ExecuteNonQuery();
                 con.FecharConexao();
                 MessageBox.Show("OS adicionada com sucesso!");
@@ -634,7 +634,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 con.AbrirConexao();
                 sql = "DELETE FROM cad_os WHERE id = @id";
                 cmd = new MySqlCommand(sql, con.con);
-                cmd.Parameters.AddWithValue("@id", cod_os);
+                cmd.Parameters.AddWithValue("@id", cod_venda);
                 cmd.ExecuteNonQuery();
                 con.FecharConexao();
                 listar();
@@ -796,6 +796,38 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
             }
         }
 
+        private void btnexcluirlista_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dataGridView2.RowCount > 0)
+                {
+                    int selectedIndex = dataGridView2.CurrentRow.Index;
+                    dataGridView2.Rows.RemoveAt(selectedIndex);
+
+                    if (dataGridView2.RowCount < 1)
+                    {
+
+                        cbservico.Focus();
+
+
+                    }
+                }
+                else
+                {
+
+                    MessageBox.Show("Não existem itens para remover!");
+
+
+                }
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Selecione um item para excluir");
+            }
+        }
+
 
         #endregion
 
@@ -803,9 +835,14 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.RowIndex > -1)
+
+            cod_venda = Convert.ToInt32(dataGridView1.CurrentRow.Cells[1].Value.ToString());
+
+            
+
+            if (e.RowIndex > -1)
             {
-                cod_os = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value.ToString());
+                
 
                 cbclientes.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
                 cbtecnico.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
@@ -818,6 +855,55 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 txtdefeito.Text = dataGridView1.CurrentRow.Cells[10].Value.ToString();
                 txtobservacao.Text = dataGridView1.CurrentRow.Cells[11].Value.ToString();
                 txtlaudo.Text = dataGridView1.CurrentRow.Cells[12].Value.ToString();
+                lblnumeroos.Text = "Número da OS: " + cod_venda;
+
+                try
+                {
+
+                    con.AbrirConexao();
+                    sql = "SELECT * FROM detalhes_os WHERE cod_empresa = @cod_empresa AND cod_os = @cod_os";
+                    MySqlCommand cmd = new MySqlCommand(sql, con.con);
+                    cmd.Parameters.AddWithValue("@cod_os", cod_venda);
+                    cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);                    
+                    MySqlDataAdapter da = new MySqlDataAdapter();
+                    da.SelectCommand = cmd;
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);                 
+
+                   
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        dataGridView2.Rows.Clear();
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+                            dataGridView2.Rows.Add(                                
+                                dt.Rows[i]["cod_os"],
+                                dt.Rows[i]["descricao"],
+                                dt.Rows[i]["quantidade"],
+                                dt.Rows[i]["preco_unitario"],
+                                dt.Rows[i]["preco_total"]
+                             
+                            );
+
+
+                        }
+                        lblnumeroos.Text = "Número da OS: " + cod_venda;
+                    }
+                    else
+                    {
+                        dataGridView2.Rows.Clear();                       
+                    }
+
+                    con.FecharConexao();
+
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message);
+                }
+                
 
 
                 cbclientes.Enabled = true;                
@@ -847,16 +933,186 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 
                 cbclientes.Focus();
                 
-                         }
-           
+            }
+          
 
         }
 
 
 
 
+
+
         #endregion
 
-        
+        private void btnalterar_Click(object sender, EventArgs e)
+        {
+            if (cbclientes.Text.Trim() == "")
+            {
+                MessageBox.Show("Escolha um cliente antes de adicionar OS!");
+                cbclientes.Focus();
+                return;
+            }
+
+            if (cbtecnico.Text.Trim() == "")
+            {
+                MessageBox.Show("Escolha um técnico antes de adicionar OS!");
+                cbtecnico.Focus();
+                return;
+            }
+
+            if (cbstatus.Text.Trim() == "")
+            {
+                MessageBox.Show("Escolha um status antes de adicionar OS!");
+                cbstatus.Focus();
+                return;
+            }
+
+            if (dtinicial.Value.Date > dtfinal.Value.Date)
+            {
+                MessageBox.Show("A data inicial não pode ser maior que a data final");
+                dtinicial.Focus();
+                return;
+            }
+
+            if (txtgarantia.Text.Trim() == "")
+            {
+                MessageBox.Show("Informe a garantia antes de adicionar OS!");
+                txtgarantia.Focus();
+                return;
+            }
+
+            if (txtdescricao.Text.Trim() == "")
+            {
+                MessageBox.Show("Informe a descrição dos equipamentos antes de adicionar OS!");
+                txtdescricao.Focus();
+                return;
+            }
+
+            if (txtdefeito.Text.Trim() == "")
+            {
+                MessageBox.Show("Informe o defeito dos equipamentos antes de adicionar OS!");
+                txtdefeito.Focus();
+                return;
+            }
+
+
+            try
+            {
+                con.AbrirConexao();
+                sql = "UPDATE cad_os SET cliente = @cliente, tecnico = @tecnico, status = @status, data_inicial = @data_inicial, data_final = @data_final, garantia = @garantia, termo = @termo, descricao = @descricao, defeito = @defeito, observacoes = @observacoes, laudo = @laudo WHERE cod_os = @cod_os";
+                cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@cod_os", cod_venda);
+                cmd.Parameters.AddWithValue("@cliente", cbclientes.Text);
+                cmd.Parameters.AddWithValue("@tecnico", cbtecnico.Text);
+                cmd.Parameters.AddWithValue("@status", cbstatus.Text);
+                cmd.Parameters.AddWithValue("@data_inicial", dtinicial.Value.Date);
+                cmd.Parameters.AddWithValue("@data_final", dtfinal.Value.Date);
+                cmd.Parameters.AddWithValue("@garantia", txtgarantia.Text);
+                cmd.Parameters.AddWithValue("@termo", txttermo.Text);
+                cmd.Parameters.AddWithValue("@descricao", txtdescricao.Text);
+                cmd.Parameters.AddWithValue("@defeito", txtdefeito.Text);
+                cmd.Parameters.AddWithValue("@observacoes", txtobservacao.Text);
+                cmd.Parameters.AddWithValue("@laudo", txtlaudo.Text);
+
+
+                cmd.ExecuteNonQuery();
+                con.FecharConexao();
+
+
+                con.AbrirConexao();
+                sql1 = "SELECT * FROM detalhes_os WHERE cod_empresa = @cod_empresa AND cod_os = @cod_os";
+                MySqlCommand cmd1 = new MySqlCommand(sql1, con.con);
+                cmd1.Parameters.AddWithValue("@cod_os", cod_venda);
+                cmd1.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd1;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                con.FecharConexao();
+
+                int indiceoriginal = dt.Rows.Count;
+                int novoindice = dataGridView2.Rows.Count;
+
+                if (dataGridView2.Rows.Count > dt.Rows.Count)
+                {
+              
+                        if (indiceoriginal < novoindice)
+                        {
+                            con.AbrirConexao();
+                            for (int i = indiceoriginal; i < novoindice; i++)
+                            {
+                                sql1 = "INSERT INTO detalhes_os (cod_os, descricao, quantidade, cod_empresa, preco_unitario, preco_total) VALUES (@cod_os, @descricao, @quantidade, @cod_empresa, @preco_unitario, @preco_total)";
+                                cmd1 = new MySqlCommand(sql1, con.con);
+                                cmd1.Parameters.AddWithValue("@cod_os", cod_venda);
+                                cmd1.Parameters.AddWithValue("@descricao", dataGridView2.Rows[i].Cells["descricao"].Value);
+                                cmd1.Parameters.AddWithValue("@quantidade", dataGridView2.Rows[i].Cells["quantidade"].Value);
+                                cmd1.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+                                cmd1.Parameters.AddWithValue("@preco_unitario", dataGridView2.Rows[i].Cells["valor_unitario"].Value);
+                                cmd1.Parameters.AddWithValue("@preco_total", dataGridView2.Rows[i].Cells["valor_total"].Value);
+                                cmd1.ExecuteNonQuery();
+                            }
+                            
+                        }
+                }
+
+                  
+            }
+            catch(Exception ex)
+            {
+                    MessageBox.Show(ex.Message);
+            }
+
+
+                MessageBox.Show("OS alterada com sucesso!");
+
+
+                cbclientes.Enabled = false;
+                cbclientes.Text = "";
+                cbtecnico.Enabled = false;
+                cbtecnico.Text = "";
+                cbstatus.Enabled = false;
+                cbstatus.SelectedIndex = -1;
+                dtinicial.Enabled = false;
+                dtinicial.Value = DateTime.Now;
+                dtfinal.Enabled = false;
+                dtfinal.Value = DateTime.Now;
+                txtgarantia.Enabled = false;
+                txtgarantia.Clear();
+                txttermo.Enabled = false;
+                txttermo.Clear();
+                txtdescricao.Enabled = false;
+                txtdescricao.Clear();
+                txtdefeito.Enabled = false;
+                txtdefeito.Clear();
+                txtobservacao.Enabled = false;
+                txtobservacao.Clear();
+                txtlaudo.Enabled = false;
+                txtlaudo.Clear();
+                cbservico.Enabled = false;
+                cbservico.Text = "";
+                cbproduto.Enabled = false;
+                cbproduto.Text = "";
+                txtquantidades.Enabled = false;
+                txtquantidades.Clear();
+                txtquantidadep.Enabled = false;
+                txtquantidadep.Clear();
+                btnadicionars.Enabled = false;
+                btnadicionarp.Enabled = false;
+                btnexcluirlista.Enabled = false;
+                btnnovo.Enabled = true;
+                btnadicionar.Enabled = false;
+                btnalterar.Enabled = false;
+                btnexcluir.Enabled = false;
+                btncancelar.Enabled = true;
+                btngerarpagamento.Enabled = false;
+                dataGridView2.Rows.Clear();
+                btnnovo.Focus();
+                listar();
+                contarOS();
+
+
+
+        }
     }
 }
