@@ -3,6 +3,7 @@ using MySql.Data.MySqlClient;
 using Sistema_de_Vendas.Cadastros;
 using Sistema_de_Vendas.Configuracoes;
 using Sistema_de_Vendas.Financeiro;
+using Sistema_de_Vendas.Ordem_de_Serviço;
 using Sistema_de_Vendas.Relatorios;
 using Sistema_de_Vendas.Transacoes;
 using System;
@@ -25,7 +26,7 @@ namespace Sistema_de_Vendas
     {
         public frmPrincipal()
         {
-            InitializeComponent();
+            InitializeComponent();           
         }
         conn con = new conn();
         string sql;
@@ -158,8 +159,7 @@ namespace Sistema_de_Vendas
         {
             frmvendas_compras frmvendas_Compras = new frmvendas_compras();
             frmvendas_Compras.ShowDialog();
-        }
-                   
+        }                   
 
         private void calculadoraToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -268,6 +268,12 @@ namespace Sistema_de_Vendas
         {
             frmlimpartabelas frmlimpartabelas = new frmlimpartabelas();
             frmlimpartabelas.ShowDialog();
+        }
+
+        private void ordemDeServiçoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmlistarOS frmlistar = new frmlistarOS();
+            frmlistar.ShowDialog();
         }
     }
 }

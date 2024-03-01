@@ -82,6 +82,7 @@
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.lblempresa = new System.Windows.Forms.ToolStripLabel();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.ordemDeServiçoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnPrincipal.SuspendLayout();
             this.barrastatus.SuspendLayout();
             this.SuspendLayout();
@@ -187,6 +188,7 @@
             this.vendasComprasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.vendasComprasDetalhadasToolStripMenuItem,
             this.pDVToolStripMenuItem,
+            this.ordemDeServiçoToolStripMenuItem,
             this.inventárioToolStripMenuItem,
             this.historicoDeTransaçõesToolStripMenuItem});
             this.vendasComprasToolStripMenuItem.Name = "vendasComprasToolStripMenuItem";
@@ -489,6 +491,13 @@
             this.timer.Enabled = true;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
+            // ordemDeServiçoToolStripMenuItem
+            // 
+            this.ordemDeServiçoToolStripMenuItem.Name = "ordemDeServiçoToolStripMenuItem";
+            this.ordemDeServiçoToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.ordemDeServiçoToolStripMenuItem.Text = "Ordem de Serviço";
+            this.ordemDeServiçoToolStripMenuItem.Click += new System.EventHandler(this.ordemDeServiçoToolStripMenuItem_Click);
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -570,6 +579,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripMenuItem gerenciamentoFinanceiroToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem limparTabelasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ordemDeServiçoToolStripMenuItem;
     }
 }
 

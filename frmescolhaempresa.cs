@@ -48,6 +48,8 @@ namespace Sistema_de_Vendas
             
         }
 
+        #region BOTÕES
+
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -65,9 +67,8 @@ namespace Sistema_de_Vendas
                 funcoes.cod_empresa = int.Parse(dt.Rows[0]["cod"].ToString());
                 con.FecharConexao();
                 frmPrincipal frmPrincipal = new frmPrincipal();
-                frmPrincipal.ShowDialog();
+                frmPrincipal.ShowDialog();                
                 this.Close();
-               
 
 
             }
@@ -84,11 +85,16 @@ namespace Sistema_de_Vendas
             Application.Exit();
         }
 
+        #endregion
+
+        #region KEYPRESS
         private void frmescolhaempresa_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender, e);
             if (e.KeyChar == 13)
                 button1.Focus(); 
         }
+
+        #endregion
     }
 }

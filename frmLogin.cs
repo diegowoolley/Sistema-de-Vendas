@@ -26,71 +26,6 @@ namespace Sistema_de_Vendas
         conn con = new conn();
         const int ProductCode = 1;
 
-        private void btnEntrar_Click(object sender, EventArgs e)
-        {
-            
-            //testa os campos se estão vazios
-            if (txtUsuario.Text.ToString().Trim() == "")
-            {
-                MessageBox.Show("Digite um Usuário Válido!");
-                txtUsuario.Clear();
-                txtUsuario.Focus();
-                return;
-            }
-            if (txtSenha.Text.ToString().Trim() == "")
-            {
-                MessageBox.Show("Digite uma Senha Válida!");
-                txtSenha.Clear();
-                txtSenha.Focus();
-                return;
-            }
-            try
-            {
-                //conecta ao banco de dados e verifica se corresponde os dados inseridos
-                con.AbrirConexao();
-                MySqlCommand cmdVerificar;
-                MySqlDataReader reader;
-                cmdVerificar = new MySqlCommand("SELECT * FROM cad_usuarios WHERE nome_usuarios = @usuario AND senha_Usuarios = @senha ", con.con);
-                MySqlDataAdapter da = new MySqlDataAdapter();
-                da.SelectCommand = cmdVerificar;
-                cmdVerificar.Parameters.AddWithValue("@usuario", txtUsuario.Text);
-                cmdVerificar.Parameters.AddWithValue("@senha", txtSenha.Text);
-                reader = cmdVerificar.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    con.FecharConexao();
-                    funcoes.conectado = txtUsuario.Text;
-                    frmescolhaempresa frmescolha = new frmescolhaempresa();
-                    frmescolha.ShowDialog();
-                    this.Close();
-                    
-                   
-
-                }
-                else
-                {
-                    MessageBox.Show("Usuário ou senha incorretos!");
-                    txtUsuario.Clear();
-                    txtSenha.Clear();
-                    txtUsuario.Focus();
-                    
-
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro na consulta!" +ex);
-
-            }
-           
-            
-        }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
         private void frmLogin_Load(object sender, EventArgs e)
         {
             testarBD();
@@ -136,6 +71,8 @@ namespace Sistema_de_Vendas
 
         }
 
+        #region MÉTODOS
+
         private void testarBD()
         {
             try
@@ -163,6 +100,80 @@ namespace Sistema_de_Vendas
             }
         }
 
+        #endregion
+
+        #region BOTÕES
+
+        private void btnEntrar_Click(object sender, EventArgs e)
+        {
+            
+            //testa os campos se estão vazios
+            if (txtUsuario.Text.ToString().Trim() == "")
+            {
+                MessageBox.Show("Digite um Usuário Válido!");
+                txtUsuario.Clear();
+                txtUsuario.Focus();
+                return;
+            }
+            if (txtSenha.Text.ToString().Trim() == "")
+            {
+                MessageBox.Show("Digite uma Senha Válida!");
+                txtSenha.Clear();
+                txtSenha.Focus();
+                return;
+            }
+            try
+            {
+                //conecta ao banco de dados e verifica se corresponde os dados inseridos
+                con.AbrirConexao();
+                MySqlCommand cmdVerificar;
+                MySqlDataReader reader;
+                cmdVerificar = new MySqlCommand("SELECT * FROM cad_usuarios WHERE nome_usuarios = @usuario AND senha_Usuarios = @senha ", con.con);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmdVerificar;
+                cmdVerificar.Parameters.AddWithValue("@usuario", txtUsuario.Text);
+                cmdVerificar.Parameters.AddWithValue("@senha", txtSenha.Text);
+                reader = cmdVerificar.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    con.FecharConexao();
+                    funcoes.conectado = txtUsuario.Text;
+                    frmescolhaempresa frmescolha = new frmescolhaempresa();
+                    frmescolha.ShowDialog();                    
+                    this.Close();
+
+
+
+
+                }
+                else
+                {
+                    MessageBox.Show("Usuário ou senha incorretos!");
+                    txtUsuario.Clear();
+                    txtSenha.Clear();
+                    txtUsuario.Focus();
+                    
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro na consulta!" +ex);
+
+            }
+           
+            
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        #endregion
+
+        #region KEYPRESS
+
         private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
         {
                if (e.KeyChar == 13)
@@ -175,10 +186,7 @@ namespace Sistema_de_Vendas
                 btnEntrar.Focus();
         }
 
-        internal void Showdialog()
-        {
-            throw new NotImplementedException();
-        }
+        #endregion
     }
 
 }
