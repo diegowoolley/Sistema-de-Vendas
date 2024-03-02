@@ -223,27 +223,27 @@ namespace Sistema_de_Vendas.Transacoes
 
             if (txtdinheiro.Text.Trim() == "")
             {
-                txtdinheiro.Text = "0";
+                txtdinheiro.Text = "0,00";
             }
 
             if (txtpix.Text.Trim() == "")
             {
-                txtpix.Text = "0";
+                txtpix.Text = "0,00";
             }
 
             if (txtcartao.Text.Trim() == "")
             {
-                txtcartao.Text = "0";
+                txtcartao.Text = "0,00";
             }
 
             if (txtdesconto.Text.Trim() == "")
             {
-                txtdesconto.Text = "0";
+                txtdesconto.Text = "0,00";
             }
 
             if (txttaxa.Text.Trim() == "")
             {
-                txttaxa.Text = "0";
+                txttaxa.Text = "0,00";
             }         
 
             decimal dinheiro = decimal.Parse(txtdinheiro.Text.Trim().Replace("R$", ""));
@@ -811,7 +811,7 @@ namespace Sistema_de_Vendas.Transacoes
         {
             if (txtdinheiro.Text.Trim() == "")
             {
-                txtdinheiro.Text = "0";
+                txtdinheiro.Text = "0,00";
             }
             string valor = txtdinheiro.Text.Replace("R$ ", "");
             txtdinheiro.Text = valor;
@@ -836,7 +836,7 @@ namespace Sistema_de_Vendas.Transacoes
         {
             if (txtpix.Text.Trim() == "")
             {
-                txtpix.Text = "0";
+                txtpix.Text = "0,00";
             }
             string valor = txtpix.Text.Replace("R$ ", "");
             txtpix.Text = valor;
@@ -861,7 +861,7 @@ namespace Sistema_de_Vendas.Transacoes
         {
             if (txtcartao.Text.Trim() == "")
             {
-                txtcartao.Text = "0";
+                txtcartao.Text = "0,00";
             }
             string valor = txtcartao.Text.Replace("R$ ", "");
             txtcartao.Text = valor;
@@ -876,7 +876,7 @@ namespace Sistema_de_Vendas.Transacoes
         {
             if (txttaxa.Text == "")
             {
-                txttaxa.Text = "0";
+                txttaxa.Text = "0,00";
             }
 
             decimal valorPorcentagem = (decimal)float.Parse(txttaxa.Text);
@@ -889,7 +889,7 @@ namespace Sistema_de_Vendas.Transacoes
         {
             if (txttaxa.Text.Trim() == "")
             {
-                txttaxa.Text = "0";
+                txttaxa.Text = "0,00";
             }
             string valor = txttaxa.Text.Replace("%", "");
             txttaxa.Text = valor;
@@ -924,7 +924,7 @@ namespace Sistema_de_Vendas.Transacoes
         {
             if (txtdesconto.Text.Trim() == "")
             {
-                txtdesconto.Text = "0";
+                txtdesconto.Text = "0,00";
             }
             string valor = txtdesconto.Text.Replace("%", "");
             txtdesconto.Text = valor;

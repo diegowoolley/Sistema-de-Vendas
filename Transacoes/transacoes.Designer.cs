@@ -41,7 +41,7 @@
             // txtpesquisa
             // 
             this.txtpesquisa.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtpesquisa.Location = new System.Drawing.Point(311, 27);
+            this.txtpesquisa.Location = new System.Drawing.Point(342, 27);
             this.txtpesquisa.MaxLength = 80;
             this.txtpesquisa.Name = "txtpesquisa";
             this.txtpesquisa.Size = new System.Drawing.Size(284, 20);
@@ -51,7 +51,7 @@
             // lblpesquisar
             // 
             this.lblpesquisar.AutoSize = true;
-            this.lblpesquisar.Location = new System.Drawing.Point(249, 30);
+            this.lblpesquisar.Location = new System.Drawing.Point(280, 30);
             this.lblpesquisar.Name = "lblpesquisar";
             this.lblpesquisar.Size = new System.Drawing.Size(56, 13);
             this.lblpesquisar.TabIndex = 5;
@@ -79,11 +79,17 @@
             this.cbtransacao.Items.AddRange(new object[] {
             "COMPRA",
             "VENDA",
+            "ORDEM DE SERVIÇO",
+            "DESPESA FUNCIONÁRIOS",
+            "DESPESA ESTOQUE",
+            "DESPESA PATRIMONIAL",
+            "TERCEIRIZAÇÃO",
+            "IMPOSTOS",
             "DEVOLUÇÃO",
             "TROCA"});
             this.cbtransacao.Location = new System.Drawing.Point(109, 26);
             this.cbtransacao.Name = "cbtransacao";
-            this.cbtransacao.Size = new System.Drawing.Size(121, 21);
+            this.cbtransacao.Size = new System.Drawing.Size(165, 21);
             this.cbtransacao.TabIndex = 1;
             // 
             // lbltipo
@@ -109,11 +115,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(305, 7);
+            this.label1.Location = new System.Drawing.Point(330, 7);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(303, 13);
+            this.label1.Size = new System.Drawing.Size(320, 13);
             this.label1.TabIndex = 10;
-            this.label1.Text = "Digite para pesquisar por código de venda ou nome do cliente ";
+            this.label1.Text = "Digite para pesquisar por código da transação ou nome do cliente ";
             // 
             // transacoes
             // 

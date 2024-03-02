@@ -552,12 +552,14 @@ namespace Sistema_de_Vendas.Transacoes
                 cbproduto.Focus();
                 return;
             }
+
             if (txtquantidade.Text == "")
             {
                 MessageBox.Show("Escolha uma quantidade para o produto");
                 txtquantidade.Focus();
                 return;
             }
+
             if (cbvendedor.Text == "")
             {
                 MessageBox.Show("Selecione um vendedor");

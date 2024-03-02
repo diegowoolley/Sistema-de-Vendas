@@ -61,9 +61,10 @@ namespace Sistema_de_Vendas.Transacoes
                 string pesquisa = txtpesquisa.Text;
 
                 con.AbrirConexao();
-                sql = "SELECT * FROM caixa WHERE cod_empresa = @cod_empresa AND cliente LIKE @cliente AND tipo LIKE @tipo or cod_venda LIKE @cod_venda AND tipo LIKE @tipo";
+                sql = "SELECT * FROM caixa WHERE cod_empresa = @cod_empresa AND cliente LIKE @cliente AND tipo LIKE @tipo or cod_venda LIKE @cod_venda AND tipo LIKE @tipo or favorecido LIKE @favorecido AND tipo LIKE @tipo";
                 cmd = new MySqlCommand(sql, con.con);
                 cmd.Parameters.AddWithValue("@cliente", "%" + pesquisa + "%");
+                cmd.Parameters.AddWithValue("@favorecido", "%" + pesquisa + "%");
                 cmd.Parameters.AddWithValue("@cod_venda", "%" + pesquisa + "%");
                 cmd.Parameters.AddWithValue("@tipo", "%" + cbtransacao.Text + "%");
                 cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
