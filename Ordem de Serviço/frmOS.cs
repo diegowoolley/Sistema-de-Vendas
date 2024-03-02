@@ -1698,7 +1698,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 cmd1.Parameters.AddWithValue("@cod_venda", conta_venda);
                 cmd1.Parameters.AddWithValue("@tipo", "ORDEM DE SERVIÇO");
                 cmd1.Parameters.AddWithValue("@cliente", cbclientes.Text);
-                cmd1.Parameters.AddWithValue("@vendedor", funcoes.conectado);
+                cmd1.Parameters.AddWithValue("@vendedor", cbtecnico.Text);
                 cmd1.Parameters.AddWithValue("@desconto", txtdesconto.Text.Replace("%", "").Trim());
                 cmd1.Parameters.AddWithValue("@forma_pagamento", cbformadepagamento.Text);
                 cmd1.Parameters.AddWithValue("@valor_total", precototal.ToString().Replace("R$", "").Trim().Replace(",", "."));
