@@ -216,7 +216,7 @@ namespace Sistema_de_Vendas.Financeiro
                     decimal cartao = Convert.ToDecimal(row.Cells["cartao"].Value);
                     decimal desconto = Convert.ToDecimal(row.Cells["desconto"].Value);
 
-                    if (tipo.Contains("VENDA"))
+                    if (tipo.Contains("VENDA") || tipo.Contains("ORDEM DE SERVIÇO"))
                     {
                         totalEntrada += valorTotal;
                         totalDinheiro += dinheiro;

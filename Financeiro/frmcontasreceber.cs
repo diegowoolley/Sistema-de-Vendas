@@ -37,7 +37,7 @@ namespace Sistema_de_Vendas.Financeiro
             try
             {
                 con.AbrirConexao();
-                sql = "SELECT * FROM caixa WHERE cod_empresa = @cod_empresa AND tipo = 'VENDA' AND DATE(data) = CURDATE() ORDER BY cod_venda ASC";
+                sql = "SELECT * FROM caixa WHERE cod_empresa = @cod_empresa AND tipo = 'VENDA' or tipo = 'ORDEM DE SERVIÇO' AND DATE(data) = CURDATE() ORDER BY cod_venda ASC";
                 cmd = new MySqlCommand(sql, con.con);
                 cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
                 MySqlDataAdapter da = new MySqlDataAdapter();
