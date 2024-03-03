@@ -181,6 +181,11 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
             FrmOS.ShowDialog();
         }
 
+        private void btnlistar_Click(object sender, EventArgs e)
+        {
+            listar();
+        }
+
 
 
         #endregion
@@ -198,8 +203,10 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
             Buscarclientes();
         }
 
+
+
         #endregion
 
-
+        
     }
 }

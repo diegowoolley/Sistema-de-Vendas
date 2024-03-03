@@ -35,6 +35,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
         private void frmOS_Load(object sender, EventArgs e)
         {
             contarOS();
+            contarvendas();
             listar();
             listarformapagamento();
         }
@@ -463,7 +464,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                     string idProduto = dataGridView2.Rows[i].Cells["codigo"].Value.ToString();
                     int quantidadeVendida = Convert.ToInt32(dataGridView2.Rows[i].Cells["quantidade"].Value);
 
-                    string updateQuery = $"UPDATE cad_produtos SET quantidade = quantidade - {quantidadeVendida} WHERE etiqueta = {idProduto}";
+                    string updateQuery = $"UPDATE cad_produtos SET quantidade = quantidade - {quantidadeVendida} WHERE cod_produto = {idProduto}";
 
                     MySqlCommand updateCommand = new MySqlCommand(updateQuery, con.con);
                     updateCommand.ExecuteNonQuery();
@@ -679,14 +680,20 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
 
         private void cbstatus_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            if (cbstatus.Text == "FINALIZADO" && cbclientes.Text.Trim() != "" && cbtecnico.Text.Trim() != "" && txtdescricao.Text.Trim() != "" && txtlaudo.Text.Trim() != "" && dataGridView2.Rows.Count > 0)
+            if (cbstatus.Text == "FINALIZADO" && (cbclientes.Text.Trim() == "" || cbtecnico.Text.Trim() == "" || txtdescricao.Text.Trim() == "" || txtlaudo.Text == "" || dataGridView2.Rows.Count < 1 ))
+            {
+                MessageBox.Show("Verifique se a OS está salva, caso esteja, verifique os seguintes campos antes de finalizar a OS: (Clientes), (técnico), (descrição), (laudo técnico), (Adicionar pelo menos um serviço ou produto para gerar valor a pagar)");
+                cbstatus.SelectedIndex = -1;
+                cbstatus.Focus();
+                btngerarpagamento.Enabled = false; 
+            }
+            else if (cbstatus.Text == "FINALIZADO" && (cbclientes.Text.Trim() != "" && cbtecnico.Text.Trim() != "" && txtdescricao.Text.Trim() != "" && txtlaudo.Text.Trim() != "" && dataGridView2.Rows.Count > 0 && btnadicionar.Enabled != true))
             {
                 btngerarpagamento.Enabled = true;
             }
             else
             {
-                btngerarpagamento.Enabled = false;              
+                btngerarpagamento.Enabled = false; 
             }
         }
 
@@ -899,6 +906,14 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
             {
                 MessageBox.Show("Escolha um status antes de adicionar OS!");
                 cbstatus.Focus();
+                return;
+            }
+
+            if (cbstatus.Text == "FINALIZADO")
+            {
+                MessageBox.Show("O status FINALIZADO só pode ser escolhido depois que a OS for salva!");
+                cbstatus.SelectedIndex = -1;
+                cbstatus.Focus(); 
                 return;
             }
 
@@ -1543,7 +1558,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 MessageBox.Show("Escolha um status antes de adicionar OS!");
                 cbstatus.Focus();
                 return;
-            }
+            }            
 
             if (dtinicial.Value.Date > dtfinal.Value.Date)
             {
@@ -1570,6 +1585,19 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
             {
                 MessageBox.Show("Informe o defeito dos equipamentos antes de adicionar OS!");
                 txtdefeito.Focus();
+                return;
+            }
+
+            if(cbformadepagamento.Text == "")
+            {
+                MessageBox.Show("Selecione uma forma de pagamento!");
+                cbformadepagamento.Focus();
+                return;
+            }
+
+            if(valorfracionado < precototal)
+            {
+                MessageBox.Show("O valor pago não pode ser menor que o valor total!");                
                 return;
             }
 
@@ -1716,6 +1744,42 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 cmd1.ExecuteNonQuery();
 
                 con.FecharConexao();
+
+                con.AbrirConexao();
+                for (int i = 0; i < dataGridView2.Rows.Count; i++)
+                {
+
+                    sql = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, valor_unitario, dinheiro, pix, cartao, taxa, vendedor, descontos, forma_pagamento, valor_total, valor_pago, troco, data, hora, cod_empresa, vencimento) VALUES (@cod_venda, @tipo, @cliente, @produto, @quantidade, @valor_unitario, @dinheiro, @pix, @cartao, @taxa, @vendedor, @descontos, @forma_pagamento, @valor_total, @valor_pago, @troco, @data, @hora, @cod_empresa, @vencimento)";
+                    cmd = new MySqlCommand(sql, con.con);
+                    cmd.Parameters.AddWithValue("@cod_venda", conta_venda);
+                    cmd.Parameters.AddWithValue("@tipo", "ORDEM DE SERVIÇO");
+                    cmd.Parameters.AddWithValue("@cliente", cbclientes.Text);
+                    cmd.Parameters.AddWithValue("@produto", dataGridView2.Rows[i].Cells["descricao"].Value);
+                    cmd.Parameters.AddWithValue("@quantidade", dataGridView2.Rows[i].Cells["quantidade"].Value);
+                    cmd.Parameters.AddWithValue("@valor_unitario", dataGridView2.Rows[i].Cells["valor_unitario"].Value);
+                    cmd.Parameters.AddWithValue("@dinheiro", txtdinheiro.Text.Replace("R$", "").Trim().Replace(",", "."));
+                    cmd.Parameters.AddWithValue("@pix", txtpix.Text.Replace("R$", "").Trim().Replace(",", "."));
+                    cmd.Parameters.AddWithValue("@cartao", txtcartao.Text.Replace("R$", "").Trim().Replace(",", "."));
+                    cmd.Parameters.AddWithValue("@vencimento", DateTime.Now.Date);
+                    cmd.Parameters.AddWithValue("@taxa", txttaxa.Text.Replace("%", "").Trim());
+                    cmd.Parameters.AddWithValue("@vendedor", cbtecnico.Text);
+                    cmd.Parameters.AddWithValue("@descontos", txtdesconto.Text.Replace("%", "").Trim());
+                    cmd.Parameters.AddWithValue("@forma_pagamento", cbformadepagamento.Text);
+                    cmd.Parameters.AddWithValue("@valor_total", precototal.ToString().Replace("R$", "").Trim().Replace(",", "."));
+                    cmd.Parameters.AddWithValue("@valor_pago", precototal.ToString().Replace("R$", "").Trim().Replace(",", "."));
+                    cmd.Parameters.AddWithValue("@troco", lbltroco.Text.Replace("Troco: ", "").Replace("R$", "").Trim().Replace(",", "."));
+                    cmd.Parameters.AddWithValue("@data", DateTime.Today);
+                    cmd.Parameters.AddWithValue("@hora", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+
+
+                    cmd.ExecuteNonQuery();
+
+                }
+                con.FecharConexao();
+
+
+
                 AtualizarQuantidadeProdutosVendidos();
 
                 MessageBox.Show("Pagamento gerado com sucesso!");
