@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using Mysqlx.Crud;
 using Mysqlx.Resultset;
+using Sistema_de_Vendas.Relatorios.Recibos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,8 +25,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
         string sql;
         string sql1;
         MySqlCommand cmd;
-        MySqlCommand cmd1;
-        int cod_venda;
+        MySqlCommand cmd1;     
         int conta_venda;
         decimal precototal;
         decimal valorfracionado;
@@ -34,7 +34,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
 
         private void frmOS_Load(object sender, EventArgs e)
         {
-            contarOS();
+           
             contarvendas();
             listar();
             listarformapagamento();
@@ -229,42 +229,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
             }
         }
 
-        private void contarOS()
-        {
-            cod_venda = 0;
-            try
-            {
-                con.AbrirConexao();
-                sql = "SELECT MAX(cod_os) FROM cad_os";
-                MySqlCommand cmd = new MySqlCommand(sql, con.con);
-                MySqlDataReader dr;
-                dr = cmd.ExecuteReader();
-                if (dr.Read())
-                {
-                    string val = dr[0].ToString();
-                    if (val == "")
-                    {
-                        cod_venda = 1;
-                        lblnumeroos.Text = "Número da OS: " + cod_venda;
-                    }
-                    else
-                    {
-
-                        cod_venda = int.Parse(dr[0].ToString());
-                        cod_venda = cod_venda + 1;
-                        lblnumeroos.Text = "Número da OS: " + cod_venda.ToString();
-                       
-
-                    }
-                }
-                con.FecharConexao();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro na conexão", ex.Message);
-            }
-        }
-
+     
         private void contarvendas()
         {
             try
@@ -281,6 +246,8 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                     {
                         conta_venda = 1;
                         lblcodigovenda.Text = "Código pagamento: " + conta_venda;
+                        lblnumeroos.Text = "Número da OS: " + conta_venda;
+                        funcoes.cod_venda = conta_venda;
                     }
                     else
                     {
@@ -288,7 +255,9 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                         conta_venda = int.Parse(dr[0].ToString());
                         conta_venda = conta_venda + 1;
                         lblcodigovenda.Text = "Código pagamento: " + conta_venda.ToString();
-                        
+                        lblnumeroos.Text = "Número da OS: " + conta_venda;
+                        funcoes.cod_venda = conta_venda;
+
 
                     }
                 }
@@ -882,7 +851,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
             dataGridView2.Rows.Clear();
             panel1.Visible = false;
             btnnovo.Focus();
-            contarOS();
+            contarvendas();
         }
 
         private void btnadicionar_Click(object sender, EventArgs e)
@@ -950,7 +919,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 con.AbrirConexao();
                 sql = "INSERT INTO cad_os (cod_os, cliente, tecnico, status, data_inicial, data_final, garantia, termo, descricao, defeito, observacoes, laudo, cod_empresa) VALUES(@cod_os, @cliente, @tecnico, @status, @data_inicial, @data_final, @garantia, @termo, @descricao, @defeito, @observacoes, @laudo, @cod_empresa)";
                 cmd = new MySqlCommand(sql, con.con);
-                cmd.Parameters.AddWithValue("@cod_os", cod_venda);
+                cmd.Parameters.AddWithValue("@cod_os", conta_venda);
                 cmd.Parameters.AddWithValue("@cliente", cbclientes.Text);
                 cmd.Parameters.AddWithValue("@tecnico", cbtecnico.Text);
                 cmd.Parameters.AddWithValue("@status", cbstatus.Text);
@@ -969,7 +938,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 {
                     sql1 = "INSERT INTO detalhes_os (cod_os, descricao, quantidade, cod_empresa, preco_unitario, preco_total, codigo) VALUES (@cod_os, @descricao, @quantidade, @cod_empresa, @preco_unitario, @preco_total, @codigo)";
                     cmd1 = new MySqlCommand(sql1, con.con);
-                    cmd1.Parameters.AddWithValue("@cod_os", cod_venda);
+                    cmd1.Parameters.AddWithValue("@cod_os", conta_venda);
                     cmd1.Parameters.AddWithValue("@codigo", dataGridView2.Rows[i].Cells["codigo"].Value);
                     cmd1.Parameters.AddWithValue("@descricao", dataGridView2.Rows[i].Cells["descricao"].Value);
                     cmd1.Parameters.AddWithValue("@quantidade", dataGridView2.Rows[i].Cells["quantidade"].Value);
@@ -1025,7 +994,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 dataGridView2.Rows.Clear();
                 btnnovo.Focus();
                 listar();
-                contarOS();
+                contarvendas();
 
 
             }
@@ -1046,7 +1015,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 // Excluir da tabela cad_os
                 sql = "DELETE FROM cad_os WHERE cod_os = @id";
                 cmd = new MySqlCommand(sql, con.con);
-                cmd.Parameters.AddWithValue("@id", cod_venda);
+                cmd.Parameters.AddWithValue("@id", conta_venda);
                 cmd.ExecuteNonQuery();
 
                 // Excluir da tabela detalhes_os
@@ -1168,7 +1137,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                     }
                     double preco = double.Parse(txtquantidades.Text.ToString()) * double.Parse(r["valor"].ToString());
 
-                    dataGridView2.Rows.Add(cod_venda, r["cod_servico"], r["descricao"], txtquantidades.Text, r["valor"], preco);
+                    dataGridView2.Rows.Add(conta_venda, r["cod_servico"], r["descricao"], txtquantidades.Text, r["valor"], preco);
                     cbservico.Text = "";
                     txtquantidades.Text = "";
                     cbservico.Focus();
@@ -1238,7 +1207,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                     }
                     double preco = double.Parse(txtquantidadep.Text.ToString()) * double.Parse(r["valor_venda"].ToString());
 
-                    dataGridView2.Rows.Add(cod_venda, r["cod_produto"], r["nome_produto"], txtquantidadep.Text, r["valor_venda"], preco);
+                    dataGridView2.Rows.Add(conta_venda, r["cod_produto"], r["nome_produto"], txtquantidadep.Text, r["valor_venda"], preco);
                     cbproduto.Text = "";
                     txtquantidadep.Text = "";
                     cbproduto.Focus();
@@ -1343,7 +1312,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 con.AbrirConexao();
                 sql = "UPDATE cad_os SET cliente = @cliente, tecnico = @tecnico, status = @status, data_inicial = @data_inicial, data_final = @data_final, garantia = @garantia, termo = @termo, descricao = @descricao, defeito = @defeito, observacoes = @observacoes, laudo = @laudo WHERE cod_os = @cod_os";
                 cmd = new MySqlCommand(sql, con.con);
-                cmd.Parameters.AddWithValue("@cod_os", cod_venda);
+                cmd.Parameters.AddWithValue("@cod_os", conta_venda);
                 cmd.Parameters.AddWithValue("@cliente", cbclientes.Text);
                 cmd.Parameters.AddWithValue("@tecnico", cbtecnico.Text);
                 cmd.Parameters.AddWithValue("@status", cbstatus.Text);
@@ -1364,7 +1333,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 con.AbrirConexao();
                 sql1 = "SELECT * FROM detalhes_os WHERE cod_empresa = @cod_empresa AND cod_os = @cod_os";
                 MySqlCommand cmd1 = new MySqlCommand(sql1, con.con);
-                cmd1.Parameters.AddWithValue("@cod_os", cod_venda);
+                cmd1.Parameters.AddWithValue("@cod_os", conta_venda);
                 cmd1.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
                 MySqlDataAdapter da = new MySqlDataAdapter();
                 da.SelectCommand = cmd1;
@@ -1387,7 +1356,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                     {
                         sql1 = "INSERT INTO detalhes_os (cod_os, descricao, quantidade, cod_empresa, preco_unitario, preco_total, codigo) VALUES (@cod_os, @descricao, @quantidade, @cod_empresa, @preco_unitario, @preco_total, @codigo)";
                         cmd1 = new MySqlCommand(sql1, con.con);
-                        cmd1.Parameters.AddWithValue("@cod_os", cod_venda);
+                        cmd1.Parameters.AddWithValue("@cod_os", conta_venda);
                         cmd1.Parameters.AddWithValue("@codigo", dataGridView2.Rows[i].Cells["codigo"].Value);
                         cmd1.Parameters.AddWithValue("@descricao", dataGridView2.Rows[i].Cells["descricao"].Value);
                         cmd1.Parameters.AddWithValue("@quantidade", dataGridView2.Rows[i].Cells["quantidade"].Value);
@@ -1440,7 +1409,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                                 sql = "UPDATE detalhes_os SET quantidade = @quantidade, preco_unitario = @preco_unitario, preco_total = @preco_total WHERE cod_os = @cod_os AND codigo = @id";
                                 cmd = new MySqlCommand(sql, con.con);
                                 cmd.Parameters.AddWithValue("@id", dataGridView2.Rows[i].Cells["codigo"].Value);
-                                cmd.Parameters.AddWithValue("@cod_os", cod_venda);
+                                cmd.Parameters.AddWithValue("@cod_os", conta_venda);
                                 cmd.Parameters.AddWithValue("@quantidade", dataGridView2.Rows[i].Cells["quantidade"].Value);
                                 cmd.Parameters.AddWithValue("@preco_unitario", dataGridView2.Rows[i].Cells["valor_unitario"].Value);
                                 cmd.Parameters.AddWithValue("@preco_total", dataGridView2.Rows[i].Cells["valor_total"].Value);
@@ -1454,21 +1423,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                     }
 
 
-
-
-
-
-
-
                 }
-
-
-
-
-
-
-
-
 
             }
             catch (Exception ex)
@@ -1522,7 +1477,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
             dataGridView2.Rows.Clear();
             btnnovo.Focus();
             listar();
-            contarOS();
+            contarvendas();
 
 
 
@@ -1607,7 +1562,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 con.AbrirConexao();
                 sql = "UPDATE cad_os SET cliente = @cliente, tecnico = @tecnico, status = @status, data_inicial = @data_inicial, data_final = @data_final, garantia = @garantia, termo = @termo, descricao = @descricao, defeito = @defeito, observacoes = @observacoes, laudo = @laudo WHERE cod_os = @cod_os";
                 cmd = new MySqlCommand(sql, con.con);
-                cmd.Parameters.AddWithValue("@cod_os", cod_venda);
+                cmd.Parameters.AddWithValue("@cod_os", conta_venda);
                 cmd.Parameters.AddWithValue("@cliente", cbclientes.Text);
                 cmd.Parameters.AddWithValue("@tecnico", cbtecnico.Text);
                 cmd.Parameters.AddWithValue("@status", cbstatus.Text);
@@ -1627,7 +1582,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 con.AbrirConexao();
                 sql1 = "SELECT * FROM detalhes_os WHERE cod_empresa = @cod_empresa AND cod_os = @cod_os";
                 MySqlCommand cmd1 = new MySqlCommand(sql1, con.con);
-                cmd1.Parameters.AddWithValue("@cod_os", cod_venda);
+                cmd1.Parameters.AddWithValue("@cod_os", conta_venda);
                 cmd1.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
                 MySqlDataAdapter da = new MySqlDataAdapter();
                 da.SelectCommand = cmd1;
@@ -1650,7 +1605,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                     {
                         sql1 = "INSERT INTO detalhes_os (cod_os, descricao, quantidade, cod_empresa, preco_unitario, preco_total, codigo) VALUES (@cod_os, @descricao, @quantidade, @cod_empresa, @preco_unitario, @preco_total, @codigo)";
                         cmd1 = new MySqlCommand(sql1, con.con);
-                        cmd1.Parameters.AddWithValue("@cod_os", cod_venda);
+                        cmd1.Parameters.AddWithValue("@cod_os", conta_venda);
                         cmd1.Parameters.AddWithValue("@codigo", dataGridView2.Rows[i].Cells["codigo"].Value);
                         cmd1.Parameters.AddWithValue("@descricao", dataGridView2.Rows[i].Cells["descricao"].Value);
                         cmd1.Parameters.AddWithValue("@quantidade", dataGridView2.Rows[i].Cells["quantidade"].Value);
@@ -1703,7 +1658,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                                 sql = "UPDATE detalhes_os SET quantidade = @quantidade, preco_unitario = @preco_unitario, preco_total = @preco_total WHERE cod_os = @cod_os AND codigo = @id";
                                 cmd = new MySqlCommand(sql, con.con);
                                 cmd.Parameters.AddWithValue("@id", dataGridView2.Rows[i].Cells["codigo"].Value);
-                                cmd.Parameters.AddWithValue("@cod_os", cod_venda);
+                                cmd.Parameters.AddWithValue("@cod_os", conta_venda);
                                 cmd.Parameters.AddWithValue("@quantidade", dataGridView2.Rows[i].Cells["quantidade"].Value);
                                 cmd.Parameters.AddWithValue("@preco_unitario", dataGridView2.Rows[i].Cells["valor_unitario"].Value);
                                 cmd.Parameters.AddWithValue("@preco_total", dataGridView2.Rows[i].Cells["valor_total"].Value);
@@ -1749,7 +1704,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 for (int i = 0; i < dataGridView2.Rows.Count; i++)
                 {
 
-                    sql = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, valor_unitario, dinheiro, pix, cartao, taxa, vendedor, descontos, forma_pagamento, valor_total, valor_pago, troco, data, hora, cod_empresa, vencimento) VALUES (@cod_venda, @tipo, @cliente, @produto, @quantidade, @valor_unitario, @dinheiro, @pix, @cartao, @taxa, @vendedor, @descontos, @forma_pagamento, @valor_total, @valor_pago, @troco, @data, @hora, @cod_empresa, @vencimento)";
+                    sql = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, valor_unitario, dinheiro, pix, cartao, taxa, vendedor, descontos, forma_pagamento, valor_total, valor_pago, troco, data, hora, cod_empresa, vencimento, cod_produto) VALUES (@cod_venda, @tipo, @cliente, @produto, @quantidade, @valor_unitario, @dinheiro, @pix, @cartao, @taxa, @vendedor, @descontos, @forma_pagamento, @valor_total, @valor_pago, @troco, @data, @hora, @cod_empresa, @vencimento, @cod_produto)";
                     cmd = new MySqlCommand(sql, con.con);
                     cmd.Parameters.AddWithValue("@cod_venda", conta_venda);
                     cmd.Parameters.AddWithValue("@tipo", "ORDEM DE SERVIÇO");
@@ -1771,6 +1726,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                     cmd.Parameters.AddWithValue("@data", DateTime.Today);
                     cmd.Parameters.AddWithValue("@hora", DateTime.Now);
                     cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+                    cmd.Parameters.AddWithValue("@cod_produto", dataGridView2.Rows[i].Cells["codigo"].Value);
 
 
                     cmd.ExecuteNonQuery();
@@ -1826,8 +1782,15 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 dataGridView2.Rows.Clear();
                 panel1.Visible = false;
                 btnnovo.Focus();
-                listar();
-                contarOS();
+                listar();               
+                contarvendas();
+
+                DialogResult result = MessageBox.Show("Deseja imprimir os dados da ordem de serviço?", "Confirmação", MessageBoxButtons.YesNo);
+                    if(result == DialogResult.Yes)
+                {
+                    frmrecibodetalhado frmrecibo = new frmrecibodetalhado();
+                    frmrecibo.ShowDialog();
+                }
             }
             catch (Exception ex)
             {
@@ -1844,7 +1807,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            cod_venda = Convert.ToInt32(dataGridView1.CurrentRow.Cells[1].Value.ToString());
+            conta_venda = Convert.ToInt32(dataGridView1.CurrentRow.Cells[1].Value.ToString());
 
             
 
@@ -1863,7 +1826,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 txtdefeito.Text = dataGridView1.CurrentRow.Cells[10].Value.ToString();
                 txtobservacao.Text = dataGridView1.CurrentRow.Cells[11].Value.ToString();
                 txtlaudo.Text = dataGridView1.CurrentRow.Cells[12].Value.ToString();
-                lblnumeroos.Text = "Número da OS: " + cod_venda;
+                lblnumeroos.Text = "Número da OS: " + conta_venda;
 
                 try
                 {
@@ -1872,7 +1835,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                     con.AbrirConexao();
                     sql = "SELECT * FROM detalhes_os WHERE cod_empresa = @cod_empresa AND cod_os = @cod_os";
                     MySqlCommand cmd = new MySqlCommand(sql, con.con);
-                    cmd.Parameters.AddWithValue("@cod_os", cod_venda);
+                    cmd.Parameters.AddWithValue("@cod_os", conta_venda);
                     cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);                    
                     MySqlDataAdapter da = new MySqlDataAdapter();
                     da.SelectCommand = cmd;
@@ -1898,7 +1861,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
 
 
                         }
-                        lblnumeroos.Text = "Número da OS: " + cod_venda;
+                        lblnumeroos.Text = "Número da OS: " + conta_venda;
                     }
                     else
                     {
