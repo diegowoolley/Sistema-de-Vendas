@@ -126,6 +126,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 else
                 {
                     MessageBox.Show("Técnico não cadastrado!");
+                    cbtecnico.Focus();
                   
                 }
 
@@ -228,7 +229,6 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 MessageBox.Show(ex.Message);
             }
         }
-
      
         private void contarvendas()
         {
@@ -254,7 +254,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
 
                         conta_venda = int.Parse(dr[0].ToString());
                         conta_venda = conta_venda + 1;
-                        lblcodigovenda.Text = "Código pagamento: " + conta_venda.ToString();
+                        lblcodigovenda.Text = "Código pagamento: " + conta_venda;
                         lblnumeroos.Text = "Número da OS: " + conta_venda;
                         funcoes.cod_venda = conta_venda;
 
@@ -950,6 +950,45 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
 
                 cmd.ExecuteNonQuery();
                 con.FecharConexao();
+
+
+
+                con.AbrirConexao();
+                for (int i = 0; i < dataGridView2.Rows.Count; i++)
+                {
+
+                    sql = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, valor_unitario, dinheiro, pix, cartao, taxa, vendedor, descontos, forma_pagamento, valor_total, valor_pago, troco, data, hora, cod_empresa, vencimento, cod_produto) VALUES (@cod_venda, @tipo, @cliente, @produto, @quantidade, @valor_unitario, @dinheiro, @pix, @cartao, @taxa, @vendedor, @descontos, @forma_pagamento, @valor_total, @valor_pago, @troco, @data, @hora, @cod_empresa, @vencimento, @cod_produto)";
+                    cmd = new MySqlCommand(sql, con.con);
+                    cmd.Parameters.AddWithValue("@cod_venda", conta_venda);
+                    cmd.Parameters.AddWithValue("@tipo", "ORDEM DE SERVIÇO");
+                    cmd.Parameters.AddWithValue("@cliente", cbclientes.Text);
+                    cmd.Parameters.AddWithValue("@produto", dataGridView2.Rows[i].Cells["descricao"].Value);
+                    cmd.Parameters.AddWithValue("@quantidade", dataGridView2.Rows[i].Cells["quantidade"].Value);
+                    cmd.Parameters.AddWithValue("@valor_unitario", dataGridView2.Rows[i].Cells["valor_unitario"].Value);
+                    cmd.Parameters.AddWithValue("@dinheiro", txtdinheiro.Text.Replace("R$", "").Trim().Replace(",", "."));
+                    cmd.Parameters.AddWithValue("@pix", txtpix.Text.Replace("R$", "").Trim().Replace(",", "."));
+                    cmd.Parameters.AddWithValue("@cartao", txtcartao.Text.Replace("R$", "").Trim().Replace(",", "."));
+                    cmd.Parameters.AddWithValue("@vencimento", DateTime.Now.Date);
+                    cmd.Parameters.AddWithValue("@taxa", txttaxa.Text.Replace("%", "").Trim());
+                    cmd.Parameters.AddWithValue("@vendedor", cbtecnico.Text);
+                    cmd.Parameters.AddWithValue("@descontos", txtdesconto.Text.Replace("%", "").Trim());
+                    cmd.Parameters.AddWithValue("@forma_pagamento", cbformadepagamento.Text);
+                    cmd.Parameters.AddWithValue("@valor_total", precototal.ToString().Replace("R$", "").Trim().Replace(",", "."));
+                    cmd.Parameters.AddWithValue("@valor_pago", precototal.ToString().Replace("R$", "").Trim().Replace(",", "."));
+                    cmd.Parameters.AddWithValue("@troco", lbltroco.Text.Replace("Troco: ", "").Replace("R$", "").Trim().Replace(",", "."));
+                    cmd.Parameters.AddWithValue("@data", DateTime.Today);
+                    cmd.Parameters.AddWithValue("@hora", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+                    cmd.Parameters.AddWithValue("@cod_produto", dataGridView2.Rows[i].Cells["codigo"].Value);
+
+
+                    cmd.ExecuteNonQuery();
+
+                }
+                con.FecharConexao();
+
+
+
                 MessageBox.Show("OS adicionada com sucesso!");
 
                 cbclientes.Enabled = false;
@@ -1006,82 +1045,106 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
 
         private void btnexcluir_Click(object sender, EventArgs e)
         {
-            var res = MessageBox.Show("Deseja realmente excluir esse registro?", "Excluir lançamento", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (res == DialogResult.Yes)
+            try
             {
-                con.AbrirConexao();
+                var res = MessageBox.Show("Deseja realmente excluir esse registro?", "Excluir lançamento", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                // Excluir da tabela cad_os
-                sql = "DELETE FROM cad_os WHERE cod_os = @id";
-                cmd = new MySqlCommand(sql, con.con);
-                cmd.Parameters.AddWithValue("@id", conta_venda);
-                cmd.ExecuteNonQuery();
-
-                // Excluir da tabela detalhes_os
-                for (int i = 0; i < dataGridView2.Rows.Count; i++)
+                if (res == DialogResult.Yes)
                 {
-                    sql1 = "DELETE FROM detalhes_os WHERE cod_os = @id";
-                    cmd1 = new MySqlCommand(sql1, con.con);
+                    con.AbrirConexao();
 
-                    // Certifique-se de que "id" é o nome correto da coluna
-                    cmd1.Parameters.AddWithValue("@id", dataGridView2.Rows[i].Cells["cod_os"].Value);
-                    cmd1.ExecuteNonQuery();
+                    // Excluir da tabela cad_os
+                    sql = "DELETE FROM cad_os WHERE cod_os = @id";
+                    cmd = new MySqlCommand(sql, con.con);
+                    cmd.Parameters.AddWithValue("@id", conta_venda);
+                    cmd.ExecuteNonQuery();
+
+                    con.FecharConexao();
+
+
+                    con.AbrirConexao();
+                    // Excluir da tabela detalhes_os
+                    for (int i = 0; i < dataGridView2.Rows.Count; i++)
+                    {
+                        sql1 = "DELETE FROM detalhes_os WHERE cod_os = @id";
+                        cmd1 = new MySqlCommand(sql1, con.con);
+                        cmd1.Parameters.AddWithValue("@id", dataGridView2.Rows[i].Cells["cod_os"].Value);
+                        cmd1.ExecuteNonQuery();
+                    }
+                    con.FecharConexao();
+
+
+                    con.AbrirConexao();
+                    // Excluir da tabela Vendas
+                    for (int i = 0; i < dataGridView2.Rows.Count; i++)
+                    {
+                        sql1 = "DELETE FROM vendas WHERE cod_venda = @id";
+                        cmd1 = new MySqlCommand(sql1, con.con);
+                        cmd1.Parameters.AddWithValue("@id", dataGridView2.Rows[i].Cells["cod_os"].Value);
+                        cmd1.ExecuteNonQuery();
+                    }
+                    con.FecharConexao();
+
+
+                    MessageBox.Show("OS excluída com sucesso!");
+
+                    listar();
+
+
+
+                    cbclientes.Enabled = false;
+                    cbclientes.Text = "";
+                    cbtecnico.Enabled = false;
+                    cbtecnico.Text = "";
+                    cbstatus.Enabled = false;
+                    cbstatus.SelectedIndex = -1;
+                    dtinicial.Enabled = false;
+                    dtinicial.Value = DateTime.Now;
+                    dtfinal.Enabled = false;
+                    dtfinal.Value = DateTime.Now;
+                    txtgarantia.Enabled = false;
+                    txtgarantia.Clear();
+                    txttermo.Enabled = false;
+                    txttermo.Clear();
+                    txtdescricao.Enabled = false;
+                    txtdescricao.Clear();
+                    txtdefeito.Enabled = false;
+                    txtdefeito.Clear();
+                    txtobservacao.Enabled = false;
+                    txtobservacao.Clear();
+                    txtlaudo.Enabled = false;
+                    txtlaudo.Clear();
+                    cbservico.Enabled = false;
+                    cbservico.Text = "";
+                    cbproduto.Enabled = false;
+                    cbproduto.Text = "";
+                    txtquantidades.Enabled = false;
+                    txtquantidades.Clear();
+                    txtquantidadep.Enabled = false;
+                    txtquantidadep.Clear();
+                    btnadicionars.Enabled = false;
+                    btnadicionarp.Enabled = false;
+                    btnexcluirlista.Enabled = false;
+                    btnnovo.Enabled = true;
+                    btnadicionar.Enabled = false;
+                    btnalterar.Enabled = false;
+                    btnexcluir.Enabled = false;
+                    btncancelar.Enabled = true;
+                    btngerarpagamento.Enabled = false;
+                    dataGridView2.Rows.Clear();
+                    btnnovo.Focus();
+
                 }
-
-                MessageBox.Show("OS excluída com sucesso!");
-                con.FecharConexao();
-                listar();
-            
-
-
-                cbclientes.Enabled = false;
-                cbclientes.Text = "";
-                cbtecnico.Enabled = false;
-                cbtecnico.Text = "";
-                cbstatus.Enabled = false;
-                cbstatus.SelectedIndex = -1;
-                dtinicial.Enabled = false;
-                dtinicial.Value = DateTime.Now;
-                dtfinal.Enabled = false;
-                dtfinal.Value = DateTime.Now;
-                txtgarantia.Enabled = false;
-                txtgarantia.Clear();
-                txttermo.Enabled = false;
-                txttermo.Clear();
-                txtdescricao.Enabled = false;
-                txtdescricao.Clear();
-                txtdefeito.Enabled = false;
-                txtdefeito.Clear();
-                txtobservacao.Enabled = false;
-                txtobservacao.Clear();
-                txtlaudo.Enabled = false;
-                txtlaudo.Clear();
-                cbservico.Enabled = false;
-                cbservico.Text = "";
-                cbproduto.Enabled = false;
-                cbproduto.Text = "";
-                txtquantidades.Enabled = false;
-                txtquantidades.Clear();
-                txtquantidadep.Enabled = false;
-                txtquantidadep.Clear();
-                btnadicionars.Enabled = false;
-                btnadicionarp.Enabled = false;
-                btnexcluirlista.Enabled = false;
-                btnnovo.Enabled = true;
-                btnadicionar.Enabled = false;
-                btnalterar.Enabled = false;
-                btnexcluir.Enabled = false;
-                btncancelar.Enabled = true;
-                btngerarpagamento.Enabled = false;
-                dataGridView2.Rows.Clear();
-                btnnovo.Focus();
-
+                else
+                {
+                    listar();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                listar();
+                MessageBox.Show(ex.Message);
             }
+          
         }
 
         private void btnadicionars_Click(object sender, EventArgs e)
@@ -1278,6 +1341,14 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 return;
             }
 
+            if(cbstatus.Text == "FINALIZADO")
+            {
+                MessageBox.Show("O status não pode ser FINALIZADO para efetuar alterações!");
+                cbstatus.SelectedIndex = -1;
+                cbstatus.Focus();
+                return;
+            }
+
             if (dtinicial.Value.Date > dtfinal.Value.Date)
             {
                 MessageBox.Show("A data inicial não pode ser maior que a data final");
@@ -1368,6 +1439,26 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                     }
                     con.FecharConexao();
 
+                    con.AbrirConexao();
+
+                    for (int i = indiceoriginal; i < novoindice; i++)
+                    {
+                        sql = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, cod_empresa, valor_unitario, valor_total, cod_produto) VALUES (@cod_os, @tipo, @cliente, @descricao, @quantidade, @cod_empresa, @preco_unitario, @preco_total, @codigo)";
+                        cmd = new MySqlCommand(sql, con.con);                      
+                        cmd.Parameters.AddWithValue("@cod_os", conta_venda);
+                        cmd.Parameters.AddWithValue("@codigo", dataGridView2.Rows[i].Cells["codigo"].Value);
+                        cmd.Parameters.AddWithValue("@tipo", "ORDEM DE SERVIÇO");
+                        cmd.Parameters.AddWithValue("@cliente", cbclientes.Text);
+                        cmd.Parameters.AddWithValue("@descricao", dataGridView2.Rows[i].Cells["descricao"].Value);
+                        cmd.Parameters.AddWithValue("@quantidade", dataGridView2.Rows[i].Cells["quantidade"].Value);
+                        cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+                        cmd.Parameters.AddWithValue("@preco_unitario", dataGridView2.Rows[i].Cells["valor_unitario"].Value);
+                        cmd.Parameters.AddWithValue("@preco_total", dataGridView2.Rows[i].Cells["valor_total"].Value);
+                        cmd.ExecuteNonQuery();
+
+                    }
+                    con.FecharConexao();
+
                 }
                 else
                 {
@@ -1397,6 +1488,30 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
 
                         con.FecharConexao();
 
+
+                        con.AbrirConexao();
+
+                        // Criar uma lista para armazenar os IDs das linhas a serem removidas
+                        List<int> idsParaRemover1 = new List<int>();
+
+                        // Preencher a lista com os IDs das linhas a serem removidas
+                        for (int i = novoindice; i < indiceoriginal; i++)
+                        {
+                            int codigoRemovido1 = Convert.ToInt32(dt.Rows[i]["id"]); // Substitua "id" pelo nome da coluna de ID na tabela vendas
+                            idsParaRemover1.Add(codigoRemovido1);
+                        }
+
+                        // Excluir as linhas no banco de dados usando os IDs armazenados na lista
+                        foreach (int idParaRemover1 in idsParaRemover1)
+                        {
+                            sql = "DELETE FROM vendas WHERE id = @codigo";
+                            cmd = new MySqlCommand(sql, con.con);
+                            cmd.Parameters.AddWithValue("@codigo", idParaRemover1);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        con.FecharConexao();
+
                     }
                     else
                     {
@@ -1415,6 +1530,24 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                                 cmd.Parameters.AddWithValue("@preco_total", dataGridView2.Rows[i].Cells["valor_total"].Value);
 
                                 cmd.ExecuteNonQuery();
+
+                            }
+                            con.FecharConexao();
+
+
+                            con.AbrirConexao();
+                            for (int i = 0; i < novoindice; i++)
+                            {
+
+                                sql1 = "UPDATE vendas SET quantidade = @quantidade, valor_unitario = @preco_unitario, valor_total = @preco_total WHERE cod_venda = @cod_os AND cod_produto = @id";
+                                cmd1 = new MySqlCommand(sql1, con.con);
+                                cmd1.Parameters.AddWithValue("@id", dataGridView2.Rows[i].Cells["codigo"].Value);
+                                cmd1.Parameters.AddWithValue("@cod_os", conta_venda);
+                                cmd1.Parameters.AddWithValue("@quantidade", dataGridView2.Rows[i].Cells["quantidade"].Value);
+                                cmd1.Parameters.AddWithValue("@preco_unitario", dataGridView2.Rows[i].Cells["valor_unitario"].Value);
+                                cmd1.Parameters.AddWithValue("@preco_total", dataGridView2.Rows[i].Cells["valor_total"].Value);
+
+                                cmd1.ExecuteNonQuery();
 
                             }
                             con.FecharConexao();
@@ -1488,7 +1621,6 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
             panel1.Visible = true;
             cbformadepagamento.SelectedIndex = -1;
             cbformadepagamento.Focus();
-            contarvendas();
             AtualizarTotais();
         }
 
@@ -1617,6 +1749,26 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                     }
                     con.FecharConexao();
 
+                    con.AbrirConexao();
+
+                    for (int i = indiceoriginal; i < novoindice; i++)
+                    {
+                        sql = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, cod_empresa, valor_unitario, valor_total, cod_produto) VALUES (@cod_os, @tipo, @cliente, @descricao, @quantidade, @cod_empresa, @preco_unitario, @preco_total, @codigo)";
+                        cmd = new MySqlCommand(sql, con.con);
+                        cmd.Parameters.AddWithValue("@cod_os", conta_venda);
+                        cmd.Parameters.AddWithValue("@codigo", dataGridView2.Rows[i].Cells["codigo"].Value);
+                        cmd.Parameters.AddWithValue("@tipo", "ORDEM DE SERVIÇO");
+                        cmd.Parameters.AddWithValue("@cliente", cbclientes.Text);
+                        cmd.Parameters.AddWithValue("@descricao", dataGridView2.Rows[i].Cells["descricao"].Value);
+                        cmd.Parameters.AddWithValue("@quantidade", dataGridView2.Rows[i].Cells["quantidade"].Value);
+                        cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+                        cmd.Parameters.AddWithValue("@preco_unitario", dataGridView2.Rows[i].Cells["valor_unitario"].Value);
+                        cmd.Parameters.AddWithValue("@preco_total", dataGridView2.Rows[i].Cells["valor_total"].Value);
+                        cmd.ExecuteNonQuery();
+
+                    }
+                    con.FecharConexao();
+
                 }
                 else
                 {
@@ -1646,6 +1798,31 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
 
                         con.FecharConexao();
 
+
+
+                        con.AbrirConexao();
+
+                        // Criar uma lista para armazenar os IDs das linhas a serem removidas
+                        List<int> idsParaRemover1 = new List<int>();
+
+                        // Preencher a lista com os IDs das linhas a serem removidas
+                        for (int i = novoindice; i < indiceoriginal; i++)
+                        {
+                            int codigoRemovido1 = Convert.ToInt32(dt.Rows[i]["id"]); // Substitua "id" pelo nome da coluna de ID na tabela detalhes_os
+                            idsParaRemover1.Add(codigoRemovido1);
+                        }
+
+                        // Excluir as linhas no banco de dados usando os IDs armazenados na lista
+                        foreach (int idParaRemover1 in idsParaRemover1)
+                        {
+                            sql = "DELETE FROM vendas WHERE id = @codigo";
+                            cmd = new MySqlCommand(sql, con.con);
+                            cmd.Parameters.AddWithValue("@codigo", idParaRemover1);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        con.FecharConexao();
+
                     }
                     else
                     {
@@ -1664,6 +1841,26 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                                 cmd.Parameters.AddWithValue("@preco_total", dataGridView2.Rows[i].Cells["valor_total"].Value);
 
                                 cmd.ExecuteNonQuery();
+
+                            }
+                            con.FecharConexao();
+
+                       
+
+                      
+                            con.AbrirConexao();
+                            for (int i = 0; i < novoindice; i++)
+                            {
+
+                                sql1 = "UPDATE vendas SET quantidade = @quantidade, valor_unitario = @preco_unitario, valor_total = @preco_total WHERE cod_venda = @cod_os AND cod_produto = @id";
+                                cmd1 = new MySqlCommand(sql1, con.con);
+                                cmd1.Parameters.AddWithValue("@id", dataGridView2.Rows[i].Cells["codigo"].Value);
+                                cmd1.Parameters.AddWithValue("@cod_os", conta_venda);
+                                cmd1.Parameters.AddWithValue("@quantidade", dataGridView2.Rows[i].Cells["quantidade"].Value);
+                                cmd1.Parameters.AddWithValue("@preco_unitario", dataGridView2.Rows[i].Cells["valor_unitario"].Value);
+                                cmd1.Parameters.AddWithValue("@preco_total", dataGridView2.Rows[i].Cells["valor_total"].Value);
+
+                                cmd1.ExecuteNonQuery();
 
                             }
                             con.FecharConexao();
@@ -1698,41 +1895,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
 
                 cmd1.ExecuteNonQuery();
 
-                con.FecharConexao();
-
-                con.AbrirConexao();
-                for (int i = 0; i < dataGridView2.Rows.Count; i++)
-                {
-
-                    sql = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, valor_unitario, dinheiro, pix, cartao, taxa, vendedor, descontos, forma_pagamento, valor_total, valor_pago, troco, data, hora, cod_empresa, vencimento, cod_produto) VALUES (@cod_venda, @tipo, @cliente, @produto, @quantidade, @valor_unitario, @dinheiro, @pix, @cartao, @taxa, @vendedor, @descontos, @forma_pagamento, @valor_total, @valor_pago, @troco, @data, @hora, @cod_empresa, @vencimento, @cod_produto)";
-                    cmd = new MySqlCommand(sql, con.con);
-                    cmd.Parameters.AddWithValue("@cod_venda", conta_venda);
-                    cmd.Parameters.AddWithValue("@tipo", "ORDEM DE SERVIÇO");
-                    cmd.Parameters.AddWithValue("@cliente", cbclientes.Text);
-                    cmd.Parameters.AddWithValue("@produto", dataGridView2.Rows[i].Cells["descricao"].Value);
-                    cmd.Parameters.AddWithValue("@quantidade", dataGridView2.Rows[i].Cells["quantidade"].Value);
-                    cmd.Parameters.AddWithValue("@valor_unitario", dataGridView2.Rows[i].Cells["valor_unitario"].Value);
-                    cmd.Parameters.AddWithValue("@dinheiro", txtdinheiro.Text.Replace("R$", "").Trim().Replace(",", "."));
-                    cmd.Parameters.AddWithValue("@pix", txtpix.Text.Replace("R$", "").Trim().Replace(",", "."));
-                    cmd.Parameters.AddWithValue("@cartao", txtcartao.Text.Replace("R$", "").Trim().Replace(",", "."));
-                    cmd.Parameters.AddWithValue("@vencimento", DateTime.Now.Date);
-                    cmd.Parameters.AddWithValue("@taxa", txttaxa.Text.Replace("%", "").Trim());
-                    cmd.Parameters.AddWithValue("@vendedor", cbtecnico.Text);
-                    cmd.Parameters.AddWithValue("@descontos", txtdesconto.Text.Replace("%", "").Trim());
-                    cmd.Parameters.AddWithValue("@forma_pagamento", cbformadepagamento.Text);
-                    cmd.Parameters.AddWithValue("@valor_total", precototal.ToString().Replace("R$", "").Trim().Replace(",", "."));
-                    cmd.Parameters.AddWithValue("@valor_pago", precototal.ToString().Replace("R$", "").Trim().Replace(",", "."));
-                    cmd.Parameters.AddWithValue("@troco", lbltroco.Text.Replace("Troco: ", "").Replace("R$", "").Trim().Replace(",", "."));
-                    cmd.Parameters.AddWithValue("@data", DateTime.Today);
-                    cmd.Parameters.AddWithValue("@hora", DateTime.Now);
-                    cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
-                    cmd.Parameters.AddWithValue("@cod_produto", dataGridView2.Rows[i].Cells["codigo"].Value);
-
-
-                    cmd.ExecuteNonQuery();
-
-                }
-                con.FecharConexao();
+                con.FecharConexao();                             
 
 
 
@@ -1782,15 +1945,18 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 dataGridView2.Rows.Clear();
                 panel1.Visible = false;
                 btnnovo.Focus();
-                listar();               
-                contarvendas();
+
 
                 DialogResult result = MessageBox.Show("Deseja imprimir os dados da ordem de serviço?", "Confirmação", MessageBoxButtons.YesNo);
                     if(result == DialogResult.Yes)
-                {
+                {                    
                     frmrecibodetalhado frmrecibo = new frmrecibodetalhado();
+                    funcoes.cod_venda = conta_venda + 1;
                     frmrecibo.ShowDialog();
                 }
+                
+                listar();
+                contarvendas();
             }
             catch (Exception ex)
             {
@@ -1808,6 +1974,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
         {
 
             conta_venda = Convert.ToInt32(dataGridView1.CurrentRow.Cells[1].Value.ToString());
+            funcoes.cod_venda = conta_venda;
 
             
 
@@ -1827,6 +1994,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 txtobservacao.Text = dataGridView1.CurrentRow.Cells[11].Value.ToString();
                 txtlaudo.Text = dataGridView1.CurrentRow.Cells[12].Value.ToString();
                 lblnumeroos.Text = "Número da OS: " + conta_venda;
+                lblcodigovenda.Text = "Código pagamento: " + conta_venda; 
 
                 try
                 {
