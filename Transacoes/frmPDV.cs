@@ -385,7 +385,7 @@ namespace Sistema_de_Vendas.Transacoes
                     cmd.Parameters.AddWithValue("@vendedor", funcoes.conectado);
                     cmd.Parameters.AddWithValue("@descontos", txtdesconto.Text.Replace("%", "").Trim());
                     cmd.Parameters.AddWithValue("@forma_pagamento", cbformapagamento.Text);
-                    cmd.Parameters.AddWithValue("@valor_total", precototal.ToString().Replace("R$", "").Trim().Replace(",", "."));
+                    cmd.Parameters.AddWithValue("@valor_total", dataGridView1.Rows[i].Cells["sub_total"].Value);
                     cmd.Parameters.AddWithValue("@valor_pago", txttotalpagar.Text.Replace("R$", "").Trim().Replace(",", "."));
                     cmd.Parameters.AddWithValue("@troco", lbltroco.Text.Replace("Troco: ", "").Replace("R$", "").Trim().Replace(",", "."));
                     cmd.Parameters.AddWithValue("@data", DateTime.Today);

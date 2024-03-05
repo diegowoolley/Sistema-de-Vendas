@@ -770,7 +770,7 @@ namespace Sistema_de_Vendas.Transacoes
                         cmd.Parameters.AddWithValue("@vendedor", dataGridView1.Rows[i].Cells[8].Value);
                         cmd.Parameters.AddWithValue("@descontos", txtdescontos.Text.Replace("%", "").Trim());
                         cmd.Parameters.AddWithValue("@forma_pagamento", cbformapagamento.Text);
-                        cmd.Parameters.AddWithValue("@valor_total", precototal.ToString().Replace("R$", "").Trim().Replace(",", "."));
+                        cmd.Parameters.AddWithValue("@valor_total", dataGridView1.Rows[i].Cells["VALOR_TOTAL"].Value);
                         cmd.Parameters.AddWithValue("@valor_pago", txtvalorpago.Text.Replace("R$", "").Trim().Replace(",", "."));
                         cmd.Parameters.AddWithValue("@troco", txttroco.Text.Replace("R$", "").Trim().Replace(",", "."));
                         cmd.Parameters.AddWithValue("@data", DateTime.Today);
