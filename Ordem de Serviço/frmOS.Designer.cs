@@ -77,6 +77,7 @@
             this.txtlaudo = new System.Windows.Forms.RichTextBox();
             this.btnexcluirlista = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblcodigovenda = new System.Windows.Forms.Label();
             this.lbltroco = new System.Windows.Forms.Label();
             this.lbltaxa = new System.Windows.Forms.Label();
             this.txttaxa = new System.Windows.Forms.TextBox();
@@ -92,7 +93,6 @@
             this.txtdinheiro = new System.Windows.Forms.TextBox();
             this.lblformadepagamento = new System.Windows.Forms.Label();
             this.cbformadepagamento = new System.Windows.Forms.ComboBox();
-            this.lblcodigovenda = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel1.SuspendLayout();
@@ -601,6 +601,17 @@
             this.panel1.Visible = false;
             this.panel1.Leave += new System.EventHandler(this.panel1_Leave);
             // 
+            // lblcodigovenda
+            // 
+            this.lblcodigovenda.AutoSize = true;
+            this.lblcodigovenda.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblcodigovenda.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblcodigovenda.Location = new System.Drawing.Point(301, 19);
+            this.lblcodigovenda.Name = "lblcodigovenda";
+            this.lblcodigovenda.Size = new System.Drawing.Size(116, 13);
+            this.lblcodigovenda.TabIndex = 49;
+            this.lblcodigovenda.Text = "Código pagamento:";
+            // 
             // lbltroco
             // 
             this.lbltroco.AutoSize = true;
@@ -759,17 +770,6 @@
             this.cbformadepagamento.Size = new System.Drawing.Size(167, 21);
             this.cbformadepagamento.TabIndex = 0;
             this.cbformadepagamento.SelectedIndexChanged += new System.EventHandler(this.cbformadepagamento_SelectedIndexChanged);
-            // 
-            // lblcodigovenda
-            // 
-            this.lblcodigovenda.AutoSize = true;
-            this.lblcodigovenda.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblcodigovenda.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblcodigovenda.Location = new System.Drawing.Point(301, 19);
-            this.lblcodigovenda.Name = "lblcodigovenda";
-            this.lblcodigovenda.Size = new System.Drawing.Size(116, 13);
-            this.lblcodigovenda.TabIndex = 49;
-            this.lblcodigovenda.Text = "Código pagamento:";
             // 
             // frmOS
             // 

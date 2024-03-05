@@ -1443,17 +1443,31 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
 
                     for (int i = indiceoriginal; i < novoindice; i++)
                     {
-                        sql = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, cod_empresa, valor_unitario, valor_total, cod_produto) VALUES (@cod_os, @tipo, @cliente, @descricao, @quantidade, @cod_empresa, @preco_unitario, @preco_total, @codigo)";
-                        cmd = new MySqlCommand(sql, con.con);                      
-                        cmd.Parameters.AddWithValue("@cod_os", conta_venda);
-                        cmd.Parameters.AddWithValue("@codigo", dataGridView2.Rows[i].Cells["codigo"].Value);
+                        sql = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, valor_unitario, dinheiro, pix, cartao, taxa, vendedor, descontos, forma_pagamento, valor_total, valor_pago, troco, data, hora, cod_empresa, vencimento, cod_produto) VALUES (@cod_venda, @tipo, @cliente, @produto, @quantidade, @valor_unitario, @dinheiro, @pix, @cartao, @taxa, @vendedor, @descontos, @forma_pagamento, @valor_total, @valor_pago, @troco, @data, @hora, @cod_empresa, @vencimento, @cod_produto)";
+                        cmd = new MySqlCommand(sql, con.con);
+                        cmd.Parameters.AddWithValue("@cod_venda", conta_venda);
                         cmd.Parameters.AddWithValue("@tipo", "ORDEM DE SERVIÇO");
                         cmd.Parameters.AddWithValue("@cliente", cbclientes.Text);
-                        cmd.Parameters.AddWithValue("@descricao", dataGridView2.Rows[i].Cells["descricao"].Value);
+                        cmd.Parameters.AddWithValue("@produto", dataGridView2.Rows[i].Cells["descricao"].Value);
                         cmd.Parameters.AddWithValue("@quantidade", dataGridView2.Rows[i].Cells["quantidade"].Value);
+                        cmd.Parameters.AddWithValue("@valor_unitario", dataGridView2.Rows[i].Cells["valor_unitario"].Value);
+                        cmd.Parameters.AddWithValue("@dinheiro", txtdinheiro.Text.Replace("R$", "").Trim().Replace(",", "."));
+                        cmd.Parameters.AddWithValue("@pix", txtpix.Text.Replace("R$", "").Trim().Replace(",", "."));
+                        cmd.Parameters.AddWithValue("@cartao", txtcartao.Text.Replace("R$", "").Trim().Replace(",", "."));
+                        cmd.Parameters.AddWithValue("@vencimento", DateTime.Now.Date);
+                        cmd.Parameters.AddWithValue("@taxa", txttaxa.Text.Replace("%", "").Trim());
+                        cmd.Parameters.AddWithValue("@vendedor", cbtecnico.Text);
+                        cmd.Parameters.AddWithValue("@descontos", txtdesconto.Text.Replace("%", "").Trim());
+                        cmd.Parameters.AddWithValue("@forma_pagamento", cbformadepagamento.Text);
+                        cmd.Parameters.AddWithValue("@valor_total", precototal.ToString().Replace("R$", "").Trim().Replace(",", "."));
+                        cmd.Parameters.AddWithValue("@valor_pago", precototal.ToString().Replace("R$", "").Trim().Replace(",", "."));
+                        cmd.Parameters.AddWithValue("@troco", lbltroco.Text.Replace("Troco: ", "").Replace("R$", "").Trim().Replace(",", "."));
+                        cmd.Parameters.AddWithValue("@data", DateTime.Today);
+                        cmd.Parameters.AddWithValue("@hora", DateTime.Now);
                         cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
-                        cmd.Parameters.AddWithValue("@preco_unitario", dataGridView2.Rows[i].Cells["valor_unitario"].Value);
-                        cmd.Parameters.AddWithValue("@preco_total", dataGridView2.Rows[i].Cells["valor_total"].Value);
+                        cmd.Parameters.AddWithValue("@cod_produto", dataGridView2.Rows[i].Cells["codigo"].Value);
+
+
                         cmd.ExecuteNonQuery();
 
                     }
@@ -1539,13 +1553,19 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                             for (int i = 0; i < novoindice; i++)
                             {
 
-                                sql1 = "UPDATE vendas SET quantidade = @quantidade, valor_unitario = @preco_unitario, valor_total = @preco_total WHERE cod_venda = @cod_os AND cod_produto = @id";
+                                sql1 = "UPDATE vendas SET quantidade = @quantidade, valor_unitario = @preco_unitario, valor_total = @preco_total, forma_pagamento = @forma_pagamento, dinheiro = @dinheiro, pix = @pix, taxa = @taxa, descontos = @descontos WHERE cod_venda = @cod_os AND cod_produto = @id";
                                 cmd1 = new MySqlCommand(sql1, con.con);
                                 cmd1.Parameters.AddWithValue("@id", dataGridView2.Rows[i].Cells["codigo"].Value);
                                 cmd1.Parameters.AddWithValue("@cod_os", conta_venda);
                                 cmd1.Parameters.AddWithValue("@quantidade", dataGridView2.Rows[i].Cells["quantidade"].Value);
                                 cmd1.Parameters.AddWithValue("@preco_unitario", dataGridView2.Rows[i].Cells["valor_unitario"].Value);
                                 cmd1.Parameters.AddWithValue("@preco_total", dataGridView2.Rows[i].Cells["valor_total"].Value);
+                                cmd1.Parameters.AddWithValue("@forma_pagamento", cbformadepagamento.Text);
+                                cmd1.Parameters.AddWithValue("@dinheiro", txtdinheiro.Text.Trim().Replace("R$", ""));
+                                cmd1.Parameters.AddWithValue("@pix", txtpix.Text.Trim().Replace("R$", ""));
+                                cmd1.Parameters.AddWithValue("@cartao", txtcartao.Text.Trim().Replace("R$", ""));
+                                cmd1.Parameters.AddWithValue("@taxa", txttaxa.Text.Trim().Replace("R$", ""));
+                                cmd1.Parameters.AddWithValue("@descontos", txtdesconto.Text.Trim().Replace("R$", ""));
 
                                 cmd1.ExecuteNonQuery();
 
@@ -1753,17 +1773,31 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
 
                     for (int i = indiceoriginal; i < novoindice; i++)
                     {
-                        sql = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, cod_empresa, valor_unitario, valor_total, cod_produto) VALUES (@cod_os, @tipo, @cliente, @descricao, @quantidade, @cod_empresa, @preco_unitario, @preco_total, @codigo)";
+                        sql = "INSERT INTO vendas (cod_venda, tipo, cliente, produto, quantidade, valor_unitario, dinheiro, pix, cartao, taxa, vendedor, descontos, forma_pagamento, valor_total, valor_pago, troco, data, hora, cod_empresa, vencimento, cod_produto) VALUES (@cod_venda, @tipo, @cliente, @produto, @quantidade, @valor_unitario, @dinheiro, @pix, @cartao, @taxa, @vendedor, @descontos, @forma_pagamento, @valor_total, @valor_pago, @troco, @data, @hora, @cod_empresa, @vencimento, @cod_produto)";
                         cmd = new MySqlCommand(sql, con.con);
-                        cmd.Parameters.AddWithValue("@cod_os", conta_venda);
-                        cmd.Parameters.AddWithValue("@codigo", dataGridView2.Rows[i].Cells["codigo"].Value);
+                        cmd.Parameters.AddWithValue("@cod_venda", conta_venda);
                         cmd.Parameters.AddWithValue("@tipo", "ORDEM DE SERVIÇO");
                         cmd.Parameters.AddWithValue("@cliente", cbclientes.Text);
-                        cmd.Parameters.AddWithValue("@descricao", dataGridView2.Rows[i].Cells["descricao"].Value);
+                        cmd.Parameters.AddWithValue("@produto", dataGridView2.Rows[i].Cells["descricao"].Value);
                         cmd.Parameters.AddWithValue("@quantidade", dataGridView2.Rows[i].Cells["quantidade"].Value);
+                        cmd.Parameters.AddWithValue("@valor_unitario", dataGridView2.Rows[i].Cells["valor_unitario"].Value);
+                        cmd.Parameters.AddWithValue("@dinheiro", txtdinheiro.Text.Replace("R$", "").Trim().Replace(",", "."));
+                        cmd.Parameters.AddWithValue("@pix", txtpix.Text.Replace("R$", "").Trim().Replace(",", "."));
+                        cmd.Parameters.AddWithValue("@cartao", txtcartao.Text.Replace("R$", "").Trim().Replace(",", "."));
+                        cmd.Parameters.AddWithValue("@vencimento", DateTime.Now.Date);
+                        cmd.Parameters.AddWithValue("@taxa", txttaxa.Text.Replace("%", "").Trim());
+                        cmd.Parameters.AddWithValue("@vendedor", cbtecnico.Text);
+                        cmd.Parameters.AddWithValue("@descontos", txtdesconto.Text.Replace("%", "").Trim());
+                        cmd.Parameters.AddWithValue("@forma_pagamento", cbformadepagamento.Text);
+                        cmd.Parameters.AddWithValue("@valor_total", precototal.ToString().Replace("R$", "").Trim().Replace(",", "."));
+                        cmd.Parameters.AddWithValue("@valor_pago", precototal.ToString().Replace("R$", "").Trim().Replace(",", "."));
+                        cmd.Parameters.AddWithValue("@troco", lbltroco.Text.Replace("Troco: ", "").Replace("R$", "").Trim().Replace(",", "."));
+                        cmd.Parameters.AddWithValue("@data", DateTime.Today);
+                        cmd.Parameters.AddWithValue("@hora", DateTime.Now);
                         cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
-                        cmd.Parameters.AddWithValue("@preco_unitario", dataGridView2.Rows[i].Cells["valor_unitario"].Value);
-                        cmd.Parameters.AddWithValue("@preco_total", dataGridView2.Rows[i].Cells["valor_total"].Value);
+                        cmd.Parameters.AddWithValue("@cod_produto", dataGridView2.Rows[i].Cells["codigo"].Value);
+
+
                         cmd.ExecuteNonQuery();
 
                     }
@@ -1852,13 +1886,19 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                             for (int i = 0; i < novoindice; i++)
                             {
 
-                                sql1 = "UPDATE vendas SET quantidade = @quantidade, valor_unitario = @preco_unitario, valor_total = @preco_total WHERE cod_venda = @cod_os AND cod_produto = @id";
+                                sql1 = "UPDATE vendas SET quantidade = @quantidade, valor_unitario = @preco_unitario, valor_total = @preco_total, forma_pagamento = @forma_pagamento, dinheiro = @dinheiro, pix = @pix, taxa = @taxa, descontos = @descontos WHERE cod_venda = @cod_os AND cod_produto = @id";
                                 cmd1 = new MySqlCommand(sql1, con.con);
                                 cmd1.Parameters.AddWithValue("@id", dataGridView2.Rows[i].Cells["codigo"].Value);
                                 cmd1.Parameters.AddWithValue("@cod_os", conta_venda);
                                 cmd1.Parameters.AddWithValue("@quantidade", dataGridView2.Rows[i].Cells["quantidade"].Value);
                                 cmd1.Parameters.AddWithValue("@preco_unitario", dataGridView2.Rows[i].Cells["valor_unitario"].Value);
                                 cmd1.Parameters.AddWithValue("@preco_total", dataGridView2.Rows[i].Cells["valor_total"].Value);
+                                cmd1.Parameters.AddWithValue("@forma_pagamento", cbformadepagamento.Text);
+                                cmd1.Parameters.AddWithValue("@dinheiro", txtdinheiro.Text.Trim().Replace("R$", ""));
+                                cmd1.Parameters.AddWithValue("@pix", txtpix.Text.Trim().Replace("R$", ""));
+                                cmd1.Parameters.AddWithValue("@cartao", txtcartao.Text.Trim().Replace("R$", ""));
+                                cmd1.Parameters.AddWithValue("@taxa", txttaxa.Text.Trim().Replace("R$", ""));
+                                cmd1.Parameters.AddWithValue("@descontos", txtdesconto.Text.Trim().Replace("R$", ""));
 
                                 cmd1.ExecuteNonQuery();
 
