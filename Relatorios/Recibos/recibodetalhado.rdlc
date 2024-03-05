@@ -1489,15 +1489,15 @@
             <PaddingBottom>2pt</PaddingBottom>
           </Style>
         </Textbox>
-        <Textbox Name="valor_total1">
+        <Textbox Name="valor_pago">
           <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
           <Paragraphs>
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Label>valor total</Label>
-                  <Value>=First(Fields!valor_total.Value, "DataSet1")</Value>
+                  <Label>valor_pago</Label>
+                  <Value>=First(Fields!valor_pago.Value, "DataSet1")</Value>
                   <Style>
                     <FontSize>8pt</FontSize>
                   </Style>
@@ -1508,7 +1508,6 @@
               </Style>
             </Paragraph>
           </Paragraphs>
-          <rd:DefaultName>valor_total1</rd:DefaultName>
           <Top>0.88222cm</Top>
           <Left>19.07209cm</Left>
           <Height>0.6cm</Height>
