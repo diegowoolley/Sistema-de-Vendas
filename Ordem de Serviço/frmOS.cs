@@ -38,6 +38,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
             contarvendas();
             listar();
             listarformapagamento();
+            btnimprimir.Enabled = false;
         }
 
         #region MÉTODOS
@@ -664,6 +665,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
             {
                 btngerarpagamento.Enabled = false; 
             }
+                       
         }
 
         private void cbformadepagamento_SelectedIndexChanged(object sender, EventArgs e)
@@ -802,6 +804,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
             btnexcluir.Enabled = false;
             btncancelar.Enabled = true;
             btngerarpagamento.Enabled = false;
+            btnimprimir.Enabled = false;
             dataGridView2.Rows.Clear();
             cbclientes.Focus();
 
@@ -847,6 +850,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
             btnalterar.Enabled = false;
             btnexcluir.Enabled = false;
             btncancelar.Enabled = true;
+            btnimprimir.Enabled = false;
             btngerarpagamento.Enabled = false;
             dataGridView2.Rows.Clear();
             panel1.Visible = false;
@@ -914,6 +918,13 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 return;
             }
 
+            if(dataGridView2.Rows.Count < 1)
+            {
+                MessageBox.Show("Insira um produto ou serviço para fazer a inclusão!");
+                cbservico.Focus();
+                return;
+            }
+
             try
             {
                 con.AbrirConexao();
@@ -969,12 +980,12 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                     cmd.Parameters.AddWithValue("@pix", txtpix.Text.Replace("R$", "").Trim().Replace(",", "."));
                     cmd.Parameters.AddWithValue("@cartao", txtcartao.Text.Replace("R$", "").Trim().Replace(",", "."));
                     cmd.Parameters.AddWithValue("@vencimento", DateTime.Now.Date);
-                    cmd.Parameters.AddWithValue("@taxa", txttaxa.Text.Replace("%", "").Trim());
+                    cmd.Parameters.AddWithValue("@taxa", txttaxa.Text.Replace("R$", "").Trim());
                     cmd.Parameters.AddWithValue("@vendedor", cbtecnico.Text);
-                    cmd.Parameters.AddWithValue("@descontos", txtdesconto.Text.Replace("%", "").Trim());
+                    cmd.Parameters.AddWithValue("@descontos", txtdesconto.Text.Replace("R$", "").Trim());
                     cmd.Parameters.AddWithValue("@forma_pagamento", cbformadepagamento.Text);
                     cmd.Parameters.AddWithValue("@valor_total", precototal.ToString().Replace("R$", "").Trim().Replace(",", "."));
-                    cmd.Parameters.AddWithValue("@valor_pago", precototal.ToString().Replace("R$", "").Trim().Replace(",", "."));
+                    cmd.Parameters.AddWithValue("@valor_pago", valorfracionado.ToString().Replace("R$", "").Trim().Replace(",", "."));
                     cmd.Parameters.AddWithValue("@troco", lbltroco.Text.Replace("Troco: ", "").Replace("R$", "").Trim().Replace(",", "."));
                     cmd.Parameters.AddWithValue("@data", DateTime.Today);
                     cmd.Parameters.AddWithValue("@hora", DateTime.Now);
@@ -1030,6 +1041,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 btnexcluir.Enabled = false;
                 btncancelar.Enabled = true;
                 btngerarpagamento.Enabled = false;
+                btnimprimir.Enabled = false;
                 dataGridView2.Rows.Clear();
                 btnnovo.Focus();
                 listar();
@@ -1131,6 +1143,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                     btnexcluir.Enabled = false;
                     btncancelar.Enabled = true;
                     btngerarpagamento.Enabled = false;
+                    btnimprimir.Enabled = false;
                     dataGridView2.Rows.Clear();
                     btnnovo.Focus();
 
@@ -1377,6 +1390,13 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 return;
             }
 
+            if (dataGridView2.Rows.Count < 1)
+            {
+                MessageBox.Show("Insira um produto ou serviço para fazer a alteração!");
+                cbservico.Focus();
+                return;
+            }
+
 
             try
             {
@@ -1455,12 +1475,12 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                         cmd.Parameters.AddWithValue("@pix", txtpix.Text.Replace("R$", "").Trim().Replace(",", "."));
                         cmd.Parameters.AddWithValue("@cartao", txtcartao.Text.Replace("R$", "").Trim().Replace(",", "."));
                         cmd.Parameters.AddWithValue("@vencimento", DateTime.Now.Date);
-                        cmd.Parameters.AddWithValue("@taxa", txttaxa.Text.Replace("%", "").Trim());
+                        cmd.Parameters.AddWithValue("@taxa", txttaxa.Text.Replace("R$", "").Trim());
                         cmd.Parameters.AddWithValue("@vendedor", cbtecnico.Text);
-                        cmd.Parameters.AddWithValue("@descontos", txtdesconto.Text.Replace("%", "").Trim());
+                        cmd.Parameters.AddWithValue("@descontos", txtdesconto.Text.Replace("R$", "").Trim());
                         cmd.Parameters.AddWithValue("@forma_pagamento", cbformadepagamento.Text);
                         cmd.Parameters.AddWithValue("@valor_total", precototal.ToString().Replace("R$", "").Trim().Replace(",", "."));
-                        cmd.Parameters.AddWithValue("@valor_pago", precototal.ToString().Replace("R$", "").Trim().Replace(",", "."));
+                        cmd.Parameters.AddWithValue("@valor_pago", valorfracionado.ToString().Replace("R$", "").Trim().Replace(",", "."));
                         cmd.Parameters.AddWithValue("@troco", lbltroco.Text.Replace("Troco: ", "").Replace("R$", "").Trim().Replace(",", "."));
                         cmd.Parameters.AddWithValue("@data", DateTime.Today);
                         cmd.Parameters.AddWithValue("@hora", DateTime.Now);
@@ -1553,13 +1573,14 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                             for (int i = 0; i < novoindice; i++)
                             {
 
-                                sql1 = "UPDATE vendas SET quantidade = @quantidade, valor_unitario = @preco_unitario, valor_total = @preco_total, forma_pagamento = @forma_pagamento, dinheiro = @dinheiro, pix = @pix, taxa = @taxa, descontos = @descontos WHERE cod_venda = @cod_os AND cod_produto = @id";
+                                sql1 = "UPDATE vendas SET quantidade = @quantidade, valor_unitario = @preco_unitario, valor_total = @preco_total, valor_pago = @valor_pago, forma_pagamento = @forma_pagamento, dinheiro = @dinheiro, pix = @pix, taxa = @taxa, descontos = @descontos WHERE cod_venda = @cod_os AND cod_produto = @id";
                                 cmd1 = new MySqlCommand(sql1, con.con);
                                 cmd1.Parameters.AddWithValue("@id", dataGridView2.Rows[i].Cells["codigo"].Value);
                                 cmd1.Parameters.AddWithValue("@cod_os", conta_venda);
                                 cmd1.Parameters.AddWithValue("@quantidade", dataGridView2.Rows[i].Cells["quantidade"].Value);
                                 cmd1.Parameters.AddWithValue("@preco_unitario", dataGridView2.Rows[i].Cells["valor_unitario"].Value);
                                 cmd1.Parameters.AddWithValue("@preco_total", dataGridView2.Rows[i].Cells["valor_total"].Value);
+                                cmd1.Parameters.AddWithValue("@valor_pago", valorfracionado.ToString().Replace("R$", "").Trim().Replace(",", "."));
                                 cmd1.Parameters.AddWithValue("@forma_pagamento", cbformadepagamento.Text);
                                 cmd1.Parameters.AddWithValue("@dinheiro", txtdinheiro.Text.Trim().Replace("R$", ""));
                                 cmd1.Parameters.AddWithValue("@pix", txtpix.Text.Trim().Replace("R$", ""));
@@ -1627,6 +1648,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
             btnexcluir.Enabled = false;
             btncancelar.Enabled = true;
             btngerarpagamento.Enabled = false;
+            btnimprimir.Enabled = false;
             dataGridView2.Rows.Clear();
             btnnovo.Focus();
             listar();
@@ -1640,7 +1662,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
         {
             panel1.Visible = true;
             cbformadepagamento.SelectedIndex = -1;
-            cbformadepagamento.Focus();
+            cbformadepagamento.Focus();           
             AtualizarTotais();
         }
 
@@ -1785,12 +1807,12 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                         cmd.Parameters.AddWithValue("@pix", txtpix.Text.Replace("R$", "").Trim().Replace(",", "."));
                         cmd.Parameters.AddWithValue("@cartao", txtcartao.Text.Replace("R$", "").Trim().Replace(",", "."));
                         cmd.Parameters.AddWithValue("@vencimento", DateTime.Now.Date);
-                        cmd.Parameters.AddWithValue("@taxa", txttaxa.Text.Replace("%", "").Trim());
+                        cmd.Parameters.AddWithValue("@taxa", txttaxa.Text.Replace("R$", "").Trim());
                         cmd.Parameters.AddWithValue("@vendedor", cbtecnico.Text);
-                        cmd.Parameters.AddWithValue("@descontos", txtdesconto.Text.Replace("%", "").Trim());
+                        cmd.Parameters.AddWithValue("@descontos", txtdesconto.Text.Replace("R$", "").Trim());
                         cmd.Parameters.AddWithValue("@forma_pagamento", cbformadepagamento.Text);
                         cmd.Parameters.AddWithValue("@valor_total", precototal.ToString().Replace("R$", "").Trim().Replace(",", "."));
-                        cmd.Parameters.AddWithValue("@valor_pago", precototal.ToString().Replace("R$", "").Trim().Replace(",", "."));
+                        cmd.Parameters.AddWithValue("@valor_pago", valorfracionado.ToString().Replace("R$", "").Trim().Replace(",", "."));
                         cmd.Parameters.AddWithValue("@troco", lbltroco.Text.Replace("Troco: ", "").Replace("R$", "").Trim().Replace(",", "."));
                         cmd.Parameters.AddWithValue("@data", DateTime.Today);
                         cmd.Parameters.AddWithValue("@hora", DateTime.Now);
@@ -1886,13 +1908,14 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                             for (int i = 0; i < novoindice; i++)
                             {
 
-                                sql1 = "UPDATE vendas SET quantidade = @quantidade, valor_unitario = @preco_unitario, valor_total = @preco_total, forma_pagamento = @forma_pagamento, dinheiro = @dinheiro, pix = @pix, taxa = @taxa, descontos = @descontos WHERE cod_venda = @cod_os AND cod_produto = @id";
+                                sql1 = "UPDATE vendas SET quantidade = @quantidade, valor_unitario = @preco_unitario, valor_total = @preco_total, valor_pago = @valor_pago, forma_pagamento = @forma_pagamento, dinheiro = @dinheiro, pix = @pix, taxa = @taxa, descontos = @descontos WHERE cod_venda = @cod_os AND cod_produto = @id";
                                 cmd1 = new MySqlCommand(sql1, con.con);
                                 cmd1.Parameters.AddWithValue("@id", dataGridView2.Rows[i].Cells["codigo"].Value);
                                 cmd1.Parameters.AddWithValue("@cod_os", conta_venda);
                                 cmd1.Parameters.AddWithValue("@quantidade", dataGridView2.Rows[i].Cells["quantidade"].Value);
                                 cmd1.Parameters.AddWithValue("@preco_unitario", dataGridView2.Rows[i].Cells["valor_unitario"].Value);
                                 cmd1.Parameters.AddWithValue("@preco_total", dataGridView2.Rows[i].Cells["valor_total"].Value);
+                                cmd1.Parameters.AddWithValue("@valor_pago", valorfracionado.ToString().Replace("R$", "").Trim().Replace(",", "."));
                                 cmd1.Parameters.AddWithValue("@forma_pagamento", cbformadepagamento.Text);
                                 cmd1.Parameters.AddWithValue("@dinheiro", txtdinheiro.Text.Trim().Replace("R$", ""));
                                 cmd1.Parameters.AddWithValue("@pix", txtpix.Text.Trim().Replace("R$", ""));
@@ -1909,7 +1932,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                     }
 
                 }
-
+                               
 
 
                 con.AbrirConexao();
@@ -1922,7 +1945,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 cmd1.Parameters.AddWithValue("@desconto", txtdesconto.Text.Replace("%", "").Trim());
                 cmd1.Parameters.AddWithValue("@forma_pagamento", cbformadepagamento.Text);
                 cmd1.Parameters.AddWithValue("@valor_total", precototal.ToString().Replace("R$", "").Trim().Replace(",", "."));
-                cmd1.Parameters.AddWithValue("@valor_pago", Convert.ToString(precototal).Replace("R$", "").Trim().Replace(",", "."));
+                cmd1.Parameters.AddWithValue("@valor_pago", Convert.ToString(valorfracionado).Replace("R$", "").Trim().Replace(",", "."));
                 cmd1.Parameters.AddWithValue("@data", DateTime.Today);
                 cmd1.Parameters.AddWithValue("@hora", DateTime.Now);
                 cmd1.Parameters.AddWithValue("@dinheiro", txtdinheiro.Text.Replace("R$", "").Trim().Replace(",", "."));
@@ -1935,13 +1958,13 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
 
                 cmd1.ExecuteNonQuery();
 
-                con.FecharConexao();                             
+                con.FecharConexao();
 
-
-
-                AtualizarQuantidadeProdutosVendidos();
 
                 MessageBox.Show("Pagamento gerado com sucesso!");
+                AtualizarQuantidadeProdutosVendidos();
+
+
 
                 cbclientes.Enabled = false;
                 cbclientes.Text = "";
@@ -1982,6 +2005,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 btnexcluir.Enabled = false;
                 btncancelar.Enabled = true;
                 btngerarpagamento.Enabled = false;
+                btnimprimir.Enabled = false;
                 dataGridView2.Rows.Clear();
                 panel1.Visible = false;
                 btnnovo.Focus();
@@ -1989,10 +2013,10 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
 
                 DialogResult result = MessageBox.Show("Deseja imprimir os dados da ordem de serviço?", "Confirmação", MessageBoxButtons.YesNo);
                     if(result == DialogResult.Yes)
-                {                    
-                    frmrecibodetalhado frmrecibo = new frmrecibodetalhado();
+                {
+                    frmrecibodetalhado Frmrecibo = new frmrecibodetalhado();
                     funcoes.cod_venda = conta_venda + 1;
-                    frmrecibo.ShowDialog();
+                    Frmrecibo.ShowDialog();
                 }
                 
                 listar();
@@ -2005,6 +2029,78 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
             }
 
         }
+
+        private void btnimprimir_Click(object sender, EventArgs e)
+        {
+         
+            if (dataGridView2.Rows.Count < 1)
+            {
+                MessageBox.Show("Insira prdutos ou serviços para imprimir a Os!");
+                cbservico.Focus();
+            }
+            else
+            {
+                 
+
+                    DialogResult resultadoorcamento = MessageBox.Show("Deseja imprimir a Os?", "Confirmação", MessageBoxButtons.YesNo);
+                    if (resultadoorcamento == DialogResult.Yes)
+                    {
+                        frmrecibodetalhado frmrecibodetalhado = new frmrecibodetalhado();
+                        funcoes.cod_venda = conta_venda + 1;
+                        frmrecibodetalhado.ShowDialog();
+
+                        cbclientes.Enabled = false;
+                        cbclientes.Text = "";
+                        cbtecnico.Enabled = false;
+                        cbtecnico.Text = "";
+                        cbstatus.Enabled = false;
+                        cbstatus.SelectedIndex = -1;
+                        dtinicial.Enabled = false;
+                        dtinicial.Value = DateTime.Now;
+                        dtfinal.Enabled = false;
+                        dtfinal.Value = DateTime.Now;
+                        txtgarantia.Enabled = false;
+                        txtgarantia.Clear();
+                        txttermo.Enabled = false;
+                        txttermo.Clear();
+                        txtdescricao.Enabled = false;
+                        txtdescricao.Clear();
+                        txtdefeito.Enabled = false;
+                        txtdefeito.Clear();
+                        txtobservacao.Enabled = false;
+                        txtobservacao.Clear();
+                        txtlaudo.Enabled = false;
+                        txtlaudo.Clear();
+                        cbservico.Enabled = false;
+                        cbservico.Text = "";
+                        cbproduto.Enabled = false;
+                        cbproduto.Text = "";
+                        txtquantidades.Enabled = false;
+                        txtquantidades.Clear();
+                        txtquantidadep.Enabled = false;
+                        txtquantidadep.Clear();
+                        btnadicionars.Enabled = false;
+                        btnadicionarp.Enabled = false;
+                        btnexcluirlista.Enabled = false;
+                        btnnovo.Enabled = true;
+                        btnadicionar.Enabled = false;
+                        btnalterar.Enabled = false;
+                        btnexcluir.Enabled = false;
+                        btncancelar.Enabled = true;
+                        btngerarpagamento.Enabled = false;
+                        dataGridView2.Rows.Clear();
+                        panel1.Visible = false;
+                        btnnovo.Focus();
+                        listar();
+                        contarvendas();
+                    }
+           
+
+
+            }
+        }
+
+
 
         #endregion
 
@@ -2111,7 +2207,8 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 btnexcluir.Enabled = true;
                 btncancelar.Enabled = true;
                 btngerarpagamento.Enabled = false;
-                
+                btnimprimir.Enabled = true;
+
                 cbclientes.Focus();
                 
             }
@@ -2133,8 +2230,10 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
 
 
 
+
+
         #endregion
 
-      
+ 
     }
 }

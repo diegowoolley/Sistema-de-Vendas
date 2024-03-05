@@ -93,6 +93,7 @@
             this.txtdinheiro = new System.Windows.Forms.TextBox();
             this.lblformadepagamento = new System.Windows.Forms.Label();
             this.cbformadepagamento = new System.Windows.Forms.ComboBox();
+            this.btnimprimir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel1.SuspendLayout();
@@ -771,11 +772,22 @@
             this.cbformadepagamento.TabIndex = 0;
             this.cbformadepagamento.SelectedIndexChanged += new System.EventHandler(this.cbformadepagamento_SelectedIndexChanged);
             // 
+            // btnimprimir
+            // 
+            this.btnimprimir.Location = new System.Drawing.Point(692, 579);
+            this.btnimprimir.Name = "btnimprimir";
+            this.btnimprimir.Size = new System.Drawing.Size(114, 23);
+            this.btnimprimir.TabIndex = 44;
+            this.btnimprimir.Text = "Imprimir Os";
+            this.btnimprimir.UseVisualStyleBackColor = true;
+            this.btnimprimir.Click += new System.EventHandler(this.btnimprimir_Click);
+            // 
             // frmOS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1223, 767);
+            this.Controls.Add(this.btnimprimir);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnexcluirlista);
             this.Controls.Add(this.txtlaudo);
@@ -902,5 +914,6 @@
         private System.Windows.Forms.TextBox txtdesconto;
         private System.Windows.Forms.Label lbltroco;
         private System.Windows.Forms.Label lblcodigovenda;
+        private System.Windows.Forms.Button btnimprimir;
     }
 }

@@ -46,33 +46,30 @@
             // 
             // btnadicionaros
             // 
-            this.btnadicionaros.Location = new System.Drawing.Point(977, 74);
-            this.btnadicionaros.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnadicionaros.Location = new System.Drawing.Point(620, 48);
             this.btnadicionaros.Name = "btnadicionaros";
-            this.btnadicionaros.Size = new System.Drawing.Size(132, 35);
+            this.btnadicionaros.Size = new System.Drawing.Size(119, 23);
             this.btnadicionaros.TabIndex = 6;
-            this.btnadicionaros.Text = "Adicionar OS";
+            this.btnadicionaros.Text = "Adicionar \\ Alterar OS";
             this.btnadicionaros.UseVisualStyleBackColor = true;
             this.btnadicionaros.Click += new System.EventHandler(this.btnadicionaros_Click);
             // 
             // cbclientes
             // 
             this.cbclientes.FormattingEnabled = true;
-            this.cbclientes.Location = new System.Drawing.Point(87, 23);
-            this.cbclientes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cbclientes.Location = new System.Drawing.Point(58, 15);
             this.cbclientes.MaxLength = 80;
             this.cbclientes.Name = "cbclientes";
-            this.cbclientes.Size = new System.Drawing.Size(360, 28);
+            this.cbclientes.Size = new System.Drawing.Size(241, 21);
             this.cbclientes.TabIndex = 1;
             this.cbclientes.Leave += new System.EventHandler(this.cbclientes_Leave);
             // 
             // lblclientes
             // 
             this.lblclientes.AutoSize = true;
-            this.lblclientes.Location = new System.Drawing.Point(18, 28);
-            this.lblclientes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblclientes.Location = new System.Drawing.Point(12, 18);
             this.lblclientes.Name = "lblclientes";
-            this.lblclientes.Size = new System.Drawing.Size(62, 20);
+            this.lblclientes.Size = new System.Drawing.Size(42, 13);
             this.lblclientes.TabIndex = 2;
             this.lblclientes.Text = "Cliente:";
             // 
@@ -88,58 +85,52 @@
             "CANCELADO",
             "AGUARDANDO PEÇAS",
             "APROVADO"});
-            this.cbstatus.Location = new System.Drawing.Point(520, 26);
-            this.cbstatus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cbstatus.Location = new System.Drawing.Point(347, 17);
             this.cbstatus.Name = "cbstatus";
-            this.cbstatus.Size = new System.Drawing.Size(252, 28);
+            this.cbstatus.Size = new System.Drawing.Size(169, 21);
             this.cbstatus.TabIndex = 2;
             // 
             // lblstatus
             // 
             this.lblstatus.AutoSize = true;
-            this.lblstatus.Location = new System.Drawing.Point(458, 31);
-            this.lblstatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblstatus.Location = new System.Drawing.Point(305, 20);
             this.lblstatus.Name = "lblstatus";
-            this.lblstatus.Size = new System.Drawing.Size(60, 20);
+            this.lblstatus.Size = new System.Drawing.Size(40, 13);
             this.lblstatus.TabIndex = 4;
             this.lblstatus.Text = "Status:";
             // 
             // dtinicial
             // 
             this.dtinicial.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtinicial.Location = new System.Drawing.Point(876, 25);
-            this.dtinicial.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dtinicial.Location = new System.Drawing.Point(584, 16);
             this.dtinicial.Name = "dtinicial";
-            this.dtinicial.Size = new System.Drawing.Size(140, 26);
+            this.dtinicial.Size = new System.Drawing.Size(95, 20);
             this.dtinicial.TabIndex = 3;
             // 
             // lbldatainicial
             // 
             this.lbldatainicial.AutoSize = true;
-            this.lbldatainicial.Location = new System.Drawing.Point(783, 31);
-            this.lbldatainicial.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbldatainicial.Location = new System.Drawing.Point(522, 20);
             this.lbldatainicial.Name = "lbldatainicial";
-            this.lbldatainicial.Size = new System.Drawing.Size(90, 20);
+            this.lbldatainicial.Size = new System.Drawing.Size(62, 13);
             this.lbldatainicial.TabIndex = 6;
             this.lbldatainicial.Text = "Data inicial:";
             // 
             // lbldatafinal
             // 
             this.lbldatafinal.AutoSize = true;
-            this.lbldatafinal.Location = new System.Drawing.Point(1028, 31);
-            this.lbldatafinal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbldatafinal.Location = new System.Drawing.Point(685, 20);
             this.lbldatafinal.Name = "lbldatafinal";
-            this.lbldatafinal.Size = new System.Drawing.Size(81, 20);
+            this.lbldatafinal.Size = new System.Drawing.Size(55, 13);
             this.lbldatafinal.TabIndex = 8;
             this.lbldatafinal.Text = "Data final:";
             // 
             // dtfinal
             // 
             this.dtfinal.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtfinal.Location = new System.Drawing.Point(1110, 23);
-            this.dtfinal.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dtfinal.Location = new System.Drawing.Point(740, 15);
             this.dtfinal.Name = "dtfinal";
-            this.dtfinal.Size = new System.Drawing.Size(140, 26);
+            this.dtfinal.Size = new System.Drawing.Size(95, 20);
             this.dtfinal.TabIndex = 4;
             // 
             // dataGridView1
@@ -148,32 +139,29 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(4, 118);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dataGridView1.Location = new System.Drawing.Point(3, 77);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(1302, 608);
+            this.dataGridView1.Size = new System.Drawing.Size(868, 395);
             this.dataGridView1.TabIndex = 71;
             // 
             // btnpesquisar
             // 
             this.btnpesquisar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnpesquisar.BackgroundImage")));
             this.btnpesquisar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnpesquisar.Location = new System.Drawing.Point(1258, 15);
-            this.btnpesquisar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnpesquisar.Location = new System.Drawing.Point(839, 10);
             this.btnpesquisar.Name = "btnpesquisar";
-            this.btnpesquisar.Size = new System.Drawing.Size(48, 49);
+            this.btnpesquisar.Size = new System.Drawing.Size(32, 32);
             this.btnpesquisar.TabIndex = 5;
             this.btnpesquisar.UseVisualStyleBackColor = true;
             this.btnpesquisar.Click += new System.EventHandler(this.btnpesquisar_Click);
             // 
             // btnlistar
             // 
-            this.btnlistar.Location = new System.Drawing.Point(1110, 74);
-            this.btnlistar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnlistar.Location = new System.Drawing.Point(740, 48);
             this.btnlistar.Name = "btnlistar";
-            this.btnlistar.Size = new System.Drawing.Size(161, 35);
+            this.btnlistar.Size = new System.Drawing.Size(107, 23);
             this.btnlistar.TabIndex = 72;
             this.btnlistar.Text = "Listar todas OS\'s";
             this.btnlistar.UseVisualStyleBackColor = true;
@@ -181,9 +169,9 @@
             // 
             // frmlistarOS
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1312, 729);
+            this.ClientSize = new System.Drawing.Size(875, 474);
             this.Controls.Add(this.btnlistar);
             this.Controls.Add(this.btnpesquisar);
             this.Controls.Add(this.dataGridView1);
@@ -197,7 +185,6 @@
             this.Controls.Add(this.cbclientes);
             this.Controls.Add(this.btnadicionaros);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmlistarOS";
