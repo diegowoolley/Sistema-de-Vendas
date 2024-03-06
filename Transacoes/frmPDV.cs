@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using Sistema_de_Vendas.Relatorios.Recibos;
+using Sistema_de_Vendas.Relatorios.Recibos.ReciboPDV;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -472,7 +473,7 @@ namespace Sistema_de_Vendas.Transacoes
             DialogResult Result = MessageBox.Show("Deseja imprimir o recibo da venda?", "Confirmação", MessageBoxButtons.YesNo);
             if (Result == DialogResult.Yes)
             {
-                frmrecibodetalhado frmrecibo = new frmrecibodetalhado();
+                frmrecibopdv frmrecibo = new frmrecibopdv();
                 frmrecibo.ShowDialog();
             }
 
