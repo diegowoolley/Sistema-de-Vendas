@@ -341,6 +341,12 @@
       <DependentUpon>frmrecibodetalhado.cs</DependentUpon>
     </Compile>
     <Compile Include="Relatorios\Recibos\recibodetalhado.cs" />
+    <Compile Include="Relatorios\Recibos\ReciboPDV\frmrecibopdv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Relatorios\Recibos\ReciboPDV\frmrecibopdv.Designer.cs">
+      <DependentUpon>frmrecibopdv.cs</DependentUpon>
+    </Compile>
     <Compile Include="Transacoes\frmPDV.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -501,6 +507,10 @@
       <DependentUpon>frmrecibodetalhado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Relatorios\Recibos\recibodetalhado.rdlc" />
+    <EmbeddedResource Include="Relatorios\Recibos\ReciboPDV\frmrecibopdv.resx">
+      <DependentUpon>frmrecibopdv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Relatorios\Recibos\ReciboPDV\recibopdv.rdlc" />
     <EmbeddedResource Include="Transacoes\frmPDV.resx">
       <DependentUpon>frmPDV.cs</DependentUpon>
     </EmbeddedResource>
