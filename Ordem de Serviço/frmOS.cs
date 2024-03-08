@@ -28,7 +28,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
         MySqlCommand cmd1;     
         int conta_venda;
         decimal precototal;
-        decimal valorfracionado;
+        decimal valorfracionado;       
      
        
 
@@ -325,8 +325,9 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
             try
             {
                 con.AbrirConexao();
-                sql = "SELECT forma_pagamento FROM cad_pagamentos ORDER BY forma_pagamento desc";
+                sql = "SELECT forma_pagamento FROM cad_pagamentos WHERE cod_empresa = @cod_empresa ORDER BY forma_pagamento desc";
                 cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
                 MySqlDataAdapter da = new MySqlDataAdapter();
                 da.SelectCommand = cmd;
                 DataTable dt = new DataTable();
@@ -1045,7 +1046,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 dataGridView2.Rows.Clear();
                 btnnovo.Focus();
                 listar();
-                contarvendas();
+                contarvendas();          
 
 
             }
@@ -1573,7 +1574,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                             for (int i = 0; i < novoindice; i++)
                             {
 
-                                sql1 = "UPDATE vendas SET quantidade = @quantidade, valor_unitario = @preco_unitario, valor_total = @preco_total, valor_pago = @valor_pago, forma_pagamento = @forma_pagamento, dinheiro = @dinheiro, pix = @pix, taxa = @taxa, descontos = @descontos WHERE cod_venda = @cod_os AND cod_produto = @id";
+                                sql1 = "UPDATE vendas SET quantidade = @quantidade, valor_unitario = @preco_unitario, valor_total = @preco_total, valor_pago = @valor_pago, forma_pagamento = @forma_pagamento, dinheiro = @dinheiro, pix = @pix, cartao = @cartao, taxa = @taxa, descontos = @descontos WHERE cod_venda = @cod_os AND cod_produto = @id";
                                 cmd1 = new MySqlCommand(sql1, con.con);
                                 cmd1.Parameters.AddWithValue("@id", dataGridView2.Rows[i].Cells["codigo"].Value);
                                 cmd1.Parameters.AddWithValue("@cod_os", conta_venda);
@@ -1908,7 +1909,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                             for (int i = 0; i < novoindice; i++)
                             {
 
-                                sql1 = "UPDATE vendas SET quantidade = @quantidade, valor_unitario = @preco_unitario, valor_total = @preco_total, valor_pago = @valor_pago, forma_pagamento = @forma_pagamento, dinheiro = @dinheiro, pix = @pix, taxa = @taxa, descontos = @descontos WHERE cod_venda = @cod_os AND cod_produto = @id";
+                                sql1 = "UPDATE vendas SET quantidade = @quantidade, valor_unitario = @preco_unitario, valor_total = @preco_total, valor_pago = @valor_pago, forma_pagamento = @forma_pagamento, dinheiro = @dinheiro, pix = @pix, cartao = @cartao, taxa = @taxa, descontos = @descontos, troco = @troco WHERE cod_venda = @cod_os AND cod_produto = @id";
                                 cmd1 = new MySqlCommand(sql1, con.con);
                                 cmd1.Parameters.AddWithValue("@id", dataGridView2.Rows[i].Cells["codigo"].Value);
                                 cmd1.Parameters.AddWithValue("@cod_os", conta_venda);
@@ -1922,6 +1923,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                                 cmd1.Parameters.AddWithValue("@cartao", txtcartao.Text.Trim().Replace("R$", ""));
                                 cmd1.Parameters.AddWithValue("@taxa", txttaxa.Text.Trim().Replace("R$", ""));
                                 cmd1.Parameters.AddWithValue("@descontos", txtdesconto.Text.Trim().Replace("R$", ""));
+                                cmd1.Parameters.AddWithValue("@troco", lbltroco.ToString().Replace("Troco: ", ""));
 
                                 cmd1.ExecuteNonQuery();
 

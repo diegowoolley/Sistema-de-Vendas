@@ -171,12 +171,12 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
 
 
         private void btnpesquisar_Click(object sender, EventArgs e)
-        {
+        {            
             Pesquisar();
         }
 
         private void btnadicionaros_Click(object sender, EventArgs e)
-        {
+        {            
             frmOS FrmOS = new frmOS();
             FrmOS.ShowDialog();
         }
@@ -202,11 +202,12 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
             }
             Buscarclientes();
         }
+        
 
 
 
         #endregion
 
-        
+
     }
 }
