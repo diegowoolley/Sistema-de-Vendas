@@ -55,7 +55,7 @@ namespace Sistema_de_Vendas.Cadastros
             {
                 string fornecedor = txtpesquisa.Text;
                 con.AbrirConexao();
-                sql = "SELECT * FROM cad_transportadoras WHERE cod_empresa = @cod_empresa AND nome_transportadora LIKE @nome or documento_transportadora LIKE @documento";
+                sql = "SELECT * FROM cad_transportadoras WHERE cod_empresa = @cod_empresa AND nome_transportadora LIKE @nome or cod_empresa = @cod_empresa AND documento_transportadora LIKE @documento";
                 cmd = new MySqlCommand(sql, con.con);
                 cmd.Parameters.AddWithValue("@nome", "%" + fornecedor + "%");
                 cmd.Parameters.AddWithValue("@documento", "%" + fornecedor + "%");

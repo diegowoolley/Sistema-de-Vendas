@@ -115,7 +115,7 @@ namespace Sistema_de_Vendas
             {
                 string pesquisa = txtpesquisa.Text;
                 con.AbrirConexao();
-                sql = "SELECT * FROM cad_clientes WHERE cod_empresa = @cod_empresa AND nome_clientes LIKE @nome or documento_clientes LIKE @documento";
+                sql = "SELECT * FROM cad_clientes WHERE cod_empresa = @cod_empresa AND nome_clientes LIKE @nome or cod_empresa = @cod_empresa AND documento_clientes LIKE @documento";
                 cmd = new MySqlCommand(sql, con.con);
                 cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
                 cmd.Parameters.AddWithValue("@documento", "%" + pesquisa + "%");

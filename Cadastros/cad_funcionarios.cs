@@ -107,7 +107,7 @@ namespace Sistema_de_Vendas
             {
                 string funcionario = txtpesquisa.Text;
                 con.AbrirConexao();
-                sql = "SELECT * FROM cad_funcionarios WHERE cod_empresa = @cod_empresa AND nome_funcionario LIKE @nome or documento_funcionario LIKE @documento";
+                sql = "SELECT * FROM cad_funcionarios WHERE cod_empresa = @cod_empresa AND nome_funcionario LIKE @nome or cod_empresa = @cod_empresa AND documento_funcionario LIKE @documento";
                 cmd = new MySqlCommand(sql, con.con);
                 cmd.Parameters.AddWithValue("@nome", "%" + funcionario + "%");
                 cmd.Parameters.AddWithValue("@documento", "%" + funcionario + "%");
