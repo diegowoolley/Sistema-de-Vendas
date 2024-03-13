@@ -52,9 +52,10 @@ namespace Sistema_de_Vendas.Transacoes
             {
                               
                 con.AbrirConexao();
-                sql = "SELECT * FROM cad_produtos WHERE etiqueta LIKE @etiqueta";
+                sql = "SELECT * FROM cad_produtos WHERE cod_empresa = @cod_empresa AND etiqueta LIKE @etiqueta";
                 MySqlDataReader reader;
-                cmd = new MySqlCommand(sql, con.con);                               
+                cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
                 cmd.Parameters.AddWithValue("@etiqueta", "%" + txtcod_barras.Text + "%");
                 MySqlDataAdapter da = new MySqlDataAdapter();
                 da.SelectCommand = cmd;
@@ -107,10 +108,11 @@ namespace Sistema_de_Vendas.Transacoes
                 string pesquisa = txtClientes.Text;
 
                 con.AbrirConexao();
-                sql = "SELECT * FROM cad_clientes WHERE nome_clientes LIKE @nome or cod_clientes LIKE @cod_clientes";
+                sql = "SELECT * FROM cad_clientes WHERE cod_empresa = @cod_empresa AND nome_clientes LIKE @nome or cod_empresa = @cod_empresa AND cod_clientes LIKE @cod_clientes";
                 cmd = new MySqlCommand(sql, con.con);
                 MySqlDataReader reader;
                 cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
+                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
                 cmd.Parameters.AddWithValue("@cod_clientes", "%" + pesquisa + "%");
                 MySqlDataAdapter da = new MySqlDataAdapter();
                 da.SelectCommand = cmd;
@@ -168,7 +170,7 @@ namespace Sistema_de_Vendas.Transacoes
             {
                 con.AbrirConexao();
                 sql = "SELECT MAX(cod_venda) FROM vendas";
-                MySqlCommand cmd = new MySqlCommand(sql, con.con);
+                MySqlCommand cmd = new MySqlCommand(sql, con.con);              
                 MySqlDataReader dr;
                 dr = cmd.ExecuteReader();
                 if (dr.Read())
@@ -203,8 +205,9 @@ namespace Sistema_de_Vendas.Transacoes
             try
             {
                 con.AbrirConexao();
-                sql = "SELECT forma_pagamento FROM cad_pagamentos ORDER BY forma_pagamento desc";
+                sql = "SELECT forma_pagamento FROM cad_pagamentos WHERE cod_empresa = @cod_empresa ORDER BY forma_pagamento desc";
                 cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
                 MySqlDataAdapter da = new MySqlDataAdapter();
                 da.SelectCommand = cmd;
                 DataTable dt = new DataTable();

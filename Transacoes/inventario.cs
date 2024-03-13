@@ -55,13 +55,13 @@ namespace Sistema_de_Vendas
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao contar produtos próximos a vencer" + ex.Message);
+                MessageBox.Show("Erro ao contar produtos próximos de vencer" + ex.Message);
             }
             finally
             {
                 con.FecharConexao();
             }
-            label2.Text = "Número de produtos próximos a vencer: "+contador.ToString();
+            label2.Text = "Número de produtos próximos de vencer: "+contador.ToString();
 
             return contador;
              

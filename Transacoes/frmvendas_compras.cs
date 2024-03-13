@@ -113,7 +113,7 @@ namespace Sistema_de_Vendas.Transacoes
                 string pesquisa = cbclientes.Text;            
                               
                 con.AbrirConexao();
-                sql = "SELECT * FROM cad_clientes WHERE cod_empresa = @cod_empresa AND nome_clientes LIKE @nome or cod_clientes LIKE @cod_clientes";
+                sql = "SELECT * FROM cad_clientes WHERE cod_empresa = @cod_empresa AND nome_clientes LIKE @nome or cod_empresa = @cod_empresa AND cod_clientes LIKE @cod_clientes";
                 cmd = new MySqlCommand(sql, con.con);
                 MySqlDataReader reader;
                 cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
@@ -164,7 +164,7 @@ namespace Sistema_de_Vendas.Transacoes
             {
                 string pesquisa = cbproduto.Text;
                 con.AbrirConexao();
-                sql = "SELECT * FROM cad_produtos WHERE cod_empresa = @cod_empresa AND nome_produto LIKE @nome or cod_produto LIKE @cod_produto or etiqueta LIKE @etiqueta";
+                sql = "SELECT * FROM cad_produtos WHERE cod_empresa = @cod_empresa AND nome_produto LIKE @nome or cod_empresa = @cod_empresa AND cod_produto LIKE @cod_produto or cod_empresa = @cod_empresa AND etiqueta LIKE @etiqueta";
                 MySqlDataReader reader;
                 cmd = new MySqlCommand(sql, con.con);
                 cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
@@ -814,7 +814,7 @@ namespace Sistema_de_Vendas.Transacoes
 
 
                     }
-                    if (cbtransacao.Text == "COMPRA")
+                    else if (cbtransacao.Text == "COMPRA")
                     {
                         cmd1.Parameters.AddWithValue("@cod_venda", cod_venda);
                         cmd1.Parameters.AddWithValue("@tipo", cbtransacao.Text);
@@ -839,6 +839,29 @@ namespace Sistema_de_Vendas.Transacoes
 
 
 
+                    }
+                    else
+                    {
+                        cmd1.Parameters.AddWithValue("@cod_venda", cod_venda);
+                        cmd1.Parameters.AddWithValue("@tipo", cbtransacao.Text);
+                        cmd1.Parameters.AddWithValue("@cliente", cbclientes.Text);
+                        cmd1.Parameters.AddWithValue("@vendedor", cbvendedor.Text);
+                        cmd1.Parameters.AddWithValue("@desconto", "");
+                        cmd1.Parameters.AddWithValue("@forma_pagamento", cbformapagamento.Text);
+                        cmd1.Parameters.AddWithValue("@valor_total", precototal.ToString().Replace("R$", "").Trim().Replace(",", "."));
+                        cmd1.Parameters.AddWithValue("@valor_pago", "");
+                        cmd1.Parameters.AddWithValue("@data", DateTime.Today);
+                        cmd1.Parameters.AddWithValue("@hora", DateTime.Now);
+                        cmd1.Parameters.AddWithValue("@dinheiro", "");
+                        cmd1.Parameters.AddWithValue("@pix", "");
+                        cmd1.Parameters.AddWithValue("@cartao", "");
+                        cmd1.Parameters.AddWithValue("@vencimento", DateTime.Parse(dtvencimento.Value.Date.ToString("yyyy/MM/dd")));
+                        cmd1.Parameters.AddWithValue("@taxa", "");
+                        cmd1.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+                        cmd1.Parameters.AddWithValue("@status", "");
+                        cmd1.Parameters.AddWithValue("@favorecido", "");
+                        cmd1.Parameters.AddWithValue("@documento", "");
+                        cmd1.Parameters.AddWithValue("@descricao", "");
                     }
 
                     cmd1.ExecuteNonQuery();
