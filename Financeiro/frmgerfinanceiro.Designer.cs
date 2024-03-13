@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmgerfinanceiro));
             this.lblentradas = new System.Windows.Forms.Label();
             this.lblsaidas = new System.Windows.Forms.Label();
             this.lbldinheiro = new System.Windows.Forms.Label();
@@ -42,6 +43,7 @@
             this.txtdescontos = new System.Windows.Forms.TextBox();
             this.pnpesquisa = new System.Windows.Forms.Panel();
             this.txtcliente = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.dtfinal = new System.Windows.Forms.DateTimePicker();
             this.dtinicial = new System.Windows.Forms.DateTimePicker();
             this.cbtransacao = new System.Windows.Forms.ComboBox();
@@ -56,7 +58,6 @@
             this.lblsaldo = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.lblempresa = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.pnpesquisa.SuspendLayout();
             this.pnmovimentacoes.SuspendLayout();
@@ -193,6 +194,7 @@
             // 
             this.pnpesquisa.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnpesquisa.Controls.Add(this.txtcliente);
+            this.pnpesquisa.Controls.Add(this.button1);
             this.pnpesquisa.Controls.Add(this.dtfinal);
             this.pnpesquisa.Controls.Add(this.dtinicial);
             this.pnpesquisa.Controls.Add(this.cbtransacao);
@@ -204,7 +206,7 @@
             this.pnpesquisa.Controls.Add(this.lblnumeronota);
             this.pnpesquisa.Location = new System.Drawing.Point(3, 0);
             this.pnpesquisa.Name = "pnpesquisa";
-            this.pnpesquisa.Size = new System.Drawing.Size(921, 42);
+            this.pnpesquisa.Size = new System.Drawing.Size(939, 42);
             this.pnpesquisa.TabIndex = 22;
             // 
             // txtcliente
@@ -217,10 +219,21 @@
             this.txtcliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtcliente_KeyPress);
             this.txtcliente.Leave += new System.EventHandler(this.txtcliente_Leave);
             // 
+            // button1
+            // 
+            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.Location = new System.Drawing.Point(888, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(32, 32);
+            this.button1.TabIndex = 6;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // dtfinal
             // 
             this.dtfinal.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtfinal.Location = new System.Drawing.Point(822, 8);
+            this.dtfinal.Location = new System.Drawing.Point(801, 8);
             this.dtfinal.Name = "dtfinal";
             this.dtfinal.Size = new System.Drawing.Size(79, 20);
             this.dtfinal.TabIndex = 5;
@@ -228,7 +241,7 @@
             // dtinicial
             // 
             this.dtinicial.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtinicial.Location = new System.Drawing.Point(661, 7);
+            this.dtinicial.Location = new System.Drawing.Point(658, 7);
             this.dtinicial.Name = "dtinicial";
             this.dtinicial.Size = new System.Drawing.Size(79, 20);
             this.dtinicial.TabIndex = 4;
@@ -263,7 +276,7 @@
             // lbldatafinal
             // 
             this.lbldatafinal.AutoSize = true;
-            this.lbldatafinal.Location = new System.Drawing.Point(761, 10);
+            this.lbldatafinal.Location = new System.Drawing.Point(740, 10);
             this.lbldatafinal.Name = "lbldatafinal";
             this.lbldatafinal.Size = new System.Drawing.Size(55, 13);
             this.lbldatafinal.TabIndex = 19;
@@ -272,7 +285,7 @@
             // lbldatainicial
             // 
             this.lbldatainicial.AutoSize = true;
-            this.lbldatainicial.Location = new System.Drawing.Point(602, 10);
+            this.lbldatainicial.Location = new System.Drawing.Point(599, 10);
             this.lbldatainicial.Name = "lbldatainicial";
             this.lbldatainicial.Size = new System.Drawing.Size(62, 13);
             this.lbldatainicial.TabIndex = 16;
@@ -368,7 +381,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(921, 296);
+            this.dataGridView1.Size = new System.Drawing.Size(940, 296);
             this.dataGridView1.TabIndex = 70;
             // 
             // lblempresa
@@ -380,23 +393,13 @@
             this.lblempresa.TabIndex = 24;
             this.lblempresa.Text = "EMPRESA";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(828, 47);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Pesquisar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(746, 47);
+            this.button2.Location = new System.Drawing.Point(867, 48);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 71;
-            this.button2.Text = "Listar tudo";
+            this.button2.Text = "Listar hoje";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -404,9 +407,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(926, 452);
+            this.ClientSize = new System.Drawing.Size(945, 452);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.lblempresa);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.pnmovimentacoes);

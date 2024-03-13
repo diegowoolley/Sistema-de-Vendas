@@ -33,6 +33,11 @@ namespace Sistema_de_Vendas.Financeiro
             formatargridestoque();
         }
 
+        private void frmcontaspagar_Activated(object sender, EventArgs e)
+        {
+            Listar();
+        }
+
         #region MÉTODOS
         private void Listar()
         {
@@ -324,12 +329,12 @@ namespace Sistema_de_Vendas.Financeiro
                 dtinicial.Focus();
                 return;
             }
-            dataGridView1.Columns.Clear();
+            dataGridView1.Columns.Clear();           
             Buscar();
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
+        {           
             frmcaddespesas frmdespesas = new frmcaddespesas();
             frmdespesas.ShowDialog();
         }
@@ -389,6 +394,8 @@ namespace Sistema_de_Vendas.Financeiro
                cbcliente.Focus();
         }
 
+       
+
         #endregion
 
         #region DATAGRID
@@ -432,7 +439,10 @@ namespace Sistema_de_Vendas.Financeiro
             }
         }
 
+
         #endregion
+
+       
     }
 
 }

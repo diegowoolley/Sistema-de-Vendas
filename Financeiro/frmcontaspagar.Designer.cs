@@ -95,7 +95,7 @@
             this.dtinicial.Location = new System.Drawing.Point(560, 19);
             this.dtinicial.Name = "dtinicial";
             this.dtinicial.Size = new System.Drawing.Size(81, 20);
-            this.dtinicial.TabIndex = 3;            
+            this.dtinicial.TabIndex = 3;
             // 
             // dtfinal
             // 
@@ -103,7 +103,7 @@
             this.dtfinal.Location = new System.Drawing.Point(699, 19);
             this.dtfinal.Name = "dtfinal";
             this.dtfinal.Size = new System.Drawing.Size(81, 20);
-            this.dtfinal.TabIndex = 4;            
+            this.dtfinal.TabIndex = 4;
             // 
             // lbldatafinal
             // 
@@ -194,6 +194,7 @@
             this.Name = "frmcontaspagar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Contas à pagar";
+            this.Activated += new System.EventHandler(this.frmcontaspagar_Activated);
             this.Load += new System.EventHandler(this.frmcontaspagar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
