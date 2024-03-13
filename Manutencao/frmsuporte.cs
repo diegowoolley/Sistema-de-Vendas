@@ -22,7 +22,7 @@ namespace Sistema_de_Vendas
         #region MÉTODOS
         private void Enviar()
         {
-            //fonte: https://www.youtube.com/watch?v=k-z_q38zdgw
+            
             try
             {
                 if (txtEmail.Text.Trim() != "")
@@ -87,6 +87,18 @@ namespace Sistema_de_Vendas
             txtEmail.Text = "EMAIL";
             txtTitulo.Text = "TÍTULO DA MENSAGEM";
             txtMessagem.Text = "MENSAGEM";
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("https://web.whatsapp.com/");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao abrir o site: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         #endregion
@@ -170,5 +182,6 @@ namespace Sistema_de_Vendas
 
         #endregion
 
+       
     }
 }
