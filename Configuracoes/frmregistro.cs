@@ -102,7 +102,7 @@ namespace Sistema_de_Vendas.Configuracoes
                             lic.Year = kv.Expiration.Year;
                         }
 
-                        km.SaveSuretyFile(String.Format(@"{0}\Key.pfx", Application.StartupPath), lic);
+                        km.SaveSuretyFile(String.Format(@"{0}\Key.lic", Application.StartupPath), lic);
 
                         con.AbrirConexao();
                         sql = "INSERT INTO licenca(id_produto, chave_produto) VALUES (@id_produto, @chave_produto)";
