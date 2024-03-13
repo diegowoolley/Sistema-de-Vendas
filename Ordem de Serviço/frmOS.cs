@@ -51,7 +51,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 string pesquisa = cbclientes.Text;
 
                 con.AbrirConexao();
-                sql = "SELECT * FROM cad_clientes WHERE cod_empresa = @cod_empresa AND nome_clientes LIKE @nome or cod_clientes LIKE @cod_clientes";
+                sql = "SELECT * FROM cad_clientes WHERE cod_empresa = @cod_empresa AND nome_clientes LIKE @nome or cod_empresa = @cod_empresa AND cod_clientes LIKE @cod_clientes";
                 cmd = new MySqlCommand(sql, con.con);
                 MySqlDataReader reader;
                 cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
@@ -105,7 +105,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 string pesquisa = cbtecnico.Text;
 
                 con.AbrirConexao();
-                sql = "SELECT * FROM cad_funcionarios WHERE cod_empresa = @cod_empresa AND cargo_funcionario = 'TÉCNICO' AND nome_funcionario LIKE @nome or cod_funcionario LIKE @cod_funcionario";
+                sql = "SELECT * FROM cad_funcionarios WHERE cod_empresa = @cod_empresa AND cargo_funcionario = 'TÉCNICO' AND nome_funcionario LIKE @nome or cod_empresa = @cod_empresa AND cod_funcionario LIKE @cod_funcionario";
                 cmd = new MySqlCommand(sql, con.con);
                 MySqlDataReader reader;
                 cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
@@ -151,7 +151,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 string pesquisa = cbservico.Text;
 
                 con.AbrirConexao();
-                sql = "SELECT * FROM cad_servicos WHERE cod_empresa = @cod_empresa AND descricao LIKE @nome or cod_servico LIKE @cod_servico";
+                sql = "SELECT * FROM cad_servicos WHERE cod_empresa = @cod_empresa AND descricao LIKE @nome or cod_empresa = @cod_empresa AND cod_servico LIKE @cod_servico";
                 cmd = new MySqlCommand(sql, con.con);
                 MySqlDataReader reader;
                 cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
@@ -197,7 +197,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
             {
                 string pesquisa = cbproduto.Text;
                 con.AbrirConexao();
-                sql = "SELECT * FROM cad_produtos WHERE cod_empresa = @cod_empresa AND nome_produto LIKE @nome or cod_produto LIKE @cod_produto or etiqueta LIKE @etiqueta";
+                sql = "SELECT * FROM cad_produtos WHERE cod_empresa = @cod_empresa AND nome_produto LIKE @nome or cod_empresa = @cod_empresa AND cod_produto = @cod_produto or cod_empresa = @cod_empresa AND etiqueta LIKE @etiqueta";
                 MySqlDataReader reader;
                 cmd = new MySqlCommand(sql, con.con);
                 cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
@@ -1081,7 +1081,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                     {
                         sql1 = "DELETE FROM detalhes_os WHERE cod_os = @id";
                         cmd1 = new MySqlCommand(sql1, con.con);
-                        cmd1.Parameters.AddWithValue("@id", dataGridView2.Rows[i].Cells["cod_os"].Value);
+                        cmd1.Parameters.AddWithValue("@id", conta_venda);
                         cmd1.ExecuteNonQuery();
                     }
                     con.FecharConexao();
@@ -1093,7 +1093,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                     {
                         sql1 = "DELETE FROM vendas WHERE cod_venda = @id";
                         cmd1 = new MySqlCommand(sql1, con.con);
-                        cmd1.Parameters.AddWithValue("@id", dataGridView2.Rows[i].Cells["cod_os"].Value);
+                        cmd1.Parameters.AddWithValue("@id", conta_venda);
                         cmd1.ExecuteNonQuery();
                     }
                     con.FecharConexao();

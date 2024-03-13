@@ -190,6 +190,7 @@
             this.Name = "frmlistarOS";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ordem de serviço";
+            this.Activated += new System.EventHandler(this.frmlistarOS_Activated);
             this.Load += new System.EventHandler(this.frmlistarOS_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

@@ -27,6 +27,11 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
             listar();
         }
 
+        private void frmlistarOS_Activated(object sender, EventArgs e)
+        {
+            listar();
+        }
+
         #region MÉTODOS
         private void listar()
         {
@@ -202,12 +207,13 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
             }
             Buscarclientes();
         }
-        
+
+
 
 
 
         #endregion
 
-
+       
     }
 }
