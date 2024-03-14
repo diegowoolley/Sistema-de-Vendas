@@ -28,7 +28,8 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
         MySqlCommand cmd1;     
         int conta_venda;
         decimal precototal;
-        decimal valorfracionado;       
+        decimal valorfracionado;
+        decimal resultadofracionado;
      
        
 
@@ -421,6 +422,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
             }
 
             lblvalor_total.Text = "Total: " + resultadoFracionado.ToString("C");
+            resultadofracionado = resultadoFracionado;
         }
 
         private void AtualizarQuantidadeProdutosVendidos()
@@ -1813,7 +1815,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                         cmd.Parameters.AddWithValue("@descontos", txtdesconto.Text.Replace("R$", "").Trim());
                         cmd.Parameters.AddWithValue("@forma_pagamento", cbformadepagamento.Text);
                         cmd.Parameters.AddWithValue("@valor_total", precototal.ToString().Replace("R$", "").Trim().Replace(",", "."));
-                        cmd.Parameters.AddWithValue("@valor_pago", valorfracionado.ToString().Replace("R$", "").Trim().Replace(",", "."));
+                        cmd.Parameters.AddWithValue("@valor_pago", resultadofracionado.ToString().Replace("R$", "").Trim().Replace(",", "."));
                         cmd.Parameters.AddWithValue("@troco", lbltroco.Text.Replace("Troco: ", "").Replace("R$", "").Trim().Replace(",", "."));
                         cmd.Parameters.AddWithValue("@data", DateTime.Today);
                         cmd.Parameters.AddWithValue("@hora", DateTime.Now);
@@ -1916,7 +1918,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                                 cmd1.Parameters.AddWithValue("@quantidade", dataGridView2.Rows[i].Cells["quantidade"].Value);
                                 cmd1.Parameters.AddWithValue("@preco_unitario", dataGridView2.Rows[i].Cells["valor_unitario"].Value);
                                 cmd1.Parameters.AddWithValue("@preco_total", dataGridView2.Rows[i].Cells["valor_total"].Value);
-                                cmd1.Parameters.AddWithValue("@valor_pago", valorfracionado.ToString().Replace("R$", "").Trim().Replace(",", "."));
+                                cmd1.Parameters.AddWithValue("@valor_pago", resultadofracionado.ToString().Replace("R$", "").Trim().Replace(",", "."));
                                 cmd1.Parameters.AddWithValue("@forma_pagamento", cbformadepagamento.Text);
                                 cmd1.Parameters.AddWithValue("@dinheiro", txtdinheiro.Text.Trim().Replace("R$", ""));
                                 cmd1.Parameters.AddWithValue("@pix", txtpix.Text.Trim().Replace("R$", ""));
@@ -1947,7 +1949,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 cmd1.Parameters.AddWithValue("@desconto", txtdesconto.Text.Replace("%", "").Trim());
                 cmd1.Parameters.AddWithValue("@forma_pagamento", cbformadepagamento.Text);
                 cmd1.Parameters.AddWithValue("@valor_total", precototal.ToString().Replace("R$", "").Trim().Replace(",", "."));
-                cmd1.Parameters.AddWithValue("@valor_pago", Convert.ToString(valorfracionado).Replace("R$", "").Trim().Replace(",", "."));
+                cmd1.Parameters.AddWithValue("@valor_pago", Convert.ToString(resultadofracionado).Replace("R$", "").Trim().Replace(",", "."));
                 cmd1.Parameters.AddWithValue("@data", DateTime.Today);
                 cmd1.Parameters.AddWithValue("@hora", DateTime.Now);
                 cmd1.Parameters.AddWithValue("@dinheiro", txtdinheiro.Text.Replace("R$", "").Trim().Replace(",", "."));

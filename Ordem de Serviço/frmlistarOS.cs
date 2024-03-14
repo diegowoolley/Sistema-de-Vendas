@@ -64,7 +64,7 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
                 string pesquisa = cbclientes.Text;
 
                 con.AbrirConexao();
-                sql = "SELECT * FROM cad_clientes WHERE cod_empresa = @cod_empresa AND nome_clientes LIKE @nome or cod_clientes LIKE @cod_clientes";
+                sql = "SELECT * FROM cad_clientes WHERE cod_empresa = @cod_empresa AND nome_clientes LIKE @nome or cod_empresa = @cod_empresa AND cod_clientes LIKE @cod_clientes";
                 cmd = new MySqlCommand(sql, con.con);
                 MySqlDataReader reader;
                 cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
