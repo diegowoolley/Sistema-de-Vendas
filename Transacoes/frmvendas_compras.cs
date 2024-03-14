@@ -751,7 +751,7 @@ namespace Sistema_de_Vendas.Transacoes
                 }
                 if (txtvalorpago.Text == "")
                 {
-                    MessageBox.Show("Digite o valor pago pagamento!");
+                    MessageBox.Show("Digite o valor para o pagamento!");
                     cbformapagamento.Focus();
                     return;
                 }
