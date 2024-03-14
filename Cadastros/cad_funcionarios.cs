@@ -563,6 +563,7 @@ namespace Sistema_de_Vendas
             var documento = txtdocumento.Text.Replace(".", "").Replace("/", "").Replace("-", "");
             txtdocumento.Text = documento;
         }
+
         private void txtdocumento_Leave(object sender, EventArgs e)
         {
             string documento = txtdocumento.Text;
@@ -584,20 +585,24 @@ namespace Sistema_de_Vendas
 
             }
         }
+
         private void txttelefone_Enter(object sender, EventArgs e)
         {
             string telefone = txttelefone.Text.Replace("(", "").Replace(")", "").Replace("-", "");
             txttelefone.Text = telefone;
         }
+
         private void cbcargo_Enter(object sender, EventArgs e)
         {
             ListarCargos();
         }       
+
         private void txtcelular_Enter(object sender, EventArgs e)
         {
             string celular = txtcelular.Text.Replace("(", "").Replace(")", "").Replace("-", "");
             txtcelular.Text = celular;
         }
+
         private void txtcelular_Leave(object sender, EventArgs e)
         {
             if (txtcelular.Text == "")
@@ -611,6 +616,7 @@ namespace Sistema_de_Vendas
                 txtcelular.Text = Convert.ToUInt64(celular).ToString(@"\(00)00000-0000");
             }
         }
+
         private void txttelefone_Leave(object sender, EventArgs e)
         {
             if (txttelefone.Text == "")
@@ -622,10 +628,6 @@ namespace Sistema_de_Vendas
                 string telefone = txttelefone.Text;
                 txttelefone.Text = Convert.ToUInt64(telefone).ToString(@"\(00)00000-0000");
             }
-        }
-        private void txtpesquisa_TextChanged(object sender, EventArgs e)
-        {
-            Buscar();
         }
 
         private void txtnome_KeyPress(object sender, KeyPressEventArgs e)
@@ -697,6 +699,11 @@ namespace Sistema_de_Vendas
             funcoes.DecNumber(sender, e);
             if (e.KeyChar == 13)
                 txtcelular.Focus();
+        }
+
+        private void txtpesquisa_TextChanged(object sender, EventArgs e)
+        {
+            Buscar();
         }
         #endregion
 
@@ -779,6 +786,7 @@ namespace Sistema_de_Vendas
         }
 
         #endregion
+
 
     }
 

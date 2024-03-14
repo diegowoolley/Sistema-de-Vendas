@@ -557,6 +557,7 @@
             this.lbltributos.Size = new System.Drawing.Size(205, 13);
             this.lbltributos.TabIndex = 116;
             this.lbltributos.Text = "(Dê um duplo click para adicionar tributos)";
+            this.lbltributos.Visible = false;
             this.lbltributos.DoubleClick += new System.EventHandler(this.lbltributos_DoubleClick);
             // 
             // pntributos
