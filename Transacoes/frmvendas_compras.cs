@@ -126,6 +126,7 @@ namespace Sistema_de_Vendas.Transacoes
                 cbclientes.DataSource = dt;
                 cbclientes.DisplayMember = "nome_clientes";
                 reader = cmd.ExecuteReader();
+                con.FecharConexao();
                 if (reader.HasRows && reader.Read())
                 {
                     if (reader[13].ToString() == "BLOQUEADO")
@@ -136,7 +137,7 @@ namespace Sistema_de_Vendas.Transacoes
                     {
                         cbclientes.BackColor = Color.White;
                     }
-                    con.FecharConexao();
+                   
 
                 }
                 else
@@ -156,6 +157,32 @@ namespace Sistema_de_Vendas.Transacoes
                 MessageBox.Show("Erro na Conexão", ex.Message);
             }
 
+        }
+
+        private void Buscarfornecedor()
+        {
+            string pesquisa = cbclientes.Text;
+
+            con.AbrirConexao();
+            sql = "SELECT * FROM cad_fornecedores WHERE cod_empresa = @cod_empresa AND nome_fornecedor LIKE @nome or cod_empresa = @cod_empresa AND cod_fornecedor LIKE @cod_clientes";
+            cmd = new MySqlCommand(sql, con.con);          
+            cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
+            cmd.Parameters.AddWithValue("@cod_clientes", "%" + pesquisa + "%");
+            cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
+            MySqlDataAdapter da = new MySqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            cbclientes.DataSource = dt;
+            cbclientes.DisplayMember = "nome_fornecedor";
+            con.FecharConexao();
+            if(dt.Rows.Count < 1)
+            {
+                MessageBox.Show("Fornecedor não cadastrado!");
+                cbclientes.Text = "";
+                cbclientes.Focus();
+                return;
+            }
         }
              
         private void Buscarprodutos()
@@ -981,7 +1008,15 @@ namespace Sistema_de_Vendas.Transacoes
                 cbclientes.BackColor = Color.White;
                 return;
             }
-            Buscarclientes();
+            if(cbtransacao.Text == "COMPRA")
+            {
+                Buscarfornecedor();
+            }
+            else
+            {
+                Buscarclientes();
+            }
+            
         }
 
         private void cbproduto_Leave(object sender, EventArgs e)

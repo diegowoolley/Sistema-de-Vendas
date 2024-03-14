@@ -443,7 +443,8 @@ namespace Sistema_de_Vendas.Transacoes
                 dataGridView1.Rows.Clear();
                 txtcod_barras.Focus();
                 cbformapagamento.SelectedIndex = -1;
-                pnfracionado.Visible = false;
+                pnfracionado.Visible = true;
+                pnfracionado.Enabled = false;
                 pnvendaprazo.Visible = false;
                 txtdinheiro.Clear();
                 txtpix.Clear();
@@ -520,6 +521,7 @@ namespace Sistema_de_Vendas.Transacoes
                 pnfracionado.Enabled = false;
                 pnvendaprazo.Visible = false;
                 panel1.Enabled = true;
+                panel2.Visible = true;
                 txtdinheiro.Text = "R$ 0.00";
                 txtpix.Text = "R$ 0.00";
                 txtcartao.Text = "R$ 0.00";

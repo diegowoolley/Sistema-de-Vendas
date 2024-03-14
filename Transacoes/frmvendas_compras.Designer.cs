@@ -156,11 +156,11 @@
             // lblcliente
             // 
             this.lblcliente.AutoSize = true;
-            this.lblcliente.Location = new System.Drawing.Point(324, 40);
+            this.lblcliente.Location = new System.Drawing.Point(300, 40);
             this.lblcliente.Name = "lblcliente";
-            this.lblcliente.Size = new System.Drawing.Size(94, 13);
+            this.lblcliente.Size = new System.Drawing.Size(152, 13);
             this.lblcliente.TabIndex = 13;
-            this.lblcliente.Text = "Selecionar cliente:";
+            this.lblcliente.Text = "Selecionar cliente\\ favorecido:";
             // 
             // dataGridView1
             // 
@@ -455,9 +455,9 @@
             this.panel1.Controls.Add(this.btncancelarretorno);
             this.panel1.Controls.Add(this.txtretornagrid);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(224, 44);
+            this.panel1.Location = new System.Drawing.Point(224, 40);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(202, 84);
+            this.panel1.Size = new System.Drawing.Size(202, 87);
             this.panel1.TabIndex = 33;
             this.panel1.Visible = false;
             this.panel1.Leave += new System.EventHandler(this.panel1_Leave);
