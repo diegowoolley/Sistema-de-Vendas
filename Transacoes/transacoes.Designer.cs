@@ -99,6 +99,7 @@
             this.cbtransacao.Items.AddRange(new object[] {
             "COMPRA",
             "VENDA",
+            "ORÇAMENTO",
             "ORDEM DE SERVIÇO",
             "DESPESA FUNCIONÁRIOS",
             "DESPESA ESTOQUE",

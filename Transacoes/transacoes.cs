@@ -30,6 +30,7 @@ namespace Sistema_de_Vendas.Transacoes
         int cod_venda;
         decimal valorfracionado;
         decimal precototal;
+        decimal resultadofracionado;
         
 
         private void transacoes_Load(object sender, EventArgs e)
@@ -70,7 +71,7 @@ namespace Sistema_de_Vendas.Transacoes
                 string pesquisa = txtpesquisa.Text;
 
                 con.AbrirConexao();
-                sql = "SELECT * FROM caixa WHERE cod_empresa = @cod_empresa AND cliente LIKE @cliente AND tipo LIKE @tipo or cod_venda LIKE @cod_venda AND tipo LIKE @tipo or favorecido LIKE @favorecido AND tipo LIKE @tipo";
+                sql = "SELECT * FROM caixa WHERE cod_empresa = @cod_empresa AND cliente LIKE @cliente AND tipo LIKE @tipo or cod_empresa = @cod_empresa AND cod_venda LIKE @cod_venda AND tipo LIKE @tipo or cod_empresa = @cod_empresa AND favorecido LIKE @favorecido AND tipo LIKE @tipo";
                 cmd = new MySqlCommand(sql, con.con);
                 cmd.Parameters.AddWithValue("@cliente", "%" + pesquisa + "%");
                 cmd.Parameters.AddWithValue("@favorecido", "%" + pesquisa + "%");
@@ -83,11 +84,6 @@ namespace Sistema_de_Vendas.Transacoes
                 da.Fill(dt);
                 dataGridView1.DataSource = dt;
                 con.FecharConexao();
-                if (dataGridView1.Rows.Count < 1)
-                {
-                    MessageBox.Show("Transação inexistente!");
-
-                }
             }
             catch (Exception ex)
             {
@@ -183,6 +179,7 @@ namespace Sistema_de_Vendas.Transacoes
             }
 
             lblvalor_total.Text = "Total: " + resultadoFracionado.ToString("C");
+            resultadofracionado = resultadoFracionado;
         }
 
         private void AtualizarQuantidadeProdutosVendidos()
@@ -283,6 +280,13 @@ namespace Sistema_de_Vendas.Transacoes
 
         private void btnconcluir_Click(object sender, EventArgs e)
         {
+            if(valorfracionado < precototal)
+            {
+                MessageBox.Show("O valor fracionado não pode ser menor que o valor total!");
+                txtdinheiro.Focus();
+                return;
+            }
+
             try
             {
 
@@ -315,7 +319,7 @@ namespace Sistema_de_Vendas.Transacoes
                     cmd.Parameters.AddWithValue("@taxa", txttaxa.Text.Trim().Replace("R$", ""));
                     cmd.Parameters.AddWithValue("@descontos", txtdesconto.Text.Trim().Replace("R$", ""));
                     cmd.Parameters.AddWithValue("@valor_total", precototal);
-                    cmd.Parameters.AddWithValue("valor_pago", valorfracionado);
+                    cmd.Parameters.AddWithValue("valor_pago", resultadofracionado);
                     cmd.Parameters.AddWithValue("@troco", lbltroco.Text.ToString().Replace("Troco: ", ""));
 
                     cmd.ExecuteNonQuery();
@@ -332,7 +336,7 @@ namespace Sistema_de_Vendas.Transacoes
                 cmd1.Parameters.AddWithValue("@desconto", txtdesconto.Text.Replace("%", "").Trim());
                 cmd1.Parameters.AddWithValue("@forma_pagamento", cbformadepagamento.Text);
                 cmd1.Parameters.AddWithValue("@valor_total", precototal);
-                cmd1.Parameters.AddWithValue("@valor_pago", valorfracionado);
+                cmd1.Parameters.AddWithValue("@valor_pago", resultadofracionado);
                 cmd1.Parameters.AddWithValue("@dinheiro", txtdinheiro.Text.Replace("R$", "").Trim().Replace(",", "."));
                 cmd1.Parameters.AddWithValue("@pix", txtpix.Text.Replace("R$", "").Trim().Replace(",", "."));
                 cmd1.Parameters.AddWithValue("@cartao", txtcartao.Text.Replace("R$", "").Trim().Replace(",", "."));

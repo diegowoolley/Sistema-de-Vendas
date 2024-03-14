@@ -272,7 +272,7 @@ namespace Sistema_de_Vendas
             {
                 string pesquisa = txtpesquisa.Text;
                 con.AbrirConexao();
-                sql = "SELECT * FROM cad_produtos WHERE cod_empresa = @cod_empresa AND nome_produto LIKE @nome or cod_produto LIKE @cod_produto or etiqueta LIKE @etiqueta";
+                sql = "SELECT * FROM cad_produtos WHERE cod_empresa = @cod_empresa AND nome_produto LIKE @nome or cod_empresa = @cod_empresa AND cod_produto LIKE @cod_produto or cod_empresa = @cod_empresa AND etiqueta LIKE @etiqueta";
                 cmd = new MySqlCommand(sql, con.con);
                 cmd.Parameters.AddWithValue("@nome", "%" + pesquisa + "%");
                 cmd.Parameters.AddWithValue("@cod_produto", "%" + pesquisa + "%");
