@@ -63,7 +63,7 @@ namespace Sistema_de_Vendas.Financeiro
             try
             {
                 con.AbrirConexao();
-                sql = "SELECT * FROM caixa WHERE cod_empresa = @cod_empresa AND DATE(data) = CURDATE() ORDER BY cod_venda ASC";
+                sql = "SELECT * FROM caixa WHERE cod_empresa = @cod_empresa AND tipo <> 'ORÇAMENTO' AND DATE(data) = CURDATE() ORDER BY cod_venda ASC";
                 cmd = new MySqlCommand(sql, con.con);
                 cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
                 MySqlDataAdapter da = new MySqlDataAdapter();
@@ -123,7 +123,7 @@ namespace Sistema_de_Vendas.Financeiro
             {
                 con.AbrirConexao();
 
-                sql = "SELECT * FROM caixa WHERE cod_empresa = @cod_empresa AND @cod_venda LIKE @cod_venda AND tipo LIKE @tipo AND cliente LIKE @cliente AND data BETWEEN @dataInicial AND @dataFinal ORDER BY data DESC";
+                sql = "SELECT * FROM caixa WHERE cod_empresa = @cod_empresa AND @cod_venda LIKE @cod_venda AND (tipo <> 'ORÇAMENTO' AND tipo LIKE @tipo) AND cliente LIKE @cliente AND data BETWEEN @dataInicial AND @dataFinal ORDER BY data DESC";
                 cmd = new MySqlCommand(sql, con.con);
                 cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
                 cmd.Parameters.AddWithValue("@cod_venda", "%" + txtnumeronota.Text + "%");

@@ -117,7 +117,7 @@ namespace Sistema_de_Vendas.Financeiro
                 string pesquisa = cbcliente.Text;
 
                 con.AbrirConexao();
-                sql = "SELECT * FROM caixa WHERE cod_empresa = @cod_empresa AND tipo LIKE @tipo AND cliente LIKE @cliente AND data BETWEEN @datainicial AND @datafinal ORDER BY cod_venda ASC";
+                sql = "SELECT * FROM caixa WHERE cod_empresa = @cod_empresa AND tipo = @tipo AND (cliente LIKE @cliente or favorecido LIKE @cliente) AND data BETWEEN @datainicial AND @datafinal ORDER BY cod_venda ASC";
                 cmd = new MySqlCommand(sql, con.con);
                 cmd.Parameters.AddWithValue("@cliente", "%" + pesquisa + "%");
                 cmd.Parameters.AddWithValue("@tipo", cbtipo.Text);
