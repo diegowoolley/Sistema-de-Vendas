@@ -308,7 +308,7 @@ namespace Sistema_de_Vendas.Transacoes
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
 
-                    sql = "UPDATE vendas SET tipo = @tipo, forma_pagamento = @forma_pagamento, dinheiro = @dinheiro, pix = @pix, cartao = @cartao, taxa = @taxa, descontos = @descontos, valor_total = @valor_total, valor_pago = @valor_pago, troco = @troco WHERE cod_venda = @cod_venda";
+                    sql = "UPDATE vendas SET tipo = @tipo, forma_pagamento = @forma_pagamento, dinheiro = @dinheiro, pix = @pix, cartao = @cartao, taxa = @taxa, descontos = @descontos, valor_pago = @valor_pago, troco = @troco WHERE cod_venda = @cod_venda";
                     cmd = new MySqlCommand(sql, con.con);
                     cmd.Parameters.AddWithValue("@cod_venda", cod_venda);
                     cmd.Parameters.AddWithValue("@tipo", "VENDA");
@@ -318,7 +318,6 @@ namespace Sistema_de_Vendas.Transacoes
                     cmd.Parameters.AddWithValue("@cartao", txtcartao.Text.Trim().Replace("R$", ""));
                     cmd.Parameters.AddWithValue("@taxa", txttaxa.Text.Trim().Replace("R$", ""));
                     cmd.Parameters.AddWithValue("@descontos", txtdesconto.Text.Trim().Replace("R$", ""));
-                    cmd.Parameters.AddWithValue("@valor_total", precototal);
                     cmd.Parameters.AddWithValue("valor_pago", resultadofracionado);
                     cmd.Parameters.AddWithValue("@troco", lbltroco.Text.ToString().Replace("Troco: ", ""));
 
@@ -329,13 +328,12 @@ namespace Sistema_de_Vendas.Transacoes
 
 
                 con.AbrirConexao();
-                sql1 = "UPDATE caixa SET tipo = @tipo, forma_pagamento = @forma_pagamento, dinheiro = @dinheiro, pix = @pix, cartao = @cartao, taxa = @taxa, desconto = @desconto, valor_total = @valor_total, valor_pago = @valor_pago, status = @status WHERE cod_venda = @cod_venda";
+                sql1 = "UPDATE caixa SET tipo = @tipo, forma_pagamento = @forma_pagamento, dinheiro = @dinheiro, pix = @pix, cartao = @cartao, taxa = @taxa, desconto = @desconto, valor_pago = @valor_pago, status = @status WHERE cod_venda = @cod_venda";
                 cmd1 = new MySqlCommand(sql1, con.con);
                 cmd1.Parameters.AddWithValue("@cod_venda", cod_venda);
                 cmd1.Parameters.AddWithValue("@tipo", "VENDA");
                 cmd1.Parameters.AddWithValue("@desconto", txtdesconto.Text.Replace("%", "").Trim());
                 cmd1.Parameters.AddWithValue("@forma_pagamento", cbformadepagamento.Text);
-                cmd1.Parameters.AddWithValue("@valor_total", precototal);
                 cmd1.Parameters.AddWithValue("@valor_pago", resultadofracionado);
                 cmd1.Parameters.AddWithValue("@dinheiro", txtdinheiro.Text.Replace("R$", "").Trim().Replace(",", "."));
                 cmd1.Parameters.AddWithValue("@pix", txtpix.Text.Replace("R$", "").Trim().Replace(",", "."));
