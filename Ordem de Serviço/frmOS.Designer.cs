@@ -117,6 +117,7 @@
             this.cbclientes.Name = "cbclientes";
             this.cbclientes.Size = new System.Drawing.Size(241, 21);
             this.cbclientes.TabIndex = 1;
+            this.cbclientes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbclientes_KeyPress);
             this.cbclientes.Leave += new System.EventHandler(this.cbclientes_Leave);
             // 
             // cbtecnico
@@ -128,6 +129,7 @@
             this.cbtecnico.Name = "cbtecnico";
             this.cbtecnico.Size = new System.Drawing.Size(241, 21);
             this.cbtecnico.TabIndex = 2;
+            this.cbtecnico.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbtecnico_KeyPress);
             this.cbtecnico.Leave += new System.EventHandler(this.cbtecnico_Leave);
             // 
             // lbltecnico
@@ -158,6 +160,7 @@
             this.cbstatus.Size = new System.Drawing.Size(172, 21);
             this.cbstatus.TabIndex = 3;
             this.cbstatus.SelectedIndexChanged += new System.EventHandler(this.cbstatus_SelectedIndexChanged);
+            this.cbstatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbstatus_KeyPress);
             // 
             // lblstatus
             // 
@@ -176,6 +179,7 @@
             this.dtinicial.Name = "dtinicial";
             this.dtinicial.Size = new System.Drawing.Size(98, 20);
             this.dtinicial.TabIndex = 4;
+            this.dtinicial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dtinicial_KeyPress);
             // 
             // lbldatainicial
             // 
@@ -203,6 +207,7 @@
             this.dtfinal.Name = "dtfinal";
             this.dtfinal.Size = new System.Drawing.Size(98, 20);
             this.dtfinal.TabIndex = 5;
+            this.dtfinal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dtfinal_KeyPress);
             // 
             // txtgarantia
             // 
@@ -240,6 +245,7 @@
             this.txttermo.Name = "txttermo";
             this.txttermo.Size = new System.Drawing.Size(454, 20);
             this.txttermo.TabIndex = 7;
+            this.txttermo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txttermo_KeyPress);
             // 
             // lbldescricaoprodserv
             // 
@@ -406,6 +412,7 @@
             this.cbproduto.Name = "cbproduto";
             this.cbproduto.Size = new System.Drawing.Size(241, 21);
             this.cbproduto.TabIndex = 15;
+            this.cbproduto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbproduto_KeyPress);
             this.cbproduto.Leave += new System.EventHandler(this.cbproduto_Leave);
             // 
             // lblproduto
@@ -507,6 +514,7 @@
             this.cbservico.Name = "cbservico";
             this.cbservico.Size = new System.Drawing.Size(241, 21);
             this.cbservico.TabIndex = 12;
+            this.cbservico.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbservico_KeyPress);
             this.cbservico.Leave += new System.EventHandler(this.cbservico_Leave);
             // 
             // lblservico
@@ -537,6 +545,7 @@
             this.txtdescricao.Size = new System.Drawing.Size(241, 154);
             this.txtdescricao.TabIndex = 8;
             this.txtdescricao.Text = "";
+            this.txtdescricao.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtdescricao_KeyPress);
             // 
             // txtdefeito
             // 
@@ -546,6 +555,7 @@
             this.txtdefeito.Size = new System.Drawing.Size(241, 154);
             this.txtdefeito.TabIndex = 9;
             this.txtdefeito.Text = "";
+            this.txtdefeito.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtdefeito_KeyPress);
             // 
             // txtobservacao
             // 
@@ -555,6 +565,7 @@
             this.txtobservacao.Size = new System.Drawing.Size(241, 154);
             this.txtobservacao.TabIndex = 10;
             this.txtobservacao.Text = "";
+            this.txtobservacao.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtobservacao_KeyPress);
             // 
             // txtlaudo
             // 
@@ -564,6 +575,7 @@
             this.txtlaudo.Size = new System.Drawing.Size(241, 154);
             this.txtlaudo.TabIndex = 11;
             this.txtlaudo.Text = "";
+            this.txtlaudo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtlaudo_KeyPress);
             // 
             // btnexcluirlista
             // 

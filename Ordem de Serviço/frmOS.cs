@@ -463,16 +463,24 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
         private void txtgarantia_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                txttermo.Focus();
         }
 
         private void txtquantidades_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender, e);
+            if (e.KeyChar == 13)
+                cbproduto.Focus();
         }
 
         private void txtquantidadep_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender, e);
+            if(e.KeyChar == 13)
+            {
+                cbclientes.Focus();
+            }
         }
 
         private void txtdinheiro_KeyPress(object sender, KeyPressEventArgs e)
@@ -498,6 +506,80 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
         private void txttaxa_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender, e);
+        }
+
+        private void cbstatus_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                dtinicial.Focus();
+        }
+
+        private void cbtecnico_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                cbstatus.Focus();
+        }
+
+        private void dtinicial_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                dtfinal.Focus();
+        }
+
+        private void dtfinal_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txtgarantia.Focus();
+        }
+
+        private void txttermo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txtdescricao.Focus();
+        }
+
+        private void txtdescricao_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txtdefeito.Focus();
+        }
+
+        private void txtdefeito_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txtobservacao.Focus();
+        }
+
+        private void txtobservacao_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txtlaudo.Focus();
+        }
+
+        private void txtlaudo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                cbservico.Focus();
+        }
+
+        private void cbservico_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txtquantidades.Focus();
+        }
+
+        private void cbproduto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txtquantidadep.Focus();
+        }
+
+        private void cbclientes_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                cbtecnico.Focus();
+            }
         }
 
         private void txtdinheiro_Enter(object sender, EventArgs e)
@@ -759,6 +841,8 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
             lblvalor_total.Text = "Total: " + precototal.ToString("C");
 
         }
+
+
 
 
 
@@ -2224,20 +2308,8 @@ namespace Sistema_de_Vendas.Ordem_de_Serviço
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
         #endregion
 
- 
+    
     }
 }
