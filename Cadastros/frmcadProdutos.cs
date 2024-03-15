@@ -758,21 +758,21 @@ namespace Sistema_de_Vendas
         {
             funcoes.DecNumber(sender, e);
             if (e.KeyChar == 13)
-                txtvalorvenda.Focus();
+                txtmargemlucro.Focus();
         }
 
         private void txtvalorvenda_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender, e);
             if (e.KeyChar == 13)
-                txtmargemlucro.Focus();
+                txtestoqueminimo.Focus();
         }
 
         private void txtmargemlucro_KeyPress(object sender, KeyPressEventArgs e)
         {
             funcoes.DecNumber(sender, e);
             if (e.KeyChar == 13)
-                txtestoqueminimo.Focus();
+                txtvalorvenda.Focus();
         }
 
         private void txtsituacaotributaria_KeyPress(object sender, KeyPressEventArgs e)
