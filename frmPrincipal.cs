@@ -7,18 +7,8 @@ using Sistema_de_Vendas.Ordem_de_Serviço;
 using Sistema_de_Vendas.Relatorios;
 using Sistema_de_Vendas.Transacoes;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Security.AccessControl;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Sistema_de_Vendas
 {
@@ -26,15 +16,60 @@ namespace Sistema_de_Vendas
     {
         public frmPrincipal()
         {
-            InitializeComponent();           
+            InitializeComponent();
         }
         conn con = new conn();
         string sql;
         MySqlCommand cmd;
+        string permissao;
 
         private void frmPrincipal_Load(object sender, EventArgs e)
-        {      
-         
+        {
+            try
+            {
+                con.AbrirConexao();
+                sql = "SELECT * FROM cad_usuarios WHERE nome_usuarios = @user";
+                cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@user", funcoes.conectado);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                permissao = dt.Rows[0]["permissoes_Usuarios"].ToString();
+                funcoes.permissao = permissao;
+                con.FecharConexao();
+
+                if(permissao == "Administrador")
+                {
+                    cadastrosToolStripMenuItem.Enabled = true;
+                    vendasComprasToolStripMenuItem.Enabled = true;
+                    financeiroToolStripMenuItem.Enabled = true;
+                    manutençãoToolStripMenuItem.Enabled = true;
+                    configuraçãoToolStripMenuItem.Enabled = false;
+
+                }
+                else if(permissao == "Usuário")
+                {
+                    cadastrosToolStripMenuItem.Enabled = false;
+                    financeiroToolStripMenuItem.Enabled = false;
+                    manutençãoToolStripMenuItem.Enabled = false;
+                    configuraçãoToolStripMenuItem.Enabled = false;
+                }
+                else if(permissao == "Support")
+                {
+                    cadastrosToolStripMenuItem.Enabled = true;
+                    vendasComprasToolStripMenuItem.Enabled = true;
+                    financeiroToolStripMenuItem.Enabled = true;
+                    manutençãoToolStripMenuItem.Enabled = true;
+                    configuraçãoToolStripMenuItem.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
             try
             {
                 con.AbrirConexao();
@@ -47,16 +82,16 @@ namespace Sistema_de_Vendas
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 lblempresa.Text = "Empresa: " + dt.Rows[0]["nome"].ToString();
-                con.FecharConexao();              
+                con.FecharConexao();
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro na Conexão", ex.Message);
+                MessageBox.Show(ex.Message);
             }
 
 
-            string conectado = funcoes.conectado;            
+            string conectado = funcoes.conectado;
             lblconectado.Text = ("Usuário Conectado: " + conectado);
             lbldata.Text = DateTime.Today.ToString("dd/MM/yyyy");
             lblhora.Text = DateTime.Now.ToString("HH:mm:ss");
@@ -81,20 +116,20 @@ namespace Sistema_de_Vendas
                     }
 
                 }
-                               
+
 
             }
         }
 
         private void usuáriosToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            frmcadUsuarios cadusuario= new frmcadUsuarios();
+            frmcadUsuarios cadusuario = new frmcadUsuarios();
             cadusuario.ShowDialog();
         }
 
         private void clientesToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            frmcadClientes cadclientes= new frmcadClientes();
+            frmcadClientes cadclientes = new frmcadClientes();
             cadclientes.ShowDialog();
         }
 
@@ -102,8 +137,8 @@ namespace Sistema_de_Vendas
         {
             frmLogin login = new frmLogin();
             login.ShowDialog();
-            
-            
+
+
         }
 
         private void funcionáriosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -139,7 +174,7 @@ namespace Sistema_de_Vendas
 
         private void formasDePagamentoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            cad_pagamentos cad_pagamento = new cad_pagamentos();    
+            cad_pagamentos cad_pagamento = new cad_pagamentos();
             cad_pagamento.ShowDialog();
         }
 
@@ -159,7 +194,7 @@ namespace Sistema_de_Vendas
         {
             frmvendas_compras frmvendas_Compras = new frmvendas_compras();
             frmvendas_Compras.ShowDialog();
-        }                   
+        }
 
         private void calculadoraToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -190,7 +225,7 @@ namespace Sistema_de_Vendas
 
         private void historicoDeTransaçõesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            transacoes Transacoes = new transacoes();   
+            transacoes Transacoes = new transacoes();
             Transacoes.ShowDialog();
         }
 
@@ -260,7 +295,7 @@ namespace Sistema_de_Vendas
 
             if (result == DialogResult.No)
             {
-                e.Cancel = true; 
+                e.Cancel = true;
             }
         }
 

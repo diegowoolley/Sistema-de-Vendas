@@ -1,17 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Drawing;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Xml.Linq;
+﻿using System.Windows.Forms;
 
 namespace Sistema_de_Vendas
 {
@@ -21,19 +8,20 @@ namespace Sistema_de_Vendas
         public string numero { get; set; }
         public static int cod_venda { get; set; }// pega codigo da venda para relatorios
         public static int cod_empresa { get; set; }// pega empresa conectada ao sistema
+        public static string permissao { get; set; }
 
-        
+
         public static void DecNumber(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8 && e.KeyChar != 44)
                 e.Handled = true;
         }
-             
 
 
-       
+
+
     }
 
 }
-    
+
 
