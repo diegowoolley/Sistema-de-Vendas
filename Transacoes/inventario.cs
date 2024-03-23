@@ -1,12 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Sistema_de_Vendas
@@ -28,6 +23,10 @@ namespace Sistema_de_Vendas
             formatargrid();
             ContarProdutosAVencer();
             ContarProdutosBaixoEstoque();
+            if(funcoes.permissao == "Usuário")
+            {
+                btnadcicionarproduto.Enabled = false;
+            }
         }
 
         #region MÉTODOS
@@ -61,10 +60,10 @@ namespace Sistema_de_Vendas
             {
                 con.FecharConexao();
             }
-            label2.Text = "Número de produtos próximos de vencer: "+contador.ToString();
+            label2.Text = "Número de produtos próximos de vencer: " + contador.ToString();
 
             return contador;
-             
+
         }
 
         private int ContarProdutosBaixoEstoque()
@@ -119,7 +118,7 @@ namespace Sistema_de_Vendas
             {
                 MessageBox.Show(ex.Message);
             }
-    
+
         }
 
         private void listarminimo()
@@ -152,25 +151,25 @@ namespace Sistema_de_Vendas
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
 
-                    decimal.TryParse(row.Cells["quantidade"].Value.ToString(), out decimal estoqueAtual);
-                
-                    decimal.TryParse(row.Cells["estoque_minimo"].Value.ToString(), out decimal estoqueMinimo);
-                    
-                        
-                        if (estoqueAtual < estoqueMinimo)
-                        {
-                            
-                            row.Cells["quantidade"].Style.BackColor = Color.Yellow;
-                        }
+                decimal.TryParse(row.Cells["quantidade"].Value.ToString(), out decimal estoqueAtual);
+
+                decimal.TryParse(row.Cells["estoque_minimo"].Value.ToString(), out decimal estoqueMinimo);
 
 
-                        if (estoqueAtual < 0)
-                        {
+                if (estoqueAtual < estoqueMinimo)
+                {
 
-                            row.Cells["quantidade"].Style.BackColor = Color.Red;
-                        }
+                    row.Cells["quantidade"].Style.BackColor = Color.Yellow;
+                }
+
+
+                if (estoqueAtual < 0)
+                {
+
+                    row.Cells["quantidade"].Style.BackColor = Color.Red;
+                }
             }
-                 
+
         }
 
         private void listarvalidade()
@@ -179,10 +178,10 @@ namespace Sistema_de_Vendas
             {
                 con.AbrirConexao();
 
-                
+
                 DateTime dataAtual = DateTime.Now;
 
-                
+
                 sql = "SELECT * FROM cad_produtos WHERE cod_empresa = @cod_empresa AND STR_TO_DATE(validade, '%d/%m/%Y') BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 1 MONTH) ORDER BY nome_produto ASC";
                 cmd = new MySqlCommand(sql, con.con);
                 cmd.Parameters.AddWithValue("@cod_empresa", funcoes.cod_empresa);
@@ -193,7 +192,7 @@ namespace Sistema_de_Vendas
                 da.Fill(dt);
                 dataGridView1.DataSource = dt;
                 colorirvalidade();
-               
+
             }
             catch (Exception ex)
             {
@@ -291,7 +290,7 @@ namespace Sistema_de_Vendas
             {
                 MessageBox.Show(ex.Message);
             }
-          
+
         }
 
         #endregion
@@ -327,7 +326,7 @@ namespace Sistema_de_Vendas
         private void txtpesquisa_TextChanged(object sender, EventArgs e)
         {
             Buscar();
-            
+
         }
 
         #endregion
