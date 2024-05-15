@@ -1,5 +1,5 @@
 # Sistema-de-Vendas
-Sistema ERP
+Sistema ERP (Ainda em Desenvolvimento)
 - Cadastros
 - Movimentações
 - PDV
