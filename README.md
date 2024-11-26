@@ -3,6 +3,7 @@ Sistema ERP (Ainda em Desenvolvimento)
 - Cadastros
 - Movimentações
 - PDV
+- Módulo de Ordem de Serviço Integrado a o Sistema Financeiro
 - Controle de Estoque
 - Financeiro
 - Relatórios
